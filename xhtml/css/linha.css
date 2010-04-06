@@ -1,0 +1,265 @@
+/* ELEMENTOS LINHA FRAMEWORK */
+/* ----------------------------------------- */
+
+/* @Grupo FORM */
+form input.erro{
+	border: 1px solid #F00; 
+}
+/* @Fim */
+
+/* @Grupo TOOLTIP */
+.tooltip-conteudo{
+	padding: 5px;
+	border: 1px solid #000;
+	background: #444;
+	color: #FFF;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+}
+.tooltip-conteudo img{
+	border: 1px solid #000;
+	display: block; /*Mini hack pra retirar a linha que fica embaixo da imagem*/
+}
+.tooltip-load, .modal-load{
+	background: #444 url(../img/load.gif) no-repeat center;
+	width: 62px;
+	height: 13px;
+	display: block;
+	padding: 5px;
+}
+/* @Fim */
+
+/* @Grupo ACORD */
+.acordion{
+	background: #eee;
+	border: 1px solid #222;
+}
+.acordion h2, ul.acordion li span{
+	background: #333;
+	color: #FFF;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #404040 #1a1a1a #1a1a1a #505050;
+	margin: 0;
+	width: 100%;
+	display:block;
+	padding: 7px 0;
+	font-size: 18px;
+}
+.acordion h2 a, ul.acordion li span a{
+	color: #FFF;
+}
+.acordion h2:hover{
+	color: #FFFFFF;
+	background: #4698ca;
+	border-top-color: #5db1e0 !important;
+	border-left-color: #5db1e0;
+}
+.acordion h2:hover a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.acordion h2 a{
+	text-transform: lowercase;
+	color: #FFF;
+	display: block;
+	padding: 0px 15px;
+}
+.acordion div{
+	border: 1px solid #fff;
+}
+.acordion div p{
+	margin: 0;
+	padding: 5px 15px;
+}
+ul.acordion{
+	list-style: none;
+	margin: 0;
+	padding: 0; 
+}
+ul.acordion li{
+	list-style: none;
+	margin: 0;
+	padding: 0; 
+}
+/* @Fim */
+
+/* @Grupo SLIDE*/
+.slide{
+	width: 600px;
+	height: 290px;
+	display: block;
+	overflow: hidden;
+}
+.slide-conteudo{
+	height: 220px;
+	overflow: hidden;
+	display: block;
+	background: #dfdfdf;
+	border: 1px solid #acabab;
+	margin-bottom: 10px;
+}
+.painel{
+	float: left;
+	display: block;
+	height: 180px;
+	padding: 20px;
+	width: 560px;
+}
+a.seta{
+	font-size: 72px;
+	float: left;
+	display: block;
+	padding: 0 10px;
+	overflow: hidden;
+	color: #000;
+	line-height: 41px;
+}
+a.seta:visited{
+	color: #000;
+}
+.slide-miniaturas{
+	float: left;
+	display: block;
+	overflow: hidden;
+	line-height: 41px;
+}
+div.miniatura{
+	font-size: 25px;
+	float: left;
+	width: 57px;
+	height:52px;
+	text-align: center;
+	display: block;
+	line-height: 52px;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	background: #dfdfdf;
+	border: 1px solid #acabab;
+	cursor: pointer;
+}
+.slide-miniaturas .slide-miniatura-atual{
+	background: #111;
+	border-color: #000; 
+	color: #FFF;
+}
+.slide-miniaturas div.primeiro{
+	margin: 0;
+	padding: 0;
+}
+.proximo{
+	float: right;
+}
+/*-- Slider --*/
+.slider{
+	width: 700px;
+}
+.slider .proximo{
+	float: left;
+}
+.slider-painel div.primeiro{
+	margin: 0;
+	padding: 0;
+}
+.slider-painel{
+	display:block;
+	float:left;
+	height:55px;
+	overflow:hidden;
+	width: 266px;
+}
+.slider-painel div div{
+	font-size: 25px;
+	float: left;
+	width: 57px;
+	height:52px;
+	text-align: center;
+	display: block;
+	line-height: 52px;
+	margin-bottom: 5px;
+	margin-right: 10px;
+	background: #dfdfdf;
+	border: 1px solid #acabab;
+	cursor: pointer;
+}
+/* @Fim */
+
+/* @Grupo TABS*/
+.tabs_area{
+	border: 1px solid #000;
+	background: #111111;
+	padding: 5px 10px;
+	display: block;
+	width: 600px;
+}
+.tabs_area ul.tabs{
+	margin: 0;
+} 
+.tabs_area ul.tabs li{
+	margin:0 0 0 5px;
+	padding:5px 10px;
+	background: #eee;
+	border: 1px solid #222;
+	display: block;
+	float: left;
+	list-style: none;
+	cursor: pointer;
+}
+.tabs_area .tabs_conteudo{
+	width: 600px;
+	overflow: hidden;
+}
+.tabs_area div div{
+	background: #eee;
+	display:block;
+	float:left;
+	width: 600px;
+}
+/* @Fim */
+
+/* @Grupo MODAL */
+.modal-area{
+	background: #eee;
+	min-width: 500px;
+	border: 1px solid #000;
+	position: absolute;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 4px 18px #252525;
+	-webkit-box-shadow: 0 4px 18px #252525;
+	-khtml-box-shadow: 0 4px 18px #252525;
+	box-shadow: 0 4px 18px #252525;
+}
+.modal-titulo{
+	background: #111;
+	padding: 5px 10px;
+	border: 1px solid #000;
+	font-weight: bold;
+	color: #FFF;
+}
+.modal-conteudo{
+	border-top: none;
+	background: #eee;
+	padding: 10px;	
+	-moz-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+	-khtml-border-radius:  0 0 5px 5px;
+	border-radius:  0 0 5px 5px;
+}
+.modal-fecha{
+	color:#FFFFFF;
+	font-size:21px;
+	font-weight:bold;
+	position:absolute;
+	right:8px;
+	top:5px;
+	cursor: pointer;
+}
+/* @Fim */

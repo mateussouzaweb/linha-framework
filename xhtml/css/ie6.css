@@ -1,0 +1,21 @@
+﻿/* ESTILOS IE6 */
+/* ----------------------------------------- */
+.coluna2, .coluna3, .coluna4, .lateral, .coluna{
+	display: inline;
+}
+form input.enviar{
+	padding: 5px 10px 4px;
+	width: 0;
+}
+
+/*h1{
+	background: none;
+	filter:
+	progid:dximagetransform.microsoft.alphaimageloader(src='http://localhost/mateussouza2009/wp-content/themes/mateussouza/', sizingmethod='crop');
+}
+
+Hack css para os links ficarem clicaveis
+ #busca input, h1 a{
+	position: relative;
+}
+*/

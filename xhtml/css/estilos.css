@@ -1,0 +1,268 @@
+/* ESTILOS */
+/* ----------------------------------------- */
+
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #222;
+	line-height: 21px;
+}
+a, a:link {
+	color: #3151A2;
+	text-decoration: none;
+}
+a:hover, a:visited{
+	color: #3151A2;
+}
+h1, h2, h3, h4, h5, h6{line-height: 100%; margin-bottom: 0.5em;}
+h1{font-size: 250%;}
+h2{font-size: 200%;}
+h3{font-size: 150%;}
+h4{font-size: 120%;}
+h5, h6{font-size: 100%;}
+p,ul,ol{margin-bottom: 10px;}
+
+/*SELETORES*/
+#tudo{
+	width: 960px;
+	margin: 0 auto;
+}
+#topo{
+	margin: 10px 0 25px;
+	padding: 10px;
+	clear: both;
+}
+#conteudo{
+	margin: 10px 0;
+	clear: both;
+}
+#rodape{
+	margin: 10px 0;
+	padding: 10px;
+}
+
+/*MODELOS/LAYOUTS - Padrão modelo 1*/
+#principal{width: 960px; display: block; float: left;}
+.coluna1{width: 940px;display: block;margin: 5px 10px;}
+.coluna2{width: 460px;display: block;float: left;margin: 5px 10px;}
+.coluna3{width: 300px;display: block;float: left;margin: 5px 10px;}
+.coluna4{width: 220px;display: block;float: left;margin: 5px 10px;}
+
+/*Modelo-2*/
+.modelo-2 #principal{width: 720px;}
+.lateral{ width: 220px ;display: block; float: left;margin: 5px 10px;}
+.modelo-2 .coluna1{width: 700px;}
+.modelo-2 .coluna2{width: 340px;}
+.modelo-2 .coluna3{width: 220px;}
+.modelo-2 .coluna4{width: 160px;}
+
+/*Modelo-3*/
+.modelo-3 #principal{width: 560px;}
+.modelo-3 .lateral{width: 180px;}
+.modelo-3 .coluna1{width: 540px;}
+.modelo-3 .coluna2{width: 260px;}
+.modelo-3 .coluna3{width: 166px;}
+.modelo-3 .coluna4{width: 120px;}
+
+/*MEDIDAS PERSONALIZADAS*/
+.coluna{display: block;	float: left;margin: 5px 10px;}
+.tamanho12{width: 940px;}
+.tamanho11{width: 860px;}
+.tamanho10{width: 780px;}
+.tamanho9{width: 700px;}
+.tamanho8{width: 620px;}
+.tamanho7{width: 540px;}
+.tamanho6{width: 460px;}
+.tamanho5{width: 380px;}
+.tamanho4{width: 300px;}
+.tamanho3{width: 220px;}
+.tamanho2{width: 140px;}
+.tamanho1{width: 60px;}
+
+/*AGORA SIM VEM OS ESTILOS \o/*/
+
+/* @Grupo MENU */
+ul.menu{
+	background: #333;
+	height: 40px;
+}
+ul.menu li{
+	list-style: none;
+	float: left;
+	display: block;	
+	position: relative;
+	margin: 0px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #404040 #1a1a1a #1a1a1a #505050;
+}
+ul.menu li:hover, ul.menu li.hover{ /*Fix para z-index IE7 | .hover para IE6(requer Js)*/
+	z-index: 10;
+}
+ul.menu li a{
+	padding: 0px 30px;
+	line-height: 38px;
+	font-weight: bold;
+	color: #FFFFFF !important;
+	display: block;
+}
+ul.menu li a:hover, ul.menu li:hover{
+	color: #FFFFFF;
+	background: #4698ca;
+	border-top-color: #5db1e0 !important;
+	border-left-color: #5db1e0;
+}
+/* -- Submenus -- */
+ul.menu li ul{
+	position: absolute;
+	background: #333;
+	width: 170px;
+	top: 39px;
+	left: -1px;
+	display: none;
+	z-index: 10;
+}
+ul.menu li ul li{
+	width: 100%;
+	background: #333;
+	position: relative;
+}
+ul.menu li ul li:hover, ul.menu li ul li a:hover{
+	color: #fff;
+	background: #4698ca;
+	border-top-color: #5db1e0 !important;
+	border-left-color: #5db1e0;
+}
+ul.menu li ul li a{
+	width: 110px;	
+}
+ul.menu li ul li ul{
+	position: absolute;
+	background: #333;
+	width: 170px;
+	top: 0;
+	left: 171px;
+	display: none;
+}
+ul.menu li ul li{
+	width: 170px;
+	background: #333;
+}
+/* @Fim */
+
+/* @Grupo FORMULÁRIOS */
+form label{
+	font-weight: bold;
+	display: block;
+}
+form input,form textarea{
+	padding: 8px;
+	border: 1px solid;
+	border-color: #bbb #ddd #ddd #bbb;
+	background: url(../img/input.png) repeat-x top;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+}
+form input[type="radio"], form input[type="checkbox"]{
+	border: none;
+	background: none;
+	padding: 0;
+}
+form input.enviar{
+	background: #333;
+	border: 1px solid #000;
+	font-weight: bold;
+	color: #fff;
+	padding: 5px 10px 7px;
+	width: auto;
+	height: 30px;
+	display: inline-block;
+	overflow: visible;
+	cursor: pointer;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+}
+form select{
+	border: 1px solid;
+	line-height: 1em;
+	padding: 6px 8px;
+	border-color: #bbb #ddd #ddd #bbb;
+	background: url(../img/input.png) repeat-x top;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	width: 321px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+}
+form option{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	padding: 0 8px;
+}
+/* @Fim */
+
+/* @Grupo ALERTAS */
+.alerta{
+	padding: 10px 20px;
+	border: 1px solid #C0C0C0;
+	margin: 5px 0;
+	display: block;
+	background: #EDEDED;
+	color: #333;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+}
+.verde{
+	background: #E9F9E5;
+	border:1px solid #9BDEA8;
+	color: #1C8400;
+}
+.vermelho{
+	background: #F9E5E6;
+	border:1px solid #DF8F8F;
+	color: #C32727;
+}
+.amarelo{
+	background: #FFF6BF;
+	border:1px solid #EFC20E;
+}
+.azul{
+	background: #DDEEFF;
+	border:1px solid #85CAF3;
+	color: #0055B5;
+}
+/* @Fim */
+
+/* @Grupo OUTROS */
+a.botao{
+	background: #333;
+	border: 1px solid #000;
+	font-weight: bold;
+	color: #fff;
+	padding: 5px 10px;
+	width: auto;
+	display: inline-block;
+	overflow: visible;
+	cursor: pointer;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+}
+blockquote{
+	padding: 10px 20px 0px;
+	border: 1px solid #ccc;
+	background: #f2f2f2;
+	margin-bottom: 10px;
+}
+/* @Fim */
