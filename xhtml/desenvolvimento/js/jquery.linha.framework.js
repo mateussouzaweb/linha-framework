@@ -6,7 +6,7 @@
 *
 * @author			Mateus Souza
 * @author-email		mateussouzaweb@gmail.com
-* @author-website	http://www.mateussouza.com
+* @author-website	http://www.mateussouza.com | http://www.linhaframework.com
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
@@ -41,7 +41,7 @@
 			var a = acordion;
 			
 			//Fix para erros de animação
-			a.find(o.filho).each(function(){$(this).css('height', $(this).height() + 'px').hide();});
+			a.find(o.filho).each(function(){$(this).css("height", $(this).height() + "px").hide();});
 			if (o.sempreUm) {$(o.filho + ':first', a).show();}
 			
 			//Altura automatica
@@ -79,6 +79,7 @@
 	};
 
 })(jQuery);
+
 /**
 * @name				Linha Focuss
 * @version			1.0
@@ -89,7 +90,7 @@
 *
 * @author			Mateus Souza
 * @author-email		mateussouzaweb@gmail.com
-* @author-website	http://www.mateussouza.com
+* @author-website	http://www.mateussouza.com | http://www.linhaframework.com
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
@@ -120,10 +121,10 @@
 		return elem.each(function(){
 			
 			var t = $(this),
-			bl = t.css('border-left-color'),
-			br = t.css('border-right-color'),
-			bt = t.css('border-top-color'),
-			bb = t.css('border-bottom-color'),
+			bl = t.css("border-left-color"),
+			br = t.css("border-right-color"),
+			bt = t.css("border-top-color"),
+			bb = t.css("border-bottom-color"),
 			bcor = bt + ' ' + br + ' ' + bb + ' ' + bl,
 			texto = t.val();
 				
@@ -136,6 +137,7 @@
 				t.bind(o.eventoFim, function(){ return terminaFocuss(t, bcor);});
 			}
 			
+			//
 			function iniciaFocuss(t){
 
 				//Para inputs
@@ -162,6 +164,7 @@
 		});
 	};
 })(jQuery);
+
 /**
 * @name				Linha Form
 * @version			1.0
@@ -171,7 +174,7 @@
 *
 * @author			Mateus Souza
 * @author-email		mateussouzaweb@gmail.com
-* @author-website	http://www.mateussouza.com
+* @author-website	http://www.mateussouza.com | http://www.linhaframework.com
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
@@ -209,7 +212,7 @@
 			var t = $(this);
 			
 			//Checa se é form
-			if(!$(this).is('form')){ alert('linha form indica: seletor não é um formulário');}
+			if(!$(this).is('form')){ alert("linha form indica: seletor não é um formulário");}
 			
 			$(this).find('input, button').filter(':submit').click(function(){
 				
@@ -319,6 +322,7 @@
 	}
 	
 })(jQuery);
+
 /**
 * @name				Linha Modal
 * @version			1.0
@@ -328,7 +332,7 @@
 *
 * @author			Mateus Souza
 * @author-email		mateussouzaweb@gmail.com
-* @author-website	http://www.mateussouza.com
+* @author-website	http://www.mateussouza.com | http://www.linhaframework.com
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
@@ -639,6 +643,7 @@
 	};
 		
 })(jQuery);
+
 /**
 * @name				Linha Nav
 * @version			1.0
@@ -648,7 +653,7 @@
 *
 * @author			Mateus Souza
 * @author-email		mateussouzaweb@gmail.com
-* @author-website	http://www.mateussouza.com
+* @author-website	http://www.mateussouza.com | http://www.linhaframework.com
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
@@ -737,7 +742,7 @@
 *
 * @author			Mateus Souza
 * @author-email		mateussouzaweb@gmail.com
-* @author-website	http://www.mateussouza.com
+* @author-website	http://www.mateussouza.com | http://www.linhaframework.com
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
@@ -941,7 +946,7 @@
 *
 * @author			Mateus Souza
 * @author-email		mateussouzaweb@gmail.com
-* @author-website	http://www.mateussouza.com
+* @author-website	http://www.mateussouza.com | http://www.linhaframework.com
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
@@ -1011,8 +1016,7 @@
 			
 			tip['conteudo'] = t.attr(o.atributo), 
 			tip['largura'] = t.attr(o.atributo_largura),
-			tip['altura'] = t.attr(o.atributo_altura), 
-			tip['continua'] = true;
+			tip['altura'] = t.attr(o.atributo_altura); 
 			
 			tip['tip'] = $('<div></div>')
 				.addClass(o.classe_conteudo)
@@ -1049,14 +1053,10 @@
 							width: this.width
 						});
 						
-						if (tip['continua']) { //Checa se pe pra continuar
+						tip['tip'].html(this).appendTo('body').fadeIn('slow');
+						tip['load'].remove();
+						$(this).fadeIn();
 						
-							tip['tip'].html(this).appendTo('body').fadeIn('slow');
-							tip['load'].remove();
-
-							$(this).fadeIn();
-						}
-
 						return posicionaTooltip(t, e);
 						
 					}).attr('src', tip['conteudo']);
@@ -1074,21 +1074,14 @@
 						type: "POST",
 						url: tip['conteudo'],
 						success: function(data){
-							if (tip['continua']) { //Checa se pe pra continuar
-								tip['tip'].html(data).appendTo('body').fadeIn('slow');
-								tip['load'].fadeOut('fast', function(){
-									$(this).remove();
-								});
-							};
+							
+							tip['tip'].html(data).appendTo('body').fadeIn('slow');
+							tip['load'].fadeOut('fast', function(){$(this).remove();});
 							return posicionaTooltip(t, e);	
 						},
 						error: function() {
-							if (tip['continua']) { //Checa se pe pra continuar
-								tip['tip'].html("Ocorreu algum erro ou esta url não existe...").appendTo('body').fadeIn('slow');
-								tip['load'].fadeOut('fast', function(){
-									$(this).remove();
-								});
-							}
+							tip['tip'].html("Ocorreu algum erro ou esta url não existe...").appendTo('body').fadeIn('slow');
+							tip['load'].fadeOut('fast', function(){$(this).remove();});
 							return posicionaTooltip(t, e);
 			   			}
 			
@@ -1111,7 +1104,6 @@
 			
 			if ($.isFunction(o.onTermina)) {o.onTermina.apply(t);}
 			
-			tip['continua'] = false;
 			tip['tip'].remove();
 			$('.' + o.classe_conteudo).remove();
 			tip['load'].remove();

@@ -6,7 +6,7 @@
 *
 * @author			Mateus Souza
 * @author-email		mateussouzaweb@gmail.com
-* @author-website	http://www.mateussouza.com
+* @author-website	http://www.mateussouza.com | http://www.linhaframework.com
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 

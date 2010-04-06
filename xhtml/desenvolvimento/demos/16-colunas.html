@@ -7,7 +7,7 @@
     <meta name="keywords" content="" />
     <meta name="robots" content="index,follow" />
 
-<title>Linha Framework - jQuery Focuss</title>
+<title>Linha Framework - 16 Colunas</title>
 
 <!-- Favicon -->
 	<link rel="shortcut icon" href="../../favicon.ico" />
@@ -24,55 +24,65 @@
    
 <!-- JS -->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" src="../../desenvolvimento/js/jquery.linha.focuss.js"></script>
+	<script type="text/javascript" src="../../js/jquery.linha.framework.min.js"></script>
     <script type="text/javascript">
 	$(document).ready(function(){
-		$.focuss({
-			remove: true
-		});
-
+		//...
     });  
 	</script>
+	<style type="text/css">
+	.coluna{
+		background: #333;
+		height: 150px;
+		color:#FFF;
+		font-weight: bold;
+		text-align: center;
+	}
+	</style>
 
 </head>
 
-<body>
+<body class="grid-16">
 <div id="tudo">
+	
+	<div id="topo">
+		<h1>Linha Framework</h1>
+		<p>16 Colunas</p>
+	<div class="clear"></div>		
+	</div><!-- FIM TOPO -->
 	
 	<div id="conteudo">
 		
-		<div class="coluna tamanho12">
-			
-		<h3>Formulário</h3>
-		<form action="#" method="post" id="formulario">
-			<p>
-				<label>Nome</label>
-				<input type="text" name="nome" value="nome completo" class="tamanho4 obrigatorio"/>
-			</p>
-			<p>
-				<label>E-mail</label>
-				<input type="text" name="email" value="seu_email@email.com" class="tamanho4 obrigatorio email"/>
-			</p>
-			<p>
-				<label>URL</label>
-				<input type="text" name="url" value="www.minhaurl.com.br" class="tamanho4 obrigatorio url"/>
-			</p>
-			<p>
-				<label>Assunto</label>
-				<input type="text" name="assunto" class="tamanho4" value="Vou pensar..."/>
-			</p>
-			<p>
-				<label>Mensagem</label>
-				<textarea class="obrigatorio tamanho4" rows="5" cols="42">Eu vou escrever um texto aqui se quiser enviar esta mensagem</textarea>
-			</p>
-									
-			<p>
-				<input type="submit" class="enviar" value="Enviar"/>
-			</p>
-			</form>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
+		<div class="coluna tamanho1"> 40px </div>
 		
-		</div>	
-    <div class="clear"></div>        
+		<div class="coluna tamanho2"> 100px </div>
+		<div class="coluna tamanho5"> 280px </div>
+		<div class="coluna tamanho5"> 280px </div>
+		<div class="coluna tamanho4"> 220px </div>
+		
+		<div class="coluna tamanho3"> 160px </div>
+		<div class="coluna tamanho9"> 520px </div>
+		<div class="coluna tamanho4"> 220px </div>
+		
+		<div class="coluna tamanho12"> 940px </div>
+		<div class="coluna tamanho4"> 220px </div>
+		
+	<div class="clear"></div>		
 	</div><!-- FIM CONTEUDO -->
 	
 	<div id="rodape">

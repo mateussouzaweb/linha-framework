@@ -1,6 +1,6 @@
 ﻿/* ESTILOS IE6 */
 /* ----------------------------------------- */
-.coluna2, .coluna3, .coluna4, .lateral, .coluna{
+.coluna{
 	display: inline;
 }
 form input.enviar{

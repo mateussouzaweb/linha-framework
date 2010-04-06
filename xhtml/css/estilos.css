@@ -1,6 +1,5 @@
 /* ESTILOS */
 /* ----------------------------------------- */
-
 body{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -21,66 +20,81 @@ h3{font-size: 150%;}
 h4{font-size: 120%;}
 h5, h6{font-size: 100%;}
 p,ul,ol{margin-bottom: 10px;}
+small{font-size: 75%;}
+big{font-size: 125%;}
 
 /*SELETORES*/
-#tudo{
-	width: 960px;
-	margin: 0 auto;
-}
-#topo{
-	margin: 10px 0 25px;
-	padding: 10px;
-	clear: both;
-}
-#conteudo{
-	margin: 10px 0;
-	clear: both;
-}
-#rodape{
-	margin: 10px 0;
-	padding: 10px;
-}
+#tudo{width: 960px;	margin: 0 auto;}
+#topo{margin: 10px 0; padding: 10px; display: block;}
+#conteudo{margin: 10px 0; display: block;}
+#rodape{margin: 10px 0;	padding: 10px; display: block;}
 
-/*MODELOS/LAYOUTS - Padrão modelo 1*/
-#principal{width: 960px; display: block; float: left;}
-.coluna1{width: 940px;display: block;margin: 5px 10px;}
-.coluna2{width: 460px;display: block;float: left;margin: 5px 10px;}
-.coluna3{width: 300px;display: block;float: left;margin: 5px 10px;}
-.coluna4{width: 220px;display: block;float: left;margin: 5px 10px;}
-
-/*Modelo-2*/
-.modelo-2 #principal{width: 720px;}
-.lateral{ width: 220px ;display: block; float: left;margin: 5px 10px;}
-.modelo-2 .coluna1{width: 700px;}
-.modelo-2 .coluna2{width: 340px;}
-.modelo-2 .coluna3{width: 220px;}
-.modelo-2 .coluna4{width: 160px;}
-
-/*Modelo-3*/
-.modelo-3 #principal{width: 560px;}
-.modelo-3 .lateral{width: 180px;}
-.modelo-3 .coluna1{width: 540px;}
-.modelo-3 .coluna2{width: 260px;}
-.modelo-3 .coluna3{width: 166px;}
-.modelo-3 .coluna4{width: 120px;}
-
-/*MEDIDAS PERSONALIZADAS*/
-.coluna{display: block;	float: left;margin: 5px 10px;}
-.tamanho12{width: 940px;}
-.tamanho11{width: 860px;}
-.tamanho10{width: 780px;}
-.tamanho9{width: 700px;}
-.tamanho8{width: 620px;}
-.tamanho7{width: 540px;}
-.tamanho6{width: 460px;}
-.tamanho5{width: 380px;}
-.tamanho4{width: 300px;}
-.tamanho3{width: 220px;}
-.tamanho2{width: 140px;}
+/*12 COLUNAS - padrão*/
+.coluna{display: block;	float: left; margin: 10px;}
 .tamanho1{width: 60px;}
+.tamanho2{width: 140px;}
+.tamanho3{width: 220px;}
+.tamanho4{width: 300px;}
+.tamanho5{width: 380px;}
+.tamanho6{width: 460px;}
+.tamanho7{width: 540px;}
+.tamanho8{width: 620px;}
+.tamanho9{width: 700px;}
+.tamanho10{width: 780px;}
+.tamanho11{width: 860px;}
+.tamanho12{width: 940px;}
+
+/*16 COLUNAS*/
+.grid-16 .tamanho1{width: 40px;}
+.grid-16 .tamanho2{width: 100px;}
+.grid-16 .tamanho3{width: 160px;}
+.grid-16 .tamanho4{width: 220px;}
+.grid-16 .tamanho5{width: 280px;}
+.grid-16 .tamanho6{width: 340px;}
+.grid-16 .tamanho7{width: 400px;}
+.grid-16 .tamanho8{width: 460px;}
+.grid-16 .tamanho9{width: 520px;}
+.grid-16 .tamanho10{width: 580px;}
+.grid-16 .tamanho11{width: 640px;}
+.grid-16 .tamanho12{width: 700px;}
+.grid-16 .tamanho13{width: 760px;}
+.grid-16 .tamanho14{width: 820px;}
+.grid-16 .tamanho15{width: 880px;}
+.grid-16 .tamanho16{width: 940px;}
+
+/*24 COLUNAS*/
+.grid-24 #topo{padding: 10px 5px;}
+.grid-24 #rodape{padding: 10px 5px;}
+.grid-24 .coluna{margin: 10px 5px;}
+.grid-24 .tamanho1{width: 30px;}
+.grid-24 .tamanho2{width: 70px;}
+.grid-24 .tamanho3{width: 110px;}
+.grid-24 .tamanho4{width: 150px;}
+.grid-24 .tamanho5{width: 190px;}
+.grid-24 .tamanho6{width: 230px;}
+.grid-24 .tamanho7{width: 270px;}
+.grid-24 .tamanho8{width: 310px;}
+.grid-24 .tamanho9{width: 350px;}
+.grid-24 .tamanho10{width: 390px;}
+.grid-24 .tamanho11{width: 430px;}
+.grid-24 .tamanho12{width: 470px;}
+.grid-24 .tamanho13{width: 510px;}
+.grid-24 .tamanho14{width: 550px;}
+.grid-24 .tamanho15{width: 590px;}
+.grid-24 .tamanho16{width: 630px;}
+.grid-24 .tamanho17{width: 670px;}
+.grid-24 .tamanho18{width: 710px;}
+.grid-24 .tamanho19{width: 750px;}
+.grid-24 .tamanho20{width: 790px;}
+.grid-24 .tamanho21{width: 830px;}
+.grid-24 .tamanho22{width: 870px;}
+.grid-24 .tamanho23{width: 910px;}
+.grid-24 .tamanho24{width: 950px;}
+
+.primeiro, .grid-16 .primeiro, .grid-24 .primeiro{margin-left: 0;}
+.ultimo, .grid-16 .ultimo, .grid-24 .ultimo{margin-right: 0;}
 
 /*AGORA SIM VEM OS ESTILOS \o/*/
-
 /* @Grupo MENU */
 ul.menu{
 	background: #333;
@@ -243,6 +257,21 @@ form option{
 }
 /* @Fim */
 
+/* @Grupo TABELAS */
+table{
+	margin-bottom: 10px;
+}
+table tr th{
+	background: #EEE;
+	border: 1px solid #CCC;
+	padding: 5px 10px;
+}
+table tr td{
+	border: 1px solid #DDD;
+	padding: 5px 10px;
+}
+/* @Fim */ 
+
 /* @Grupo OUTROS */
 a.botao{
 	background: #333;
@@ -264,5 +293,17 @@ blockquote{
 	border: 1px solid #ccc;
 	background: #f2f2f2;
 	margin-bottom: 10px;
+}
+hr{
+	background: #ddd;
+	border-top: 1px solid #ddd;
+	height: 0px;
+	line-height: 0px;
+	display: block;
+	overflow: hidden;
+	margin: 10px 5px;
+}
+iframe{
+	border: 1px solid #ccc;
 }
 /* @Fim */
