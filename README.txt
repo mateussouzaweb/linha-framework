@@ -28,3 +28,4 @@ http://projects.scottsplayground.com/iri/ (REGEX URL)
 	- Fim do suporte para modelos
 	- Adicionado suporte a grid 12, 16 e 24 colunas
 	- Adição de Classes fix: .primeiro e .ultimo
+	- Atualização versões plugins js
