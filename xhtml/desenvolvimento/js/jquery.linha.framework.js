@@ -936,9 +936,10 @@
 	};
 	
 })(jQuery);
+
 /**
 * @name				Linha Tooltip
-* @version			1.0
+* @version			1.1
 * @descripton		Plugin Jquery para exibição de tooltips,
 * 					Interações no modo texto(html) imagem(img) e ajax.
 * 					Plugin extensível e customizável
@@ -950,7 +951,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   11/03/10 as 10:02 | nº 6
+* @ultima-revisao   09/04/10 as 18:35 | nº 7
 */
 (function($){
 	
@@ -981,6 +982,8 @@
 			atributo: 'rel',						//Atributo como base de conteudo
 			atributo_altura: 'altura',				//Atributo para definir altura personalizada ao tooltip
 			atributo_largura: 'largura',			//Atributo para definir largura personalizada ao tooltip
+			
+			wrapper_tooltip: null,					//Estrutura HTML para ser inserida ao redor do tooltip 
 			
 			onInicia: null,							//Callback
 			onTermina: null							//Callback
@@ -1016,7 +1019,13 @@
 			
 			tip['conteudo'] = t.attr(o.atributo), 
 			tip['largura'] = t.attr(o.atributo_largura),
-			tip['altura'] = t.attr(o.atributo_altura); 
+			tip['altura'] = t.attr(o.atributo_altura), 
+			tip['continua'] = true;
+		
+			//Se for title, exibe somente o tootip
+			if(o.atributo == 'title'){
+				t.attr('title', '');
+			}
 			
 			tip['tip'] = $('<div></div>')
 				.addClass(o.classe_conteudo)
@@ -1034,7 +1043,7 @@
 					position: 'fixed', 
 					left: 0
 				});
-				
+				//.wrapInner(o.wrapper_tooltip)
 			//Formação de conteúdo
 			if (tip['conteudo'] !== undefined) {
 				
@@ -1053,10 +1062,14 @@
 							width: this.width
 						});
 						
-						tip['tip'].html(this).appendTo('body').fadeIn('slow');
-						tip['load'].remove();
-						$(this).fadeIn();
+						if (tip['continua']) { //Checa se pe pra continuar
 						
+							tip['tip'].html(this).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+							tip['load'].remove();
+
+							$(this).fadeIn();
+						}
+
 						return posicionaTooltip(t, e);
 						
 					}).attr('src', tip['conteudo']);
@@ -1074,14 +1087,21 @@
 						type: "POST",
 						url: tip['conteudo'],
 						success: function(data){
-							
-							tip['tip'].html(data).appendTo('body').fadeIn('slow');
-							tip['load'].fadeOut('fast', function(){$(this).remove();});
+							if (tip['continua']) { //Checa se pe pra continuar
+								tip['tip'].html(data).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+								tip['load'].fadeOut('fast', function(){
+									$(this).remove();
+								});
+							};
 							return posicionaTooltip(t, e);	
 						},
 						error: function() {
-							tip['tip'].html("Ocorreu algum erro ou esta url não existe...").appendTo('body').fadeIn('slow');
-							tip['load'].fadeOut('fast', function(){$(this).remove();});
+							if (tip['continua']) { //Checa se pe pra continuar
+								tip['tip'].html("Ocorreu algum erro ou esta url não existe...").wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+								tip['load'].fadeOut('fast', function(){
+									$(this).remove();
+								});
+							}
 							return posicionaTooltip(t, e);
 			   			}
 			
@@ -1093,7 +1113,7 @@
 				
 				//Normal
 				else {
-					tip['tip'].html(tip['conteudo']).appendTo('body').fadeIn('slow');
+					tip['tip'].html(tip['conteudo']).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
 					return posicionaTooltip(t, e);
 				}
 				
@@ -1104,6 +1124,11 @@
 			
 			if ($.isFunction(o.onTermina)) {o.onTermina.apply(t);}
 			
+			if(o.atributo == 'title'){
+				t.attr('title', tip['conteudo']);
+			}
+			
+			tip['continua'] = false;
 			tip['tip'].remove();
 			$('.' + o.classe_conteudo).remove();
 			tip['load'].remove();
@@ -1120,16 +1145,11 @@
 			w = t.outerWidth(),
 			h = t.outerHeight(), 
 			pos = t.offset(),
-			left = pos.left,
-			topo = pos.top,
+			left = pos.left + o.padding_left,
+			topo = pos.top + o.padding_top,
 			//Tooltip
 			tipw = tip['tip'].outerWidth(),
 			tiph = tip['tip'].outerHeight(); 
-		
-			if(o.formulario){
-				topo += o.padding_top;
-				left += o.padding_left;
-			}
 			
 			if(o.fixado){
 				switch(o.posicao){
