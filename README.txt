@@ -1,4 +1,4 @@
-﻿======= LINHA FRAMEWORK - versão 1.1 ========
+﻿======= LINHA FRAMEWORK - versão 1.2 (ALPHA)========
 by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
 
 Colaboradores:
