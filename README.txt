@@ -31,4 +31,9 @@ http://projects.scottsplayground.com/iri/ (REGEX URL)
 	- Atualização versões plugins js
 	
 1.2
-	- Atualização Linha Slidetabs p/ 1.1	
+	- Atualização Linha Slidetabs p/ 1.1
+	- Remoção de estilos para IE6 e Mobile - não tem muita utilidade :)
+	- Grid CSS fica em um novo arquivo css (grid.css)
+	- Suporte a HTML5
+	- Reset.css com suporte a HTML5
+	- adicionado estilos para html5 (html5.css)	
