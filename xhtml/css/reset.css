@@ -1,24 +1,41 @@
-﻿/* RESET */
+﻿/* RESET + HTML5 Reset */
 /* ----------------------------------------- */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video, a {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary {display:block;}
+nav ul {list-style:none;}
+blockquote, q {quotes:none;}
+blockquote:before, blockquote:after, q:before, q:after {content:'';content:none;}
 
-/* Global reset */
-/* Based upon 'reset.css' in the Yahoo! User Interface Library: http://developer.yahoo.com/yui e em algumas alterações feitas por Mateus Souza: http://www.mateussouza.com */
-*, html, body, div, dl, dt, dd, ul, ol, li, ul li, h1, h2, h3, h4, h5, h6, pre, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0 }
-table { border-collapse:collapse; border-spacing:0 }
-fieldset, img, iframe { border:0 }
-ol, ul, ul li {list-style: none; list-style-type: none;}
-ol li{list-style:decimal; margin-left: 1.8em;}
-ul li{list-style:disc; margin-left: 1.5em;}
-hr {margin: 0;padding: 0;border: 0;color: #000;background-color: #000;height: 1px}
-caption, th { text-align:left }
-h1, h3, h4, h5, h6 { font-size:100%}
-blockquote:before, blockquote:after, q:before, q:after { content:''}
+body {line-height:1;}
 
-/* Global reset-RESET */
-/* The below restores some sensible defaults */
+ins {background-color:#ff9; color:#000; text-decoration:none;}
+
+mark {background-color:#ff9; color:#000; font-style:italic; font-weight:bold;}
+
+del {text-decoration: line-through;}
+
+abbr[title], dfn[title] {border-bottom:1px dotted #000; cursor:help;}
+
+table { border-collapse:collapse; border-spacing:0;}
+
+hr {display:block; height:1px; border:0; border-top:1px solid #cccccc; margin:1em 0; padding:0;}
+
+input, select { vertical-align:middle;}
+
 strong { font-weight: bold }
+
 cite, em, dfn { font-style: italic }
-a img { border:none } /* Gets rid of IE's blue borders */
+
+a img { border:none } /* Remove borda azul do IE */
+
 .clear{clear:both; display: block; height: 0px; overflow:hidden;}
 .float-left{ float: left;}
 .float-right{ float: right;}

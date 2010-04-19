@@ -1,11 +1,9 @@
 /* ELEMENTOS LINHA FRAMEWORK */
 /* ----------------------------------------- */
-
 /* @Grupo FORM */
 form input.erro{
 	border: 1px solid #F00; 
 }
-/* @Fim */
 
 /* @Grupo TOOLTIP */
 .tooltip-conteudo{
@@ -32,7 +30,6 @@ form input.erro{
 	display: block;
 	padding: 5px;
 }
-/* @Fim */
 
 /* @Grupo ACORD */
 .acordion{
@@ -87,7 +84,6 @@ ul.acordion li{
 	margin: 0;
 	padding: 0; 
 }
-/* @Fim */
 
 /* @Grupo SLIDE*/
 .slide{
@@ -185,7 +181,6 @@ div.miniatura{
 	border: 1px solid #acabab;
 	cursor: pointer;
 }
-/* @Fim */
 
 /* @Grupo TABS*/
 .tabs_area{
@@ -218,7 +213,6 @@ div.miniatura{
 	float:left;
 	width: 600px;
 }
-/* @Fim */
 
 /* @Grupo MODAL */
 .modal-area{
@@ -260,4 +254,3 @@ div.miniatura{
 	top:5px;
 	cursor: pointer;
 }
-/* @Fim */
