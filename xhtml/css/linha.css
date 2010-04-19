@@ -94,7 +94,6 @@ ul.acordion li{
 	width: 600px;
 	height: 290px;
 	display: block;
-	overflow: hidden;
 }
 .slide-conteudo{
 	height: 220px;
@@ -126,7 +125,6 @@ a.seta:visited{
 .slide-miniaturas{
 	float: left;
 	display: block;
-	overflow: hidden;
 	line-height: 41px;
 }
 div.miniatura{

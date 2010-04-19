@@ -29,3 +29,6 @@ http://projects.scottsplayground.com/iri/ (REGEX URL)
 	- Adicionado suporte a grid 12, 16 e 24 colunas
 	- Adição de Classes fix: .primeiro e .ultimo
 	- Atualização versões plugins js
+	
+1.2
+	- Atualização Linha Slidetabs p/ 1.1	

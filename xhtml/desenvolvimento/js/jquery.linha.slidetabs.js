@@ -1,6 +1,6 @@
 /**
 * @name				Linha slideTabs
-* @version			1.0
+* @version			1.1
 * @descripton		Plugin Jquery para desenvolvimento de slides, sliders(ou carousels), slideshow, e tabs
 * 					com troca automática e animada(opicional).
 * 					Plugin extensível e customizável
@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   11/03/10 as 9:47 | nº 4
+* @ultima-revisao   19/04/10 as 8:43 | nº 5
 */
 (function($){
 
@@ -92,8 +92,8 @@
 			//EVENTOS
 			sm.bind(o.evento_miniatura, function(){
 				
-				var l = $(this).prevAll().length;
-					
+				var l = $(this).prevAll(o.seletor_miniatura).length;
+		
 				sm.removeClass(sma);
 				$(this).addClass(sma);
 				sp.removeClass(spa).removeClass(spp).removeClass(spu).eq(l).addClass(spa);
