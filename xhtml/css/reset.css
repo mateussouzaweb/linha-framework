@@ -36,6 +36,8 @@ cite, em, dfn { font-style: italic }
 
 a img { border:none } /* Remove borda azul do IE */
 
+ol, ul {padding-left: 35px} 
+
 .clear{clear:both; display: block; height: 0px; overflow:hidden;}
 .float-left{ float: left;}
 .float-right{ float: right;}
