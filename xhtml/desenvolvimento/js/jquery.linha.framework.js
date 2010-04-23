@@ -940,7 +940,7 @@
 
 /**
 * @name				Linha Tooltip
-* @version			1.1
+* @version			1.2
 * @descripton		Plugin Jquery para exibição de tooltips,
 * 					Interações no modo texto(html) imagem(img) e ajax.
 * 					Plugin extensível e customizável
@@ -952,7 +952,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   09/04/10 as 18:35 | nº 7
+* @ultima-revisao   23/04/10 as 14:46 | nº 8
 */
 (function($){
 	
@@ -984,160 +984,161 @@
 			atributo_altura: 'altura',				//Atributo para definir altura personalizada ao tooltip
 			atributo_largura: 'largura',			//Atributo para definir largura personalizada ao tooltip
 			
-			wrapper_tooltip: null,					//Estrutura HTML para ser inserida ao redor do tooltip 
+			wrapper_tooltip: null,					//Estrutura HTML para ser inserida ao redor(dentro) do tooltip 
 			
 			onInicia: null,							//Callback
 			onTermina: null							//Callback
 		};
-		var o = $.extend(padrao, options);
-		
+		var o = $.extend(padrao, options),
 		//CACHE DOS ELEMENTOS
-		var tip = new Array();	//tooltip
+		tip = {},
+		atual,
+		d = $(document);
 			
 		if(elem === undefined){ elem = $(o.seletor);}
 		
-		return elem.each(function(){
-			
-			var t = $(this);
-			
-			if(o.evento){
-				t.bind(o.evento, function(e){return criaTooltip(t, e);});
-			}
-			
-			if (!o.fixado) {
-				t.mousemove(function(e){return posicionaTooltip(t, e);});
-			}
-			
-			if(o.eventoFim){
-				t.bind(o.eventoFim, function(){return removeTooltip(t);});
-			}
-			
-		}); //fim element each
+		//Adicionando Live Events com delegate
+		d.delegate(elem.selector, o.evento , function(e){return criaTooltip($(this), e);});
+		d.delegate(elem.selector, o.eventoFim , function(){return removeTooltip($(this));});
+		if (!o.fixado) {
+			d.delegate(elem.selector, 'mousemove', function(e){return posicionaTooltip($(this), e);});
+		}
 		
+		//Fix de posição para window resize e scroll
+		$(window).resize(function(e){
+			if(atual){return posicionaTooltip(atual, e);}
+		}).scroll(function(e){
+			if(atual){return posicionaTooltip(atual, e);}
+		});
+		
+		/**
+		 * Cria o tooltip de acordo com os dados passado no elemento que dispara o evento
+		 * @param {Object} t - elemento
+		 * @param {Object} e - evento
+		 */
 		function criaTooltip(t, e){
 			
 			if ($.isFunction(o.onInicia)) {o.onInicia.apply(t);}
 			
-			tip['conteudo'] = t.attr(o.atributo), 
-			tip['largura'] = t.attr(o.atributo_largura),
-			tip['altura'] = t.attr(o.atributo_altura), 
-			tip['continua'] = true;
-		
+			atual = t;
+			tip.conteudo = t.attr(o.atributo), 
+			tip.largura = t.attr(o.atributo_largura),
+			tip.altura = t.attr(o.atributo_altura); 
+
 			//Se for title, exibe somente o tootip
 			if(o.atributo == 'title'){
 				t.attr('title', '');
 			}
 			
-			tip['tip'] = $('<div></div>')
+			tip.tip = $('<div></div>')
 				.addClass(o.classe_conteudo)
 				.css({
 					display: 'none',
 					position: 'absolute',
-					width: tip['largura'],
-					height: tip['altura']
+					width: tip.largura,
+					height: tip.altura
 				});
 			
-			tip['load'] = $('<div></div>')
+			tip.load = $('<div></div>')
 				.addClass(o.classe_load)
 				.css({
 					display: 'none',
 					position: 'fixed', 
 					left: 0
 				});
-				//.wrapInner(o.wrapper_tooltip)
-			//Formação de conteúdo
-			if (tip['conteudo'] !== undefined) {
-				
-				//Imagem
-				if (t.hasClass(o.seletor_imagem)) {
-					
-					tip['load'].appendTo('body').fadeIn();
-					tip['load'].css({ top: $(window).height() - tip['load'].outerHeight()});
-					
-					var img = new Image();
-					$(img).load(function(){
-						
-						$(this).css({
-							display: 'none',
-							height: this.height,
-							width: this.width
-						});
-						
-						if (tip['continua']) { //Checa se pe pra continuar
-						
-							tip['tip'].html(this).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
-							tip['load'].remove();
 
-							$(this).fadeIn();
-						}
-
-						return posicionaTooltip(t, e);
-						
-					}).attr('src', tip['conteudo']);
-					
-					return false;
-				}
-				
-				//Ajax
-				if (t.hasClass(o.seletor_ajax)) {
-				
-					tip['load'].appendTo('body').fadeIn();
-					tip['load'].css({ top: $(window).height() - tip['load'].outerHeight()});
-					
-					$.ajax({
-						type: "POST",
-						url: tip['conteudo'],
-						success: function(data){
-							if (tip['continua']) { //Checa se pe pra continuar
-								tip['tip'].html(data).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
-								tip['load'].fadeOut('fast', function(){
-									$(this).remove();
-								});
-							};
-							return posicionaTooltip(t, e);	
-						},
-						error: function() {
-							if (tip['continua']) { //Checa se pe pra continuar
-								tip['tip'].html("Ocorreu algum erro ou esta url não existe...").wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
-								tip['load'].fadeOut('fast', function(){
-									$(this).remove();
-								});
-							}
-							return posicionaTooltip(t, e);
-			   			}
+			//Checa se há conteúdo para a tooltip
+			if(tip.conteudo === undefined){ return;}
 			
-					});
-
-					return false;
+			//Imagem
+			if (t.hasClass(o.seletor_imagem)) {
+				
+				tip.load.appendTo('body').fadeIn();
+				tip.load.css({ top: $(window).height() - tip.load.outerHeight()});
+				
+				var img = new Image();
+				$(img).load(function(){
 					
-				}
-				
-				//Normal
-				else {
-					tip['tip'].html(tip['conteudo']).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+					$(this).css({
+						display: 'none',
+						height: this.height,
+						width: this.width
+					});
+					
+					tip.tip.html(this).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+					tip.load.remove();
+
+					$(this).fadeIn();
+
 					return posicionaTooltip(t, e);
-				}
+						
+				}).attr('src', tip.conteudo);
+					
+				return;
+			}
 				
+			//Ajax
+			if (t.hasClass(o.seletor_ajax)) {
+			
+				tip.load.appendTo('body').fadeIn();
+				tip.load.css({ top: $(window).height() - tip.load.outerHeight()});
+				
+				$.ajax({
+					type: "POST",
+					url: tip.conteudo,
+					success: function(data){
+						tip.tip.html(data).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+						tip.load.fadeOut('fast', function(){
+							$(this).remove();
+						});
+						return posicionaTooltip(t, e);	
+					},
+					error: function() {
+						tip.tip.html("Ocorreu algum erro ou esta url não existe...").wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+						tip.load.fadeOut('fast', function(){
+							$(this).remove();
+						});
+						return posicionaTooltip(t, e);
+		   			}
+		
+				});
+
+				return;
+			}
+				
+			//Normal
+			else {
+				tip.tip.html(tip.conteudo).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+				return posicionaTooltip(t, e);
 			}
 		}
 		
+		/**
+		 * Remove o tooltip que está sendo exibido
+		 * @param {Object} t - elemento a ser removido
+		 */
 		function removeTooltip(t){
-			
+
 			if ($.isFunction(o.onTermina)) {o.onTermina.apply(t);}
 			
 			if(o.atributo == 'title'){
-				t.attr('title', tip['conteudo']);
+				t.attr('title', tip.conteudo);
 			}
+			atual = null;
 			
-			tip['continua'] = false;
-			tip['tip'].remove();
-			$('.' + o.classe_conteudo).remove();
-			tip['load'].remove();
+			tip.tip.remove();
+			$('.' + o.classe_conteudo).remove(); //remove o elemento novamente...estranho não? :)
+			tip.load.remove();
 			
 		}
 		
+		/**
+		 * Posiciona o tooltip de acordo com o mouse ou com o elemento
+		 * @param {Object} t - elemento
+		 * @param {Object} e - evento
+		 */
 		function posicionaTooltip(t ,e){
-			
+
 			var	ww = $(window).width(),
 			wh = $(window).height(),
 			wsl = $(window).scrollLeft(),
@@ -1149,8 +1150,8 @@
 			left = pos.left + o.padding_left,
 			topo = pos.top + o.padding_top,
 			//Tooltip
-			tipw = tip['tip'].outerWidth(),
-			tiph = tip['tip'].outerHeight(); 
+			tipw = tip.tip.outerWidth(),
+			tiph = tip.tip.outerHeight(); 
 			
 			if(o.fixado){
 				switch(o.posicao){
@@ -1224,7 +1225,7 @@
 				}
 			}
 			
-			tip['tip'].css({
+			tip.tip.css({
 				'top': posY,
 				'left': posX
 			});	
@@ -1233,54 +1234,53 @@
 			if(o.fixado && o.autoFix){
 				if(o.posicao == 'top1' || o.posicao == 'top5' || o.posicao == 'rod1' || o.posicao == 'rod5'){
 					if(left <= (tipw + 30)){
-						tip['tip'].css({'left': left});
+						tip.tip.css({'left': left});
 					}
 				}
 				if(o.posicao == 'top3' || o.posicao == 'top4' || o.posicao == 'rod3' || o.posicao == 'rod4'){
 					if(ww <= ( left + tipw + 30)){
-						tip['tip'].css({'left': left - tipw + w});
+						tip.tip.css({'left': left - tipw + w});
 					}
 				}
 				if(o.posicao == 'top2' || o.posicao == 'rod2'){
 					if(left <= (tipw / 2 + 30)){
-						tip['tip'].css({'left': left});
+						tip.tip.css({'left': left});
 					}
 					if(ww <= ( left + tipw/2 + 30)){
-						tip['tip'].css({'left': left - tipw + w});
+						tip.tip.css({'left': left - tipw + w});
 					}
 				}
 				if(o.posicao == 'esquerda'){
 					if(left <= (tipw + 30)){
-						tip['tip'].css({'left': left + w + 5});
+						tip.tip.css({'left': left + w + 5});
 					}
 					
 				}
 				if(o.posicao == 'direita'){
 					if(ww <= ( left + tipw + 30)){
-						tip['tip'].css({'left': left - tipw});
+						tip.tip.css({'left': left - tipw});
 					}
 					
 				}
 				
 				if(o.posicao == 'direita' || o.posicao == 'esquerda'){
 					if((wst + wh) <= (topo + tiph/2 + 10)){
-						tip['tip'].css({'top': topo - tiph - 5});
+						tip.tip.css({'top': topo - tiph - 5});
 					}
 					if((topo - wst) < (tiph/2 + 10)){
-						tip['tip'].css({'top': topo + h + 5});
+						tip.tip.css({'top': topo + h + 5});
 					}
 				}else{
 					if((wst + wh) <= (topo + tiph + 10)){
-						tip['tip'].css({'top': topo - tiph - 5});
+						tip.tip.css({'top': topo - tiph - 5});
 					}
 					if((topo - wst) < (tiph + 10)){
-						tip['tip'].css({'top': topo + h + 5});
+						tip.tip.css({'top': topo + h + 5});
 					}
 				}
 			}
 			
 			e.preventDefault();
-		
 		}
 	
 	};
