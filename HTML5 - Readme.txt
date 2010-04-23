@@ -1,4 +1,4 @@
-Direfenças HTML5 para XHTML
+Direfenï¿½as HTML5 para XHTML
 
 /////////////////////////////////////
 XHTML
@@ -11,12 +11,6 @@ XHTML
 #topo - topo do site
 HTML5
 header - tag html5 para o topo do site
-/////////////////////////////////////
-
-XHTML
-.menu - menu de navegação do website
-HTML5
-nav - tag html5 para o menu de navegação
 /////////////////////////////////////
 
 XHTML
