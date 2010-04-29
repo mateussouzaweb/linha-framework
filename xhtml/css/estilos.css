@@ -25,9 +25,10 @@ big{font-size: 125%;}
 
 /*SELETORES*/
 #tudo{width: 960px;	margin: 0 auto;}
-#topo{margin: 10px 0; padding: 10px; display: block;}
-#conteudo{margin: 10px 0; display: block;}
-#rodape{margin: 10px 0;	padding: 10px; display: block;}
+#topo, #conteudo, #rodape{display: inline-block; width: 940px;}
+#topo{margin: 10px 0; padding: 10px;}
+#conteudo{margin: 10px 0; width: 960px;}
+#rodape{margin: 10px 0;	padding: 10px;}
 
 /* @Grupo MENU */
 ul.menu{
