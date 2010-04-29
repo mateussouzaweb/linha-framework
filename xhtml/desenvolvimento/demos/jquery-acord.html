@@ -27,12 +27,11 @@
     <script type="text/javascript">
 	$(document).ready(function(){
 
+		$.acord.iniciaAcord();
+		
 		$('#acordion').acord({
 			tempoUp: 100,
-			tempoDown: 100,
-			onAcord: function(){
-				console.log($(this));
-			}
+			tempoDown: 100
 		});
 		
 		$('#acordion2').acord({
@@ -40,13 +39,26 @@
 		});
 		
 		$('ul').acord({
-			sempreUm: true,
 			evento: 'mouseover',
 			pai: 'li span',
 			filho: 'li div',
 			tempoUp: 550,
 			tempoDown: 550
 		});
+		
+		/**
+		 * Live
+		 */
+		$('button').click(function(){
+			$.ajax({
+				url: 'ajax/accordion-ajax.html',
+				success: function(data){
+					$('#live').html(data);
+				}
+			});
+		});
+		
+		$('#acordion4').acord();
 	});   
 	</script>
 
@@ -55,99 +67,102 @@
 <body>
 <div id="tudo">
 		
-		<div id="conteudo">
+	<div id="conteudo">
 			
-			<div class="coluna tamanho12">
-			
-			<div class="acordion" id="acordion">
-		
+		<h3>Accordion com autoHeight</h3>
+		<div class="alerta amarelo">
+			<b>tempoUp:</b> 100<br/>
+			<b>tempoDown:</b> 100,
+		</div>				
+		<div class="acordion" id="acordion">
 			<h2><a href="#">Seção 1</a></h2>
-			<div>
-				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-			</div>
+			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
 				
 			<h2><a href="#">Seção 2</a></h2>
-			<div>
-				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-			</div>
+			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
 				
 			<h2><a href="#">Seção 3</a></h2>
-			<div>
-				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-			</div>
+			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
 				
 			<h2><a href="#">Seção 4</a></h2>
 			<div>
 				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
+				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 			</div>
-				
 		</div>
-			
 		<br/>
-			
-			<div class="acordion" id="acordion2">
-				
-				<h2><a href="#">Seção 1</a></h2>
-				<div>
-				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-				</div>
-				
-				<h2><a href="#">Seção 2</a></h2>
-				<div>
-				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-				</div>
-				
-				<h2><a href="#">Seção 3</a></h2>
-				<div>
-				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-				</div>
-				
-				<h2><a href="#">Seção 4</a></h2>
-				<div>
-				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-				</div>
-				
-			</div>
-			
-			<br/>
-			
-			<ul class="acordion">
-				<li>
-					<span>1</span>
-					<div>
-						<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
-						<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
-						<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
-					</div>
-				</li>
-				<li>
-					<span>2</span>
-					<div>
-						<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
-						<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
-						<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
-					</div>
-				</li>
-				<li>
-					<span>3</span>
-					<div>
-						<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
-						<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
-						<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
-					</div>
-				</li>
-			</ul>
+		<!-- Fim ACCORDION 1 --> 	
 		
-		</div>
+		<h3>Accordion sem autoHeight</h3>
+		<div class="alerta amarelo">
+			<b>AutoHeight:</b> false
+		</div>	
+		<div class="acordion" id="acordion2">
 			
-    <div class="clear"></div>        
+			<h2><a href="#">Seção 1</a></h2>
+			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
+			
+			<h2><a href="#">Seção 2</a></h2>
+			<div>
+				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
+				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
+			</div>
+				
+			<h2><a href="#">Seção 3</a></h2>
+			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
+			
+			<h2><a href="#">Seção 4</a></h2>
+			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
+		</div>
+		<br/>
+		<!-- Fim ACCORDION 2 -->
+			
+		<h3>Accordion com evento mouseenter e marcação HTML diferenciada</h3>
+		<div class="alerta amarelo">
+			<b>sempreUm:</b> false,<br/>
+			<b>evento:</b> 'mouseover',<br/>
+			<b>pai:</b> 'li span',<br/>
+			<b>filho:</b> 'li div',<br/>
+			<b>tempoUp:</b> 550,<br/>
+			<b>tempoDown:</b> 550
+		</div>
+		<ul class="acordion">
+			<li><span>1</span>
+				<div>
+					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
+					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
+					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
+				</div>
+			</li>
+			
+			<li><span>2</span>
+				<div>
+					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
+					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
+					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
+				</div>
+			</li>
+			
+			<li><span>3</span>
+				<div>
+					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
+					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
+					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
+				</div>
+			</li>
+		</ul>
+		<br/>
+		<!-- Fim ACCORDION 3 -->
+		
+		<h1>Live Accordion</h1><hr/> 
+		<button>Clique para carregar accordion</button>
+		<br/><br/>
+		<div id="live"></div>
+		   
 	</div><!-- FIM CONTEUDO -->
 	
 	<div id="rodape">
 		<p>Feito com <a href="http://www.linhaframework.com/" title="Site Feito com Linha Framework">Linha Framework</a> | Criação de <a href="http://www.mateussouza.com" title="Mateus Souza">Mateus Souza</a></p>
-	<div class="clear"></div>
 	</div><!-- FIM RODAPE -->
 	
 </div><!-- FIM TUDO -->
