@@ -1,7 +1,10 @@
 === Linha ACORD ===
 1.1
 ---
-* Inicial
+* Live events (use $("seletor-accordion").trigger('iniciaAcord'); após a requisição ajax
+* Opção Accordion inicial
+* Animação com Easing
+* Ajuste para CSS
 
 1.0
 ---
@@ -62,10 +65,12 @@
 1.2
 ---
 * Adicinado suporte a eventos futuros (live)
-* Alterado tip = de array para object
+* Alteração tip = de array para object
 * Adicionado fix de posição pra os eventos window rezise e window scroll
 * Descontinuado opção para continuar
 * Adicionado propriedade atual (registra o elemento que disparou o tooltip que está sendo exibido)
+* Adicionado Opção para tempo de fade (padrão: "fast")
+* Adicionado Opção para mesagem de erro personalizado
 
 1.1
 ---

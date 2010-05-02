@@ -36,6 +36,7 @@
 			posicao: '',							//Posição para o tooltip || caso não tenha o padrão é top2
 			fixado: true,							//Tooltip fixa(ou relativa) ao elemento?
 			autoFix: true,							//Auto-fixação de posição
+			tempo: 'fast',							//Tempo para exibir o tooltip, "slow", "normal", "fast" ou em milesegundos
 			
 			evento: 'mouseover', 					//Evento para disparar a exibição do tooltip
 			eventoFim: 'mouseout', 					//Evento para terminar a exbição do tooltip
@@ -45,6 +46,8 @@
 			atributo_largura: 'largura',			//Atributo para definir largura personalizada ao tooltip
 			
 			wrapper_tooltip: null,					//Estrutura HTML para ser inserida ao redor(dentro) do tooltip 
+			
+			mensagem_erro: 'Erro no tooltip',		//Mensagem alternativa para erro de carregamento (em ajax e imagens)
 			
 			onInicia: null,							//Callback
 			onTermina: null							//Callback
@@ -113,7 +116,7 @@
 			//Imagem
 			if (t.hasClass(o.seletor_imagem)) {
 				
-				tip.load.appendTo('body').fadeIn();
+				tip.load.appendTo('body').fadeIn(o.tempo);
 				tip.load.css({ top: $(window).height() - tip.load.outerHeight()});
 				
 				var img = new Image();
@@ -125,10 +128,10 @@
 						width: this.width
 					});
 					
-					tip.tip.html(this).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+					tip.tip.html(this).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn(o.tempo);
 					tip.load.remove();
 
-					$(this).fadeIn();
+					$(this).fadeIn(o.tempo);
 
 					return posicionaTooltip(t, e);
 						
@@ -140,21 +143,21 @@
 			//Ajax
 			if (t.hasClass(o.seletor_ajax)) {
 			
-				tip.load.appendTo('body').fadeIn();
+				tip.load.appendTo('body').fadeIn(o.tempo);
 				tip.load.css({ top: $(window).height() - tip.load.outerHeight()});
 				
 				$.ajax({
 					type: "POST",
 					url: tip.conteudo,
 					success: function(data){
-						tip.tip.html(data).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+						tip.tip.html(data).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn(o.tempo);
 						tip.load.fadeOut('fast', function(){
 							$(this).remove();
 						});
 						return posicionaTooltip(t, e);	
 					},
 					error: function() {
-						tip.tip.html("Ocorreu algum erro ou esta url não existe...").wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+						tip.tip.html(o.mensagem_erro).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn(o.tempo);
 						tip.load.fadeOut('fast', function(){
 							$(this).remove();
 						});
@@ -168,7 +171,7 @@
 				
 			//Normal
 			else {
-				tip.tip.html(tip.conteudo).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn('slow');
+				tip.tip.html(tip.conteudo).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn(o.tempo);
 				return posicionaTooltip(t, e);
 			}
 		}
@@ -264,7 +267,7 @@
 							posX = left - tipw + w;
 					break;
 					default:
-						var posY = topo - tiph - 15 ,
+						var posY = topo - tiph - 5 ,
 							posX = left + (w/2) - (tipw/2);
 					break;
 				}
