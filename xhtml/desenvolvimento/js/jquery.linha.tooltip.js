@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   23/04/10 as 14:46 | nº 8
+* @ultima-revisao   02/05/10 as 14:58 | nº 9
 */
 (function($){
 	
