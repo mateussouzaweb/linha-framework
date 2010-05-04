@@ -1,6 +1,6 @@
 /**
 * @name				Linha Acord
-* @version			1.0
+* @version			1.1
 * @descripton		Plugin Jquery para criação de accordions extensível e customizável
 *					MODO DE USAR $.acord({opcoes}); || $('.classeTal').acord({opcoes});
 *
@@ -10,72 +10,164 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   11/03/10 as 09:53 | nº 6
+* @ultima-revisao   04/04/10 as 10:04 | nº 7
 */
 (function($){
 	$.fn.acord = function(options){
 		return new $.acord(options, this);	
 	};
 	
-	$.acord = function(options, acordion){
+	$.acord = function(options, elem){
 		var padrao = {
-				seletor: '.acordion',	//Seletor padrão
-				pai: 'h2',				//Seletor pai, ou cabeçalho, header...
-				filho: 'div',			//Seletor filho, este é o que ficará escondido
+				seletor: '.accordion',								//Seletor padrão, usado caso chame o plugin sem o seletor $.plugin
+				pai: 'h2',											//Seletor pai, ou cabeçalho, header...
+				filho: 'div',										//Seletor filho, este é o que ficará escondido
 				
-				evento: 'click',		//Evento para disparar o efeito accordion
+				classePaiAtual: 'accordion-pai-atual', 				//Classe para pai que está em foque | Adicionado pelo plugin
+				classeFilhoAtual: 'accordion-filho-atual',			//Classe para o filho que esta visível | Adicionado pelo plugin
 				
-				sempreUm: true,			//Deixar sempre exibindo um seletor filho no accordion
-				autoheight: true,		//Ajustar automaticamente a altura dos elementos filho
-				tempoUp: 'normal',		//Tempo para esconder o seletor filho
-				tempoDown: 'normal',	//Tempo para mostrar o seletor filho
+				classeAjax: 'ajax',									//Classe para accordions em ajax
+				atributoUrl: 'url',									//Atributo para url do accordion em ajax
+				
+				evento: 'click',									//Evento para disparar o efeito accordion
+				
+				inicial: 1, 										//Define o acordion que será exibido inicialmente ou default
+				sempreUm: true,										//Deixar sempre exibindo um seletor filho no accordion?
+				autoHeight: false,									//Ajustar automaticamente a altura dos elementos filho?
+				tempoIn: 'normal',									//Tempo para esconder o seletor filho (Entrada)
+				tempoOut: 'normal',									//Tempo para mostrar o seletor filho (Saída)
+				easingIn: 'swing',									//Animação com easyng na entrada (IN)...
+				easingOut: 'swing',									//Animação com easyng na saída (OUT)...
+				
+				onAcord: null 										//Callback
+		};	
+		
+		var o = $.extend(padrao, options),
+			d = $(document),
+			ap = o.classePaiAtual,
+			af = o.classeFilhoAtual;
+		
+		if(elem === undefined){elem = $(o.seletor);}
+		
+		/**
+		 * Delegando eventos....o resultado seria o mesmo que each
+		 * Usado para registro em accordions futuros
+		 */
+		d.delegate(elem.selector, 'iniciaAcord', function(){
+			var $this = $(this);
+			/**
+			 * Checa o seletor
+			 */
+			if(this.length === 0){$this = $(this.selector);}
 
-				onAcord: null 			//Callback
-		};
-		
-		var o = $.extend(padrao, options);
-		
-		if(acordion === undefined){ acordion = $(o.seletor);}
+			/**
+			 * Fix para erros de animação
+			 */
+			$(o.filho, this).each(function(){$(this).css('height', $(this).height() + 'px').hide();});
+			if (o.sempreUm) {
+				$(o.filho, this).eq(o.inicial - 1).addClass(af).show().prev(o.pai).addClass(ap);
+				if($('.'+ap, this).hasClass(o.classeAjax)){
+					//Não ta funfando o trigger
+					console.log("AJAX");
+					console.log($(this));
+					$(this).trigger(o.evento);
+				};
+			}
 			
-		return acordion.each(function(){
-			var a = acordion;
-			
-			//Fix para erros de animação
-			a.find(o.filho).each(function(){$(this).css('height', $(this).height() + 'px').hide();});
-			if (o.sempreUm) {$(o.filho + ':first', a).show();}
-			
-			//Altura automatica
-			if(o.autoheight){
+			/**
+			 * Altura automática
+			 */
+			if(o.autoHeight){
 				var h = 0; 
 				$(o.filho, this).each(function(){
 					h = Math.max(h, $(this).outerHeight());
 				}).height(h);
 				
-				a.height($(this).height()).css({overflow: 'hidden'});
-			} 
-
-			//Eventos customizados
-			if(o.evento){
-				$(o.pai, a).bind(o.evento, function(){return showAcord($(this), a);});
+				$this.height($this.height()).css({overflow: 'hidden'});
 			}
 			
-			function showAcord(t, a){
-
-				var n = t.next();
-				
-				if ($.isFunction(o.onAcord)) {o.onAcord.apply(t);}
-				
-				$(o.filho, a).not(n).slideUp(o.tempoUp);
-				if (o.sempreUm) {
-					n.slideDown(o.tempoDown);
-				}else{
-					n.slideToggle(o.tempoDown);
+			/**
+			 * Bind no evento e setagem de valores
+			 */
+			$(o.pai, this).bind(o.evento, function(){
+				if ($(this).hasClass(o.classeAjax)) {
+					return ajaxAcord($this, $(this), $(this).next());
 				}
-				
-				return false;
-			}
-		});
+				return animaAcord($this, $(this), $(this).next());
+			});
 
+		});
+		
+		elem.trigger('iniciaAcord');
+		
+		/**
+		 * Processamento de accordions em ajax
+		 * Carrega o conteúdo e ajusta a largura se for preciso
+		 * Todos os parâmetros devem vir em formato jQuery
+		 * @param {Object} $acord
+		 * @param {Object} $pai
+		 * @param {Object} $filho
+		 */
+		function ajaxAcord($acord, $pai, $filho){
+			console.log("AJAX");
+			$.ajax({
+				type: "POST",
+				url: $pai.attr(o.atributoUrl),
+				success: function(data){
+					console.log(data);
+					$filho.html(data);
+				}
+			});
+			
+			/**
+			 * Ajuste de altura - heigth
+			 */
+			$filho.height('auto');
+			$acord.height('auto');
+			
+			return animaAcord($acord, $pai, $filho);
+		}	
+		
+		/**
+		 * Anima o accordion
+		 * Todos os parâmetros devem vir em formato jQuery
+		 * @param {Object} $acord
+		 * @param {Object} $pai
+		 * @param {Object} $filho
+		 */
+		function animaAcord($acord, $pai, $filho){
+			
+			$(o.filho, $acord).removeClass(af);
+			$(o.pai, $acord).removeClass(ap);
+			$pai.addClass(ap);
+			$filho.addClass(af);
+			
+			
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onAcord)) {
+				o.onAcord.apply(this, new Array($acord, $pai, $filho, $o));
+			}
+				
+			$(o.filho, $acord).not($filho).slideUp(o.tempoIn, o.easingIn);
+			if (o.sempreUm) {
+				$filho.slideDown(o.tempoOut, o.easingOut);
+			}else{
+				$filho.slideToggle(o.tempoIn, o.easingIn);
+			}
+
+			return false;
+		};
+			
 	};
 
 })(jQuery);
+
+/**
+ * TODO ajax no accordion 
+ * é complicado pq tem q ver o inicial
+ * cria uma função para carregar ajax e no start checa e se tiver carrega
+ * Ou no lugar de checar simula o evento e faz a checagem e carregagem no animaAcord
+ * 
+ */
