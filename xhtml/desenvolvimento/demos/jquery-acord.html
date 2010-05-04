@@ -24,41 +24,64 @@
 <!-- JS -->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript" src="../../desenvolvimento/js/jquery.linha.acord.js"></script>
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
     <script type="text/javascript">
 	$(document).ready(function(){
 
-		$.acord.iniciaAcord();
-		
-		$('#acordion').acord({
-			tempoUp: 100,
-			tempoDown: 100
+		$('#accordion').acord({
+			tempoIn: 100,
+			tempoOut: 100,
+			autoHeight: true
 		});
 		
-		$('#acordion2').acord({
-			autoheight: false
+		$('#accordion2').acord({
+			inicial: 2
 		});
 		
 		$('ul').acord({
 			evento: 'mouseover',
 			pai: 'li span',
 			filho: 'li div',
-			tempoUp: 550,
-			tempoDown: 550
+			tempoIn: 400,
+			tempoOut: 400,
+			autoHeight: true
+		});
+		
+		$('#accordion4').acord({
+			tempoIn: 100,
+			tempoOut: 100,
+			sempreUm: true,
+			autoHeight: true
 		});
 		
 		/**
 		 * Live
 		 */
+		$('#accordion5').acord({
+			tempoIn: 0,
+			tempoOut: 0,
+			autoHeight: true
+		});
 		$('button').click(function(){
 			$.ajax({
 				url: 'ajax/accordion-ajax.html',
 				success: function(data){
 					$('#live').html(data);
+					$('#accordion5').trigger('iniciaAcord');
 				}
 			});
+			
 		});
 		
-		$('#acordion4').acord();
+		/**
+		 * Easing
+		 */
+		$('#accordion6').acord({
+			easingIn: 'easeInOutCirc',
+			easingOut: 'easeOutCubic',
+			tempoIn: 1500,
+			tempoOut: 500
+		});
 	});   
 	</script>
 
@@ -69,22 +92,23 @@
 		
 	<div id="conteudo">
 			
-		<h3>Accordion com autoHeight</h3>
+		<h3>Accordion com autoHeight e Tempo Personalizado</h3>
 		<div class="alerta amarelo">
-			<b>tempoUp:</b> 100<br/>
-			<b>tempoDown:</b> 100,
+			<b>tempoIn</b>: 100,<br/>
+			<b>tempoOut</b>: 100,<br/>
+			<b>autoHeight</b>: true
 		</div>				
-		<div class="acordion" id="acordion">
-			<h2><a href="#">Seção 1</a></h2>
+		<div class="accordion" id="accordion">
+			<h2>Parte 1</h2>
 			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
 				
-			<h2><a href="#">Seção 2</a></h2>
+			<h2>Parte 2</h2>
 			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
 				
-			<h2><a href="#">Seção 3</a></h2>
+			<h2>Parte 3</h2>
 			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
 				
-			<h2><a href="#">Seção 4</a></h2>
+			<h2>Parte 4</h2>
 			<div>
 				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
@@ -93,41 +117,41 @@
 		<br/>
 		<!-- Fim ACCORDION 1 --> 	
 		
-		<h3>Accordion sem autoHeight</h3>
+		<h3>Accordion com Valor Inicial Personalizado</h3>
 		<div class="alerta amarelo">
-			<b>AutoHeight:</b> false
+			<b>inicial</b>: 2
 		</div>	
-		<div class="acordion" id="acordion2">
+		<div class="accordion" id="accordion2">
 			
-			<h2><a href="#">Seção 1</a></h2>
+			<h2>Parte 1</h2>
 			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
 			
-			<h2><a href="#">Seção 2</a></h2>
+			<h2>Parte 2</h2>
 			<div>
 				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 			</div>
 				
-			<h2><a href="#">Seção 3</a></h2>
+			<h2>Parte 3</h2>
 			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
 			
-			<h2><a href="#">Seção 4</a></h2>
+			<h2>Parte 4</h2>
 			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
 		</div>
 		<br/>
 		<!-- Fim ACCORDION 2 -->
 			
-		<h3>Accordion com evento mouseenter e marcação HTML diferenciada</h3>
+		<h3>Accordion com Evento Mouseenter e Marcação HTML Diferenciada</h3>
 		<div class="alerta amarelo">
-			<b>sempreUm:</b> false,<br/>
-			<b>evento:</b> 'mouseover',<br/>
-			<b>pai:</b> 'li span',<br/>
-			<b>filho:</b> 'li div',<br/>
-			<b>tempoUp:</b> 550,<br/>
-			<b>tempoDown:</b> 550
+			<b>evento</b>: 'mouseover',<br/>
+			<b>pai</b>: 'li span',<br/>
+			<b>filho</b>: 'li div',<br/>
+			<b>tempoIn</b>: 400,<br/>
+			<b>tempoOut</b>: 400,<br/>
+			<b>autoHeight</b>: true
 		</div>
-		<ul class="acordion">
-			<li><span>1</span>
+		<ul class="accordion">
+			<li><span>Parte 1</span>
 				<div>
 					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
 					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
@@ -135,7 +159,7 @@
 				</div>
 			</li>
 			
-			<li><span>2</span>
+			<li><span>Parte 2</span>
 				<div>
 					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
 					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
@@ -143,7 +167,7 @@
 				</div>
 			</li>
 			
-			<li><span>3</span>
+			<li><span>Parte 3</span>
 				<div>
 					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
 					<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
@@ -154,11 +178,65 @@
 		<br/>
 		<!-- Fim ACCORDION 3 -->
 		
+		<h3>Accordion com Ajax e sempreUm = false</h3>
+		<div class="alerta amarelo">
+			<b>tempoIn</b>: 100,<br/>
+			<b>tempoOut</b>: 100,<br/>
+			<b>sempreUm</b>: false
+		</div>				
+		<div class="accordion" id="accordion4">
+			<h2 class='ajax' url="ajax/ajax.html">Parte 1</h2>
+			<div>
+				<p>Texto alternativo se não carregar o ajax...</p>
+			</div>
+				
+			<h2 class='ajax' url="ajax.html">Parte 2</h2>
+			<div><p>Esta url não existe, por isso está sendo exibido essa mensagem alternativa. Veja o código fonte para melhor compreensão.</p></div>
+				
+			<h2>Parte 3</h2>
+			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
+				
+			<h2>Parte 4</h2>
+			<div>
+				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
+				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
+			</div>
+		</div>
+		<br/>
+		<!-- Fim ACCORDION 4 --> 	
+		
 		<h1>Live Accordion</h1><hr/> 
 		<button>Clique para carregar accordion</button>
 		<br/><br/>
 		<div id="live"></div>
-		   
+		<br/>
+		<!-- Fim ACCORDION 5 (LIVE) -->
+		
+		<h1>Usando Easing</h1><hr/> 
+		<div class="alerta amarelo">
+			<b>easingIn</b>: 'easeInOutCirc',<br/>
+			<b>easingOut</b>: 'easeOutCubic',<br/>
+			<b>tempoIn</b>: 1500,<br/>
+			<b>tempoOut</b>: 500
+		</div>				
+		<div class="accordion" id="accordion6">
+			<h2>Parte 1</h2>
+			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
+				
+			<h2>Parte 2</h2>
+			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
+				
+			<h2>Parte 3</h2>
+			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
+				
+			<h2>Parte 4</h2>
+			<div>
+				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
+				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
+			</div>
+		</div>
+		<br/>
+  
 	</div><!-- FIM CONTEUDO -->
 	
 	<div id="rodape">
