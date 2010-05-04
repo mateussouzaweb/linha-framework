@@ -5,6 +5,7 @@
 * Opção Accordion inicial
 * Animação com Easing
 * Ajuste para CSS
+* Ajax no conteúdo do accordion
 
 1.0
 ---
