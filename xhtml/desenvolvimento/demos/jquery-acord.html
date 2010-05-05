@@ -51,11 +51,14 @@
 			tempoIn: 100,
 			tempoOut: 100,
 			sempreUm: true,
-			autoHeight: true
+			autoHeight: true,
+			inicial: 2
 		});
 		
 		/**
 		 * Live
+		 * Por enquando as opções deste accordion estão "guardadas"...esperando inicia o Accordion
+		 * Para iniciar use .trigger('iniciaAcord');, é so ver logo mais abaixo :)
 		 */
 		$('#accordion5').acord({
 			tempoIn: 0,
@@ -182,7 +185,8 @@
 		<div class="alerta amarelo">
 			<b>tempoIn</b>: 100,<br/>
 			<b>tempoOut</b>: 100,<br/>
-			<b>sempreUm</b>: false
+			<b>sempreUm</b>: false,<br/>
+			<b>inicial:</b> 2
 		</div>				
 		<div class="accordion" id="accordion4">
 			<h2 class='ajax' url="ajax/ajax.html">Parte 1</h2>
@@ -191,7 +195,10 @@
 			</div>
 				
 			<h2 class='ajax' url="ajax.html">Parte 2</h2>
-			<div><p>Esta url não existe, por isso está sendo exibido essa mensagem alternativa. Veja o código fonte para melhor compreensão.</p></div>
+			<div>
+				<p>Esta url não existe, por isso está sendo exibido essa mensagem alternativa. Veja o código fonte para melhor compreensão.</p>
+				<p>Neste exemplo o único que tem uma url válida é o "Parte 1", os demais são conteúdo simples...</p>
+			</div>
 				
 			<h2>Parte 3</h2>
 			<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>

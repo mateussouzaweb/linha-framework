@@ -10,7 +10,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   04/04/10 as 10:04 | nº 7
+* @ultima-revisao   05/04/10 as 09:53 | nº 8
 */
 (function($){
 	$.fn.acord = function(options){
@@ -66,12 +66,6 @@
 			$(o.filho, this).each(function(){$(this).css('height', $(this).height() + 'px').hide();});
 			if (o.sempreUm) {
 				$(o.filho, this).eq(o.inicial - 1).addClass(af).show().prev(o.pai).addClass(ap);
-				if($('.'+ap, this).hasClass(o.classeAjax)){
-					//Não ta funfando o trigger
-					console.log("AJAX");
-					console.log($(this));
-					$(this).trigger(o.evento);
-				};
 			}
 			
 			/**
@@ -95,6 +89,13 @@
 				}
 				return animaAcord($this, $(this), $(this).next());
 			});
+			
+			/**
+			 * Checa se o inicial é em ajax e já manda a requisição
+			 */
+			if(o.sempreUm && $('.'+ap, this).hasClass(o.classeAjax)){
+				$('.'+ap, this).trigger(o.evento);
+			}
 
 		});
 		
@@ -109,12 +110,10 @@
 		 * @param {Object} $filho
 		 */
 		function ajaxAcord($acord, $pai, $filho){
-			console.log("AJAX");
 			$.ajax({
 				type: "POST",
 				url: $pai.attr(o.atributoUrl),
 				success: function(data){
-					console.log(data);
 					$filho.html(data);
 				}
 			});
@@ -142,7 +141,6 @@
 			$pai.addClass(ap);
 			$filho.addClass(af);
 			
-			
 			/**
 			 * Callback
 			 */
@@ -163,11 +161,3 @@
 	};
 
 })(jQuery);
-
-/**
- * TODO ajax no accordion 
- * é complicado pq tem q ver o inicial
- * cria uma função para carregar ajax e no start checa e se tiver carrega
- * Ou no lugar de checar simula o evento e faz a checagem e carregagem no animaAcord
- * 
- */
