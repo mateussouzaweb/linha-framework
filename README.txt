@@ -8,7 +8,7 @@ LICENÇA: MIT and GPL License - http://www.opensource.org/licenses/mit-license.p
 ======= Change-log ========
 1.2
 ---
-* Atualizaçõa Linha Acord p/1.2
+* Atualizaçõa Linha Acord p/1.1
 * Atualização Linha Tooltip p/ 1.2
 * Atualização Linha Slidetabs p/ 1.1 e depois p/ 1.2
 * Remoção de estilos para IE6 e Mobile - não tem muita utilidade :)
