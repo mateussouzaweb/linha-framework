@@ -1,11 +1,11 @@
 === Linha ACORD ===
 1.1
 ---
-* Live events (use $("seletor-accordion").trigger('iniciaAcord'); após a requisição ajax
+* Monitoramento live(Ajax) para Accordion (use $("seletor-accordion").trigger('iniciaAcord'); caso tenha problemas)
 * Opção Accordion inicial
 * Animação com Easing
 * Ajuste para CSS
-* Ajax no conteúdo do accordion
+* Ajax no conteúdo dos accordions
 
 1.0
 ---
@@ -15,7 +15,10 @@
 === Linha FOCUS ===
 1.1
 ---
-* Inicial
+* Monitoramento live(Ajax) para Foccus (use $("seletor-focuss").trigger('iniciaFocuss'); caso tenha problemas)
+* Live events
+* Ajustes para retirada de focuss em elemento do tipo input[type="submit"]
+* Removido a opção "remove" (o mesmo pode ser feito com css .tal{outline: none;}
 
 1.0
 ---
