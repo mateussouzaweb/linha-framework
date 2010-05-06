@@ -27,9 +27,34 @@
     <script type="text/javascript">
 	$(document).ready(function(){
 		$.focuss({
-			remove: true
+			remove: true,
+			cor: 'blue'
 		});
-
+		
+		/**
+		 * Usando trigger
+		 */
+		$('button#novo').click(function(){
+			$(this).parent().after('<p><input type="text" value="Novo input"/></p>');
+			$('input').trigger('iniciaFocuss');
+			return false;
+		});
+		
+		/**
+		 * Ajax
+		 */
+		$('input.input-ajax').focuss({
+			color: 'green'
+		});
+		$('button#ajax').click(function(){
+			$.ajax({
+				url: 'ajax/focuss-ajax.html',
+				success: function(data){
+					$('button#ajax').parent().after(data);
+				}
+			});
+		return false;
+		});
     });  
 	</script>
 
@@ -42,7 +67,13 @@
 		
 		<div class="coluna tamanho12">
 			
-		<h3>Formulário</h3>
+		<h3>Formulário Exemplo com Remoção de Texto Default</h3>	
+		<div class="alerta amarelo">
+		$.focuss({<br/>
+			<b>remove</b>: true,<br/>
+			<b>cor</b>: 'blue'<br/>
+		});
+		</div>	
 		<form action="#" method="post" id="formulario">
 			<p>
 				<label>Nome</label>
@@ -64,7 +95,12 @@
 				<label>Mensagem</label>
 				<textarea class="obrigatorio tamanho4" rows="5" cols="42">Eu vou escrever um texto aqui se quiser enviar esta mensagem</textarea>
 			</p>
-									
+			<p>
+				<button id="novo">Clique para adicionar um novo campo</button>
+			</p>
+			<p>
+				<button id="ajax">Clique para carregar ajax</button>
+			</p>							
 			<p>
 				<input type="submit" class="enviar" value="Enviar"/>
 			</p>
