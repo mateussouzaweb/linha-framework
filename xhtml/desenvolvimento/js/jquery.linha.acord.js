@@ -10,7 +10,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   05/04/10 as 09:53 | nº 8
+* @ultima-revisao   06/04/10 as 14:26 | nº 9
 */
 (function($){
 	$.fn.acord = function(options){
@@ -19,7 +19,7 @@
 	
 	$.acord = function(options, elem){
 		var padrao = {
-				seletor: '.accordion',								//Seletor padrão, usado caso chame o plugin sem o seletor $.plugin
+				seletor: '.accordion',								//Seletor padrão, usado caso use o plugin sem o seletor $.plugin
 				pai: 'h2',											//Seletor pai, ou cabeçalho, header...
 				filho: 'div',										//Seletor filho, este é o que ficará escondido
 				
@@ -43,7 +43,7 @@
 		};	
 		
 		var o = $.extend(padrao, options),
-			d = $(document),
+			$d = $(document),
 			ap = o.classePaiAtual,
 			af = o.classeFilhoAtual;
 		
@@ -53,12 +53,8 @@
 		 * Delegando eventos....o resultado seria o mesmo que each
 		 * Usado para registro em accordions futuros
 		 */
-		d.delegate(elem.selector, 'iniciaAcord', function(){
+		$d.delegate(elem.selector, 'iniciaAcord', function(){
 			var $this = $(this);
-			/**
-			 * Checa o seletor
-			 */
-			if(this.length === 0){$this = $(this.selector);}
 
 			/**
 			 * Fix para erros de animação
@@ -96,10 +92,20 @@
 			if(o.sempreUm && $('.'+ap, this).hasClass(o.classeAjax)){
 				$('.'+ap, this).trigger(o.evento);
 			}
-
+			
 		});
 		
-		elem.trigger('iniciaAcord');
+		/**
+		 * Trigger inicial e monitoramento ajax
+		 */
+		if(elem.length){elem.trigger('iniciaAcord');}
+		else {
+			$d.bind('ajaxComplete', function(o, xhr, url){
+				if (xhr.readyState == 4 && xhr.status == 200 && $(elem.selector).length) {
+					$(elem.selector).trigger('iniciaAcord');
+				}
+			});
+		}
 		
 		/**
 		 * Processamento de accordions em ajax
