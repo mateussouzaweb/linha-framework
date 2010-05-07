@@ -1,11 +1,12 @@
 === Linha ACORD ===
 1.1
 ---
-* Monitoramento live(Ajax) para Accordion (use $("seletor-accordion").trigger('iniciaAcord'); caso tenha problemas)
+* Monitoramento live(DOM e Ajax) para Accordions (use alternativamente $("seletor-accordion").trigger('iniciaAcord'); caso tenha problemas)
 * Opção Accordion inicial
 * Animação com Easing
 * Ajuste para CSS
 * Ajax no conteúdo dos accordions
+* Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
 
 1.0
 ---
@@ -15,10 +16,11 @@
 === Linha FOCUS ===
 1.1
 ---
-* Monitoramento live(Ajax) para Foccus (use $("seletor-focuss").trigger('iniciaFocuss'); caso tenha problemas)
+* Monitoramento live(DOM e Ajax) para Foccus (use alternativamente $("seletor-focuss").trigger('iniciaFocuss'); caso tenha problemas)
 * Live events
 * Ajustes para retirada de focuss em elemento do tipo input[type="submit"]
-* Removido a opção "remove" (o mesmo pode ser feito com css .tal{outline: none;}
+* Removido a opção "remove" (o mesmo pode ser feito com css .tal-classe{outline: none;}
+* Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
 
 1.0
 ---
@@ -28,6 +30,7 @@
 === Linha FORM ===
 1.1
 ---
+* Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
 * Inicial
 
 1.0
@@ -38,6 +41,7 @@
 === Linha MODAL ===
 1.1
 ---
+* Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
 * Inicial
 
 1.0
@@ -48,6 +52,7 @@
 === Linha NAV ===
 1.1
 ---
+* Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
 * Inicial
 
 1.0
@@ -58,6 +63,7 @@
 === Linha SLIDETABS ===
 1.1
 ---
+* Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
 * Inicial
 
 1.0
@@ -68,6 +74,7 @@
 === Linha TOOLTIP ===
 1.2
 ---
+* Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
 * Adicinado suporte a eventos futuros (live)
 * Alteração tip = de array para object
 * Adicionado fix de posição pra os eventos window rezise e window scroll
