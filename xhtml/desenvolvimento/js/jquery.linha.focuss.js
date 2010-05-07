@@ -39,29 +39,44 @@
 			};
 		var o = $.extend(padrao, options),
 			$d = $(document);
-
 		
 		if(elem === undefined){ elem = $(o.seletor);}
+		elem.elements = [];
 		
 		/**
 		 * Delegando evento inicial
 		 */	
 		$d.delegate(elem.selector, 'iniciaFocuss', function(){
-			/**
-			 * Checa se é submit
-			 */
-			if($(this).is(':submit')){return;}
 			
+			var elems = elem.elements,
+			els  =  $(elem.selector, elem.context),
+			nEls = els.not(elems).not(':submit');
+			elem.elements = els;
+
+			/**
+			 * Retorna o processamento dos elementos q passaram
+			 */
+			nEls.each(function() {
+				return processaFocuss($(this));
+			});
+
+		});	
+		
+		/**
+		 * Processa o foccus caso passe no seleção
+		 * @param {Object} $t
+		 */
+		function processaFocuss($t){
+			//Data no lugar de var
 			/**
 			 * Registro de valores
 			 */
-			var $t = $(this),
-			bl = $t.css('border-left-color'),
-			br = $t.css('border-right-color'),
-			bt = $t.css('border-top-color'),
-			bb = $t.css('border-bottom-color'),
-			bcor = bt + ' ' + br + ' ' + bb + ' ' + bl,
-			texto = $t.val();
+			var bl = $t.css('border-left-color'),
+				br = $t.css('border-right-color'),
+				bt = $t.css('border-top-color'),
+				bb = $t.css('border-bottom-color'),
+				bcor = bt + ' ' + br + ' ' + bb + ' ' + bl,
+				texto = $t.val();
 			
 			/**
 			 * Bind nos eventos
@@ -74,7 +89,7 @@
 				return terminaFocuss($t, bcor, texto);
 			});
 			
-		});	
+		}
 		
 		/**
 		 * Trigger inicial e monitoramento ajax
@@ -101,7 +116,6 @@
 			
 			$t.css({borderColor: o.cor});
 			//callback
-			//ta executando a mesma função várias vezes, talvez o one resolva essa pendência
 			console.log("teste");
 		}
 		
