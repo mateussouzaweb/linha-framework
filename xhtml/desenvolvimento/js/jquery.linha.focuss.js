@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   06/04/10 as 9:55 | nº 6
+* @ultima-revisao   07/04/10 as 14:35 | nº 9
 */
 (function($){
 	
@@ -35,7 +35,10 @@
 				removeTexto: false,				//Remover texto pré-escrito, se o valor não for direferente ou nulo retorna o padrão
 				
 				onInicia: null,					//Callback
-				onTermina: null					//Callback
+				onTermina: null,				//Callback
+				
+				live: true,						//Abilitar o monitoramento live
+				liveTempo: 100					//Tempo entra cada checagem, em milisegundos
 			};
 		var o = $.extend(padrao, options),
 			$d = $(document);
@@ -57,52 +60,43 @@
 			 * Retorna o processamento dos elementos q passaram
 			 */
 			nEls.each(function() {
-				return processaFocuss($(this));
+				var $t = $(this);
+				/**
+				 * Registro de valores
+				 */
+				var bl = $t.css('border-left-color'),
+					br = $t.css('border-right-color'),
+					bt = $t.css('border-top-color'),
+					bb = $t.css('border-bottom-color'),
+					bcor = bt + ' ' + br + ' ' + bb + ' ' + bl,
+					texto = $t.val();
+			
+				/**
+				 * Bind nos eventos
+				 */
+				$t.bind(o.evento, function(){
+					return animaFocuss($t, texto);
+				});
+				
+				$t.bind(o.eventoFim, function(){
+					return terminaFocuss($t, bcor, texto);
+				});
+				
 			});
 
-		});	
+		});
 		
 		/**
-		 * Processa o foccus caso passe no seleção
-		 * @param {Object} $t
+		 * Trigger inicial e monitoramento DOM
 		 */
-		function processaFocuss($t){
-			//Data no lugar de var
-			/**
-			 * Registro de valores
-			 */
-			var bl = $t.css('border-left-color'),
-				br = $t.css('border-right-color'),
-				bt = $t.css('border-top-color'),
-				bb = $t.css('border-bottom-color'),
-				bcor = bt + ' ' + br + ' ' + bb + ' ' + bl,
-				texto = $t.val();
-			
-			/**
-			 * Bind nos eventos
-			 */
-			$t.bind(o.evento, function(){
-				return animaFocuss($t, texto);
-			});
-			
-			$t.bind(o.eventoFim, function(){
-				return terminaFocuss($t, bcor, texto);
-			});
-			
+		if(o.live){
+			setInterval(function(){
+				$(elem.selector).trigger('iniciaFocuss');
+			}, o.liveTempo);
+		}else{
+			if(elem.length){elem.trigger('iniciaFocuss');}
 		}
-		
-		/**
-		 * Trigger inicial e monitoramento ajax
-		 */
-		if(elem.length){elem.trigger('iniciaFocuss');}
-		else {
-			$d.bind('ajaxComplete', function(o, xhr, url){
-				if (xhr.readyState == 4 && xhr.status == 200 && $(elem.selector).length) {
-					$(elem.selector).trigger('iniciaFocuss');
-				}
-			});
-		}
-		
+
 		/**
 		 * Anima o efeito foccus
 		 * @param {Object} $t
@@ -115,8 +109,13 @@
 			if(o.removeTexto) {if ($t.val() == texto) {$t.val('');}}
 			
 			$t.css({borderColor: o.cor});
-			//callback
-			console.log("teste");
+			
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onInicia)) {
+				o.onInicia.apply(this, new Array($t, texto, $o));
+			}
 		}
 		
 		/**
@@ -131,8 +130,15 @@
 			 */
 			if(o.removeTexto){if($t.val() == ''){$t.val(texto);}}	
 	
-			$t.css({borderColor:bcor}, 'normal');
-			//callback
-		}		
+			$t.css({borderColor:bcor});
+			
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onTermina)) {
+				o.onTermina.apply(this, new Array($t, bcor, texto, $o));
+			}
+		}
+				
 	};
 })(jQuery);

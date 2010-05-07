@@ -26,17 +26,18 @@
 	<script type="text/javascript" src="../../desenvolvimento/js/jquery.linha.focuss.js"></script>
     <script type="text/javascript">
 	$(document).ready(function(){
-		$.focuss({
-			remove: true,
+		
+		$("input:not(.input-ajax), textarea").focuss({
+			removeTexto: true,
 			cor: 'blue'
 		});
 		
 		/**
-		 * Usando trigger
+		 * Novos botões
+		 * Estão relacionados as opções acima
 		 */
 		$('button#novo').click(function(){
 			$(this).parent().after('<p><input type="text" value="Novo input"/></p>');
-			$('input').trigger('iniciaFocuss');
 			return false;
 		});
 		
@@ -44,7 +45,7 @@
 		 * Ajax
 		 */
 		$('input.input-ajax').focuss({
-			color: 'green'
+			cor: 'green'
 		});
 		$('button#ajax').click(function(){
 			$.ajax({
@@ -69,8 +70,8 @@
 			
 		<h3>Formulário Exemplo com Remoção de Texto Default</h3>	
 		<div class="alerta amarelo">
-		$.focuss({<br/>
-			<b>remove</b>: true,<br/>
+		$("input:not(.input-ajax), textarea").focuss({<br/>
+			<b>removeTexto</b>: true,<br/>
 			<b>cor</b>: 'blue'<br/>
 		});
 		</div>	
@@ -97,7 +98,14 @@
 			</p>
 			<p>
 				<button id="novo">Clique para adicionar um novo campo</button>
-			</p>
+			</p><br/>
+			
+			<h3>Adicionado via ajax, com cor diferente e sem remoção de texto</h3>	
+			<div class="alerta amarelo">
+			$('input.input-ajax').focuss({<br/>
+				<b>cor:</b> 'green'<br/>
+			});
+			</div>
 			<p>
 				<button id="ajax">Clique para carregar ajax</button>
 			</p>							
