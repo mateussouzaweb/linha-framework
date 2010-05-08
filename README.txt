@@ -8,7 +8,8 @@ LICENÇA: MIT and GPL License - http://www.opensource.org/licenses/mit-license.p
 ======= Change-log ========
 1.2
 ---
-* Atualização para os plugins: Linha Acord, Linha Focuss, Linha Form, Linha Modal, Linha Nav, Linha Slidetabs e Linha Tooltip
+* Linha Form renomeado pra Linha Valida(o nome tem mais relação com a função do plugin)
+* Atualização para os plugins: Linha Acord, Linha Focuss, Linha Modal, Linha Nav, Linha Slidetabs, Linha Tooltip e Linha Form(agora chamado Valida), 
 * Remoção de estilos para IE6 e Mobile - não tem muita utilidade :)
 * Grid CSS fica em um novo arquivo css (grid.css)
 * Otimização de CSS
@@ -35,18 +36,33 @@ LICENÇA: MIT and GPL License - http://www.opensource.org/licenses/mit-license.p
 ======= Algumas Considerações ========
 LIVE
 A partir da versão 1.2 os plugins para jQuery terão monitoramente live,
-ainda não descobrir uma forma mais eficaz do que a atual para o monitoramento do DOM.
+ainda não descobri uma forma mais eficaz do que a atual para o monitoramento do DOM.
 Basicamente é feito uma checagem em um intervalo determinado tem tempo para a chegagem.
+Para ativar o monitoramento apenas sete a opção "live" para "true" no plugin que deseja usar, por exemplo:
+$('meu-elemento').pluginX({
+	live: true
+});
+Há ainda a opção de alterar o intervalo de tempo para a checagem...o padrão é 100 milisegundos (1/10 de um segundo).
+Se desejar alterar, a opção é "liveTempo", mais lembre-se que deve ser em milisegundos. 
 
-Caso deseje desativar a função para monitoramento live, sete "live" para "false" nas opções do plugin.
-Com o live=false, use $('elemento-adicionado').trigger('iniciaPluginX'); quando ele for inserido na página
+Alternativamente você pode fazer o monitoramento de modo manual.
+Use $('elemento-adicionado').trigger('iniciaPluginX'); quando ele for inserido na página
 por meio de ajax ou html(); por exemplo...assim terá o mesmo efeito do monitoramente live, mais de forma manual.
 Lembre-se que o seletor para o trigger deve ser o mesmo usado em sua nova instância do plugin, para que o plugin
-recupere as opções setadas para este elemento.
+recupere as opções setadas para este elemento. EX:
+$('meu-elemento').pluginX({
+	opções...
+});
+//Outras funções
+$('button').click(function(){
+	$('body').append('meu-elemento');
+	$('meu-elemento').trigger('iniciaPluginX'); //Assim ele inicia o plugin com as opções setadas anteriormente
+});
 
-Há ainda uma opção, não é uma boa prática ao meu ver mais também se encaixa:
+Há ainda uma terceira opção, não é uma boa prática ao meu ver mais também se encaixa:
 Estancie o plugin logo depois que o elemento for adicionado a página. EX:
 $('body').append('meu-elemento');
+//Inicie o plugin agora
 $('meu-elemento').pluginX({
 	opções....
 });
