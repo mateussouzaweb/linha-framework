@@ -31,6 +31,10 @@
 				alert("Ok...agora faça um callback melhor :)");
 			}
 		});
+		
+		$('button').click(function(){
+			$(this).parent().after('<p><a href="#" titulo="Nova Janela Modal" conteudo="Modal criada com Live Events.">nova janela modal</a></p>');
+		});
     });  
 	</script>
 
@@ -42,7 +46,15 @@
 	<div id="conteudo">
 		
 		<div class="coluna tamanho12">
-		
+			
+			<h3>Exemplos variados de Modals</h3>
+			<div class="alerta amarelo">
+			$('a').modal({<br/>
+			<b>onConfirma</b>: function(){<br/>
+				alert("Ok...agora faça um callback melhor :)");<br/>
+			}<br/>
+		});
+			</div>	
 			<p><a href="#" titulo="Nova Janela Modal" conteudo="este é a primeira janela modal...simples...se você clicar no fundo ela fechará automaticamente.">click para abrir modal</a></p>
 	        
 			<p><a class="ajax" href="../ajax.php" largura="300px" titulo="Modal Ajax">modal ajax</a></p>
@@ -54,6 +66,8 @@
 			<p><a class="video" largura="580px" href="http://www.youtube.com/watch?v=q4pEKQ_zUBo" titulo="Trailer Ninja Assassino" videolargura="560" videoaltura="320">modal video</a></p>
 	        
 			<p><a class="iframe" href="http://www.google.com" titulo="Iframe Google" largura="800px" iframealtura="450px" iframelargura="780px">modal iframe</a></p>
+			
+			<p><button>Clique para criar novo link com modal</button></p>
 			
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec in lacus nec justo porta congue id vel magna.Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec in lacus nec justo porta congue id vel magna. Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec in lacus nec justo porta congue id vel magna.  </p>

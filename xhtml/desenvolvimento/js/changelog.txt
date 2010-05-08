@@ -18,7 +18,6 @@
 1.1
 ---
 * Monitoramento live(DOM e Ajax) para Foccus (use alternativamente $("seletor-focuss").trigger('iniciaFocuss'); caso tenha problemas)
-* Live events
 * Ajustes para retirada de focuss em elemento do tipo input[type="submit"]
 * Removido a opção "remove" (o mesmo pode ser feito com css .tal-classe{outline: none;}
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
@@ -31,7 +30,10 @@
 === Linha MODAL ===
 1.1
 ---
+* Live Events (não é o mesmo que Monitoramento live)
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+* Adicionado fix de posição pra os eventos window resize e window scroll
+* Arrays alteradas para Objetos
 * Inicial
 
 1.0
@@ -67,7 +69,7 @@
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
 * Adicinado suporte a eventos futuros (live)
 * Alteração tip = de array para object
-* Adicionado fix de posição pra os eventos window rezise e window scroll
+* Adicionado fix de posição pra os eventos window resize e window scroll
 * Descontinuado opção para continuar
 * Adicionado propriedade atual (registra o elemento que disparou o tooltip que está sendo exibido)
 * Adicionado Opção para tempo de fade (padrão: "fast")
