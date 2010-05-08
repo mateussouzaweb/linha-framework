@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   07/04/10 as 14:35 | nº 9
+* @ultima-revisao   07/05/10 as 14:35 | nº 9
 */
 (function($){
 	
@@ -37,7 +37,7 @@
 				onInicia: null,					//Callback
 				onTermina: null,				//Callback
 				
-				live: true,						//Abilitar o monitoramento live
+				live: false,					//Abilitar o monitoramento live
 				liveTempo: 100					//Tempo entra cada checagem, em milisegundos
 			};
 		var o = $.extend(padrao, options),

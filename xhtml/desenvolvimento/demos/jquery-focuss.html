@@ -29,7 +29,8 @@
 		
 		$("input:not(.input-ajax), textarea").focuss({
 			removeTexto: true,
-			cor: 'blue'
+			cor: 'blue',
+			live: true
 		});
 		
 		/**
@@ -45,7 +46,8 @@
 		 * Ajax
 		 */
 		$('input.input-ajax').focuss({
-			cor: 'green'
+			cor: 'green',
+			live: true
 		});
 		$('button#ajax').click(function(){
 			$.ajax({
@@ -72,7 +74,8 @@
 		<div class="alerta amarelo">
 		$("input:not(.input-ajax), textarea").focuss({<br/>
 			<b>removeTexto</b>: true,<br/>
-			<b>cor</b>: 'blue'<br/>
+			<b>cor</b>: 'blue',<br/>
+			<b>live</b>: true<br/>
 		});
 		</div>	
 		<form action="#" method="post" id="formulario">
@@ -103,7 +106,8 @@
 			<h3>Adicionado via ajax, com cor diferente e sem remoção de texto</h3>	
 			<div class="alerta amarelo">
 			$('input.input-ajax').focuss({<br/>
-				<b>cor:</b> 'green'<br/>
+				<b>cor:</b> 'green',<br/>
+				<b>live</b>: true<br/>
 			});
 			</div>
 			<p>
