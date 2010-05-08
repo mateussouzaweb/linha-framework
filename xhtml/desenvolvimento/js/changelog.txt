@@ -1,3 +1,4 @@
+===================
 === Linha ACORD ===
 1.1
 ---
@@ -21,17 +22,6 @@
 * Ajustes para retirada de focuss em elemento do tipo input[type="submit"]
 * Removido a opção "remove" (o mesmo pode ser feito com css .tal-classe{outline: none;}
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
-
-1.0
----
-* Inicial
-
-==================
-=== Linha FORM ===
-1.1
----
-* Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
-* Inicial
 
 1.0
 ---
@@ -87,6 +77,17 @@
 ---
 * Ajuste opções padding_top e padding_left
 * Adicionado opção para wrapper
+
+1.0
+---
+* Inicial
+
+====================
+=== Linha VALIDA ===
+1.1
+---
+* Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+* Renomeado para Linha Valida (anteriormente chamado de Linha Form)
 
 1.0
 ---
