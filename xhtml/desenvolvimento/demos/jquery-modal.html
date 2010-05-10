@@ -26,14 +26,31 @@
 	<script type="text/javascript" src="../../desenvolvimento/js/jquery.linha.modal.js"></script>
     <script type="text/javascript">
 	$(document).ready(function(){
-		$('a').modal({
+		$('a:not(.modal-ajax)').modal({
 			onConfirma: function(){
 				alert("Ok...agora faça um callback melhor :)");
 			}
 		});
 		
-		$('button').click(function(){
+		$('button#novo').click(function(){
 			$(this).parent().after('<p><a href="#" titulo="Nova Janela Modal" conteudo="Modal criada com Live Events.">nova janela modal</a></p>');
+		});
+		
+		
+		/**
+		 * Live
+		 */
+		$('a.modal-ajax').modal({
+			fundo: false
+		});
+		
+		$('button#ajax').click(function(){
+			$.ajax({
+				url: 'ajax/modal-ajax.html',
+				success: function(data){
+					$('button#ajax').parent().after(data);
+				}
+			});
 		});
     });  
 	</script>
@@ -67,7 +84,8 @@
 	        
 			<p><a class="iframe" href="http://www.google.com" titulo="Iframe Google" largura="800px" iframealtura="450px" iframelargura="780px">modal iframe</a></p>
 			
-			<p><button>Clique para criar novo link com modal</button></p>
+			<p><button id="novo">Clique para criar novo link com modal</button></p>
+			<p><button id="ajax">Clique para carregar link com modal (Ajax)</button></p>
 			
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 				<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec in lacus nec justo porta congue id vel magna.Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec in lacus nec justo porta congue id vel magna. Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec in lacus nec justo porta congue id vel magna.  </p>

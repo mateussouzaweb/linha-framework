@@ -30,11 +30,12 @@
 === Linha MODAL ===
 1.1
 ---
-* Live Events (não é o mesmo que Monitoramento live)
+* Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
-* Adicionado fix de posição pra os eventos window resize e window scroll
+* Algumas novas opções
+* Adicionado fix de posição (ou o mesmo q usar position:fixed)
 * Arrays alteradas para Objetos
-* Inicial
+* Outros...
 
 1.0
 ---
@@ -45,7 +46,6 @@
 1.1
 ---
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
-* Inicial
 
 1.0
 ---
@@ -56,7 +56,6 @@
 1.1
 ---
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
-* Inicial
 
 1.0
 ---

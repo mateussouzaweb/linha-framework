@@ -11,7 +11,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   08/05/10 as 11:37 | nº 6
+* @ultima-revisao   10/05/10 as 14:01 | nº 8
 */
 (function($){
 	
@@ -40,17 +40,21 @@
 			zIndex: 1000,									//Z-index modal
 			
 			evento: 'click',								//Evento que iniciará o Modal
+			eventoFecha: 'click',							//Evento para fechar o Modal (Botão Fechar)
+			eventoFundo: 'click',							//Evento para fechar o Modal (Fundo Modal)
+			eventoConfirma: 'click',						//Evento que confirma a ação do botão de confirmar(callback) do Modal
+			eventoCancela: 'click',							//Evento que fechará o Modal caso a confirmação seja cancela ou não aceita
 			
 			tempo: 'fast',									//Tempo para fade Modal
 			tempoFundo: 'fast',								//Tempo para exibir e fecha o Fundo
 			tempoLoad: 'fast',								//Tempo para sumir/fecha o Loading
-			tempoAjuste: 'fast',							//Tempo para animar ajuste de posição
 			
 			fundo: true,									//True para criar o fundo semitransparente para foco em modal
 			fecha: true,									//Ao clicar no fundo fecha o modal?
 			titulo: null,									//Criar um titulo comum para todos os modals
 			conteudo: null,									//Criar um conteudo comum para todos os modals
 			conteudoAntes: false,							//Inserir conteúdo antes | True ou False
+			autoPosiciona: false,							//Posicionar automaticamente o modal? é o mesmo q setar position fixed
 			
 			atributoLink: 'href',							//Atributo fonte modal externas (Ajax e Imagem)	
 			atributoTitulo: 'titulo',						//Atributo para título modal
@@ -61,85 +65,89 @@
 			atributoIframeAltura: 'iframealtura',			//Atributo para altura do iframe no modal
 			atributoVideoLargura: 'videolargura',			//Atributo para largura do video no modal
 			atributoVideoAltura: 'videoaltura',				//Atributo para altura do video no modal
-		
-			onShow: null,									//Callback
-			onHide: null, 									//Callback
-			onConfirma: null								//Callback	
+			
+			onCria: null,									//Callback
+			onExibe: null,									//Callback
+			onFecha: null, 									//Callback
+			onConfirma: null,								//Callback
+			onCancela: null									//Callback
 		};
 			
 		var o = $.extend(padrao, options),
 			$d = $(document),
 			$w = $(window),
 			m = [],	//modal
-			e = [],	//elemento
+			el = [],//elemento
 			w = [],	//window
-			t = '';
+			$t = '';
 		
 		if(elem === undefined){ elem = $(o.seletor);}
 		
 		/**
 		 * Delegando evento
 		 */
-		$d.delegate(elem.selector, o.evento, function(e){
-			var $t = $(this);
+		$d.delegate(elem.selector, o.evento, function(){
+			
+			/**
+			 * Checa se ja exite uma modal por ai...
+			 */
+			if($('.'+ o.classeModal).length){
+				return false;
+			}
+			
+			$t = $(this);
 			
 			/**
 			 * Registro de valores
 			 */
-			e.titulo = $t.attr(o.atributoTitulo);
-			e.conteudo = $t.attr(o.atributoConteudo);
-			e.altura = $t.attr(o.atributo_altura);
-			e.largura = $t.attr(o.atributo_largura);
-			e.link = $t.attr(o.atributoLink);
+			el.titulo = $t.attr(o.atributoTitulo);
+			el.conteudo = $t.attr(o.atributoConteudo);
+			el.altura = $t.attr(o.atributo_altura);
+			el.largura = $t.attr(o.atributo_largura);
+			el.link = $t.attr(o.atributoLink);
 			
-			e.iframeLargura = $t.attr(o.atributoIframeLargura);
-			e.iframeAltura = $t.attr(o.atributoIframeAltura);
-			e.videoLargura = $t.attr(o.atributoVideoLargura);
-			e.videoAltura = $t.attr(o.atributoVideoAltura);
-			
-			w.w = $w.width();
-			w.h = $w.height();
-			w.sl = $w.scrollLeft();
-			w.st = $w.scrollTop();
+			el.iframeLargura = $t.attr(o.atributoIframeLargura);
+			el.iframeAltura = $t.attr(o.atributoIframeAltura);
+			el.videoLargura = $t.attr(o.atributoVideoLargura);
+			el.videoAltura = $t.attr(o.atributoVideoAltura);
 			
 			/**
 			 * Cria a modal
 			 */
-			criaModal(e);
+			criaModal();
 			
 			/**
 			 * Insere conteúdo na modal e exibe
 			 */
-			dataModal($t, e, m);
+			dataModal();
 
-			e.preventDefault();
 			return false;
 		});
-		
+				
 		/**
 		 * Cria a modal que vai ser exibida
-		 * @param {Object} e
 		 */
-		function criaModal(e){
+		function criaModal(){
 			
 			/**
 			 * Fundo
 			 */
-			m.fundo = $('<div></div>')
-				.addClass(o.classeFundo)
-				.css({
-					width: '100%',
-					height: '100%',
-					opacity: o.fundoOpacidade,
-					position: 'fixed',
-					top: 0,
-					left: 0,
-					zIndex: o.zIndex - 1,
-					backgroundColor: '#000',
-					display: 'none'
-				})
-				.appendTo('body')
-				.fadeIn(o.tempoFundo);
+			if (o.fundo) {
+				m.fundo = $('<div></div>')
+					.addClass(o.classeFundo)
+					.css({
+						width: '100%',
+						height: '100%',
+						opacity: o.fundoOpacidade,
+						position: 'fixed',
+						top: 0,
+						left: 0,
+						zIndex: o.zIndex - 1,
+						backgroundColor: '#000',
+						display: 'none'
+					}).appendTo('body')
+					.fadeIn(o.tempoFundo);
+			}
 			
 			/**
 			 * Loading
@@ -159,12 +167,24 @@
 			m.modal = $('<div></div>')
 				.addClass(o.classeModal)
 				.css({
-					width: e.largura,
-					height: e.altura,
+					width: el.largura,
+					height: el.altura,
 					position: 'absolute',
 					zIndex: o.zIndex,
 					display: 'none'
 				});
+			
+			/**
+			 * Define se vai ser fixed ou absolute a posição
+			 * por padrão é absolute (veja acima)
+			 */
+			if(o.autoPosiciona){
+				m.modal.css({
+					position: 'fixed',
+					top: "50%",
+					left: "50%"
+				});
+			}
 			
 			m.fecha = $('<span>x</span>').addClass(o.classeFecha);
 			
@@ -179,24 +199,25 @@
 				marginTop: -(m.load.outerHeight()/2),
 				marginLeft: -(m.load.outerWidth()/2)
 			});
+			
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onCria)) {
+				o.onCria.apply(this, new Array(m, el, $t, o));
+			}
 
 		}
-		
-		/**
-		 * 
-		 */
+
 		/**
 		 * Insere conteúdo na modal
-		 * @param {Object} $t
-		 * @param {Object} e
-		 * @param {Object} m
 		 */
-		function dataModal($t, e, m){
+		function dataModal(){
 			
 			/**
 			 * Adiciona o título
 			 */
-			m.titulo.html(o.titulo).append(e.titulo);
+			m.titulo.html(o.titulo).append(el.titulo);
 			
 			/**
 			 * Processa se for Video/Youtube
@@ -206,15 +227,15 @@
 				/**
 				 * Trata a url do youtube
 				 */
-				e.link = e.link.replace(new RegExp("watch\\?v=", "i"), 'v/');
+				el.link = el.link.replace(new RegExp("watch\\?v=", "i"), 'v/');
 				
 				/**
 				 * Cria objeto de video
 				 * tem que ser assim pra num da erro no ie < 8
 				 */
-				var data = '<object width="'+ e.videoLargura +'" height="'+ e.videoAltura +'" classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" style="display: block">';
-				data    += '<param name="movie" value="'+ e.link +'"></param>';
-				data    += '<embed type="application/x-shockwave-flash" src="'+ e.link +'" width="'+ e.videoLargura +'" height="'+ e.videoAltura +'"></embed>';
+				var data = '<object width="'+ el.videoLargura +'" height="'+ el.videoAltura +'" classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" style="display: block">';
+				data    += '<param name="movie" value="'+ el.link +'"></param>';
+				data    += '<embed type="application/x-shockwave-flash" src="'+ el.link +'" width="'+ el.videoLargura +'" height="'+ el.videoAltura +'"></embed>';
 				data    += '</object>';
 				
 				m.conteudo.append(data);
@@ -224,7 +245,7 @@
 			 * Iframe
 			 */
 			else if($t.hasClass(o.seletorIframe)){
-				var data = '<iframe src="'+ e.link +'" height="'+ e.iframeAltura +'" width="'+ e.iframeLargura +'" style="border:0; display: block" frameBorder="0"></iframe>';
+				var data = '<iframe src="'+ el.link +'" height="'+ el.iframeAltura +'" width="'+ el.iframeLargura +'" style="border:0; display: block" frameBorder="0"></iframe>';
 				m.conteudo.append(data);
 			}	
 			
@@ -237,7 +258,7 @@
 				
 				$.ajax({
 					type: "POST",
-					url: e.link,
+					url: el.link,
 					success: function(data){
 						
 						m.load.fadeOut(o.tempoFundo, function(){$(this).remove();});
@@ -248,7 +269,7 @@
 					error: function() {
 						
 						m.load.fadeOut(o.tempoFundo, function(){$(this).remove();});
-						m.conteudo.append("Ocorreu algum erro ou esta url não existe...");
+						m.conteudo.append("Ocorreu algum erro ou esta url não existel...");
 						return mostraModal();
 						
 		   			}
@@ -279,7 +300,7 @@
 					
 					return redimensionaModal(this.width,this.height);
 					
-				}).attr('src', e.link);
+				}).attr('src', el.link);
 				
 			return;	
 			}
@@ -288,7 +309,7 @@
 			 * Conteúdo Normal
 			 */
 			else{
-				m.conteudo.append(e.conteudo);
+				m.conteudo.append(el.conteudo);
 			}	
 			
 			return mostraModal();
@@ -327,35 +348,79 @@
 			
 			m.modal.append(m.conteudo).append(m.fecha).appendTo('body').hide();
 			
-			var mTop = w.h/2 + (w.st) - (m.modal.outerHeight()/2);
-			var mLeft = (w.w/2) + w.sl - (m.modal.outerWidth()/2);
+			/**
+			 * Mais um ajuste de posição
+			 * Se for fixed define margin, se não define top e left
+			 */
+			if(o.autoPosiciona){
+				m.modal.css({
+					marginTop: -(m.modal.outerHeight()/2),
+					marginLeft: -(m.modal.outerWidth()/2)
+				});
+			}else{
+				
+				/**
+				 * Registra os valores de $(window)
+				 */
+				w.w = $w.width();
+				w.h = $w.height();
+				w.sl = $w.scrollLeft();
+				w.st = $w.scrollTop();
+				var mTop = w.h/2 + (w.st) - (m.modal.outerHeight()/2);
+				var mLeft = (w.w/2) + w.sl - (m.modal.outerWidth()/2);
+				m.modal.css({
+					top: mTop,
+					left: mLeft
+				});
+			}
 			
-			m.modal.css({
-				top: mTop,
-				left: mLeft
-			}).fadeIn(o.tempo);
+			m.modal.fadeIn(o.tempo);
 			
 			/**
-			 * Eventos fecha(fundo e botão fecha)
+			 * Eventos Fecha (Fundo)
 			 * @param {Object} e
 			 */
-			if (o.fecha){
-				m.fundo.click(function(e){e.preventDefault(); return deletaModal();});
+			if (o.fecha && m.fundo){
+				m.fundo[o.eventoFundo](function(){
+					return deletaModal();
+				});
 			}
-				m.fecha.click(function(e){e.preventDefault(); return deletaModal();});
+			
+			/**
+			 * Evento Fecha (X)
+			 */
+			m.fecha[o.eventoFecha](function(){
+				return deletaModal();
+			});
 			
 			/**
 			 * Botões de confirmação
-			 * @param {Object} e
 			 */
-			$('.'+o.classe_cancela).click(function(e){e.preventDefault();return deletaModal();});	
-			$('.'+o.classe_confirma).click(function(e){e.preventDefault();deletaModal();if ($.isFunction(o.onConfirma)) {o.onConfirma.apply(t);}});
+			$('.'+o.seletorCancela)[o.eventoCancela](function(){
+				/**
+				 * Callback
+				 */
+				if ($.isFunction(o.onCancela)) {
+					o.onCancela.apply(this, new Array(m, el, $t, o));
+				}
+				return deletaModal();
+			});	
+			$('.'+o.seletorConfirma)[o.eventoConfirma](function(){
+				/**
+				 * Callback
+				 */
+				if ($.isFunction(o.onConfirma)) {
+					o.onConfirma.apply(this, new Array(m, el, $t, o));
+				}
+				return deletaModal();
+			});
 			
 			/**
 			 * Callback
 			 */	
-			if ($.isFunction(o.onShow)) {o.onShow.apply(t);}
-			
+			if ($.isFunction(o.onExibe)) {
+				o.onExibe.apply(this, new Array(m, el, $t, o));
+			}
 		}
 		
 		/**
@@ -363,7 +428,7 @@
 		 */
 		function deletaModal(){
 			
-			if(m.fundo.length){
+			if(m.fundo){
 				m.fundo.fadeOut(o.tempo, function(){$(this).remove();});
 			}
 			
@@ -372,18 +437,14 @@
 			
 			/**
 			 * Callback
-			 */
-			if ($.isFunction(o.onHide)) {o.onHide.apply(t);}
+			 */	
+			if ($.isFunction(o.onFecha)) {
+				o.onFecha.apply(this, new Array(m, el, $t, o));
+			}
+			
+			return false;
 		}
 		
 	};
 		
 })(jQuery);
-
-/**
- * Callback
- * 
- * Window Resize de scroll
- * 
- * Bind demais botões
- */
