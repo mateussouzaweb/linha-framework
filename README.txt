@@ -34,7 +34,7 @@ LICENÇA: MIT and GPL License - http://www.opensource.org/licenses/mit-license.p
 * Inicial
 		
 ======= Algumas Considerações ========
-LIVE
+MONITORAMENTO LIVE
 A partir da versão 1.2 os plugins para jQuery terão monitoramente live,
 ainda não descobri uma forma mais eficaz do que a atual para o monitoramento do DOM.
 Basicamente é feito uma checagem em um intervalo determinado tem tempo para a chegagem.
@@ -67,6 +67,10 @@ $('meu-elemento').pluginX({
 	opções....
 });
 Assim o resultado será o mesmo das duas opções acima;
+
+LIVE
+Diferentemente de MONITORAMENTO LIVE, os plugins com live não precisa de nada descrito no MONITORAMENTO LIVE para
+se ter o mesmo efeito. Estes são feitos de forma automática.
 
 CALLBACK
 Todos os plugins oferem o callback para personalização de eventos.
