@@ -164,7 +164,7 @@
 			 * Callback
 			 */
 			if ($.isFunction(o.onAcord)) {
-				o.onAcord.apply(this, new Array($acord, $pai, $filho, $o));
+				o.onAcord.apply(this, new Array($acord, $pai, $filho, o));
 			}
 				
 			$(o.filho, $acord).not($filho).slideUp(o.tempoIn, o.easingIn);
