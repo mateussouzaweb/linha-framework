@@ -1,6 +1,6 @@
 /**
 * @name				Linha Nav
-* @version			1.0
+* @version			1.1
 * @descripton		Plugin Jquery para criação de menus dropdown de multi-level(s),
 * 					Plugin extensível e customizável
 *					MODO DE USAR $.nav({opcoes}); || $('.classeTal').nav({opcoes});
@@ -11,7 +11,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   11/03/10 as 10:01 | nº 5
+* @ultima-revisao   11/05/10 as 19:39 | nº 7
 */
 (function($){
 	$.fn.nav = function(options){
@@ -21,68 +21,105 @@
 	$.nav = function(options, elem){
 		
 		var padrao = {
-			seletor: '.menu li',		//Seletor padrão
-			filho: 'ul:first', 			//Seletor filho, o que será exibido
+			seletor: '.menu li',					//Seletor padrão
+			seletorFilho: 'ul:first', 				//Seletor filho, o que será exibido
 			
-			evento : 'mouseenter', 		//Evento para disparar o plugin
-			eventoFim : 'mouseleave', 	//Evento para terminar o plugin
+			classePaiAtual: 'nav-pai-atual', 		//Classe para pai que está em foque | Adicionado pelo plugin
+			classeFilhoAtual: 'nav-filho-atual',	//Classe para o filho que esta visível | Adicionado pelo plugin
 			
-			anima: false,				//Anima a exibição?
-			slide : false,				//Animação no formato de slide?
-			tempoMostra: 200,			//Tempo para mostrar o submenu
-			tempoEsconde: 200,			//Tempo para esconder o submenu
+			evento : 'mouseenter', 					//Evento para disparar o plugin
+			eventoFim : 'mouseleave', 				//Evento para terminar o plugin
+			
+			efeitoIn: 'slideDown',					//Efeito inicial
+			efeitoOut: 'slideUp',					//Efeito Final
+			tempoIn: 'normal',						//Tempo para esconder o seletor filho (Entrada)
+			tempoOut: 'normal',						//Tempo para mostrar o seletor filho (Saída)
+			easingIn: 'swing',						//Animação com easyng na entrada (IN)...
+			easingOut: 'swing',						//Animação com easyng na saída (OUT)...
 
-			onInicio : null,			//Callback
-			onFim: null					//Callback
+			onExibe : null,							//Callback
+			onEsconde: null							//Callback
 		};
-		var o = $.extend(padrao, options);
-		
+		var o = $.extend(padrao, options),
+			$d = $(document),
+			np = o.classePaiAtual,
+			nf = o.classeFilhoAtual;
+			
 		if(elem === undefined){ elem = $(o.seletor);}
 		
-		return elem.each(function(){
-				
-			var t = $(this);
+		/**
+		 * Delegando evento
+		 */
+		$d.delegate(elem.selector, o.evento, function(e){
 			
-			//Eventos customizados
-			if(o.evento){
-				t.bind(o.evento, function(){return showNav(t);});
-			}
+			exibeNav($(this), $(this).children(o.seletorFilho));
 			
-			if(o.eventoFim){
-				t.bind(o.eventoFim, function(){ return hideNav(t);});
-			}
+			/**
+			 * Da o bind no evento final
+			 * Não pode ser delegate porque ele tem bug no evento mouseleave...aff
+			 */
+			$(this).unbind(o.eventoFim).bind(o.eventoFim, function(){
+				return escondeNav($(this), $(this).children(o.seletorFilho));
+			});
 		});
 	
 		/**
-		 * @param {Object} t - elemento this
+		 * Exibir o seletor filho
+		 * @param {Object} $t - elemento this
+		 * @param {Object} $f - elemento filho
 		 */
-		function showNav(t){
-			if ($.isFunction(o.onInicio)) {o.onInicio.apply(t);}
-			if (o.anima) {
-				if (o.slide) {
-					$(o.filho, t).slideDown(o.tempoMostra);
-				}
-				else {
-					$(o.filho, t).fadeIn(o.tempoMostra);
-				}
-			}else{
-				$(o.filho, t).show();
+		function exibeNav($t, $f){
+			/**
+			 * Checa o seletor filho
+			 */
+			if(!$f.length){return false;}
+			
+			/**
+			 * Adiciona a classe
+			 */
+			$t.addClass(np);
+			
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onExibe)) {
+				o.onExibe.apply(this, new Array($t, $f, o));
 			}
+			
+			/**
+			 * Animação
+			 */
+			$f.addClass(nf).stop()[o.efeitoIn](o.tempoIn, o.easingIn);
+			
 		};
+		
 		/**
-		 * @param {Object} t - elemento this
+		 * Esconder o seletor filho
+		 * @param {Object} $t - elemento this
+		 * @param {Object} $f - elemento filho
 		 */
-		function hideNav(t){
-			if(o.anima){
-				if (o.slide) {
-						$(o.filho, t).slideUp(o.tempoEsconde);
-				}else {
-					$(o.filho, t).fadeOut(o.tempoEsconde);
-				}
-			}else{
-				$(o.filho, t).hide();
+		function escondeNav($t, $f){
+			
+			/**
+			 * Remove a classe
+			 */
+			$t.removeClass(np);
+			
+			/**
+			 * Animação
+			 */
+			$f.removeClass(nf)[o.efeitoOut](o.tempoOut, o.easingOut);
+	
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onEsconde)) {
+				o.onEsconde.apply(this, new Array($t, $f, o));
 			}
-			if ($.isFunction(o.onFim)) {o.onFim.apply(t);}
 		};
 	};
 })(jQuery);
+
+/**
+ * Ajustar problema da animação (o stop, sei la)
+ */

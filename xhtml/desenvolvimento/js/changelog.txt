@@ -45,7 +45,11 @@
 === Linha NAV ===
 1.1
 ---
+* Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+* Animação com Easing
+* Fix para prevenção de animação em fila
+* Ajuste para CSS
 
 1.0
 ---
