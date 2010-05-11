@@ -78,7 +78,7 @@ ul.menu li ul{
 	top: 36px;
 	left: -1px;
 	display: none;
-	z-index: 10;
+	z-index: 11;
 }
 ul.menu li ul li{
 	width: 100%;
