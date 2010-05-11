@@ -41,7 +41,8 @@
 		 * Live
 		 */
 		$('a.modal-ajax').modal({
-			fundo: false
+			fundo: false,
+			autoPosiciona: true
 		});
 		
 		$('button#ajax').click(function(){
@@ -66,11 +67,11 @@
 			
 			<h3>Exemplos variados de Modals</h3>
 			<div class="alerta amarelo">
-			$('a').modal({<br/>
+			$('a:not(.modal-ajax)').modal({<br/>
 			<b>onConfirma</b>: function(){<br/>
 				alert("Ok...agora faça um callback melhor :)");<br/>
-			}<br/>
-		});
+				}<br/>
+			});
 			</div>	
 			<p><a href="#" titulo="Nova Janela Modal" conteudo="este é a primeira janela modal...simples...se você clicar no fundo ela fechará automaticamente.">click para abrir modal</a></p>
 	        
@@ -85,6 +86,14 @@
 			<p><a class="iframe" href="http://www.google.com" titulo="Iframe Google" largura="800px" iframealtura="450px" iframelargura="780px">modal iframe</a></p>
 			
 			<p><button id="novo">Clique para criar novo link com modal</button></p>
+			
+			<h3>Modal via AJAX</h3>
+			<div class="alerta amarelo">
+			$('a.modal-ajax').modal({<br/>
+				<b>fundo</b>: false,<br/>
+				<b>autoPosiciona</b>: true<br/>
+			});
+			</div>
 			<p><button id="ajax">Clique para carregar link com modal (Ajax)</button></p>
 			
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
