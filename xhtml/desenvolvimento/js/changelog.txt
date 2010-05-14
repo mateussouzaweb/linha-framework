@@ -8,6 +8,7 @@
 * Ajuste para CSS
 * Ajax no conteúdo dos accordions
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+* Melhor controle via CSS (com classes adicionadas automaticamente pelo plugin)
 
 1.0
 ---
@@ -35,6 +36,8 @@
 * Algumas novas opções
 * Adicionado fix de posição (ou o mesmo q usar position:fixed)
 * Arrays alteradas para Objetos
+* Mais Callbacks
+* Ajuste para CSS
 * Outros...
 
 1.0
@@ -50,6 +53,7 @@
 * Animação com Easing
 * Fix para prevenção de animação em fila
 * Ajuste para CSS
+* Melhor controle via CSS (com classes adicionadas automaticamente pelo plugin)
 
 1.0
 ---

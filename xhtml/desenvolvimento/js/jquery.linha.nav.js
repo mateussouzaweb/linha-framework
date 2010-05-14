@@ -11,7 +11,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   11/05/10 as 19:39 | nº 7
+* @ultima-revisao   14/05/10 as 16:19 | nº 9
 */
 (function($){
 	$.fn.nav = function(options){
@@ -36,6 +36,8 @@
 			tempoOut: 'normal',						//Tempo para mostrar o seletor filho (Saída)
 			easingIn: 'swing',						//Animação com easyng na entrada (IN)...
 			easingOut: 'swing',						//Animação com easyng na saída (OUT)...
+			stopClearQueue: true, 					//(Veja API Stop - clearQueue) e não mexa sem conhecimento
+			stopJumpToEnd: true,					//(Veja API Stop - jumpToEnd) e não mexa sem conhecimento
 
 			onExibe : null,							//Callback
 			onEsconde: null							//Callback
@@ -89,7 +91,7 @@
 			/**
 			 * Animação
 			 */
-			$f.addClass(nf).stop()[o.efeitoIn](o.tempoIn, o.easingIn);
+			$f.stop(o.stopClearQueue, o.stopJumpToEnd).addClass(nf)[o.efeitoIn](o.tempoIn, o.easingIn);
 			
 		};
 		
@@ -108,7 +110,7 @@
 			/**
 			 * Animação
 			 */
-			$f.removeClass(nf)[o.efeitoOut](o.tempoOut, o.easingOut);
+			$f.stop(o.stopClearQueue, o.stopJumpToEnd).removeClass(nf)[o.efeitoOut](o.tempoOut, o.easingOut);
 	
 			/**
 			 * Callback
@@ -119,7 +121,3 @@
 		};
 	};
 })(jQuery);
-
-/**
- * Ajustar problema da animação (o stop, sei la)
- */
