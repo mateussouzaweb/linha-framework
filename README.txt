@@ -12,6 +12,7 @@ LICENÇA: MIT and GPL License - http://www.opensource.org/licenses/mit-license.p
 * Atualização para os plugins: Linha Acord, Linha Focuss, Linha Modal, Linha Nav, Linha Slidetabs, Linha Tooltip e Linha Form(agora chamado Valida), 
 * Remoção de estilos para IE6 e Mobile - não tem muita utilidade :)
 * Grid CSS fica em um novo arquivo css (grid.css)
+* Regra para grid simplificada ( + semelhante ao grid 960)
 * Otimização de CSS
 * Introdução/Suporte a HTML5
 * Reset.css com suporte a HTML5
