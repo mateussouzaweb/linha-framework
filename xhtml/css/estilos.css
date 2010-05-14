@@ -1,9 +1,9 @@
 /* ESTILOS */
 /* ----------------------------------------- */
 body{
+	color: #222;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
-	color: #222;
 	line-height: 21px;
 }
 a, a:link {
@@ -24,113 +24,98 @@ small{font-size: 75%;}
 big{font-size: 125%;}
 
 /*SELETORES*/
-#tudo{width: 960px;	margin: 0 auto;}
-#topo, #conteudo, #rodape{display: inline-block; width: 940px;}
-#topo{margin: 10px 0; padding: 10px;}
-#conteudo{margin: 10px 0; width: 960px;}
-#rodape{margin: 10px 0;	padding: 10px;}
+#tudo{
+	margin: 0 auto;
+	width: 960px;
+}
 
 /* @Grupo MENU */
 ul.menu{
-	background: #333;
+	background: url("../img/core/linha-branca-40.png") repeat-x scroll center top #767676;
+	border: 1px solid #4D4D4D;
 	height: 36px;
-	padding: 5px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	padding: 3px;
 }
 ul.menu li{
-	float: left;
 	display: block;	
+	float: left;
 	position: relative;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
-}
-ul.menu li:hover{ /*Fix para z-index IE7)*/
-	z-index: 10;
 }
 ul.menu li a{
-	padding: 0px 30px;
-	line-height: 35px;
-	font-weight: bold;
+	border: 1px solid #767676;
 	color: #FFFFFF !important;
 	display: block;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
+	font-weight: bold;	
+	line-height: 35px;
+	padding: 0px 30px;
 }
+/* -- Hover -- */
 ul.menu li a:hover, ul.menu li:hover{
+	background: #4698ca url("../img/core/linha-branca-30.png") repeat-x scroll center top;
+	cursor:pointer;
 	color: #FFFFFF;
-	background: #4698ca;
-	border-top-color: #5db1e0 !important;
-	border-left-color: #5db1e0;
+	z-index: 10;
+}
+ul.menu li a:hover, ul.menu li:hover a, ul.menu li ul li a:hover, ul.menu li ul li:hover a, ul.menu li ul li ul li a:hover, ul.menu li ul li ul li:hover a{
+	border: 1px solid #4D4D4D;
+}
+ul.menu li:hover ul a,  ul.menu li ul li:hover ul a, ul.menu li ul li ul li:hover ul a{
+	border: 1px solid #767676;
 }
 /* -- Submenus -- */
 ul.menu li ul{
-	position: absolute;
-	background: #333;
-	width: 170px;
-	padding: 5px;
-	top: 36px;
-	left: -1px;
+	background: #767676;
+	border: 1px solid #4D4D4D;
 	display: none;
+	left: -1px;
+	padding: 5px;
+	position: absolute;
+	top: 36px;
+	width: 170px;
 	z-index: 11;
 }
 ul.menu li ul li{
 	width: 100%;
-	background: #333;
-	position: relative;
-}
-ul.menu li ul li:hover, ul.menu li ul li a:hover{
-	color: #fff;
-	background: #4698ca;
-	border-top-color: #5db1e0 !important;
-	border-left-color: #5db1e0;
+	margin-top:-1px;
 }
 ul.menu li ul li a{
-	width: 110px;	
+	padding: 0px 10px;
+	width: 150px;	
 }
 ul.menu li ul li ul{
-	position: absolute;
-	background: #333;
-	width: 170px;
-	top: -5px;
 	left: 171px;
-	display: none;
-}
-ul.menu li ul li{
-	width: 170px;
-	background: #333;
+	top: -5px;
 }
 
 /* @Grupo FORMULÁRIOS */
 label{
+	display: inline-block;
 	font-weight: bold;
+	padding-bottom: 5px;
+}
+label + input, label + textarea, label + select{
 	display: block;
 }
+label + input[type="radio"], label + input[type="checkbox"]{
+	display: inline-block;
+}
 input, textarea{
-	padding: 8px;
 	border: 1px solid;
 	border-color: #bbb #ddd #ddd #bbb;
-	background: #FFF url(../img/input.png) repeat-x top;
+	background: #FFF url(../img/core/bg-input.png) repeat-x top;
 	font-family: Arial, Helvetica, sans-serif;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	padding: 8px;
+	width: 280px;
 }
 input[type="radio"], input[type="checkbox"]{
-	border: none;
 	background: none;
+	border: none;
 	padding: 0;
+	width: auto;
 }
 input[type="submit"]{
-	background: #333;
-	border: 1px solid #000;
+	background: url("../img/core/linha-branca-40.png") repeat-x scroll center top #767676;
+	border: 1px solid #4D4D4D;
 	font-weight: bold;
 	color: #fff;
 	padding: 5px 10px 7px;
@@ -139,58 +124,52 @@ input[type="submit"]{
 	display: inline-block;
 	overflow: visible;
 	cursor: pointer;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
 }
 select{
 	border: 1px solid;
 	line-height: 1em;
 	padding: 6px 8px;
 	border-color: #bbb #ddd #ddd #bbb;
-	background: url(../img/input.png) repeat-x top;
-	width: 321px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	background: #FFF url(../img/core/bg-input.png) repeat-x top;
+	width: 298px;
 }
 option{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
-	padding: 0 8px;
+	padding: 2px 8px;
 }
+/* -- Focus -- */
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus, .focus{
+	background-color: #fcfcfc;
+	outline:none;
+}
+
 
 /* @Grupo ALERTAS */
 .alerta{
-	padding: 10px 20px;
+	background: #EDEDED url(../img/core/linha-branca-80.png) repeat-x top;
 	border: 1px solid #C0C0C0;
-	margin: 5px 0;
 	display: block;
-	background: #EDEDED;
 	color: #333;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	margin: 5px 0;
+	padding: 10px;
 }
 .verde{
-	background: #E9F9E5;
+	background: #E9F9E5 url(../img/core/linha-branca-100.png) repeat-x top;
 	border:1px solid #9BDEA8;
 	color: #1C8400;
 }
 .vermelho{
-	background: #F9E5E6;
+	background: #F9E5E6 url(../img/core/linha-branca-80.png) repeat-x top;
 	border:1px solid #DF8F8F;
 	color: #C32727;
 }
 .amarelo{
-	background: #FFF6BF;
+	background: #FFF6BF url(../img/core/linha-branca-100.png) repeat-x top;
 	border:1px solid #EFC20E;
 }
 .azul{
-	background: #DDEEFF;
+	background: #DDEEFF url(../img/core/linha-branca-80.png) repeat-x top;
 	border:1px solid #85CAF3;
 	color: #0055B5;
 }
@@ -200,7 +179,7 @@ table{
 	margin-bottom: 10px;
 }
 table tr th{
-	background: #EEE;
+	background: #EEE url(../img/core/linha-branca-80.png) repeat-x top;
 	border: 1px solid #CCC;
 	padding: 5px 10px;
 }
@@ -211,25 +190,21 @@ table tr td{
 
 /* @Grupo OUTROS */
 a.botao{
-	background: #333;
-	border: 1px solid #000;
-	font-weight: bold;
+	background: url("../img/core/linha-branca-40.png") repeat-x scroll center top #767676;
+	border: 1px solid #4D4D4D;
 	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: bold;
+	overflow: visible;
 	padding: 5px 10px;
 	width: auto;
-	display: inline-block;
-	overflow: visible;
-	cursor: pointer;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
 }
 blockquote{
-	padding: 10px 20px 0px;
-	border: 1px solid #ccc;
 	background: #f2f2f2;
+	border: 1px solid #ccc;
 	margin-bottom: 10px;
+	padding: 10px 20px 0px;
 }
 iframe{
 	border: 1px solid #ccc;
