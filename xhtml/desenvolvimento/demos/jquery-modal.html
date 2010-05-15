@@ -41,7 +41,7 @@
 		 * Live
 		 */
 		$('a.modal-ajax').modal({
-			fundo: false,
+			fundoOpacidade: 0.2,
 			autoPosiciona: true
 		});
 		
@@ -74,7 +74,7 @@
 		
 		<p><a href="#" titulo="Nova Janela Modal" conteudo="este é a primeira janela modal...simples...se você clicar no fundo ela fechará automaticamente.">click para abrir modal</a></p>
 	       
-		<p><a class="ajax" href="../ajax.php" largura="300px" titulo="Modal Ajax">modal ajax</a></p>
+		<p><a class="ajax" href="ajax/ajax.html" largura="300px" titulo="Modal Ajax">modal ajax</a></p>
 	        
 		<p><a largura="250px" altura="150px" titulo="Confirma Ação" conteudo="Tem certeza de que deseja realizar essas alterações?<button class='confirma'>Ok</button><button class='fecha'>Cancelar</button>">modal com confirmação</a></p>
 	        
@@ -89,7 +89,7 @@
 		<h3>Modal via AJAX + Posicionamento Automático</h3>
 		<div class="alerta amarelo">
 		$('a.modal-ajax').modal({<br/>
-			<b>fundo</b>: false,<br/>
+			<b>fundoOpacidade</b>: 0.2,<br/>
 			<b>autoPosiciona</b>: true<br/>
 		});
 		</div>
