@@ -31,6 +31,7 @@ hr {display:block; height:1px; border:0; border-top:1px solid #cccccc; margin:1e
 input, select { vertical-align:middle;}
 input, textarea, select, button {font-size: 100%;font-family: inherit;}
 input, textarea, select{ border: 1px solid #333;}
+button {overflow: visible; padding: 0 5px;}
 
 strong { font-weight: bold }
 

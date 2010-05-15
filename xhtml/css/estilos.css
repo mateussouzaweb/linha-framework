@@ -31,8 +31,8 @@ big{font-size: 125%;}
 
 /* @Grupo MENU */
 ul.menu{
-	background: url("../img/core/linha-branca-40.png") repeat-x scroll center top #767676;
-	border: 1px solid #4D4D4D;
+	background: #434343;
+	border: 1px solid #222;
 	height: 36px;
 	padding: 3px;
 }
@@ -42,7 +42,7 @@ ul.menu li{
 	position: relative;
 }
 ul.menu li a{
-	border: 1px solid #767676;
+	border: 1px solid #434343;
 	color: #FFFFFF !important;
 	display: block;
 	font-weight: bold;	
@@ -51,21 +51,25 @@ ul.menu li a{
 }
 /* -- Hover -- */
 ul.menu li a:hover, ul.menu li:hover{
-	background: #4698ca url("../img/core/linha-branca-30.png") repeat-x scroll center top;
+	background: #4698ca;
 	cursor:pointer;
 	color: #FFFFFF;
 	z-index: 10;
 }
-ul.menu li a:hover, ul.menu li:hover a, ul.menu li ul li a:hover, ul.menu li ul li:hover a, ul.menu li ul li ul li a:hover, ul.menu li ul li ul li:hover a{
-	border: 1px solid #4D4D4D;
+ul.menu li a:hover, ul.menu li:hover a,
+ul.menu li ul li a:hover, ul.menu li ul li:hover a,
+ul.menu li ul li ul li a:hover, ul.menu li ul li ul li:hover a{
+	border: 1px solid #222;
 }
-ul.menu li:hover ul a,  ul.menu li ul li:hover ul a, ul.menu li ul li ul li:hover ul a{
-	border: 1px solid #767676;
+ul.menu li:hover ul a,
+ul.menu li ul li:hover ul a,
+ul.menu li ul li ul li:hover ul a{
+	border: 1px solid #434343;
 }
 /* -- Submenus -- */
 ul.menu li ul{
-	background: #767676;
-	border: 1px solid #4D4D4D;
+	background: #434343;
+	border: 1px solid #222;
 	display: none;
 	left: -1px;
 	padding: 5px;
@@ -102,7 +106,7 @@ label + input[type="radio"], label + input[type="checkbox"]{
 input, textarea{
 	border: 1px solid;
 	border-color: #bbb #ddd #ddd #bbb;
-	background: #FFF url(../img/core/bg-input.png) repeat-x top;
+	background: #FFF url(../img/bg-input.png) repeat-x top;
 	font-family: Arial, Helvetica, sans-serif;
 	padding: 8px;
 	width: 280px;
@@ -114,8 +118,8 @@ input[type="radio"], input[type="checkbox"]{
 	width: auto;
 }
 input[type="submit"]{
-	background: url("../img/core/linha-branca-40.png") repeat-x scroll center top #767676;
-	border: 1px solid #4D4D4D;
+	background: #434343;
+	border: 1px solid #222;
 	font-weight: bold;
 	color: #fff;
 	padding: 5px 10px 7px;
@@ -130,7 +134,7 @@ select{
 	line-height: 1em;
 	padding: 6px 8px;
 	border-color: #bbb #ddd #ddd #bbb;
-	background: #FFF url(../img/core/bg-input.png) repeat-x top;
+	background: #FFF url(../img/bg-input.png) repeat-x top;
 	width: 298px;
 }
 option{
@@ -139,7 +143,11 @@ option{
 	padding: 2px 8px;
 }
 /* -- Focus -- */
-input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus, .focus{
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus,
+.focus{
 	background-color: #fcfcfc;
 	outline:none;
 }
@@ -147,7 +155,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:f
 
 /* @Grupo ALERTAS */
 .alerta{
-	background: #EDEDED url(../img/core/linha-branca-80.png) repeat-x top;
+	background: #EDEDED;
 	border: 1px solid #C0C0C0;
 	display: block;
 	color: #333;
@@ -155,21 +163,21 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:f
 	padding: 10px;
 }
 .verde{
-	background: #E9F9E5 url(../img/core/linha-branca-100.png) repeat-x top;
+	background: #E9F9E5;
 	border:1px solid #9BDEA8;
 	color: #1C8400;
 }
 .vermelho{
-	background: #F9E5E6 url(../img/core/linha-branca-80.png) repeat-x top;
+	background: #F9E5E6;
 	border:1px solid #DF8F8F;
 	color: #C32727;
 }
 .amarelo{
-	background: #FFF6BF url(../img/core/linha-branca-100.png) repeat-x top;
+	background: #FFF6BF;
 	border:1px solid #EFC20E;
 }
 .azul{
-	background: #DDEEFF url(../img/core/linha-branca-80.png) repeat-x top;
+	background: #DDEEFF;
 	border:1px solid #85CAF3;
 	color: #0055B5;
 }
@@ -179,7 +187,7 @@ table{
 	margin-bottom: 10px;
 }
 table tr th{
-	background: #EEE url(../img/core/linha-branca-80.png) repeat-x top;
+	background: #EEE;
 	border: 1px solid #CCC;
 	padding: 5px 10px;
 }
@@ -190,9 +198,9 @@ table tr td{
 
 /* @Grupo OUTROS */
 a.botao{
-	background: url("../img/core/linha-branca-40.png") repeat-x scroll center top #767676;
-	border: 1px solid #4D4D4D;
-	color: #fff;
+	background: #434343;
+	border: 1px solid #222;
+	color: #FFF !important;
 	cursor: pointer;
 	display: inline-block;
 	font-weight: bold;
