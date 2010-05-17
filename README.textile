@@ -45,10 +45,8 @@ h2. Algumas Considerações
 h3. MONITORAMENTO LIVE
 
 p. A partir da versão 1.2 os plugins para jQuery terão monitoramente live, ainda não descobri uma forma mais eficaz do que a atual para o monitoramento do DOM.
-
 p. Basicamente é feito uma checagem em um intervalo determinado tem tempo para a chegagem.
-
-p .Para ativar o monitoramento apenas sete a opção "live" para "true" no plugin que deseja usar, por exemplo:
+p. Para ativar o monitoramento apenas sete a opção "live" para "true" no plugin que deseja usar, por exemplo:
 
 @$('meu-elemento').pluginX({
 	live: true
