@@ -42,46 +42,43 @@ h3. 1.0
 		
 h2. Algumas Considerações
 
-MONITORAMENTO LIVE
-A partir da versão 1.2 os plugins para jQuery terão monitoramente live,
-ainda não descobri uma forma mais eficaz do que a atual para o monitoramento do DOM.
-Basicamente é feito uma checagem em um intervalo determinado tem tempo para a chegagem.
-Para ativar o monitoramento apenas sete a opção "live" para "true" no plugin que deseja usar, por exemplo:
-$('meu-elemento').pluginX({
-	live: true
-});
-Há ainda a opção de alterar o intervalo de tempo para a checagem...o padrão é 100 milisegundos (1/10 de um segundo).
-Se desejar alterar, a opção é "liveTempo", mais lembre-se que deve ser em milisegundos. 
+h3. MONITORAMENTO LIVE
 
-Alternativamente você pode fazer o monitoramento de modo manual.
-Use $('elemento-adicionado').trigger('iniciaPluginX'); quando ele for inserido na página
-por meio de ajax ou html(); por exemplo...assim terá o mesmo efeito do monitoramente live, mais de forma manual.
-Lembre-se que o seletor para o trigger deve ser o mesmo usado em sua nova instância do plugin, para que o plugin
-recupere as opções setadas para este elemento. EX:
-$('meu-elemento').pluginX({
+p. A partir da versão 1.2 os plugins para jQuery terão monitoramente live, ainda não descobri uma forma mais eficaz do que a atual para o monitoramento do DOM.
+p. Basicamente é feito uma checagem em um intervalo determinado tem tempo para a chegagem.
+p .Para ativar o monitoramento apenas sete a opção "live" para "true" no plugin que deseja usar, por exemplo:
+@$('meu-elemento').pluginX({
+	live: true
+});@
+p. Há ainda a opção de alterar o intervalo de tempo para a checagem...o padrão é 100 milisegundos (1/10 de um segundo).
+p. Se desejar alterar, a opção é "liveTempo", mais lembre-se que deve ser em milisegundos. 
+
+p. Alternativamente você pode fazer o monitoramento de modo manual.
+p. Use $('elemento-adicionado').trigger('iniciaPluginX'); quando ele for inserido na página por meio de ajax ou html(); por exemplo...assim terá o mesmo efeito do monitoramente live, mais de forma manual.
+p. Lembre-se que o seletor para o trigger deve ser o mesmo usado em sua nova instância do plugin, para que o plugin recupere as opções setadas para este elemento. EX:
+@$('meu-elemento').pluginX({
 	opções...
 });
 //Outras funções
 $('button').click(function(){
 	$('body').append('meu-elemento');
 	$('meu-elemento').trigger('iniciaPluginX'); //Assim ele inicia o plugin com as opções setadas anteriormente
-});
+});@
 
-Há ainda uma terceira opção, não é uma boa prática ao meu ver mais também se encaixa:
-Estancie o plugin logo depois que o elemento for adicionado a página. EX:
-$('body').append('meu-elemento');
+p. Há ainda uma terceira opção, não é uma boa prática ao meu ver mais também se encaixa:
+p. Estancie o plugin logo depois que o elemento for adicionado a página. EX:
+@$('body').append('meu-elemento');
 //Inicie o plugin agora
 $('meu-elemento').pluginX({
 	opções....
-});
-Assim o resultado será o mesmo das duas opções acima;
+});@
+p. Assim o resultado será o mesmo das duas opções acima;
 
-LIVE
-Diferentemente de MONITORAMENTO LIVE, os plugins com live não precisa de nada descrito no MONITORAMENTO LIVE para
-se ter o mesmo efeito. Estes são feitos de forma automática.
+h3. LIVE
+p. Diferentemente de MONITORAMENTO LIVE, os plugins com live não precisa de nada descrito no *MONITORAMENTO* LIVE para se ter o mesmo efeito. Estes são feitos de forma automática.
 
-CALLBACK
-Todos os plugins oferem o callback para personalização de eventos.
+h3. CALLBACK
+p. Todos os plugins oferem o callback para personalização de eventos.
 
 		
 		
