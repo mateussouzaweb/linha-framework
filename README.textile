@@ -1,8 +1,10 @@
 ﻿
 h3. LINHA FRAMEWORK - versão 1.2 (ALPHA)
+
 p. by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
 
 h2. Licença
+
 p. LICENÇA: MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 
 h2. Change-log
