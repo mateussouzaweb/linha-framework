@@ -22,10 +22,10 @@ h2. Change-log
 1.1
 ---
 * Alguns fixs sem importancia :)
-* Implementação de css para tabelas (<table>)
-* Tamanho de fontes para small e big (<small><big>)
-* Estilos hr (<hr/>)
-* Estilos para iframe (<iframe>)
+* Implementação de css para tabelas (&lt;table&gt;)
+* Tamanho de fontes para small e big (&lt;small&gt;&lt;big&gt;)
+* Estilos hr (&lt;hr/&gt;)
+* Estilos para iframe (&lt;iframe&gt;)
 * Fim do suporte para modelos
 * Adicionado suporte a grid 12, 16 e 24 colunas
 * Adição de Classes fix: .primeiro e .ultimo
