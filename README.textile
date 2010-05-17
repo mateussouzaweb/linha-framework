@@ -1,5 +1,4 @@
 ﻿
-
 h1. LINHA FRAMEWORK - versão 1.2 (ALPHA)
 
 p. by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
