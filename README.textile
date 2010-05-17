@@ -1,37 +1,37 @@
 ﻿
-LINHA FRAMEWORK - versão 1.2 (ALPHA)
-by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
+h3. LINHA FRAMEWORK - versão 1.2 (ALPHA)
+p. by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
 
 h2. Licença
-LICENÇA: MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
+p. LICENÇA: MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 
 h2. Change-log
 
-1.2
+h3. 1.2
 ---
-* Linha Form renomeado pra Linha Valida(o nome tem mais relação com a função do plugin)
-* Atualização para os plugins: Linha Acord, Linha Focuss, Linha Modal, Linha Nav, Linha Slidetabs, Linha Tooltip e Linha Form(agora chamado Valida), 
-* Remoção de estilos para IE6 e Mobile - não tem muita utilidade :)
-* Grid CSS fica em um novo arquivo css (grid.css)
-* Regra para grid simplificada ( + semelhante ao grid 960)
-* Otimização de CSS
-* Introdução/Suporte a HTML5
-* Reset.css com suporte a HTML5
-* Adicionado estilos básicos para html5 (html5.css)	
+ * Linha Form renomeado pra Linha Valida(o nome tem mais relação com a função do plugin)
+ * Atualização para os plugins: Linha Acord, Linha Focuss, Linha Modal, Linha Nav, Linha Slidetabs, Linha Tooltip e Linha Form(agora chamado Valida), 
+ * Remoção de estilos para IE6 e Mobile - não tem muita utilidade :)
+ * Grid CSS fica em um novo arquivo css (grid.css)
+ * Regra para grid simplificada ( + semelhante ao grid 960)
+ * Otimização de CSS
+ * Introdução/Suporte a HTML5
+ * Reset.css com suporte a HTML5
+ * Adicionado estilos básicos para html5 (html5.css)	
 
-1.1
+h3. 1.1
 ---
-* Alguns fixs sem importancia :)
-* Implementação de css para tabelas (&lt;table&gt;)
-* Tamanho de fontes para small e big (&lt;small&gt;&lt;big&gt;)
-* Estilos hr (&lt;hr/&gt;)
-* Estilos para iframe (&lt;iframe&gt;)
-* Fim do suporte para modelos
-* Adicionado suporte a grid 12, 16 e 24 colunas
-* Adição de Classes fix: .primeiro e .ultimo
-* Atualização versões plugins js
+ * Alguns fixs sem importancia :)
+ * Implementação de css para tabelas (&lt;table&gt;)
+ * Tamanho de fontes para small e big (&lt;small&gt;&lt;big&gt;)
+ * Estilos hr (&lt;hr/&gt;)
+ * Estilos para iframe (&lt;iframe&gt;)
+ * Fim do suporte para modelos
+ * Adicionado suporte a grid 12, 16 e 24 colunas
+ * Adição de Classes fix: .primeiro e .ultimo
+ * Atualização versões plugins js
 
-1.0
+h3. 1.0
 ---
 * Inicial
 		
@@ -77,6 +77,5 @@ se ter o mesmo efeito. Estes são feitos de forma automática.
 CALLBACK
 Todos os plugins oferem o callback para personalização de eventos.
 
-		
 		
 		
