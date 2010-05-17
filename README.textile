@@ -45,7 +45,9 @@ h2. Algumas Considerações
 h3. MONITORAMENTO LIVE
 
 p. A partir da versão 1.2 os plugins para jQuery terão monitoramente live, ainda não descobri uma forma mais eficaz do que a atual para o monitoramento do DOM.
+
 p. Basicamente é feito uma checagem em um intervalo determinado tem tempo para a chegagem.
+
 p .Para ativar o monitoramento apenas sete a opção "live" para "true" no plugin que deseja usar, por exemplo:
 
 @$('meu-elemento').pluginX({
@@ -53,25 +55,26 @@ p .Para ativar o monitoramento apenas sete a opção "live" para "true" no plugi
 });@
 
 p. Há ainda a opção de alterar o intervalo de tempo para a checagem...o padrão é 100 milisegundos (1/10 de um segundo).
+
 p. Se desejar alterar, a opção é "liveTempo", mais lembre-se que deve ser em milisegundos.
+
 p. Alternativamente você pode fazer o monitoramento de modo manual.
+
 p. Use $('elemento-adicionado').trigger('iniciaPluginX'); quando ele for inserido na página por meio de ajax ou html(); por exemplo...assim terá o mesmo efeito do monitoramente live, mais de forma manual.
+
 p. Lembre-se que o seletor para o trigger deve ser o mesmo usado em sua nova instância do plugin, para que o plugin recupere as opções setadas para este elemento. EX:
 
 @$('meu-elemento').pluginX({
-
 	opções...
-
 });
-
 //Outras funções
-
 $('button').click(function(){
 	$('body').append('meu-elemento');
 	$('meu-elemento').trigger('iniciaPluginX'); //Assim ele inicia o plugin com as opções setadas anteriormente
 });@
 
 p. Há ainda uma terceira opção, não é uma boa prática ao meu ver mais também se encaixa:
+
 p. Estancie o plugin logo depois que o elemento for adicionado a página. EX:
 
 @$('body').append('meu-elemento');
