@@ -2,10 +2,11 @@
 LINHA FRAMEWORK - versão 1.2 (ALPHA)
 by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
 
-======= Licença ========
+h2. Licença
 LICENÇA: MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 
-======= Change-log ========
+h2. Change-log
+
 1.2
 ---
 * Linha Form renomeado pra Linha Valida(o nome tem mais relação com a função do plugin)
@@ -34,7 +35,7 @@ LICENÇA: MIT and GPL License - http://www.opensource.org/licenses/mit-license.p
 ---
 * Inicial
 		
-======= Algumas Considerações ========
+h2. Algumas Considerações
 MONITORAMENTO LIVE
 A partir da versão 1.2 os plugins para jQuery terão monitoramente live,
 ainda não descobri uma forma mais eficaz do que a atual para o monitoramento do DOM.
