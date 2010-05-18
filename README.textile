@@ -1,6 +1,4 @@
-﻿
-
-h1. LINHA FRAMEWORK - versão 1.2 (ALPHA)
+<h1>LINHA FRAMEWORK - versão 1.2 (ALPHA)</h1>
 
 p. by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
 
@@ -49,27 +47,31 @@ Basicamente é feito uma checagem em um intervalo determinado tem tempo para a c
 
 p. Para ativar o monitoramento apenas sete a opção "live" para "true" no plugin que deseja usar, por exemplo:
 
-@$('meu-elemento').pluginX({
+</pre>
+$('meu-elemento').pluginX({
 	live: true
-});@
+});
+</pre>
 
 p. Há ainda a opção de alterar o intervalo de tempo para a checagem...o padrão é 100 milisegundos (1/10 de um segundo).
 Se desejar alterar, a opção é "liveTempo", mais lembre-se que deve ser em milisegundos.
 
 p. Alternativamente você pode fazer o monitoramento de modo manual.
 
-p. Use $('elemento-adicionado').trigger('iniciaPluginX'); quando ele for inserido na página por meio de ajax ou html(); por exemplo...assim terá o mesmo efeito do monitoramente live, mais de forma manual.
+p. Use @$('elemento-adicionado').trigger('iniciaPluginX');@ quando ele for inserido na página por meio de ajax ou html(); por exemplo...assim terá o mesmo efeito do monitoramente live, mais de forma manual.
 
 p. Lembre-se que o seletor para o trigger deve ser o mesmo usado em sua nova instância do plugin, para que o plugin recupere as opções setadas para este elemento. EX:
 
-@$('meu-elemento').pluginX({
+<pre>
+$('meu-elemento').pluginX({
 	opções...
 });
 //Outras funções
 $('button').click(function(){
 	$('body').append('meu-elemento');
 	$('meu-elemento').trigger('iniciaPluginX'); //Assim ele inicia o plugin com as opções setadas anteriormente
-});@
+});
+</pre>
 
 p. Há ainda uma terceira opção, não é uma boa prática ao meu ver mais também se encaixa:
 
