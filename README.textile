@@ -75,11 +75,13 @@ p. Há ainda uma terceira opção, não é uma boa prática ao meu ver mais tamb
 
 p. Estancie o plugin logo depois que o elemento for adicionado a página. EX:
 
-@$('body').append('meu-elemento');
-	//Inicie o plugin agora
+<pre>
+$('body').append('meu-elemento');
+//Inicie o plugin agora
 $('meu-elemento').pluginX({
 	opções....
-});@
+});
+</pre>
 
 p. Assim o resultado será o mesmo das duas opções acima;
 
