@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   19/04/10 as 8:43 | nº 5
+* @ultima-revisao   18/05/10 as 8:43 | nº 6
 */
 (function($){
 
@@ -23,182 +23,283 @@
 	$.slideTabs = function(options, elem){
 			
 		var padrao = {
-			seletor: '.slide',									//Seletor padrão/geral
-			seletor_area_painel: '.slide-conteudo',				//Seletor para área do painel..necessário para wrapInner()
-			seletor_painel:	'.painel',							//Seletor para o painel ou os slides
-			seletor_miniatura: '.miniatura',					//Seletor de miniaturas
-			seletor_anterior: '.anterior',						//Seletor botão anterior
-			seletor_proximo: '.proximo',						//Seletor botão proximo
+			seletor: '.slide',									//Seletor padrão/geral, usado caso use o plugin sem o seletor $.plugin
+			seletorAreaPainel: '.slide-conteudo',				//Seletor para área do painel..necessário para wrapInner()
+			seletorPainel:	'.painel',							//Seletor para o painel ou os slides
+			seletorMiniatura: '.miniatura',						//Seletor de miniaturas
+			seletorAnterior: '.anterior',						//Seletor botão anterior
+			seletorProximo: '.proximo',							//Seletor botão proximo
 			
-			classe_miniatura_atual: 'slide-miniatura-atual', 	//Classe para a miniatura atual | Classe adicionada pelo plugin
-			classe_painel_atual: 'slide-painel-atual',			//Classe para o painel atual | Classe adicionada pelo plugin
-			classe_painel_primeiro: 'slide-painel-primeiro',	//Classe para o primeiro painel | Classe adicionada pelo plugin
-			classe_painel_ultimo: 'slide-painel-ultimo',		//Classe para o ultimo painel | Classe adicionada pelo plugin
-			classe_painel_conteudo: 'slide-painel-conteudo',	//Classe para "cercar" os painel do plugin | Classe adicionada pelo plugin
+			classeMiniaturaAtual: 'slide-miniatura-atual', 		//Classe para a miniatura atual | Classe adicionada pelo plugin
+			classePainelAtual: 'slide-painel-atual',			//Classe para o painel atual | Classe adicionada pelo plugin
+			classePainelPrimeiro: 'slide-painel-primeiro',		//Classe para o primeiro painel | Classe adicionada pelo plugin
+			classePainelUltimo: 'slide-painel-ultimo',			//Classe para o ultimo painel | Classe adicionada pelo plugin
+			classePainelConteudo: 'slide-painel-conteudo',		//Classe para "cercar" os painel do plugin | Classe adicionada pelo plugin
 			
-			evento_miniatura: 'click',							//Evento para disparar o plugin nas miniaturas
-			evento_setas: 'click',								//Evento para disparar o plugin não botões próximo e anterior
+			eventoMiniatura: 'click',							//Evento para disparar o plugin nas miniaturas
+			eventoSeta: 'click',								//Evento para disparar o plugin não botões/setas próximo e anterior
 			
 			inicial: 1,											//Slide inicial
+			continuo: true, 									//Quando chega no ultimo o proximo será o 1º?
 			auto: true, 										//Troca de slide automaticamente?
 			pausa: 2000, 										//Tempo entre cada pausa para o slide automático
-			continuo: true, 									//Quando chega no ultimo o proximo será o 1º?
-			tempo: 'slow',										//Tempo para cada transicão / 0(Zero) para sem animação
+			tempo: 'normal',									//Tempo para cada transicão / 0(Zero) para sem animação
+			easingIn: 'swing',									//Animação com easyng na entrada (IN)...
+			fade: false,										//true - efeito fade | false - efeito slide
 
-			altura_automatica: false,							//Ajustar automaticamente a altura do slide, caso false ficará com o tamanho especificado no css ou no painel maior
+			alturaAutomatica: false,							//Ajustar automaticamente a altura do slide, caso false ficará com o tamanho especificado no css ou no painel maior
 			margin: true,										//Considerar a margin juntamente com o tamanho do elemento
 			scroll: 1,											//Nº de elementos que serão arastados
 			visiveis: 1,										//Nº de elementos visiveis
-			fade: false,										//true - efeito fade | false - efeito slide
 				
-			onSlide: null										//Callback
+			onSlide: null,										//Callback
+			
+			live: false,										//Abilitar o monitoramento live
+			liveTempo: 100										//Tempo entra cada checagem, em milisegundos
+			
 		};
-		var o = $.extend(padrao, options);
+		var o = $.extend(padrao, options),
+			$d = $(document),
+			timeout;
 			
+		
 		if(elem === undefined){ elem = $(o.seletor);}
+		elem.elements = [];
 		
-		return elem.each(function(){
-				
-			var t = $(this),
-				sp = $(o.seletor_painel, t),
-				sm = $(o.seletor_miniatura, t), 
-				sma = o.classe_miniatura_atual,
-				spa = o.classe_painel_atual,
-				spp = o.classe_painel_primeiro,
-				spu = o.classe_painel_ultimo,
-				spcw = 0,
-				pos = new Array();
-				
-			t.children(o.seletor_area_painel).wrapInner('<div class="'+o.classe_painel_conteudo+'"></div>');
+		/**
+		 * Delegando evento inicial para SlideTabs
+		 */
+		$d.delegate(elem.selector, 'iniciaSlideTabs', function(){
 			
-			sp.each(function(i){
-				pos[i] = spcw;
-				spcw += $(this).outerWidth(o.margin);
-			});	
-
-			var spc = $('.'+o.classe_painel_conteudo, t);
-			spc.css({ 'width': spcw,'overflow': 'hidden'});
+			var elems = elem.elements,
+			els  =  $(elem.selector, elem.context),
+			nEls = els.not(elems);
+			elem.elements = els;
 			
-			//Posicao inicial
-			spc.css({'marginLeft': -pos[o.inicial - 1] + 'px'});
-			if (o.altura_automatica) {
-				spc.css({'height': (sp.eq(o.inicial - 1).outerHeight()) + 'px' }); //altura inicial
-			}
-			sp.eq(o.inicial - 1).addClass(spa);
-			sm.eq(o.inicial - 1).addClass(sma);
-			if(o.inicial == 1){ sp.eq(0).addClass(spp);}
-			if(o.inicial == sp.length){sp.eq(sp.length - 1).addClass(spu);}
-
-			//EVENTOS
-			sm.bind(o.evento_miniatura, function(){
+			/**
+			 * Processamento dos elementos q passaram
+			 */
+			nEls.each(function(){
 				
-				var l = $(this).prevAll(o.seletor_miniatura).length;
-		
-				sm.removeClass(sma);
-				$(this).addClass(sma);
-				sp.removeClass(spa).removeClass(spp).removeClass(spu).eq(l).addClass(spa);
+				var $t = $(this),
+					$sp = $(o.seletorPainel, $t),
+					$sm = $(o.seletorMiniatura, $t), 
+					sma = o.classeMiniaturaAtual,
+					spa = o.classePainelAtual,
+					spp = o.classePainelPrimeiro,
+					spu = o.classePainelUltimo,
+					spcw = 0,
+					ini = o.inicial - 1, 
+					pos = {};
+				
+				/**
+				 * Faz o Wrapper
+				 */
+				$t.children(o.seletorAreaPainel).wrapInner('<div class="'+ o.classePainelConteudo +'"></div>');
+				
+				/**
+				 * Seta esta variável agora porque senão vai retornar nada...
+				 */
+				var $spc = $('.'+o.classePainelConteudo, $t);
+				
+				/**
+				 * Faz o width da area do painel
+				 */
+				$sp.each(function(i){
+					pos[i] = spcw;
+					spcw += $(this).outerWidth(o.margin);
+				});	
+				$spc.css({ 'width': spcw,'overflow': 'hidden'});
+				
+				/**
+				 * Posição Inicial
+				 * + Classes
+				 * e Classes Inicial e Último 
+				 */
+				$spc.css('marginLeft', -pos[ini]);
+				if (o.alturaAutomatica) {
+					$spc.css('height', ($sp.eq(ini).outerHeight(o.margin))); //altura inicial
+				}
+				$sp.eq(ini).addClass(spa);
+				$sm.eq(ini).addClass(sma);
+				
+				if(ini == 0){ $sp.eq(0).addClass(spp);}
+				if(ini == $sp.length - 1){$sp.eq(-1).addClass(spu);}
+				
+				/**
+				 * EVENTO Miniatura
+				 */
+				$sm.bind(o.eventoMiniatura, function(){
 					
-				if(l == 0){ sp.eq(0).addClass(spp);}
-				if(l == sp.length - 1){sp.eq(sp.length - 1).addClass(spu);}
+					var l = $(this).prevAll(o.seletorMiniatura).length;
 					
-				return animaSlide(l);
+					/**
+					 * Remove as classes
+					 */
+					$sm.removeClass(sma);
+					$sp.removeClass(spa).removeClass(spp).removeClass(spu);
 					
-			});
-
-			$(o.seletor_anterior, t).bind(o.evento_setas, function(){
+					/**
+					 * Adiciona as classes
+					 */
+					$(this).addClass(sma);
+					$sp.eq(l).addClass(spa);
 					
-				var l = $('.'+ spa, t).prevAll().length - (Math.abs(o.scroll));
-				sp.removeClass(spu);
-					
-				if(l <= 0){
+					if(l == 0){$sp.eq(0).addClass(spp);}
+					if(l == $sp.length - 1){$sp.eq(-1).addClass(spu);}
 						
-					if(sp.eq(0).hasClass(spp)){
-						sp.removeClass(spp);
-						if (o.continuo) {l = sp.length - o.visiveis; sp.eq(sp.length - 1).addClass(spu);}
-						else {return false;	}
-					}else{
-						l = 0;
-						sp.eq(0).addClass(spp);
-					} 
-				}
-					
-				sp.removeClass(spa).eq(l).addClass(spa);
-				sm.removeClass(sma).eq(l).addClass(sma);
-					
-				return animaSlide(l);
-
-			});
+					return animaSlide($t, $(this), $spc, $sp, pos, l);	
+				});
 				
-			$(o.seletor_proximo, t).bind(o.evento_setas, function(){
-				return proximoSlide();
-			});
-			
-			
-			//FUNÇÔES	
-			function proximoSlide(){
+				/**
+				 * EVENTO Seta Próximo
+				 */
+				$(o.seletorProximo, $t).bind(o.eventoSeta, function(){
 					
-				var l = $('.'+ spa, t).prevAll().length + o.scroll;
-				sp.removeClass(spp);
-				
-				if ((sp.length - l) <= o.visiveis) {						
+					var l = $('.'+ spa, $t).prevAll().length + o.scroll;
+					$sp.removeClass(spp);
+					
+					if(($sp.length - l) <= o.visiveis) {						
 
-					if(sp.eq(sp.length - 1).hasClass(spu)){
-						sp.removeClass(spu);
-						if (o.continuo) {l = 0; sp.eq(0).addClass(spp);}
-						else {return false;	}
-					} 
-					else {
-						l = sp.length - o.visiveis;
-						sp.eq(sp.length - 1).addClass(spu);
+						if($sp.eq(-1).hasClass(spu)){
+							$sp.removeClass(spu);
+							if (o.continuo) {l = 0; $sp.eq(0).addClass(spp);}
+							else {return false;	}
+						} 
+						else {
+							l = $sp.length - o.visiveis;
+							$sp.eq(-1).addClass(spu);
+						}
+
 					}
-
-				}
-				sp.removeClass(spa).eq(l).addClass(spa);
-				sm.removeClass(sma).eq(l).addClass(sma);
 					
-				return animaSlide(l);
-					
-			};	
+					/**
+					 * Remove e Add as Classes
+					 */
+					$sp.removeClass(spa).eq(l).addClass(spa);
+					$sm.removeClass(sma).eq(l).addClass(sma);
+						
+					return animaSlide($t, $(this), $spc, $sp, pos, l);
+				});
 				
-			function animaSlide(l){
-				
-				if ($.isFunction(o.onSlide)) {o.onSlide.apply(t);}
+				/**
+				 * EVENTO Seta Anterior
+				 */
+				$(o.seletorAnterior, $t).bind(o.eventoSeta, function(){
 					
-				var h = spc.height();
-				if(o.altura_automatica){
-					h = sp.eq(l).outerHeight();
-				}
-				
-				if(o.fade){
-					spc.fadeOut(o.tempo, function(){$(this).css({'marginLeft': -pos[l] + 'px','height': h });}).fadeIn(o.tempo);
-				}else{
-					spc.animate({
-						marginLeft: -pos[l] + 'px',
-						height: h
-					}, o.tempo);
-				};
+					var l = $('.'+ spa, $t).prevAll().length - o.scroll;
+					$sp.removeClass(spu);
+						
+					if(l <= 0){
+							
+						if($sp.eq(0).hasClass(spp)){
+							$sp.removeClass(spp);
+							if (o.continuo) {l = $sp.length - o.visiveis; $sp.eq(-1).addClass(spu);}
+							else {return false;	}
+						}else{
+							l = 0;
+							$sp.eq(0).addClass(spp);
+						} 
+					}
 					
-				//Automático
-				clearInterval(timeout);
+					/**
+					 * Remove e Add as Classes
+					 */	
+					$sp.removeClass(spa).eq(l).addClass(spa);
+					$sm.removeClass(sma).eq(l).addClass(sma);
+						
+					return animaSlide($t, $(this), $spc, $sp, pos, l);
+				});
+				
+				/**
+				 * AUTOMÁTICO
+				 */
 				if(o.auto){
 					timeout = setInterval(function(){
-						proximoSlide();
+						//TODO Ve a consediração para se caso as setas não estiverem disponíveis...e ai?
+						$(o.seletorProximo, $t).trigger(o.eventoSeta);
 					},o.pausa);
-				}
-					
+				};
 				
-				return false;
+			});
+		
+		});
+		
+		/**
+		 * Trigger inicial e monitoramento DOM
+		 */
+		if(o.live){
+			setInterval(function(){
+				$(elem.selector).trigger('iniciaSlideTabs');
+			}, o.liveTempo);
+		}else{
+			if(elem.length){elem.trigger('iniciaSlideTabs');}
+		}
+		
+		/**
+		 * Animar o slide atual
+		 * @param {Object} $sl - Seletor jQuery para o SlideTabs
+		 * @param {Object} $t - Elemento que disparou o animaSlide
+		 * @param {Object} $spc - Seletor jQuery para o Slide Painel Conteudo
+		 * @param {Object} $sp - Seletor jQuery para o Slide Painel
+		 * @param array pos - lista das posições disponíveis
+		 * @param int l - Numero do slide alvo...rsrs
+		 * @return boolean false
+		 */
+		function animaSlide($st, $t, $spc, $sp, pos, l){
+
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onSlide)) {
+				o.onSlide.apply(this, new Array($st, $t, pos, l, o));
+			}
+			
+			/**
+			 * Ajusta a Altura automática, se abilitada
+			 */
+			var	h = $spc.height();
+			if(o.alturaAutomatica){
+				h = $sp.eq(l).outerHeight();
+			}
+			
+			/**
+			 * Finalmente Anima
+			 */
+			//TODO ajustar aqui
+			if(o.fade){
+				$spc.fadeOut(o.tempo, function(){$(this).css({'marginLeft': -pos[l] + 'px','height': h });}).fadeIn(o.tempo);
+			}else{
+				$spc.animate({
+					marginLeft: -pos[l] + 'px',
+					height: h
+				}, o.tempo);
 			};
 				
-			//Automático
-			var timeout;
+			/**
+			 * AUTOMÁTICO
+			 */
+			clearInterval(timeout);
 			if(o.auto){
 				timeout = setInterval(function(){
-					proximoSlide();
+					//TODO depois ajustar aqui
+					$(o.seletorProximo, $st).trigger(o.eventoSeta);
 				},o.pausa);
-			};
-				
-		});
+			}
+
+		return false;
+		}
+		
 	};
 	
 })(jQuery);
+
+/**
+ * Alterar Opções
+ * Monitoramento Live
+ * Ajax
+ * Easing
+ * FX
+ * Maybe: 
+ * 	* Add slider nas miniaturas (fazendo um fx, sei lá)
+ */

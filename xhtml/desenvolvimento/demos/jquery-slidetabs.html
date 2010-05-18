@@ -29,8 +29,8 @@
 
 		//$.slideTabs();
 		$('#slide').slideTabs({
-			seletor_painel: '.painel',
-			seletor_miniatura: '.miniatura',
+			seletorPainel: '.painel',
+			seletorMiniatura: '.miniatura',
 			inicial: 3,
 			tempo: 700
 			
@@ -41,25 +41,25 @@
 		});
 		
 		$('#slide3').slideTabs({
-			auto: false,
+			auto: true,
 			fade: true
 		});
 		
 		$('.slider').slideTabs({
-			seletor_painel: '.slider-painel div',
-			seletor_area_painel: '.slider-painel',
+			seletorPainel: '.slider-painel div',
+			seletorAreaPainel: '.slider-painel',
 			scroll: 5,
 			visiveis: 4
 		});
 		
 		$('.tabs_area').slideTabs({
-			seletor_painel : 'div div',
-			seletor_area_painel: '.tabs_conteudo',
-			seletor_miniatura: 'ul.tabs li',
+			seletorPainel : 'div div',
+			seletorAreaPainel: '.tabs_conteudo',
+			seletorMiniatura: 'ul.tabs li',
 			tempo: 1000,
 			inicial: 3,
 			auto: false,
-			altura_automatica: true
+			alturaAutomatica: true
 		})
 		
     });  
