@@ -47,7 +47,7 @@ Basicamente é feito uma checagem em um intervalo determinado tem tempo para a c
 
 p. Para ativar o monitoramento apenas sete a opção "live" para "true" no plugin que deseja usar, por exemplo:
 
-</pre>
+<pre>
 $('meu-elemento').pluginX({
 	live: true
 });
