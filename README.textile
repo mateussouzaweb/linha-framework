@@ -1,5 +1,4 @@
 ﻿
-
 h1. LINHA FRAMEWORK - versão 1.2 (ALPHA)
 
 p. by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
@@ -87,7 +86,8 @@ p. Assim o resultado será o mesmo das duas opções acima;
 
 h3. LIVE
 
-p. Diferentemente de MONITORAMENTO LIVE, os plugins com live não precisa de nada descrito no *MONITORAMENTO* LIVE para se ter o mesmo efeito. Estes são feitos de forma automática.
+p. Diferentemente de *MONITORAMENTO* LIVE, os plugins com live não precisa de nada descrito no *MONITORAMENTO* LIVE para se ter o mesmo efeito. Estes são feitos de forma automática.
+p. Para melhor esclarecimento, o *MONITORAMENTO LIVE* é necessário em alguns plugins pois eles necessitam de um "setup" antes de entrar em uso, o que já não ocorre em um plugin LIVE. Sendo um pouco mais prático um accordion precisa de um "setup", ou seja, definir qual parte do accordion será a inicial e etc. Já um tooltip não precisa, pois o setup é feito assim que ele é disparado.
 
 h3. CALLBACK
 
