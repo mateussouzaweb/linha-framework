@@ -1,4 +1,5 @@
 ﻿
+
 h1. LINHA FRAMEWORK - versão 1.2 (ALPHA)
 
 p. by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
@@ -44,8 +45,7 @@ h2. Algumas Considerações
 h3. MONITORAMENTO LIVE
 
 p. A partir da versão 1.2 os plugins para jQuery terão monitoramente live, ainda não descobri uma forma mais eficaz do que a atual para o monitoramento do DOM.
-
-p. Basicamente é feito uma checagem em um intervalo determinado tem tempo para a chegagem.
+Basicamente é feito uma checagem em um intervalo determinado tem tempo para a chegagem.
 
 p. Para ativar o monitoramento apenas sete a opção "live" para "true" no plugin que deseja usar, por exemplo:
 
@@ -54,8 +54,7 @@ p. Para ativar o monitoramento apenas sete a opção "live" para "true" no plugi
 });@
 
 p. Há ainda a opção de alterar o intervalo de tempo para a checagem...o padrão é 100 milisegundos (1/10 de um segundo).
-
-p. Se desejar alterar, a opção é "liveTempo", mais lembre-se que deve ser em milisegundos.
+Se desejar alterar, a opção é "liveTempo", mais lembre-se que deve ser em milisegundos.
 
 p. Alternativamente você pode fazer o monitoramento de modo manual.
 
@@ -87,7 +86,7 @@ p. Assim o resultado será o mesmo das duas opções acima;
 h3. LIVE
 
 p. Diferentemente de *MONITORAMENTO* LIVE, os plugins com live não precisa de nada descrito no *MONITORAMENTO* LIVE para se ter o mesmo efeito. Estes são feitos de forma automática.
-p. Para melhor esclarecimento, o *MONITORAMENTO LIVE* é necessário em alguns plugins pois eles necessitam de um "setup" antes de entrar em uso, o que já não ocorre em um plugin LIVE. Sendo um pouco mais prático um accordion precisa de um "setup", ou seja, definir qual parte do accordion será a inicial e etc. Já um tooltip não precisa, pois o setup é feito assim que ele é disparado.
+Para melhor esclarecimento, o *MONITORAMENTO LIVE* é necessário em alguns plugins pois eles necessitam de um "setup" antes de entrar em uso, o que já não ocorre em um plugin LIVE. Sendo um pouco mais prático um accordion precisa de um "setup", ou seja, definir qual parte do accordion será a inicial e etc. Já um tooltip não precisa, pois o setup é feito assim que ele é disparado.
 
 h3. CALLBACK
 
