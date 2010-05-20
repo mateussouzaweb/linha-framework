@@ -9,6 +9,7 @@
 * Ajax no conteúdo dos accordions
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
 * Melhor controle via CSS (com classes adicionadas automaticamente pelo plugin)
+* Callback melhorado
 
 1.0
 ---
@@ -22,6 +23,7 @@
 * Ajustes para retirada de focuss em elemento do tipo input[type="submit"]
 * Removido a opção "remove" (o mesmo pode ser feito com css .tal-classe{outline: none;}
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+* Callbacks melhorados
 
 1.0
 ---
@@ -38,6 +40,7 @@
 * Arrays alteradas para Objetos
 * Mais Callbacks
 * Ajuste para CSS
+* Callbacks melhorados
 * Outros...
 
 1.0
@@ -54,6 +57,7 @@
 * Fix para prevenção de animação em fila
 * Ajuste para CSS
 * Melhor controle via CSS (com classes adicionadas automaticamente pelo plugin)
+* Callbacks melhorados
 
 1.0
 ---
@@ -64,6 +68,10 @@
 1.1
 ---
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+* Adicionado Direção de Transição (horizontal ou vertical)
+* Animação com Easing
+* Monitoramento live(DOM e Ajax) para SlideTabs (use alternativamente $("seletor-slidetabs").trigger('iniciaSlideTabs'); caso tenha problemas)
+* Callback melhorado
 
 1.0
 ---
@@ -81,6 +89,7 @@
 * Adicionado propriedade atual (registra o elemento que disparou o tooltip que está sendo exibido)
 * Adicionado Opção para tempo de fade (padrão: "fast")
 * Adicionado Opção para mesagem de erro personalizado
+* Callback melhorado
 
 1.1
 ---
@@ -97,6 +106,7 @@
 ---
 * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
 * Renomeado para Linha Valida (anteriormente chamado de Linha Form)
+* Callback melhorado
 
 1.0
 ---
