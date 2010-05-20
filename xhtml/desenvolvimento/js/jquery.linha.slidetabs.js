@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   18/05/10 as 8:43 | nº 6
+* @ultima-revisao   20/05/10 as 11:25 | nº 7
 */
 (function($){
 
@@ -41,16 +41,19 @@
 			
 			inicial: 1,											//Slide inicial
 			continuo: true, 									//Quando chega no ultimo o proximo será o 1º?
-			auto: true, 										//Troca de slide automaticamente?
+			
+			auto: false, 										//Troca de slide automaticamente?
 			pausa: 2000, 										//Tempo entre cada pausa para o slide automático
+			
 			tempo: 'normal',									//Tempo para cada transicão / 0(Zero) para sem animação
-			easingIn: 'swing',									//Animação com easyng na entrada (IN)...
-			fade: false,										//true - efeito fade | false - efeito slide
-
+			easing: 'swing',									//Animação com easyng na entrada (IN)...
+			
 			alturaAutomatica: false,							//Ajustar automaticamente a altura do slide, caso false ficará com o tamanho especificado no css ou no painel maior
 			margin: true,										//Considerar a margin juntamente com o tamanho do elemento
+			
 			scroll: 1,											//Nº de elementos que serão arastados
 			visiveis: 1,										//Nº de elementos visiveis
+			direcao: 'x',										//Direção para o slide, X(horizontal) ou Y(vertical)
 				
 			onSlide: null,										//Callback
 			
@@ -59,8 +62,8 @@
 			
 		};
 		var o = $.extend(padrao, options),
-			$d = $(document),
-			timeout;
+			$d = $(document);
+			
 			
 		
 		if(elem === undefined){ elem = $(o.seletor);}
@@ -80,7 +83,7 @@
 			 * Processamento dos elementos q passaram
 			 */
 			nEls.each(function(){
-				
+
 				var $t = $(this),
 					$sp = $(o.seletorPainel, $t),
 					$sm = $(o.seletorMiniatura, $t), 
@@ -89,7 +92,9 @@
 					spp = o.classePainelPrimeiro,
 					spu = o.classePainelUltimo,
 					spcw = 0,
-					ini = o.inicial - 1, 
+					ini = o.inicial - 1,
+					timeout,
+					dir = o.direcao == 'x',
 					pos = {};
 				
 				/**
@@ -103,21 +108,21 @@
 				var $spc = $('.'+o.classePainelConteudo, $t);
 				
 				/**
-				 * Faz o width da area do painel
+				 * Faz o width ou height da area do painel
 				 */
 				$sp.each(function(i){
 					pos[i] = spcw;
-					spcw += $(this).outerWidth(o.margin);
+					spcw += $(this)[dir ? 'outerWidth' : 'outerHeight'](o.margin);
 				});	
-				$spc.css({ 'width': spcw,'overflow': 'hidden'});
+				$spc.css(dir ? 'width' : 'height', spcw).css('overflow','hidden');
 				
 				/**
 				 * Posição Inicial
 				 * + Classes
 				 * e Classes Inicial e Último 
 				 */
-				$spc.css('marginLeft', -pos[ini]);
-				if (o.alturaAutomatica) {
+				$spc.css(dir ? 'marginLeft' : 'marginTop', -pos[ini]);
+				if (o.alturaAutomatica && dir) {
 					$spc.css('height', ($sp.eq(ini).outerHeight(o.margin))); //altura inicial
 				}
 				$sp.eq(ini).addClass(spa);
@@ -148,13 +153,52 @@
 					if(l == 0){$sp.eq(0).addClass(spp);}
 					if(l == $sp.length - 1){$sp.eq(-1).addClass(spu);}
 						
-					return animaSlide($t, $(this), $spc, $sp, pos, l);	
+					return animaSlide($(this), l);	
 				});
 				
 				/**
-				 * EVENTO Seta Próximo
+				 * EVENTO Seta Anterior
+				 */
+				$(o.seletorAnterior, $t).bind(o.eventoSeta, function(){
+					
+					var l = $('.'+ spa, $t).prevAll().length - o.scroll;
+					$sp.removeClass(spu);
+
+					if(l <= 0){
+
+						if($sp.eq(0).hasClass(spp)){
+							$sp.removeClass(spp);
+							if (o.continuo) {l = $sp.length - o.visiveis; $sp.eq(-1).addClass(spu);}
+							else {return false;	}
+						}else{
+							l = 0;
+							$sp.eq(0).addClass(spp);
+						} 
+					}
+
+					/**
+					 * Remove e Add as Classes
+					 */	
+					$sp.removeClass(spa).eq(l).addClass(spa);
+					$sm.removeClass(sma).eq(l).addClass(sma);
+
+					return animaSlide($(this), l);
+				});
+				
+				/**
+				 * EVENTO Seta Proximo
+				 * Retorna a função proximo slide, é necessário pois o mesmo processo usado aqui
+				 * é usado na transição automática
 				 */
 				$(o.seletorProximo, $t).bind(o.eventoSeta, function(){
+					return proximoSlide($(this)); 
+				});
+				
+				/**
+				 * Vai para o próximo slide
+				 * @param $this -  se tiver um seletor para passar é bom ^^
+				 */
+				function proximoSlide($this){
 					
 					var l = $('.'+ spa, $t).prevAll().length + o.scroll;
 					$sp.removeClass(spp);
@@ -179,45 +223,60 @@
 					$sp.removeClass(spa).eq(l).addClass(spa);
 					$sm.removeClass(sma).eq(l).addClass(sma);
 						
-					return animaSlide($t, $(this), $spc, $sp, pos, l);
-				});
+					return animaSlide($this, l);
+				}
 				
 				/**
-				 * EVENTO Seta Anterior
+				 * Animar o slide atual
+				 * @param {Object} $this - Elemento que disparou o animaSlide
+				 * @param int l - Numero do slide alvo...rsrs
+				 * @return boolean false
 				 */
-				$(o.seletorAnterior, $t).bind(o.eventoSeta, function(){
-					
-					var l = $('.'+ spa, $t).prevAll().length - o.scroll;
-					$sp.removeClass(spu);
-						
-					if(l <= 0){
-							
-						if($sp.eq(0).hasClass(spp)){
-							$sp.removeClass(spp);
-							if (o.continuo) {l = $sp.length - o.visiveis; $sp.eq(-1).addClass(spu);}
-							else {return false;	}
-						}else{
-							l = 0;
-							$sp.eq(0).addClass(spp);
-						} 
+				function animaSlide($this, l){
+
+					/**
+					 * Callback
+					 */
+					if ($.isFunction(o.onSlide)) {
+						o.onSlide.apply(this, new Array($t, $this, pos, l, o));
 					}
 					
 					/**
-					 * Remove e Add as Classes
-					 */	
-					$sp.removeClass(spa).eq(l).addClass(spa);
-					$sm.removeClass(sma).eq(l).addClass(sma);
-						
-					return animaSlide($t, $(this), $spc, $sp, pos, l);
-				});
+					 * Ajusta a Altura automática, se abilitada
+					 */
+					var	h = $spc.height();
+					if(o.alturaAutomatica && dir){
+						h = $sp.eq(l).outerHeight();
+					}
+					
+					/**
+					 * Finalmente Anima
+					 */
+					var ani = {};
+					ani[dir ? 'marginLeft' : 'marginTop'] = -pos[l] + 'px';
+					ani['height'] = h;
+					
+					$spc.animate(ani, o.tempo, o.easing);
+	
+					/**
+					 * AUTOMÁTICO
+					 */
+					clearInterval(timeout);
+					if(o.auto){
+						timeout = setInterval(function(){
+							return proximoSlide(null);
+						},o.pausa);
+					}
+
+				return false;
+				}
 				
 				/**
 				 * AUTOMÁTICO
 				 */
 				if(o.auto){
 					timeout = setInterval(function(){
-						//TODO Ve a consediração para se caso as setas não estiverem disponíveis...e ai?
-						$(o.seletorProximo, $t).trigger(o.eventoSeta);
+						return proximoSlide(null);
 					},o.pausa);
 				};
 				
@@ -236,70 +295,6 @@
 			if(elem.length){elem.trigger('iniciaSlideTabs');}
 		}
 		
-		/**
-		 * Animar o slide atual
-		 * @param {Object} $sl - Seletor jQuery para o SlideTabs
-		 * @param {Object} $t - Elemento que disparou o animaSlide
-		 * @param {Object} $spc - Seletor jQuery para o Slide Painel Conteudo
-		 * @param {Object} $sp - Seletor jQuery para o Slide Painel
-		 * @param array pos - lista das posições disponíveis
-		 * @param int l - Numero do slide alvo...rsrs
-		 * @return boolean false
-		 */
-		function animaSlide($st, $t, $spc, $sp, pos, l){
-
-			/**
-			 * Callback
-			 */
-			if ($.isFunction(o.onSlide)) {
-				o.onSlide.apply(this, new Array($st, $t, pos, l, o));
-			}
-			
-			/**
-			 * Ajusta a Altura automática, se abilitada
-			 */
-			var	h = $spc.height();
-			if(o.alturaAutomatica){
-				h = $sp.eq(l).outerHeight();
-			}
-			
-			/**
-			 * Finalmente Anima
-			 */
-			//TODO ajustar aqui
-			if(o.fade){
-				$spc.fadeOut(o.tempo, function(){$(this).css({'marginLeft': -pos[l] + 'px','height': h });}).fadeIn(o.tempo);
-			}else{
-				$spc.animate({
-					marginLeft: -pos[l] + 'px',
-					height: h
-				}, o.tempo);
-			};
-				
-			/**
-			 * AUTOMÁTICO
-			 */
-			clearInterval(timeout);
-			if(o.auto){
-				timeout = setInterval(function(){
-					//TODO depois ajustar aqui
-					$(o.seletorProximo, $st).trigger(o.eventoSeta);
-				},o.pausa);
-			}
-
-		return false;
-		}
-		
 	};
 	
 })(jQuery);
-
-/**
- * Alterar Opções
- * Monitoramento Live
- * Ajax
- * Easing
- * FX
- * Maybe: 
- * 	* Add slider nas miniaturas (fazendo um fx, sei lá)
- */

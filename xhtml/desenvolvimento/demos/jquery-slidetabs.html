@@ -24,32 +24,34 @@
 <!-- JS -->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript" src="../../desenvolvimento/js/jquery.linha.slidetabs.js"></script>
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
     <script type="text/javascript">
 	$(document).ready(function(){
 
-		//$.slideTabs();
 		$('#slide').slideTabs({
 			seletorPainel: '.painel',
 			seletorMiniatura: '.miniatura',
 			inicial: 3,
+			direcao: 'y',
+			auto: true,
 			tempo: 700
-			
 		});
 		
-		$('#slide2').slideTabs({
-			auto: false
-		});
+		$('#slide2').slideTabs();
 		
 		$('#slide3').slideTabs({
 			auto: true,
-			fade: true
+			tempo: 1000,
+			pausa: 4000,
+			easing: 'easeOutBounce'
 		});
 		
 		$('.slider').slideTabs({
 			seletorPainel: '.slider-painel div',
 			seletorAreaPainel: '.slider-painel',
 			scroll: 5,
-			visiveis: 4
+			visiveis: 4,
+			auto: true
 		});
 		
 		$('.tabs_area').slideTabs({
@@ -58,10 +60,25 @@
 			seletorMiniatura: 'ul.tabs li',
 			tempo: 1000,
 			inicial: 3,
-			auto: false,
 			alturaAutomatica: true
 		})
 		
+		/**
+		 * Live
+		 */
+		$('.slide2').slideTabs({
+			live: true
+		});
+		
+		$('button').click(function(){
+			$.ajax({
+				url: 'ajax/slidetabs-ajax.html',
+				success: function(data){
+					$('#live').prepend(data);
+				}
+			});
+			
+		});
     });  
 	</script>
 
@@ -73,6 +90,18 @@
 	<div id="conteudo" class="coluna tamanho12">
 		
 		<!--Slide 1-->
+		<h3>Slide Completo com Direção Horizontal (y) e Transição Automática</h3>
+		<div class="alerta amarelo">
+			$('#slide').slideTabs({<br/>
+				<b>seletorPainel</b>: '.painel',<br/>
+				<b>seletorMiniatura</b>: '.miniatura',<br/>
+				<b>inicial</b>: 3,<br/>
+				<b>direcao</b>: 'y',<br/>
+				<b>auto</b>: true,<br/>
+				<b>tempo</b>: 700<br/>
+			});
+		</div>
+			
 		<div class="slide" id="slide">
 				
 			<div class="slide-conteudo"><!--paineis-->
@@ -138,6 +167,11 @@
 		<div class="clear"></div><br/>
 		
 		<!--Slide 2-->
+		<h3>Slide Simples Sem Miniaturas</h3>
+		<div class="alerta amarelo">
+			$('#slide2').slideTabs();
+		</div>
+		
 		<div class="slide" id="slide2">
 			<div class="slide-conteudo"><!--paineis-->
 				<div class="painel">
@@ -192,6 +226,16 @@
 		<div class="clear"></div><br/>
 			
 		<!--Slide 3-->
+		<h3>Slide com Transição Automática e Easing</h3>
+		<div class="alerta amarelo">
+		$('#slide3').slideTabs({<br/>
+			<b>auto</b>: true,<br/>
+			<b>tempo</b>: 1000,<br/>
+			<b>pausa</b>: 4000,<br/>
+			<b>easing</b>: 'easeOutBounce'<br/>
+		});
+		</div>
+		
 		<div class="slide" id="slide3">
 			<div class="slide-conteudo"><!--paineis-->
 				<div class="painel">
@@ -258,6 +302,17 @@
 		<div class="clear"></div><br/>
 			
 		<!--Slider-->
+		<h3>Slider Exemplo</h3>
+		<div class="alerta amarelo">
+		$('.slider').slideTabs({<br/>
+			<b>seletorPainel</b>: '.slider-painel div',<br/>
+			<b>seletorAreaPainel</b>: '.slider-painel',<br/>
+			<b>scroll</b>: 5,<br/>
+			<b>visiveis</b>: 4,<br/>
+			<b>auto</b>: true<br/>
+		});
+		</div>
+		
 		<div class="slider">
 			<a href="#" class="anterior seta">«</a><!--Btn Anterior-->
 				
@@ -290,6 +345,19 @@
 
 		<div class="clear"></div><br/>
 		
+		<!-- Tabs -->
+		<h3>Tabs Com Altura Automática</h3>
+		<div class="alerta amarelo">
+			$('.tabs_area').slideTabs({<br/>
+				<b>seletorPainel</b>: 'div div',<br/>
+				<b>seletorAreaPainel</b>: '.tabs_conteudo',<br/>
+				<b>seletorMiniatura</b>: 'ul.tabs li',<br/>
+				<b>tempo</b>: 1000,<br/>
+				<b>inicial</b>: 3,<br/>
+				<b>alturaAutomatica</b>: true<br/>
+			})
+		</div>
+		
 		<div class="tabs_area">
 			<ul class="tabs">
 				<li>Tab 1</li>
@@ -314,8 +382,19 @@
 				</div>
 					
 			</div>
-			<div class="clear"></div>		
+			<div class="clear"></div>
+		</div>	
+		<div class="clear"></div><br/>
+		
+		<!-- LIVE -->
+		<h3>Slide com Monitoramento Live</h3>
+		<div class="alerta amarelo">
+			$('.slide2').slideTabs({<br/>
+				<b>live</b>: true<br/>
+			});
 		</div>
+		<p><button>Clique para carregar slide</button></p>
+		<div id="live"></div>
 					
 	</div><!-- FIM CONTEUDO -->
 	
