@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   02/05/10 as 14:58 | nº 9
+* @ultima-revisao   24/05/10 as 10:32 | nº 13
 */
 (function($){
 	
@@ -24,51 +24,75 @@
 			
 		var padrao = {
 			
-			seletor: '.tooltip',					//Seletor padrão caso não haja nenhum
-			seletor_imagem: 'imagem',				//Seletor para modo imagem
-			seletor_ajax: 'ajax',					//Seletor para modo Ajax
+			seletor: '.tooltip',						//Seletor padrão caso não haja nenhum, usado caso use o plugin sem o seletor $.plugin
+			seletorImagem: 'imagem',					//Seletor para modo imagem
+			seletorAjax: 'ajax',						//Seletor para modo Ajax
 			
-			classe_conteudo: 'tooltip-conteudo',	//Classe base para o tooltip
-			classe_load: 'tooltip-load',			//Classe para animação de carregamento em Ajax
+			classeArea: 'tooltip-area',					//Classe área para o tooltip
+			classeConteudo: 'tooltip-conteudo',			//Classe base para o tooltip
+			classeLoad: 'tooltip-load',					//Classe para animação de carregamento em Ajax
+			classeSeta: 'tooltip-seta',					//Classe para a seta do tooltip
+			classePrefixoPosicao: 'tooltip-posicao',	//Prefixo para a Classe da Posição  
 			
-			padding_top: 0,							//Valor de padding(Top) para melhor manipulação (Afeta na posição do tooltip)
-			padding_left: 0,						//Valor de padding(Left) para melhor manipulação (Afeta na posição do tooltip)
-			posicao: '',							//Posição para o tooltip || caso não tenha o padrão é top2
-			fixado: true,							//Tooltip fixa(ou relativa) ao elemento?
-			autoFix: true,							//Auto-fixação de posição
-			tempo: 'fast',							//Tempo para exibir o tooltip, "slow", "normal", "fast" ou em milesegundos
+			paddingTop: 0,								//Valor de padding(Top) para melhor manipulação (Afeta na posição do tooltip)
+			paddingLeft: 0,								//Valor de padding(Left) para melhor manipulação (Afeta na posição do tooltip)
+			posicao: 'top2',							//Posição para o tooltip || caso não tenha o padrão é top2
+			fixado: true,								//Tooltip fixa(ou relativa) ao elemento?
+			autoFix: true,								//Auto-fixação de posição
+			tempo: 'fast',								//Tempo para exibir o tooltip, "slow", "normal", "fast" ou em milesegundos
 			
-			evento: 'mouseover', 					//Evento para disparar a exibição do tooltip
-			eventoFim: 'mouseout', 					//Evento para terminar a exbição do tooltip
+			evento: 'mouseover', 						//Evento para disparar a exibição do tooltip
+			eventoFim: 'mouseout', 						//Evento para terminar a exbição do tooltip
 			
-			atributo: 'rel',						//Atributo como base de conteudo
-			atributo_altura: 'altura',				//Atributo para definir altura personalizada ao tooltip
-			atributo_largura: 'largura',			//Atributo para definir largura personalizada ao tooltip
+			atributo: 'rel',							//Atributo como base de conteudo
+			atributoAltura: 'altura',					//Atributo para definir altura personalizada ao tooltip
+			atributoLargura: 'largura',					//Atributo para definir largura personalizada ao tooltip
 			
-			wrapper_tooltip: null,					//Estrutura HTML para ser inserida ao redor(dentro) do tooltip 
+			wrapperTooltip: null,						//Estrutura HTML para ser inserida ao redor(dentro) do tooltip 
+				
+			mensagemErro: 'Erro no tooltip',			//Mensagem alternativa para erro de carregamento (em ajax e imagens)
 			
-			mensagem_erro: 'Erro no tooltip',		//Mensagem alternativa para erro de carregamento (em ajax e imagens)
-			
-			onInicia: null,							//Callback
-			onTermina: null							//Callback
+			onInicia: null,								//Callback
+			onPosiciona: null, 							//Callback
+			onTermina: null								//Callback
 		};
 		var o = $.extend(padrao, options),
-		//CACHE DOS ELEMENTOS
 		tip = {},
 		atual,
-		d = $(document);
+		$d = $(document),
+		$w = $(window);
 			
 		if(elem === undefined){ elem = $(o.seletor);}
 		
-		//Adicionando Live Events com delegate
-		d.delegate(elem.selector, o.evento , function(e){return criaTooltip($(this), e);});
-		d.delegate(elem.selector, o.eventoFim , function(){return removeTooltip($(this));});
+		/**
+		 * Delegando eventos
+		 * EVENTO INICIAL
+		 */
+		$d.delegate(elem.selector, o.evento , function(e){
+			return criaTooltip($(this), e);
+		});
+		
+		/**
+		 * EVENTO FINAL
+		 */
+		$d.delegate(elem.selector, o.eventoFim , function(){
+			return removeTooltip($(this));
+		});
+		
+		/**
+		 * Evento para fixado
+		 * No caso MOUSEMOVE
+		 */
 		if (!o.fixado) {
-			d.delegate(elem.selector, 'mousemove', function(e){return posicionaTooltip($(this), e);});
+			$d.delegate(elem.selector, 'mousemove', function(e){
+				return posicionaTooltip($(this), e);
+			});
 		}
 		
-		//Fix de posição para window resize e scroll
-		$(window).resize(function(e){
+		/**
+		 * Fix de posição para window resize e scroll
+		 */
+		$w.resize(function(e){
 			if(atual){return posicionaTooltip(atual, e);}
 		}).scroll(function(e){
 			if(atual){return posicionaTooltip(atual, e);}
@@ -76,25 +100,40 @@
 		
 		/**
 		 * Cria o tooltip de acordo com os dados passado no elemento que dispara o evento
-		 * @param {Object} t - elemento
+		 * @param {Object} $t - elemento
 		 * @param {Object} e - evento
 		 */
-		function criaTooltip(t, e){
+		function criaTooltip($t, e){
 			
-			if ($.isFunction(o.onInicia)) {o.onInicia.apply(t);}
-			
-			atual = t;
-			tip.conteudo = t.attr(o.atributo), 
-			tip.largura = t.attr(o.atributo_largura),
-			tip.altura = t.attr(o.atributo_altura); 
-
-			//Se for title, exibe somente o tootip
-			if(o.atributo == 'title'){
-				t.attr('title', '');
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onInicia)){
+				o.onInicia.apply(this, new Array($t, e, o));
 			}
 			
-			tip.tip = $('<div></div>')
-				.addClass(o.classe_conteudo)
+			atual = $t;
+			tip.conteudo = $t.attr(o.atributo), 
+			tip.largura = $t.attr(o.atributoLargura),
+			tip.altura = $t.attr(o.atributoAltura); 
+			
+			/**
+			 * Checa se há conteúdo para a tooltip
+			 */
+			if(tip.conteudo === undefined){ return;}
+			
+			/**
+			 * Se for title, exibe somente o tootip
+			 */
+			if(o.atributo == 'title'){
+				$t.attr('title', '');
+			}
+			
+			/**
+			 * Cria o tooltip
+			 */
+			tip.area = $('<div></div>')
+				.addClass(o.classeArea)
 				.css({
 					display: 'none',
 					position: 'absolute',
@@ -102,22 +141,28 @@
 					height: tip.altura
 				});
 			
+			tip.tip = $('<div></div>')
+				.addClass(o.classeConteudo)
+				.appendTo(tip.area);
+			
+			/**
+			 * Cria o loading
+			 */
 			tip.load = $('<div></div>')
-				.addClass(o.classe_load)
+				.addClass(o.classeLoad)
 				.css({
 					display: 'none',
 					position: 'fixed', 
 					left: 0
 				});
 
-			//Checa se há conteúdo para a tooltip
-			if(tip.conteudo === undefined){ return;}
-			
-			//Imagem
-			if (t.hasClass(o.seletor_imagem)) {
+			/**
+			 * Imagem
+			 */
+			if ($t.hasClass(o.seletorImagem)) {
 				
 				tip.load.appendTo('body').fadeIn(o.tempo);
-				tip.load.css({ top: $(window).height() - tip.load.outerHeight()});
+				tip.load.css({ top: $w.height() - tip.load.outerHeight()});
 				
 				var img = new Image();
 				$(img).load(function(){
@@ -128,219 +173,284 @@
 						width: this.width
 					});
 					
-					tip.tip.html(this).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn(o.tempo);
+					tip.tip.html(this).wrapInner(o.wrapperTooltip);
+					tip.area.appendTo('body').fadeIn(o.tempo);
 					tip.load.remove();
 
 					$(this).fadeIn(o.tempo);
 
-					return posicionaTooltip(t, e);
+					return posicionaTooltip($t, e);
 						
 				}).attr('src', tip.conteudo);
 					
 				return;
 			}
-				
-			//Ajax
-			if (t.hasClass(o.seletor_ajax)) {
+			
+			/**
+			 * Ajax
+			 */
+			else if ($t.hasClass(o.seletorAjax)) {
 			
 				tip.load.appendTo('body').fadeIn(o.tempo);
-				tip.load.css({ top: $(window).height() - tip.load.outerHeight()});
+				tip.load.css({ top: $w.height() - tip.load.outerHeight()});
 				
 				$.ajax({
 					type: "POST",
 					url: tip.conteudo,
 					success: function(data){
-						tip.tip.html(data).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn(o.tempo);
+						tip.tip.html(data).wrapInner(o.wrapperTooltip);
+						tip.area.appendTo('body').fadeIn(o.tempo);
 						tip.load.fadeOut('fast', function(){
 							$(this).remove();
 						});
-						return posicionaTooltip(t, e);	
+						return posicionaTooltip($t, e);	
 					},
 					error: function() {
-						tip.tip.html(o.mensagem_erro).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn(o.tempo);
+						tip.tip.html(o.mensagemErro).wrapInner(o.wrapperTooltip);
+						tip.area.appendTo('body').fadeIn(o.tempo);
 						tip.load.fadeOut('fast', function(){
 							$(this).remove();
 						});
-						return posicionaTooltip(t, e);
+						return posicionaTooltip($t, e);
 		   			}
 		
 				});
 
 				return;
 			}
-				
-			//Normal
+			
+			/**
+			 * Normal
+			 */
 			else {
-				tip.tip.html(tip.conteudo).wrapInner(o.wrapper_tooltip).appendTo('body').fadeIn(o.tempo);
-				return posicionaTooltip(t, e);
+				tip.tip.html(tip.conteudo).wrapInner(o.wrapperTooltip);
+				tip.area.appendTo('body').fadeIn(o.tempo);
+				return posicionaTooltip($t, e);
 			}
 		}
 		
 		/**
 		 * Remove o tooltip que está sendo exibido
-		 * @param {Object} t - elemento a ser removido
+		 * @param {Object} $t - elemento a ser removido
 		 */
-		function removeTooltip(t){
+		function removeTooltip($t){
 
-			if ($.isFunction(o.onTermina)) {o.onTermina.apply(t);}
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onTermina)){
+				o.onTermina.apply(this, new Array($t, o));
+			}
 			
 			if(o.atributo == 'title'){
-				t.attr('title', tip.conteudo);
+				$t.attr('title', tip.conteudo);
 			}
 			atual = null;
 			
-			tip.tip.remove();
-			$('.' + o.classe_conteudo).remove(); //remove o elemento novamente...estranho não? :)
+			tip.area.remove();
+			$('.' + o.classeArea).remove(); //remove o elemento novamente...estranho não? :)
 			tip.load.remove();
 			
 		}
 		
 		/**
 		 * Posiciona o tooltip de acordo com o mouse ou com o elemento
-		 * @param {Object} t - elemento
+		 * @param {Object} $t - elemento
 		 * @param {Object} e - evento
 		 */
-		function posicionaTooltip(t ,e){
+		function posicionaTooltip($t ,e){
 
-			var	ww = $(window).width(),
-			wh = $(window).height(),
-			wsl = $(window).scrollLeft(),
-			wst = $(window).scrollTop(),
-			//Elemento
-			w = t.outerWidth(),
-			h = t.outerHeight(), 
-			pos = t.offset(),
-			left = pos.left + o.padding_left,
-			topo = pos.top + o.padding_top,
-			//Tooltip
-			tipw = tip.tip.outerWidth(),
-			tiph = tip.tip.outerHeight(); 
+			/**
+			 * Window
+			 */
+			var	ww = $w.width(),
+			wh = $w.height(),
+			wsl = $w.scrollLeft(),
+			wst = $w.scrollTop(),
 			
+			/**
+			 * Elemento
+			 */
+			w = $t.outerWidth(),
+			h = $t.outerHeight(), 
+			tpos = $t.offset(),
+			left = tpos.left + o.paddingLeft,
+			topo = tpos.top + o.paddingTop,
+			
+			/**
+			 * Tooltip
+			 */
+			tipw = tip.area.outerWidth(),
+			tiph = tip.area.outerHeight(), 
+			
+			/**
+			 * Posições
+			 */
+			pos = o.posicao,
+			y = topo,
+			x = left,
+			a = o.autoFix,
+			c = o.classePrefixoPosicao;
+
+			/**
+			 * Forma a posição
+			 * Define as posições e classe
+			 * 1º define topo e depois left
+			 * se tiver abilitado o autofix já faz na hora
+			 */
 			if(o.fixado){
-				switch(o.posicao){
-					case 'top1':
-						var posY = topo - tiph - 5,
-							posX = left - tipw;
+				/**
+				 * TOP
+				 */
+				switch(pos){
+					case 'esquerda': case 'direita':
+						if(a && (wst + wh) <= (topo + tiph/2 + 15)){
+							y += -tiph - 10;
+							c +='-rodape'; 
+						}else if(a && (topo - wst) < (tiph/2 + 15)){
+							y += h + 10;
+							c +='-topo'; 
+						}else{
+							y += -(tiph/2) + (h/2);
+							c +='-centro'; 
+						}
 					break;
-					case 'top2':
-						var posY = topo - tiph - 5 ,
-							posX = left + (w/2) - (tipw/2);
+					case 'top1': case 'top2': case 'top3': case 'top4': case 'top5':
+						if(a && (topo - wst) < (tiph + 15)){
+							y += h + 10;
+							c +='-topo'; 
+						}else{
+							y += -tiph - 10;
+							c +='-rodape'; 
+						}
 					break;
-					case 'top3':
-						var posY = topo - tiph - 5 ,
-							posX = left + w;
-					break;
-					case 'top4':
-						var posY = topo - tiph - 5 ,
-							posX = left;
-					break;
-					case 'top5':
-						var posY = topo - tiph - 5 ,
-							posX = left - tipw + w;
-					break;
+					case 'rod1': case 'rod2': case 'rod3': case 'rod4': case 'rod5':
+						if(a && (wst + wh) <= (topo + tiph + 15)){
+							y += -tiph - 10;
+							c +='-rodape';
+						}else{
+							y += h + 10;
+							c +='-topo'; 
+						}
+					break;	
+				}
+				
+				/**
+				 * LEFT
+				 */
+				switch(pos){
 					case 'esquerda':
-						var posY = topo - (tiph/2) + (h/2),
-							posX = left - tipw - 5;
+						if(a && left <= (tipw + 35)){
+							x += w + 10;
+							c +='-direita'; 
+						}else{
+							x -= tipw - 10;
+							c +='-esquerda';
+						}
 					break;
 					case 'direita':
-						var posY = topo - (tiph/2) + (h/2),
-							posX = left + w + 5;
+						if(a && ww <= ( left + tipw + 35)){
+							x -= tipw - 10;
+							c +='-esquerda';
+						}else{
+							x += w + 10;
+							c +='-direita';
+						}
 					break;
-					case 'rod1':
-						var posY = topo + h + 5 ,
-							posX = left - tipw;
+					case 'top1': case 'rod1':
+						if(a && left <= (tipw + 30)){
+							c +='-lateral-esquerda';
+						}else{
+							x -= tipw;
+							c +='-esquerda';
+						}
 					break;
-					case 'rod2':
-						var posY = topo + h + 5 ,
-							posX = left + (w/2) - (tipw/2);
+					case 'top2': case 'rod2':
+						if(a && left <= (tipw / 2 + 30)){
+							c +='-lateral-esquerda';
+						}else if(a && ww <= ( left + tipw/2 + 30)){
+							x += -tipw + w;
+							c +='-lateral-direita';
+						}else{
+							x += (w/2) - (tipw/2);
+							c +='-centro';
+						}
 					break;
-					case 'rod3':
-						var posY = topo + h + 5 ,
-							posX = left + w;
+					case 'top3': case 'rod3':
+						if(a && ww <= ( left + tipw + 30)){
+							x += -tipw + w;
+							c +='-lateral-direita';
+						}else{
+							x += w;
+							c +='-direita';
+						}
 					break;
-					case 'rod4':
-						var posY = topo + h + 5 ,
-							posX = left;
+					case 'top4': case 'rod4':
+						if(a && ww <= ( left + tipw + 30)){
+							x += -tipw + w;
+							c +='-lateral-direita';
+						}else{
+							c +='-lateral-esquerda';
+						}
 					break;
-					case 'rod5':
-						var posY = topo + h + 5 ,
-							posX = left - tipw + w;
+					case 'top5': case 'rod5':
+						if(a && left <= (tipw + 30)){
+							c +='-lateral-esquerda';
+						}else{
+							x += -tipw + w;
+							c +='-lateral-direita';
+						}
 					break;
 					default:
-						var posY = topo - tiph - 5 ,
-							posX = left + (w/2) - (tipw/2);
+						y += - tiph - 5 ,
+						x += (w/2) - (tipw/2);
 					break;
 				}
 	
 			}
 			else{
-				//top
+				/**
+				 * TOP
+				 */
 				if((e.pageY - tiph - wst - 15) <=0){
-					var posY = e.pageY + 15;
+					y = e.pageY + 15;
+					c +='-rodape';
 				}else{
-					var posY = e.pageY - tiph - 15;
+					y = e.pageY - tiph - 15;
+					c +='-topo';
 				}
-				//left
+				/**
+				 * LEFT
+				 */
 				if ((ww + wsl - e.pageX) <= tipw) {
-					var posX = e.pageX - tipw - 15;
+					x = e.pageX - tipw - 15;
+					c +='-lateral-esquerda';
 				}else{
-					var posX = e.pageX + 15;
+					x = e.pageX + 15;
+					c +='-lateral-direita';
 				}
 			}
 			
-			tip.tip.css({
-				'top': posY,
-				'left': posX
+			/**
+			 * Ajusta a posição
+			 */
+			tip.area.css({
+				'top': y,
+				'left': x
 			});	
 			
-			//AUTO_FIXAÇÂO
-			if(o.fixado && o.autoFix){
-				if(o.posicao == 'top1' || o.posicao == 'top5' || o.posicao == 'rod1' || o.posicao == 'rod5'){
-					if(left <= (tipw + 30)){
-						tip.tip.css({'left': left});
-					}
-				}
-				if(o.posicao == 'top3' || o.posicao == 'top4' || o.posicao == 'rod3' || o.posicao == 'rod4'){
-					if(ww <= ( left + tipw + 30)){
-						tip.tip.css({'left': left - tipw + w});
-					}
-				}
-				if(o.posicao == 'top2' || o.posicao == 'rod2'){
-					if(left <= (tipw / 2 + 30)){
-						tip.tip.css({'left': left});
-					}
-					if(ww <= ( left + tipw/2 + 30)){
-						tip.tip.css({'left': left - tipw + w});
-					}
-				}
-				if(o.posicao == 'esquerda'){
-					if(left <= (tipw + 30)){
-						tip.tip.css({'left': left + w + 5});
-					}
-					
-				}
-				if(o.posicao == 'direita'){
-					if(ww <= ( left + tipw + 30)){
-						tip.tip.css({'left': left - tipw});
-					}
-					
-				}
-				
-				if(o.posicao == 'direita' || o.posicao == 'esquerda'){
-					if((wst + wh) <= (topo + tiph/2 + 10)){
-						tip.tip.css({'top': topo - tiph - 5});
-					}
-					if((topo - wst) < (tiph/2 + 10)){
-						tip.tip.css({'top': topo + h + 5});
-					}
-				}else{
-					if((wst + wh) <= (topo + tiph + 10)){
-						tip.tip.css({'top': topo - tiph - 5});
-					}
-					if((topo - wst) < (tiph + 10)){
-						tip.tip.css({'top': topo + h + 5});
-					}
-				}
+			/**
+			 * Add a div da posição(seta)
+			 * Preste atenção pois a classe é referente a seta, se a seta ta no rodape é classe é rodape...
+			 */
+			$('.'+o.classeSeta).remove();
+			tip.tip.append('<div class="'+ o.classeSeta +'"<div class="'+c+'"></div></div>');
+		
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onPosiciona)){
+				o.onPosiciona.apply(this, new Array($t, e, o));
 			}
 			
 			e.preventDefault();
@@ -349,3 +459,7 @@
 	};
 	
 })(jQuery);
+
+/**
+Ajustar a area e as setas
+*/

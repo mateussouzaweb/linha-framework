@@ -90,6 +90,7 @@
 * Adicionado Opção para tempo de fade (padrão: "fast")
 * Adicionado Opção para mesagem de erro personalizado
 * Callback melhorado
+* Melhor Controle da posição via classe
 
 1.1
 ---

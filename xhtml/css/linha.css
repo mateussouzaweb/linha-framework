@@ -210,14 +210,18 @@ div.miniatura{
 }
 
 /* @Grupo TOOLTIP */
-.tooltip-conteudo{
+.tooltip-area{
 	background: #434343;
 	border: 1px solid #222;
 	color: #FFF;
 	padding: 5px;
+	position: absolute;
 	z-index: 10;
 	top: 0;
 	left: 0;
+}
+.tooltip-conteudo{
+	position: relative;
 }
 .tooltip-conteudo img{
 	border: 1px solid #222;
@@ -229,4 +233,90 @@ div.miniatura{
 	height: 13px;
 	padding: 5px;
 	width: 62px;
+}
+/*Setas*/
+.tooltip-seta div{
+	position: absolute;
+	border: transparent solid 6px;
+	height: 0;
+	width: 0;
+}
+.tooltip-seta .tooltip-posicao-topo-centro,
+.tooltip-seta .tooltip-posicao-topo-esquerda,
+.tooltip-seta .tooltip-posicao-topo-direita,
+.tooltip-seta .tooltip-posicao-topo-lateral-esquerda,
+.tooltip-seta .tooltip-posicao-topo-lateral-direita{
+	border-bottom-color:#343434
+}
+.tooltip-seta .tooltip-posicao-topo-centro,
+.tooltip-seta .tooltip-posicao-topo-lateral-esquerda,
+.tooltip-seta .tooltip-posicao-topo-lateral-direita{
+	top:-18px
+}
+.tooltip-seta .tooltip-posicao-topo-centro,
+.tooltip-seta .tooltip-posicao-rodape-centro{
+	left:50%
+}
+.tooltip-seta .tooltip-posicao-topo-centro,
+.tooltip-seta .tooltip-posicao-rodape-centro,
+.tooltip-seta .tooltip-posicao-rodape-direita,
+.tooltip-seta .tooltip-posicao-topo-direita{
+	margin-left:-6px
+}
+.tooltip-seta .tooltip-posicao-rodape-centro,
+.tooltip-seta .tooltip-posicao-rodape-esquerda,
+.tooltip-seta .tooltip-posicao-rodape-direita,
+.tooltip-seta .tooltip-posicao-rodape-lateral-esquerda,
+.tooltip-seta .tooltip-posicao-rodape-lateral-direita{
+	border-top-color:#343434
+}
+.tooltip-seta .tooltip-posicao-rodape-centro,
+.tooltip-seta .tooltip-posicao-rodape-lateral-esquerda,
+.tooltip-seta .tooltip-posicao-rodape-lateral-direita{
+	bottom:-18px
+}
+.tooltip-seta .tooltip-posicao-rodape-esquerda,
+.tooltip-seta .tooltip-posicao-topo-esquerda,
+.tooltip-seta .tooltip-posicao-centro-direita {
+	border-right-color:#343434
+}
+.tooltip-seta .tooltip-posicao-rodape-esquerda,
+.tooltip-seta .tooltip-posicao-rodape-direita {
+	bottom:-14px
+}
+.tooltip-seta .tooltip-posicao-rodape-esquerda,
+.tooltip-seta .tooltip-posicao-topo-esquerda,
+.tooltip-seta .tooltip-posicao-rodape-lateral-direita,
+.tooltip-seta .tooltip-posicao-topo-lateral-direita {
+	right:0
+}
+.tooltip-seta .tooltip-posicao-rodape-esquerda,
+.tooltip-seta .tooltip-posicao-topo-esquerda {
+	margin-right:-6px
+}
+.tooltip-seta .tooltip-posicao-topo-esquerda,
+.tooltip-seta .tooltip-posicao-topo-direita {
+	top:-14px
+}
+.tooltip-seta .tooltip-posicao-rodape-direita,
+.tooltip-seta .tooltip-posicao-topo-direita,
+.tooltip-seta .tooltip-posicao-centro-esquerda {
+	border-left-color:#343434
+}
+.tooltip-seta .tooltip-posicao-rodape-direita,
+.tooltip-seta .tooltip-posicao-topo-direita,
+.tooltip-seta .tooltip-posicao-rodape-lateral-esquerda,
+.tooltip-seta .tooltip-posicao-topo-lateral-esquerda {
+	left:0
+}
+.tooltip-seta .tooltip-posicao-centro-direita,
+.tooltip-seta .tooltip-posicao-centro-esquerda {
+	top:50%;
+	margin-top:-6px
+}
+.tooltip-seta .tooltip-posicao-centro-direita {
+	left:-18px
+}
+.tooltip-seta .tooltip-posicao-centro-esquerda {
+	right:-18px
 }
