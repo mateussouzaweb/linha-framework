@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   24/05/10 as 13:52 | nº 14
+* @ultima-revisao   24/05/10 as 15:02 | nº 15
 */
 (function($){
 	
@@ -444,7 +444,7 @@
 			 * Preste atenção pois a classe é referente a seta, se a seta ta no rodape é classe é rodape...
 			 */
 			$('.'+o.classeSeta, tip.area).remove();
-			tip.area.append('<div class="'+ o.classeSeta +'"<div class="'+c+'"></div></div>');
+			tip.area.append('<div class="'+ o.classeSeta +'"><div class="'+c+'"></div></div>');
 		
 			/**
 			 * Callback
