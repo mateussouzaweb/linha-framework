@@ -1,0 +1,140 @@
+Change Log LINHA FRAMEWORK
+-----------------------------------------------------
+1.2 - XX de Junho de 2010
+--
+ * Linha Form renomeado pra Linha Valida(o nome tem mais relação com a função do plugin)
+ * Atualização para os plugins: Linha Acord, Linha Focuss, Linha Modal, Linha Nav, Linha Slidetabs, Linha Tooltip e Linha Form(agora chamado Valida), 
+ * Remoção de estilos para IE6 e Mobile - não tem muita utilidade :)
+ * Grid CSS fica em um novo arquivo css (grid.css)
+ * Regra para grid simplificada ( + semelhante ao grid 960)
+ * Otimização de CSS
+ * Introdução/Suporte a HTML5
+ * Reset.css com suporte a HTML5
+ * Adicionado estilos básicos para html5 (html5.css)	
+
+1.1 - 03 de Abril de 2010
+--
+ * Alguns fixs sem importancia :)
+ * Implementação de css para tabelas (&lt;table&gt;)
+ * Tamanho de fontes para small e big (&lt;small&gt;&lt;big&gt;)
+ * Estilos hr (&lt;hr/&gt;)
+ * Estilos para iframe (&lt;iframe&gt;)
+ * Fim do suporte para modelos
+ * Adicionado suporte a grid 12, 16 e 24 colunas
+ * Adição de Classes fix: .primeiro e .ultimo
+ * Atualização versões plugins js
+
+1.0 - 28 de Março de 2010 
+--
+ * Inicial
+		
+		
+PLUGINS jQuery
+------------------------------------------------------
+Linha ACORD:
+1.1
+---
+ * Monitoramento live(DOM e Ajax) para Accordions (use alternativamente $("seletor-accordion").trigger('iniciaAcord'); caso tenha problemas)
+ * Opção Accordion inicial
+ * Animação com Easing
+ * Ajuste para CSS
+ * Ajax no conteúdo dos accordions
+ * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+ * Melhor controle via CSS (com classes adicionadas automaticamente pelo plugin)
+ * Callback melhorado
+
+1.0
+---
+* Inicial
+
+Linha FOCUS:
+1.1
+---
+ * Monitoramento live(DOM e Ajax) para Foccus (use alternativamente $("seletor-focuss").trigger('iniciaFocuss'); caso tenha problemas)
+ * Ajustes para retirada de focuss em elemento do tipo input[type="submit"]
+ * Removido a opção "remove" (o mesmo pode ser feito com css .tal-classe{outline: none;}
+ * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+ * Callbacks melhorados
+
+1.0
+---
+ * Inicial
+
+Linha MODAL:
+1.1
+---
+ * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
+ * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+ * Algumas novas opções
+ * Adicionado fix de posição (ou o mesmo q usar position:fixed)
+ * Arrays alteradas para Objetos
+ * Mais Callbacks
+ * Ajuste para CSS
+ * Callbacks melhorados
+ * Outros...
+
+1.0
+---
+ * Inicial
+
+Linha NAV:
+1.1
+---
+ * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
+ * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+ * Animação com Easing
+ * Fix para prevenção de animação em fila
+ * Ajuste para CSS
+ * Melhor controle via CSS (com classes adicionadas automaticamente pelo plugin)
+ * Callbacks melhorados
+
+1.0
+---
+ * Inicial
+
+Linha SLIDETABS:
+1.1
+---
+ * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+ * Adicionado Direção de Transição (horizontal ou vertical)
+ * Animação com Easing
+ * Monitoramento live(DOM e Ajax) para SlideTabs (use alternativamente $("seletor-slidetabs").trigger('iniciaSlideTabs'); caso tenha problemas)
+ * Callback melhorado
+
+1.0
+---
+ * Inicial
+
+Linha TOOLTIP:
+1.2
+---
+ * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+ * Adicinado suporte a eventos futuros (live)
+ * Alteração tip = de array para object
+ * Adicionado fix de posição pra os eventos window resize e window scroll
+ * Descontinuado opção para continuar
+ * Adicionado propriedade atual (registra o elemento que disparou o tooltip que está sendo exibido)
+ * Adicionado Opção para tempo de fade (padrão: "fast")
+ * Adicionado Opção para mensagem de erro personalizado
+ * Callback melhorado
+ * Melhor Controle da posição via classe (as setas)
+
+1.1
+---
+ * Ajuste opções padding_top e padding_left
+ * Adicionado opção para wrapper
+
+1.0
+---
+ * Inicial
+
+Linha VALIDA:
+1.1
+---
+ * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
+ * Renomeado para Linha Valida (anteriormente chamado de Linha Form)
+ * Callback melhorado 
+
+1.0
+---
+ * Inicial
