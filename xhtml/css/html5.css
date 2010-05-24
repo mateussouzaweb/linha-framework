@@ -7,10 +7,6 @@ body{
 	width: 960px;
 	margin: 0 auto;
 }
-header, nav, footer, section#conteudo{
-	margin: 10px 0;
-	padding: 10px;
-}
 nav ul {
     list-style:none;
 }
