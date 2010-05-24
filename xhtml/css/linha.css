@@ -220,9 +220,6 @@ div.miniatura{
 	top: 0;
 	left: 0;
 }
-.tooltip-conteudo{
-	position: relative;
-}
 .tooltip-conteudo img{
 	border: 1px solid #222;
 	display: block;
@@ -251,7 +248,7 @@ div.miniatura{
 .tooltip-seta .tooltip-posicao-topo-centro,
 .tooltip-seta .tooltip-posicao-topo-lateral-esquerda,
 .tooltip-seta .tooltip-posicao-topo-lateral-direita{
-	top:-18px
+	top:-13px
 }
 .tooltip-seta .tooltip-posicao-topo-centro,
 .tooltip-seta .tooltip-posicao-rodape-centro{
@@ -273,7 +270,7 @@ div.miniatura{
 .tooltip-seta .tooltip-posicao-rodape-centro,
 .tooltip-seta .tooltip-posicao-rodape-lateral-esquerda,
 .tooltip-seta .tooltip-posicao-rodape-lateral-direita{
-	bottom:-18px
+	bottom:-13px
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-topo-esquerda,
@@ -282,7 +279,7 @@ div.miniatura{
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-rodape-direita {
-	bottom:-14px
+	bottom:-10px
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-topo-esquerda,
@@ -292,11 +289,11 @@ div.miniatura{
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-topo-esquerda {
-	margin-right:-6px
+	margin-right:-1px
 }
 .tooltip-seta .tooltip-posicao-topo-esquerda,
 .tooltip-seta .tooltip-posicao-topo-direita {
-	top:-14px
+	top:-10px
 }
 .tooltip-seta .tooltip-posicao-rodape-direita,
 .tooltip-seta .tooltip-posicao-topo-direita,
@@ -315,8 +312,8 @@ div.miniatura{
 	margin-top:-6px
 }
 .tooltip-seta .tooltip-posicao-centro-direita {
-	left:-18px
+	left:-13px
 }
 .tooltip-seta .tooltip-posicao-centro-esquerda {
-	right:-18px
+	right:-13px
 }
