@@ -8,6 +8,8 @@ Change Log LINHA FRAMEWORK
  * Grid CSS fica em um novo arquivo css (grid.css)
  * Regra para grid simplificada ( + semelhante ao grid 960)
  * Otimização de CSS
+ * Arquivo para css separados de acordo com o conteudo
+ * Agora o estilos.css fica em branco, facilitando a atualização do framework
  * Introdução/Suporte a HTML5
  * Reset.css com suporte a HTML5
  * Adicionado estilos básicos para html5 (html5.css)	

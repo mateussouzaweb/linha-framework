@@ -1,7 +1,7 @@
 /* ELEMENTOS LINHA FRAMEWORK */
 /* ----------------------------------------- */
 
-/* @Grupo ACORD */
+/*ACORD*/
 .accordion{
 	background: #f9f9f9;
 	border: 1px solid #222;
@@ -38,12 +38,7 @@ ul.accordion{
 	padding: 0; 
 }
 
-/* @Grupo FORM */
-form input.erro{
-	border: 1px solid #F00; 
-}
-
-/* @Grupo MODAL */
+/*MODAL*/
 .modal-area{
 	background: #FFF;
 	border: 1px solid #434343;
@@ -75,7 +70,69 @@ form input.erro{
 	top:5px;
 }
 
-/* @Grupo SLIDE*/
+/*NAV|MENU*/
+ul.menu{
+	background: #434343;
+	border: 1px solid #222;
+	height: 36px;
+	padding: 3px;
+}
+ul.menu li{
+	display: block;	
+	float: left;
+	position: relative;
+}
+ul.menu li a{
+	border: 1px solid #434343;
+	color: #FFFFFF !important;
+	display: block;
+	font-weight: bold;	
+	line-height: 35px;
+	padding: 0px 30px;
+}
+/*Hover*/
+ul.menu li a:hover, ul.menu li:hover{
+	background: #4698ca;
+	cursor:pointer;
+	color: #FFFFFF;
+	z-index: 10;
+}
+ul.menu li a:hover, ul.menu li:hover a,
+ul.menu li ul li a:hover, ul.menu li ul li:hover a,
+ul.menu li ul li ul li a:hover, ul.menu li ul li ul li:hover a{
+	border: 1px solid #222;
+}
+ul.menu li:hover ul a,
+ul.menu li ul li:hover ul a,
+ul.menu li ul li ul li:hover ul a{
+	border: 1px solid #434343;
+}
+/*Submenus*/
+ul.menu li ul{
+	background: #434343;
+	border: 1px solid #222;
+	display: none;
+	left: -1px;
+	padding: 5px;
+	position: absolute;
+	top: 36px;
+	width: 170px;
+	z-index: 11;
+}
+ul.menu li ul li{
+	width: 100%;
+	margin-top:-1px;
+}
+ul.menu li ul li a{
+	padding: 0px 10px;
+	width: 150px;	
+}
+ul.menu li ul li ul{
+	left: 171px;
+	top: -5px;
+}
+
+/*SLIDE*/
 .slide{
 	display: block;
 	height: 290px;
@@ -139,7 +196,7 @@ div.miniatura{
 	float: right;
 }
 
-/* @Grupo SLIDER*/
+/*SLIDER*/
 .slider{
 	width: 700px;
 }
@@ -171,7 +228,7 @@ div.miniatura{
 	width: 57px;
 }
 
-/* @Grupo TABS*/
+/*TABS*/
 .tabs_area{
 	border: 1px solid #000;
 	background: #222;
@@ -211,7 +268,7 @@ div.miniatura{
 	width: 590px;
 }
 
-/* @Grupo TOOLTIP */
+/*TOOLTIP */
 .tooltip-area{
 	background: #434343;
 	border: 1px solid #222;

@@ -1,0 +1,91 @@
+/* TIPOGRAFIA */
+/* ----------------------------------------- */
+
+body{
+	color: #222;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 21px;
+}
+
+/*LINKS*/
+a, a:link {	color: #3151A2;	text-decoration: none;}
+a:hover, a:visited{	color: #3151A2;}
+a img { border:none; }
+
+/*CABEÇALHOS*/
+h1, h2, h3, h4, h5, h6{line-height: 100%; margin-bottom: 0.5em;}
+h1{font-size: 250%;}
+h2{font-size: 200%;}
+h3{font-size: 150%;}
+h4{font-size: 120%;}
+h5, h6{font-size: 100%;}
+
+/*TEXTOS e ETC*/
+p,ul,ol{margin-bottom: 10px;}
+small{font-size: 75%;}
+big{font-size: 125%;}
+strong { font-weight: bold; }
+cite, em, dfn { font-style: italic;}
+del {text-decoration: line-through;}
+input, textarea, select, button, option {font-size: 100%; font-family: Arial, Helvetica, sans-serif;}
+
+
+/*LISTAS*/
+ol, ul {padding-left: 35px;}
+ul{ list-style-type: disc; }
+ol{ list-style-type: decimal; }
+
+dl{ margin: 0 0 1.5em 0; }
+dl dt{ font-weight: bold; }
+dd{ margin-left: 1.5em;} 
+
+/*TABELAS*/
+table{
+	margin-bottom: 10px;
+}
+table tr th{
+	background: #EEE;
+	border: 1px solid #CCC;
+	padding: 5px 10px;
+}
+table tr td{
+	border: 1px solid #DDD;
+	padding: 5px 10px;
+}
+
+/*OUTROS*/
+hr {
+	display:block;
+	height:1px;
+	border:0;
+	border-top:1px solid #cccccc;
+	margin:1em 0;
+	padding:0;
+}
+ins {
+	background-color:#ff9; 
+	color:#000;
+	text-decoration:none;
+}
+mark {
+	background-color:#ff9;
+	color:#000;
+	font-style:italic;
+	font-weight:bold;
+}
+blockquote{
+	background: #f2f2f2;
+	border: 1px solid #ccc;
+	margin-bottom: 10px;
+	padding: 10px 20px 0px;
+}
+iframe{
+	border: 1px solid #ccc;
+}
+
+/*CLASSES HELPERS*/
+.align-left{ text-align: left;}
+.align-right{ text-align: right;}
+.align-center{ text-align: center;}
+.align-justify{ text-align: justify;}

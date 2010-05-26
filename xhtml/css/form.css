@@ -1,0 +1,98 @@
+/* FORMULARIOS */
+/* ----------------------------------------- */
+label{
+	display: inline-block;
+	font-weight: bold;
+	padding-bottom: 5px;
+}
+label + input, label + textarea, label + select{
+	display: block;
+}
+label + input[type="radio"], label + input[type="checkbox"]{
+	display: inline-block;
+}
+
+input, textarea{
+	border: 1px solid;
+	border-color: #bbb #ddd #ddd #bbb;
+	background: #FFF url(../img/bg-input.png) repeat-x top;
+	padding: 8px;
+	width: 280px;
+}
+input[type="radio"], input[type="checkbox"]{
+	background: none;
+	border: none;
+	padding: 0;
+	width: auto;
+}
+input[type="submit"]{
+	background: #434343;
+	border: 1px solid #222;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: bold;
+	height: 30px;
+	overflow: visible;
+	padding: 5px 10px 7px;
+	width: auto;
+}
+
+select{
+	background: #FFF url(../img/bg-input.png) repeat-x top;
+	border: 1px solid;
+	border-color: #bbb #ddd #ddd #bbb;
+	line-height: 1em;
+	padding: 6px 8px;
+	width: 298px;
+}
+option{
+	padding: 2px 8px;
+}
+
+button {
+	overflow: visible;
+	padding: 0 5px;
+}
+
+/*FOCUS*/
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus{
+	background-color: #fcfcfc;
+	outline:none;
+}
+
+/*ALERTAS*/
+.alerta{
+	background: #EDEDED;
+	border: 1px solid #C0C0C0;
+	display: block;
+	color: #333;
+	margin: 5px 0;
+	padding: 10px;
+}
+.verde{
+	background: #E9F9E5;
+	border:1px solid #9BDEA8;
+	color: #1C8400;
+}
+.vermelho{
+	background: #F9E5E6;
+	border:1px solid #DF8F8F;
+	color: #C32727;
+}
+.amarelo{
+	background: #FFF6BF;
+	border:1px solid #EFC20E;
+}
+.azul{
+	background: #DDEEFF;
+	border:1px solid #85CAF3;
+	color: #0055B5;
+}
+
+.erro{
+	border: 1px solid #F00; 
+}
