@@ -1,6 +1,6 @@
 /* GRID */
 /* ----------------------------------------- */
-#tudo{margin: 0 auto;width: 960px;}
+.grid-12, .grid-16, .grid-24{margin: 0 auto;width: 960px;}
 .coluna{display: block;	float: left; margin: 10px;}
 
 /*Padrão + 12 COLUNAS*/
