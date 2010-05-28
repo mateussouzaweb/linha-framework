@@ -47,7 +47,7 @@ select{
 	width: 298px;
 }
 option{
-	padding: 2px 8px;
+	padding: 2px 8px 0;
 }
 
 button {
