@@ -1,4 +1,4 @@
-<h1>LINHA FRAMEWORK - versão 1.2 (ALPHA)</h1>
+<h1>LINHA FRAMEWORK - versão 1.2 | http://www.linhaframework.com</h1>
 
 p. by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
 
@@ -62,7 +62,23 @@ Para melhor esclarecimento, o *MONITORAMENTO LIVE* é necessário em alguns plug
 
 h3. CALLBACK
 
-p. Todos os plugins oferem o callback para personalização de eventos.
+p. Todos os plugins oferem o callback para personalização de eventos. Os callbacks possuem argumentos personalizados, mas sempre está relacionado ao elemento do plugin + opções do plugin
+p. Em cada callback é possível usar o elemento @$(this)@ ou @this@ na função. Este elemento será o que disparou o evento ou o elemento do plugin. Mais não fica só por ai, como citei há os argumentos. Ao se utilizar dos argumentos,
+use da seguinte maneira:
 
+<pre>
+	$('meu-elemento').pluginX({
+		opções...
+		//a, b c, d, e, o - são os argumentos do plugin, cada plugin informará quais são esses argumentos na documentação do própio.
+		//o - sempre será o último dos argumentos, ele é as opções do plugin 
+		onFazAlgo: function(a, b, c, d, e, o){
+			alert($(this));
+			alert(a); //será o mesmo que alert($(this));
+		}
+	});
+</pre>
+
+p. Para os argumentos você pode definir o nome que quiser, no exemplo eu usei a, b, c...mais poderia ser arg1, arg2, arg3...não importa se é a ou arg1, sempre retornará o mesmo valor.
+p. Se você não entendeu nada não se preocupe, quando se aprofundar em um plugin você vai tirar isso de letra...
 		
 		
