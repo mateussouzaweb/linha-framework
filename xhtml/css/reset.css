@@ -31,10 +31,8 @@ input, select { vertical-align:middle;}
 :focus {outline: 0;}
 
 .clear{ clear:both; display: block; height: 0px; overflow:hidden;}
-.clearfix{display: inline-block;}
 .clearfix:after{ visibility: hidden; display: block; font-size: 0; content: " ";  clear: both; height: 0px; }
 * html .clearfix {height: 1%;}
-.clearfix {display: block;}
 
 .left{ float: left;}
 .right{ float: right;}
