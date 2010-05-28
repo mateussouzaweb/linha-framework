@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   24/05/10 as 15:02 | nº 15
+* @ultima-revisao   28/05/10 as 09:46 | nº 16
 */
 (function($){
 	
@@ -109,7 +109,7 @@
 			 * Callback
 			 */
 			if ($.isFunction(o.onInicia)){
-				o.onInicia.apply(this, new Array($t, e, o));
+				o.onInicia.apply($t, new Array($t, e, o));
 			}
 			
 			atual = $t;
@@ -239,7 +239,7 @@
 			 * Callback
 			 */
 			if ($.isFunction(o.onTermina)){
-				o.onTermina.apply(this, new Array($t, o));
+				o.onTermina.apply($t, new Array($t, o));
 			}
 			
 			if(o.atributo == 'title'){
@@ -450,7 +450,7 @@
 			 * Callback
 			 */
 			if ($.isFunction(o.onPosiciona)){
-				o.onPosiciona.apply(this, new Array($t, e, o));
+				o.onPosiciona.apply(tip.area, new Array($t, e, o));
 			}
 			
 			e.preventDefault();

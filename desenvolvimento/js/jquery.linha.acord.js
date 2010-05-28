@@ -10,7 +10,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   07/05/10 as 14:35 | nº 10
+* @ultima-revisao   28/05/10 as 09:24 | nº 11
 */
 (function($){
 	$.fn.acord = function(options){
@@ -164,7 +164,7 @@
 			 * Callback
 			 */
 			if ($.isFunction(o.onAcord)) {
-				o.onAcord.apply(this, new Array($acord, $pai, $filho, o));
+				o.onAcord.apply($acord, new Array($acord, $pai, $filho, o));
 			}
 				
 			$(o.filho, $acord).not($filho).slideUp(o.tempoIn, o.easingIn);

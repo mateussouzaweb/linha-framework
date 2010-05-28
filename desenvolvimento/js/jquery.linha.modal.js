@@ -11,7 +11,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   10/05/10 as 14:01 | nº 8
+* @ultima-revisao   28/05/10 as 09:35 | nº 9
 */
 (function($){
 	
@@ -204,7 +204,7 @@
 			 * Callback
 			 */
 			if ($.isFunction(o.onCria)) {
-				o.onCria.apply(this, new Array(m, el, $t, o));
+				o.onCria.apply(m.modal, new Array(m, el, $t, o));
 			}
 
 		}
@@ -419,7 +419,7 @@
 			 * Callback
 			 */	
 			if ($.isFunction(o.onExibe)) {
-				o.onExibe.apply(this, new Array(m, el, $t, o));
+				o.onExibe.apply(m.modal, new Array(m, el, $t, o));
 			}
 		}
 		
@@ -439,7 +439,7 @@
 			 * Callback
 			 */	
 			if ($.isFunction(o.onFecha)) {
-				o.onFecha.apply(this, new Array(m, el, $t, o));
+				o.onFecha.apply(m.modal, new Array(m, el, $t, o));
 			}
 			
 			return false;

@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   20/05/10 as 11:25 | nº 7
+* @ultima-revisao   28/05/10 as 09:42 | nº 8
 */
 (function($){
 
@@ -238,7 +238,7 @@
 					 * Callback
 					 */
 					if ($.isFunction(o.onSlide)) {
-						o.onSlide.apply(this, new Array($t, $this, pos, l, o));
+						o.onSlide.apply($t, new Array($t, $this, pos, l, o));
 					}
 					
 					/**

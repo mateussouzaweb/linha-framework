@@ -11,7 +11,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   14/05/10 as 16:19 | nº 9
+* @ultima-revisao   28/05/10 as 09:40 | nº 10
 */
 (function($){
 	$.fn.nav = function(options){
@@ -54,14 +54,20 @@
 		 */
 		$d.delegate(elem.selector, o.evento, function(e){
 			
-			exibeNav($(this), $(this).children(o.seletorFilho));
+			/**
+			 * Checa o seletor filho
+			 */
+			var $f = $(this).children(o.seletorFilho);
+			if(!$f.length){return false;}
+			
+			exibeNav($(this), $f);
 			
 			/**
 			 * Da o bind no evento final
 			 * Não pode ser delegate porque ele tem bug no evento mouseleave...aff
 			 */
 			$(this).unbind(o.eventoFim).bind(o.eventoFim, function(){
-				return escondeNav($(this), $(this).children(o.seletorFilho));
+				return escondeNav($(this), $f);
 			});
 		});
 	
@@ -71,10 +77,6 @@
 		 * @param {Object} $f - elemento filho
 		 */
 		function exibeNav($t, $f){
-			/**
-			 * Checa o seletor filho
-			 */
-			if(!$f.length){return false;}
 			
 			/**
 			 * Adiciona a classe
@@ -85,7 +87,7 @@
 			 * Callback
 			 */
 			if ($.isFunction(o.onExibe)) {
-				o.onExibe.apply(this, new Array($t, $f, o));
+				o.onExibe.apply($t, new Array($t, $f, o));
 			}
 			
 			/**
@@ -116,7 +118,7 @@
 			 * Callback
 			 */
 			if ($.isFunction(o.onEsconde)) {
-				o.onEsconde.apply(this, new Array($t, $f, o));
+				o.onEsconde.apply($t, new Array($t, $f, o));
 			}
 		};
 	};
