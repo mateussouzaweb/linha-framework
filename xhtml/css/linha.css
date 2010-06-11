@@ -42,7 +42,7 @@ ul.accordion{
 .modal-area{
 	background: #434343;
 	border: 1px solid #434343;
-	min-width: 500px;
+	min-width: 200px;
 	position: absolute;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -281,7 +281,7 @@ div.miniatura{
 /*TOOLTIP */
 .tooltip-area{
 	background: #434343;
-	border: 1px solid #222;
+	border: 1px solid #434343;
 	color: #FFF;
 	padding: 5px;
 	position: absolute;
