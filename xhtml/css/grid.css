@@ -1,7 +1,16 @@
 /* GRID */
 /* ----------------------------------------- */
-.grid-12, .grid-16, .grid-24{margin: 0 auto;width: 960px; display:block;}
-.coluna{display: block;	float: left; margin: 10px;}
+.grid-12, .grid-16, .grid-24{
+	width: 960px;
+	margin-left: auto;
+	margin-right:auto;
+}
+.coluna{
+	display: inline;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+}
 
 /*Padrão + 12 COLUNAS*/
 .grid-12 .tamanho1{width: 60px;}
@@ -62,5 +71,12 @@
 .grid-24 .tamanho23{width: 910px;}
 .grid-24 .tamanho24{width: 950px;}
 
-.primeiro, .grid-16 .primeiro, .grid-24 .primeiro{margin-left: 0;}
-.ultimo, .grid-16 .ultimo, .grid-24 .ultimo{margin-right: 0;}
+.grid-12 .primeiro, .grid-16 .primeiro, .grid-24 .primeiro{margin-left: 0;}
+.grid-12 .ultimo, .grid-16 .ultimo, .grid-24 .ultimo{margin-right: 0;}
+.grid-12 .nenhum, .grid-16 .nenhum, .grid-24 .nenhum{margin-left: 0; margin-right: 0;}
+
+/*HELPERS*/
+.grid-12 .esquerda, .grid-16 .esquerda, .grid-24 .esquerda{padding-left: 10px;}
+.grid-12 .direita, .grid-16 .direita, .grid-24 .direita{padding-right: 10px;}
+.grid-12 .centro, .grid-16 .centro, .grid-24 .centro{padding-left: 5px; padding-right: 5px;}
+.grid-12 .centro-duplo, .grid-16 .centro-duplo, .grid-24 .centro-duplo{padding-left: 10px; padding-right: 10px;}
