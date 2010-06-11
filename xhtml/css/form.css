@@ -75,4 +75,5 @@ textarea:focus,
 select:focus{
 	background-color: #fcfcfc;
 	outline:none;
+	border-color: #aaa;
 }
