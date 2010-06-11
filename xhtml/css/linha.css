@@ -40,14 +40,18 @@ ul.accordion{
 
 /*MODAL*/
 .modal-area{
-	background: #FFF;
+	background: #434343;
 	border: 1px solid #434343;
 	min-width: 500px;
 	position: absolute;
-	-moz-box-shadow: 0 4px 18px #252525;
-	-webkit-box-shadow: 0 4px 18px #252525;
-	-khtml-box-shadow: 0 4px 18px #252525;
-	box-shadow: 0 4px 18px #252525;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 4px 18px #222;
+	-webkit-box-shadow: 0 4px 18px #222;
+	-khtml-box-shadow: 0 4px 18px #222;
+	box-shadow: 0 4px 18px #222;
 }
 .modal-titulo{
 	background: #434343;
@@ -55,6 +59,11 @@ ul.accordion{
 	color: #FFF;
 	font-weight: bold;
 	padding: 5px 10px;
+	text-shadow: 1px 1px 1px #000;
+	-moz-border-radius: 3px 3px 0 0;
+	-webkit-border-radius: 3px 3px 0 0;
+	-khtml-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
 }
 .modal-conteudo{
 	background: #FFF;
@@ -67,7 +76,8 @@ ul.accordion{
 	font-weight:bold;
 	position:absolute;
 	right:8px;
-	top:5px;
+	top: 3px;
+	text-shadow: 1px 1px 1px #000;
 }
 
 /*NAV|MENU*/
@@ -302,7 +312,7 @@ div.miniatura{
 .tooltip-seta .tooltip-posicao-topo-direita,
 .tooltip-seta .tooltip-posicao-topo-lateral-esquerda,
 .tooltip-seta .tooltip-posicao-topo-lateral-direita{
-	border-bottom-color:#343434;
+	border-bottom-color:#434343;
 }
 .tooltip-seta .tooltip-posicao-topo-centro,
 .tooltip-seta .tooltip-posicao-topo-lateral-esquerda,
@@ -324,7 +334,7 @@ div.miniatura{
 .tooltip-seta .tooltip-posicao-rodape-direita,
 .tooltip-seta .tooltip-posicao-rodape-lateral-esquerda,
 .tooltip-seta .tooltip-posicao-rodape-lateral-direita{
-	border-top-color:#343434;
+	border-top-color:#434343;
 }
 .tooltip-seta .tooltip-posicao-rodape-centro,
 .tooltip-seta .tooltip-posicao-rodape-lateral-esquerda,
@@ -334,7 +344,7 @@ div.miniatura{
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-topo-esquerda,
 .tooltip-seta .tooltip-posicao-centro-direita {
-	border-right-color:#343434;
+	border-right-color:#434343;
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-rodape-direita {
@@ -357,7 +367,7 @@ div.miniatura{
 .tooltip-seta .tooltip-posicao-rodape-direita,
 .tooltip-seta .tooltip-posicao-topo-direita,
 .tooltip-seta .tooltip-posicao-centro-esquerda {
-	border-left-color:#343434;
+	border-left-color:#434343;
 }
 .tooltip-seta .tooltip-posicao-rodape-direita,
 .tooltip-seta .tooltip-posicao-topo-direita,
