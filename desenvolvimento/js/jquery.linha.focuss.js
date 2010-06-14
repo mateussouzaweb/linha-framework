@@ -2,7 +2,7 @@
 * @name				Linha Focuss
 * @version			1.1
 * @descripton		Plugin Jquery para interações com o evento focus,
-* 					como troca de borda automática e alteração de texto(value).
+* 					como troca de borda e alteração de texto(value).
 * 					Plugin extensível e customizável
 *					MODO DE USAR $.focuss({opcoes}); || $('.classeTal').focuss({opcoes});
 *
@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   28/05/10 as 09:30 | nº 10
+* @ultima-revisao   14/06/10 as 17:02 | nº 11
 */
 (function($){
 	
@@ -31,7 +31,7 @@
 				tempoIn: 'normal',				//Tempo para animar o efeito no inicio
 				tempoOut: 'normal',				//Tempo para animar o efeito no final do evento
 				
-				cor: 'red', 					//Cor dar borda para dar destaque ao elemento
+				classe: 'focus', 				//Classe a ser adicionada, no evento inicial
 				removeTexto: false,				//Remover texto pré-escrito, se o valor não for direferente ou nulo retorna o padrão
 				
 				onInicia: null,					//Callback
@@ -60,16 +60,8 @@
 			 * Retorna o processamento dos elementos q passaram
 			 */
 			nEls.each(function() {
-				var $t = $(this);
-				/**
-				 * Registro de valores
-				 */
-				var bl = $t.css('border-left-color'),
-					br = $t.css('border-right-color'),
-					bt = $t.css('border-top-color'),
-					bb = $t.css('border-bottom-color'),
-					bcor = bt + ' ' + br + ' ' + bb + ' ' + bl,
-					texto = $t.val();
+				var $t = $(this),
+					texto = $(this).val();
 			
 				/**
 				 * Bind nos eventos
@@ -79,7 +71,7 @@
 				});
 				
 				$t.bind(o.eventoFim, function(){
-					return terminaFocuss($t, bcor, texto);
+					return terminaFocuss($t, texto);
 				});
 				
 			});
@@ -103,12 +95,10 @@
 		 * @param {Object} texto
 		 */
 		function animaFocuss($t, texto){
-			/**
-			 * Usuável para inputs
-			 */
+		
 			if(o.removeTexto) {if ($t.val() == texto) {$t.val('');}}
 			
-			$t.css({borderColor: o.cor});
+			$t.addClass(o.classe);
 			
 			/**
 			 * Callback
@@ -121,22 +111,19 @@
 		/**
 		 * Termina o efeito foccus
 		 * @param {Object} $t
-		 * @param {Object} bcor
 		 * @param {Object} texto
 		 */
-		function terminaFocuss($t, bcor, texto){
-			/**
-			 * Usuável para inputs
-			 */
+		function terminaFocuss($t, texto){
+
 			if(o.removeTexto){if($t.val() == ''){$t.val(texto);}}	
 	
-			$t.css({borderColor:bcor});
+			$t.removeClass(o.classe);
 			
 			/**
 			 * Callback
 			 */
 			if ($.isFunction(o.onTermina)) {
-				o.onTermina.apply($t, new Array($t, bcor, texto, o));
+				o.onTermina.apply($t, new Array($t, texto, o));
 			}
 		}
 				

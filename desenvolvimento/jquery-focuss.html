@@ -22,7 +22,15 @@
 	<link rel="stylesheet" type="text/css" href="../xhtml/css/linha.css" />
 	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="../xhtml/css/ie7.css" /><![endif]-->
 	<link rel="stylesheet" type="text/css" media="print" href="../xhtml/css/print.css"/>
-   
+   <style type="text/css">
+   	.blue, :focus.blue{
+   		border-color: blue;
+   	}
+	.green, :focus.green{
+		border-color: green;
+		background: #EEE;
+	}
+   </style>
 <!-- JS -->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.linha.focuss.js"></script>
@@ -31,7 +39,7 @@
 		
 		$("input:not(.input-ajax), textarea").focuss({
 			removeTexto: true,
-			cor: 'blue',
+			classe: 'blue',
 			live: true
 		});
 		
@@ -48,7 +56,7 @@
 		 * Ajax
 		 */
 		$('input.input-ajax').focuss({
-			cor: 'green',
+			classe: 'green',
 			live: true
 		});
 		$('button#ajax').click(function(){
@@ -114,7 +122,7 @@
 				<button id="ajax">Clique para carregar ajax</button>
 			</p>							
 			<p>
-				<input type="submit" class="enviar" value="Enviar"/>
+				<input type="submit" value="Enviar"/>
 			</p>
 			</form>
 		     
