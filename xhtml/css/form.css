@@ -29,7 +29,7 @@ input[type="radio"], input[type="checkbox"]{
 	padding: 0;
 	width: auto;
 }
-input[type="submit"]{
+input.submit, input[type="submit"]{
 	background: #434343;
 	border: 1px solid #222;
 	color: #fff;
@@ -69,6 +69,7 @@ button {
 }
 
 /*FOCUS*/
+.focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
 textarea:focus,
