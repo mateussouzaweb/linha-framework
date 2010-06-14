@@ -11,7 +11,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   28/05/10 as 09:35 | nº 9
+* @ultima-revisao   14/06/10 as 17:18 | nº 10
 */
 (function($){
 	
@@ -102,8 +102,8 @@
 			 */
 			el.titulo = $t.attr(o.atributoTitulo);
 			el.conteudo = $t.attr(o.atributoConteudo);
-			el.altura = $t.attr(o.atributo_altura);
-			el.largura = $t.attr(o.atributo_largura);
+			el.altura = $t.attr(o.atributoAltura);
+			el.largura = $t.attr(o.atributoLargura);
 			el.link = $t.attr(o.atributoLink);
 			
 			el.iframeLargura = $t.attr(o.atributoIframeLargura);
@@ -187,8 +187,10 @@
 			}
 			
 			m.fecha = $('<span>x</span>').addClass(o.classeFecha);
-			
-			m.titulo = $('<div></div>').addClass(o.classeTitulo);
+
+			if(o.classeTitulo != null && o.classeTitulo){
+				m.titulo = $('<div></div>').addClass(o.classeTitulo);
+			}
 			
 			m.conteudo = $('<div></div>').addClass(o.classeConteudo);
 			
@@ -213,11 +215,11 @@
 		 * Insere conteúdo na modal
 		 */
 		function dataModal(){
-			
+
 			/**
 			 * Adiciona o título
 			 */
-			m.titulo.html(o.titulo).append(el.titulo);
+			if(m.titulo) m.titulo.html(o.titulo).append(el.titulo);
 			
 			/**
 			 * Processa se for Video/Youtube
@@ -342,7 +344,7 @@
 			/**
 			 * Aqui se sabe se terá titulo ou não a modal...
 			 */
-			if(m.titulo.html() !== undefined){
+			if(m.titulo && m.titulo.html() !== undefined){
 				m.modal.append(m.titulo);
 			}
 			
