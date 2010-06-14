@@ -12,7 +12,7 @@
 * @copyright		(c) 2010 Mateus Souza
 * @license			MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 * 
-* @ultima-revisao   28/05/10 as 09:46 | nº 16
+* @ultima-revisao   14/06/10 as 17:23 | nº 17
 */
 (function($){
 	
@@ -246,8 +246,9 @@
 				$t.attr('title', tip.conteudo);
 			}
 			atual = null;
+		
+			if(tip.area.length)	tip.area.remove();
 			
-			tip.area.remove();
 			$('.' + o.classeArea).remove(); //remove o elemento novamente...estranho não? :)
 			tip.load.remove();
 			
