@@ -55,6 +55,7 @@ Linha FOCUS:
  * Monitoramento live(DOM e Ajax) para Foccus (use alternativamente $("seletor-focuss").trigger('iniciaFocuss'); caso tenha problemas)
  * Ajustes para retirada de focuss em elemento do tipo input[type="submit"]
  * Removido a opção "remove" (o mesmo pode ser feito com css .tal-classe{outline: none;}
+ * Opção "cor" foi removida por "classe", assim a customização é maior pois fica feita através da classe
  * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
  * Callbacks melhorados
 
@@ -67,6 +68,7 @@ Linha MODAL:
 ---
  * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
  * Adicionado fix de posição (ou o mesmo q usar position:fixed)
+ * Titulo modal fica opcional, se não necessita sete classeTitulo como 'null' ou 'false'
  * Algumas novas opções
  * Arrays alteradas para Objetos
  * Ajuste para CSS
