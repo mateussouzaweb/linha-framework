@@ -12,7 +12,8 @@ Change Log LINHA FRAMEWORK
  * Agora o estilos.css fica em branco, facilitando a atualização do framework
  * Introdução/Suporte a HTML5
  * Reset.css com suporte a HTML5
- * Adicionado estilos básicos para html5 (html5.css)	
+ * Adicionado estilos básicos para html5 (html5.css)
+ * Reestruturação para desenvolvimento	
 
 1.1 - 03 de Abril de 2010
 --
