@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" lang="pt_BR" />
+
+<title>Linha Framework - jQuery Acord</title>
+
+<!-- Favicon -->
+	<link rel="shortcut icon" href="../../../../xhtml/favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="../../../../favicon.ico" />
+
+<!-- CSS -->
+    <link rel="stylesheet" type="text/css" media="all" href="../../../../xhtml/css/reset.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="../../../../xhtml/css/grid.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="../../../../xhtml/css/tipografia.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="../../../../xhtml/css/form.css" />
+	<link rel="stylesheet" type="text/css" href="../../../../xhtml/css/linha.css" />
+    <style type="text/css">
+   	body .blue, body :focus.blue{
+   		border-color: blue;
+   	}
+	body .green, body :focus.green{
+		border-color: green;
+		background: #EEE;
+	}
+    </style>
+	
+<!-- JS -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="../../src/focuss.js"></script>
+    <script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("input:not(.input-ajax), textarea").focuss({
+			removeTexto: true,
+			classe: 'blue',
+			live: true
+		});
+		
+		/**
+		 * Novos botões
+		 * Estão relacionados as opções acima
+		 */
+		$('button#novo').click(function(){
+			$(this).parent().after('<p><input type="text" value="Novo input"/></p>');
+			return false;
+		});
+		
+		/**
+		 * Ajax
+		 */
+		$('input.input-ajax').focuss({
+			classe: 'green',
+			live: true
+		});
+		$('button#ajax').click(function(){
+			$.ajax({
+				url: 'focuss-ajax.html',
+				success: function(data){
+					$('button#ajax').parent().after(data);
+				}
+			});
+		return false;
+		});
+    });  
+	</script>
+
+</head>
+
+<body>
+<div id="tudo" class="grid-12">
+	
+	<div id="conteudo" class="coluna tamanho12">
+				
+		<h3>Formulário Exemplo com Remoção de Texto Default</h3>	
+		<div class="alerta amarelo">
+		$("input:not(.input-ajax), textarea").focuss({<br/>
+			<b>removeTexto</b>: true,<br/>
+			<b>cor</b>: 'blue',<br/>
+			<b>live</b>: true<br/>
+		});
+		</div>	
+		<form action="#" method="post" id="formulario">
+			<p>
+				<label>Nome</label>
+				<input type="text" name="nome" value="nome completo" class="tamanho4 obrigatorio"/>
+			</p>
+			<p>
+				<label>E-mail</label>
+				<input type="text" name="email" value="seu_email@email.com" class="tamanho4 obrigatorio email"/>
+			</p>
+			<p>
+				<label>URL</label>
+				<input type="text" name="url" value="www.minhaurl.com.br" class="tamanho4 obrigatorio url"/>
+			</p>
+			<p>
+				<label>Assunto</label>
+				<input type="text" name="assunto" class="tamanho4" value="Vou pensar..."/>
+			</p>
+			<p>
+				<label>Mensagem</label>
+				<textarea class="obrigatorio tamanho4" rows="5" cols="42">Eu vou escrever um texto aqui se quiser enviar esta mensagem</textarea>
+			</p>
+			<p>
+				<button id="novo">Clique para adicionar um novo campo</button>
+			</p><br/>
+			
+			<h3>Adicionado via ajax, com cor diferente e sem remoção de texto</h3>	
+			<div class="alerta amarelo">
+			$('input.input-ajax').focuss({<br/>
+				<b>cor:</b> 'green',<br/>
+				<b>live</b>: true<br/>
+			});
+			</div>
+			<p>
+				<button id="ajax">Clique para carregar ajax</button>
+			</p>							
+			<p>
+				<input type="submit" value="Enviar"/>
+			</p>
+			</form>
+		     
+	</div><!-- FIM CONTEUDO -->
+	
+</div><!-- FIM TUDO -->
+</body>
+</html>
