@@ -79,6 +79,7 @@ use da seguinte maneira:
 </pre>
 
 p. Para os argumentos você pode definir o nome que quiser, no exemplo eu usei a, b, c...mais poderia ser arg1, arg2, arg3...não importa se é a ou arg1, sempre retornará o mesmo valor.
+
 p. Se você não entendeu nada não se preocupe, quando se aprofundar em um plugin você vai tirar isso de letra...
 		
 		
