@@ -122,6 +122,7 @@ ul.menu li ul{
 	background: #434343;
 	border: 1px solid #222;
 	display: none;
+	height: auto;
 	left: -1px;
 	padding: 5px;
 	position: absolute;
