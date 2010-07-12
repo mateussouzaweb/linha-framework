@@ -27,6 +27,7 @@ abbr[title], dfn[title] {border-bottom:1px dotted #000; cursor:help;}
 table { border-collapse:collapse; border-spacing:0;}
 
 input, select { vertical-align:middle;}
+input::-moz-focus-inner {border: 0; padding: 0;}
 
 :focus {outline: 0;}
 
