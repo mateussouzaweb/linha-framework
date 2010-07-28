@@ -20,8 +20,9 @@
 			
 			efeitoIn: 'slideDown',					//Efeito inicial
 			efeitoOut: 'slideUp',					//Efeito Final
-			tempoIn: 'normal',						//Tempo para esconder o seletor filho (Entrada)
-			tempoOut: 'normal',						//Tempo para mostrar o seletor filho (Saída)
+			tempoIn: 'normal',						//Tempo para mostrar o seletor filho (Entrada)
+			tempoOut: 'normal',						//Tempo para esconder o seletor filho (Saída)
+			tempoDelay: 100, 						//Tempo de espera para esconder o seletor filho(Saida)
 			easingIn: 'swing',						//Animação com easyng na entrada (IN)...
 			easingOut: 'swing',						//Animação com easyng na saída (OUT)...
 			stopClearQueue: true, 					//(Veja API Stop - clearQueue) e não mexa sem conhecimento
@@ -40,13 +41,13 @@
 		/**
 		 * Delegando evento
 		 */
-		$d.delegate(elem.selector, o.evento, function(e){
+		$d.delegate(elem.selector, o.evento, function(){
 			
 			/**
 			 * Checa o seletor filho
 			 */
 			var $f = $(this).children(o.seletorFilho);
-			if(!$f.length){return false;}
+			if(!$f.length) return false;
 			
 			exibeNav($(this), $f);
 			
@@ -66,6 +67,8 @@
 		 */
 		function exibeNav($t, $f){
 			
+			if($f.is(':animated')) return false;
+			
 			/**
 			 * Adiciona a classe
 			 */
@@ -74,9 +77,7 @@
 			/**
 			 * Callback
 			 */
-			if ($.isFunction(o.onExibe)) {
-				o.onExibe.apply($t, new Array($t, $f, o));
-			}
+			if ($.isFunction(o.onExibe)) o.onExibe.apply($t, new Array($t, $f, o));
 			
 			/**
 			 * Animação
@@ -100,14 +101,13 @@
 			/**
 			 * Animação
 			 */
-			$f.stop(o.stopClearQueue, o.stopJumpToEnd).removeClass(nf)[o.efeitoOut](o.tempoOut, o.easingOut);
+			$f.stop(o.stopClearQueue, o.stopJumpToEnd).delay(o.tempoDelay).removeClass(nf)[o.efeitoOut](o.tempoOut, o.easingOut);
 	
 			/**
 			 * Callback
 			 */
-			if ($.isFunction(o.onEsconde)) {
-				o.onEsconde.apply($t, new Array($t, $f, o));
-			}
+			if ($.isFunction(o.onEsconde)) o.onEsconde.apply($t, new Array($t, $f, o));
+
 		};
 	};
 })(jQuery);
