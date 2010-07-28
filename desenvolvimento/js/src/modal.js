@@ -12,7 +12,7 @@
 		var padrao = {
 			seletor: '.modal',								//Seletor padrão/geral, usado caso use o plugin sem o seletor $.plugin
 			seletorImagem: 'imagem',						//Classe seletora para modals com imagem
-			seletorAjax: 'ajax',							//Classe seletora para modals em ajax
+			seletorAjax: 'ajax',							//Classe seletora para modals em ajax ou load
 			seletorIframe: 'iframe',						//Classe seletora para modals com iframe
 			seletorVideo: 'video',							//Classe seletora para modals com video(youtube)
 			seletorCancela: 'fecha',						//Classe seletora que cancelar a requisição || o resultado é mesmo que fechar o dialogo
@@ -54,6 +54,7 @@
 			atributoVideoLargura: 'videolargura',			//Atributo para largura do video no modal
 			atributoVideoAltura: 'videoaltura',				//Atributo para altura do video no modal
 			
+			onInicia: null,									//Callback
 			onCria: null,									//Callback
 			onExibe: null,									//Callback
 			onFecha: null, 									//Callback
@@ -98,6 +99,13 @@
 			el.iframeAltura = $t.attr(o.atributoIframeAltura);
 			el.videoLargura = $t.attr(o.atributoVideoLargura);
 			el.videoAltura = $t.attr(o.atributoVideoAltura);
+			
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onInicia)) {
+				o.onInicia.apply($t, new Array(el, $t, o));
+			}
 			
 			/**
 			 * Cria a modal
@@ -183,12 +191,13 @@
 			m.conteudo = $('<div></div>').addClass(o.classeConteudo);
 			
 			/**
-			 * Ajuste de posição Loading
+			 * Eventos Fecha (Fundo), adicionado agora pq é melhor
 			 */
-			m.load.css({
-				marginTop: -(m.load.outerHeight()/2),
-				marginLeft: -(m.load.outerWidth()/2)
-			});
+			if (o.fecha && m.fundo){
+				m.fundo[o.eventoFundo](function(){
+					return deletaModal();
+				});
+			}
 			
 			/**
 			 * Callback
@@ -209,6 +218,16 @@
 			 */
 			if(m.titulo) m.titulo.html(o.titulo).append(el.titulo);
 			
+			/**
+			 * Checa o loading
+			 */
+			if($t.hasClass(o.seletorAjax) || $t.hasClass(o.seletorImagem)){
+				m.load.appendTo('body').css({
+					marginTop: -(m.load.outerHeight()/2),
+					marginLeft: -(m.load.outerWidth()/2)
+				});	
+			 }
+			 
 			/**
 			 * Processa se for Video/Youtube
 			 */
@@ -240,40 +259,26 @@
 			}	
 			
 			/**
-			 * Ajax
+			 * Load/Ajax
 			 */
 			else if($t.hasClass(o.seletorAjax)){
 				
-				m.load.appendTo('body');
+				m.conteudo.load(el.link, function(rt, ts, xhr){
+			
+					if(ts == 'error'){
+						m.conteudo.append("Ocorreu algum erro ou esta url não existe...");
+					}
 				
-				$.ajax({
-					type: "POST",
-					url: el.link,
-					success: function(data){
-						
-						m.load.fadeOut(o.tempoFundo, function(){$(this).remove();});
-						m.conteudo.append(data);
-						return mostraModal();
-						
-					},
-					error: function() {
-						
-						m.load.fadeOut(o.tempoFundo, function(){$(this).remove();});
-						m.conteudo.append("Ocorreu algum erro ou esta url não existel...");
-						return mostraModal();
-						
-		   			}
+					m.load.fadeOut(o.tempoFundo, function(){$(this).remove();});
+					return mostraModal();
+					
 				});
-				
-			return;
 			}
 			
 			/**
 			 * Imagem
 			 */
 			else if($t.hasClass(o.seletorImagem)) {
-				
-				m.load.appendTo('body');
 				
 				var img = new Image();
 				$(img).load(function(){
@@ -367,16 +372,6 @@
 			m.modal.fadeIn(o.tempo);
 			
 			/**
-			 * Eventos Fecha (Fundo)
-			 * @param {Object} e
-			 */
-			if (o.fecha && m.fundo){
-				m.fundo[o.eventoFundo](function(){
-					return deletaModal();
-				});
-			}
-			
-			/**
 			 * Evento Fecha (X)
 			 */
 			m.fecha[o.eventoFecha](function(){
@@ -422,8 +417,8 @@
 				m.fundo.fadeOut(o.tempo, function(){$(this).remove();});
 			}
 			
-			if (m.load.length){m.load.remove();}
-			m.modal.remove();
+			if(m.load && m.load.length) m.load.remove();
+			if(m.modal) m.modal.remove();
 			
 			/**
 			 * Callback
@@ -432,6 +427,8 @@
 				o.onFecha.apply(m.modal, new Array(m, el, $t, o));
 			}
 			
+			m = [];
+
 			return false;
 		}
 		
