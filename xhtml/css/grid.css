@@ -76,7 +76,12 @@
 .grid-12 .nenhum, .grid-16 .nenhum, .grid-24 .nenhum{margin-left: 0; margin-right: 0;}
 
 /*HELPERS*/
-.grid-12 .esquerda, .grid-16 .esquerda, .grid-24 .esquerda{padding-left: 10px;}
-.grid-12 .direita, .grid-16 .direita, .grid-24 .direita{padding-right: 10px;}
-.grid-12 .centro, .grid-16 .centro, .grid-24 .centro{padding-left: 5px; padding-right: 5px;}
-.grid-12 .centro-duplo, .grid-16 .centro-duplo, .grid-24 .centro-duplo{padding-left: 10px; padding-right: 10px;}
+.esquerda5{padding-left: 5px;}
+.esquerda10{padding-left: 10px;}
+.esquerda15{padding-left: 15px;}
+.esquerda20{padding-left: 20px;}
+
+.direita5{padding-right: 5px;}
+.direita10{padding-right: 10px;}
+.direita15{padding-right: 15px;}
+.direita20{padding-right: 20px;}
