@@ -1,6 +1,15 @@
 /* ELEMENTOS LINHA FRAMEWORK */
 /* ----------------------------------------- */
 
+/*Loading*/
+.tooltip-load, .modal-load{
+	background: #434343 url(../img/load.gif) no-repeat center;
+	display: block;
+	height: 13px;
+	padding: 5px;
+	width: 62px;
+}
+
 /*ACORD*/
 .accordion{
 	background: #f9f9f9;
@@ -294,13 +303,7 @@ div.miniatura{
 	border: 1px solid #222;
 	display: block;
 }
-.tooltip-load, .modal-load{
-	background: #434343 url(../img/load.gif) no-repeat center;
-	display: block;
-	height: 13px;
-	padding: 5px;
-	width: 62px;
-}
+
 /*Setas*/
 .tooltip-seta div{
 	position: absolute;
