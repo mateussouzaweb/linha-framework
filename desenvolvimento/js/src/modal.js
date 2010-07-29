@@ -264,15 +264,16 @@
 			else if($t.hasClass(o.seletorAjax)){
 				
 				m.conteudo.load(el.link, function(rt, ts, xhr){
-			
-					if(ts == 'error'){
-						m.conteudo.append("Ocorreu algum erro ou esta url não existe...");
-					}
-				
-					m.load.fadeOut(o.tempoFundo, function(){$(this).remove();});
-					return mostraModal();
+					if(xhr){
+						if(ts == 'error'){
+							m.conteudo.append("Ocorreu algum erro ou esta url não existe...");
+						}
 					
+						m.load.fadeOut(o.tempoFundo, function(){$(this).remove();});
+						return mostraModal();
+					}
 				});
+			return;
 			}
 			
 			/**
