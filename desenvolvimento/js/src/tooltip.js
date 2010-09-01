@@ -8,7 +8,7 @@
 	};
 	
 	$.tooltip = function(options, elem){
-			
+		
 		var padrao = {
 			
 			seletor: '.tooltip',						//Seletor padrão caso não haja nenhum, usado caso use o plugin sem o seletor $.plugin
@@ -40,6 +40,7 @@
 			mensagemErro: 'Erro no tooltip',			//Mensagem alternativa para erro de carregamento (em ajax e imagens)
 			
 			onInicia: null,								//Callback
+			onCria: null,	 							//Callback
 			onPosiciona: null, 							//Callback
 			onTermina: null								//Callback
 		};
@@ -56,7 +57,7 @@
 		 * EVENTO INICIAL
 		 */
 		$d.delegate(elem.selector, o.evento , function(e){
-			return criaTooltip($(this), e);
+			return iniciaTooltip($(this), e);
 		});
 		
 		/**
@@ -90,7 +91,7 @@
 		 * @param {Object} $t - elemento
 		 * @param {Object} e - evento
 		 */
-		function criaTooltip($t, e){
+		function iniciaTooltip($t, e){
 			
 			/**
 			 * Callback
@@ -100,7 +101,7 @@
 			}
 			
 			atual = $t;
-			tip.conteudo = $t.attr(o.atributo), 
+			tip.conteudo = tip.data = $t.attr(o.atributo), 
 			tip.largura = $t.attr(o.atributoLargura),
 			tip.altura = $t.attr(o.atributoAltura); 
 			
@@ -142,14 +143,19 @@
 					position: 'fixed', 
 					left: 0
 				});
-
+			
+			/**
+			 * Checa o loading
+			 */
+			if($t.hasClass(o.seletorImagem) || $t.hasClass(o.seletorAjax)){
+				tip.load.appendTo('body').fadeIn(o.tempo);
+				tip.load.css({ top: $w.height() - tip.load.outerHeight()});
+			}
+			
 			/**
 			 * Imagem
 			 */
 			if ($t.hasClass(o.seletorImagem)) {
-				
-				tip.load.appendTo('body').fadeIn(o.tempo);
-				tip.load.css({ top: $w.height() - tip.load.outerHeight()});
 				
 				var img = new Image();
 				$(img).load(function(){
@@ -160,13 +166,10 @@
 						width: this.width
 					});
 					
-					tip.tip.html(this).wrapInner(o.wrapperTooltip);
-					tip.area.appendTo('body').fadeIn(o.tempo);
-					tip.load.remove();
-
+					tip.data = this;
 					$(this).fadeIn(o.tempo);
 
-					return posicionaTooltip($t, e);
+					return criaTooltip($t, e);
 						
 				}).attr('src', tip.conteudo);
 					
@@ -178,27 +181,16 @@
 			 */
 			else if ($t.hasClass(o.seletorAjax)) {
 			
-				tip.load.appendTo('body').fadeIn(o.tempo);
-				tip.load.css({ top: $w.height() - tip.load.outerHeight()});
-				
 				$.ajax({
 					type: "POST",
 					url: tip.conteudo,
 					success: function(data){
-						tip.tip.html(data).wrapInner(o.wrapperTooltip);
-						tip.area.appendTo('body').fadeIn(o.tempo);
-						tip.load.fadeOut('fast', function(){
-							$(this).remove();
-						});
-						return posicionaTooltip($t, e);	
+						tip.data = data;
+						return criaTooltip($t, e);	
 					},
 					error: function() {
-						tip.tip.html(o.mensagemErro).wrapInner(o.wrapperTooltip);
-						tip.area.appendTo('body').fadeIn(o.tempo);
-						tip.load.fadeOut('fast', function(){
-							$(this).remove();
-						});
-						return posicionaTooltip($t, e);
+						tip.data = o.mensagemErro;
+						return criaTooltip($t, e);
 		   			}
 		
 				});
@@ -210,10 +202,34 @@
 			 * Normal
 			 */
 			else {
-				tip.tip.html(tip.conteudo).wrapInner(o.wrapperTooltip);
-				tip.area.appendTo('body').fadeIn(o.tempo);
-				return posicionaTooltip($t, e);
+				return criaTooltip($t, e);
 			}
+		}
+		
+		/**
+		 * "Cria" o tooltip, data o mesmo e exibe na tela
+		 * @param {Object} $t - elemento
+		 * @param {Object} e - evento
+		 */
+		function criaTooltip($t, e){
+			
+			tip.tip.html(tip.data).wrapInner(o.wrapperTooltip);
+			
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onCria)){
+				o.onCria.apply($t, new Array($t, tip, e, o));
+			}
+		
+			if(tip.load.length){
+				tip.load.fadeOut('fast', function(){
+					$(this).remove();
+				});
+			}
+			tip.area.appendTo('body').fadeIn(o.tempo);
+			
+			return posicionaTooltip($t, e);
 		}
 		
 		/**
