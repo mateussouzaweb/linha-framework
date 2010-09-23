@@ -15,9 +15,6 @@
 				evento: 'focus',				//Evento para disparar o focuss
 				eventoFim: 'blur',				//Evento para terminar o focuss
 				
-				tempoIn: 'normal',				//Tempo para animar o efeito no inicio
-				tempoOut: 'normal',				//Tempo para animar o efeito no final do evento
-				
 				classe: 'focus', 				//Classe a ser adicionada, no evento inicial
 				removeTexto: false,				//Remover texto pré-escrito, se o valor não for direferente ou nulo retorna o padrão
 				
