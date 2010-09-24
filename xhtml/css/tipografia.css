@@ -46,6 +46,7 @@ table tr th{
 	background: #EEE;
 	border: 1px solid #CCC;
 	padding: 5px 10px;
+	vertical-align: middle;
 }
 table tr td{
 	border: 1px solid #DDD;
