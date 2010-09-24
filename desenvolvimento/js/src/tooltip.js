@@ -29,9 +29,9 @@
 			tempo: 'fast',								//Tempo para exibir o tooltip, "slow", "normal", "fast" ou em milesegundos
 			
 			evento: 'mouseover', 						//Evento para disparar a exibição do tooltip
-			eventoFim: 'mouseout', 						//Evento para terminar a exbição do tooltip
+			eventoFim: 'mouseout', 						//Evento para terminar a exibição do tooltip
 			
-			atributo: 'rel',							//Atributo como base de conteudo
+			atributo: 'rel',							//Atributo como base de conteúdo
 			atributoAltura: 'altura',					//Atributo para definir altura personalizada ao tooltip
 			atributoLargura: 'largura',					//Atributo para definir largura personalizada ao tooltip
 			

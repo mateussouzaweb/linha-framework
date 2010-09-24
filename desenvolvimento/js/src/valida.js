@@ -15,7 +15,7 @@
 			classeValidacao: 'valida', 				//Classe padrão para os inputs para validação
 			classeEmail: 'email',					//Classe para validar e-mails
 			classeUrl: 'url',						//Classe para validar urls
-			classeNumero: 'numero',					//Classe pra validar numeros
+			classeNumero: 'numero',					//Classe pra validar números
 			
 			classeRegex: 'regex',					//Classe para validação personalizada
 			atributoRegex: 'regex',					//Atributo para regex | validação personalizada
