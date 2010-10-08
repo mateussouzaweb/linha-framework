@@ -1,6 +1,6 @@
 Change Log LINHA FRAMEWORK
 -----------------------------------------------------
-1.2 - XX de Junho de 2010
+1.2 - 23 de Setembro de 2010
 --
  * Atualização para os plugins: Linha Acord, Linha Focuss, Linha Modal, Linha Nav, Linha Slidetabs, Linha Tooltip e Linha Form(agora chamado Valida), 
  * Linha Form renomeado pra Linha Valida(o nome tem mais relação com a função do plugin)
