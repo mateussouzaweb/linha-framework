@@ -1,15 +1,10 @@
 LINHA FRAMEWORK - 1.3
 =====================
-http://www.linhaframework.com
-
-by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
+http://www.linhaframework.com || by Mateus Souza - mateussouzaweb@gmail.com | http://www.mateussouza.com
 
 Licença
 -----------
 MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
-
-Algumas Considerações
-=====================
 
 MONITORAMENTO LIVE
 ------------------
@@ -29,7 +24,7 @@ Se desejar alterar, a opção é "liveTempo", mais lembre-se que deve ser em mil
 
 Alternativamente você pode fazer o monitoramento de modo manual.
 
-Use @$('elemento-adicionado').trigger('iniciaPluginX');@ quando ele for inserido na página por meio de ajax ou html(); por exemplo...assim terá o mesmo efeito do monitoramente live, mais de forma manual.
+Use **$('elemento-adicionado').trigger('iniciaPluginX');** quando ele for inserido na página por meio de ajax ou html(); por exemplo...assim terá o mesmo efeito do monitoramente live, mais de forma manual.
 
 Lembre-se que o seletor para o trigger deve ser o mesmo usado em sua nova instância do plugin, para que o plugin recupere as opções setadas para este elemento. EX:
 
@@ -70,7 +65,7 @@ CALLBACK
 --------
 
 Todos os plugins oferem o callback para personalização de eventos. Os callbacks possuem argumentos personalizados, mas sempre está relacionado ao elemento do plugin + opções do plugin.
-p. Em cada callback é possível usar o elemento @$(this)@ ou @this@ na função. Este elemento será o que disparou o evento ou o elemento do plugin. Mais não fica só por ai, como citei há os argumentos. Ao se utilizar dos argumentos, use da seguinte maneira:
+p. Em cada callback é possível usar o elemento **$(this)** ou **this** na função. Este elemento será o que disparou o evento ou o elemento do plugin. Mais não fica só por ai, como citei há os argumentos. Ao se utilizar dos argumentos, use da seguinte maneira:
 
 <pre>
 $('meu-elemento').pluginX({
