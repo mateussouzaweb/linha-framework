@@ -14,7 +14,7 @@
 		
 		<concat destfile="${build}/${name}.js" encoding="UTF-8">
 			<header trimleading="yes">/**
-			 * Linha Framework v1.2
+			 * Linha Framework v${version}
 			 * http://www.linhaframework.com
 			 *
 			 * Copyright 2010
