@@ -1,14 +1,14 @@
 <project name="jQuery.Linha.Framework" default="min">
 	
 	<!-- Opções -->
-	<property name="version" value="1.2" />
-	<property name="build" value="build/${version}"/>
-	<property name="name" value="jquery.linha.framework" />
+	<property name="version" value="1.3" />
+	<property name="build" value="${version}"/>
+	<property name="name" value="jquery.linha.framework-1.3" />
 	
 	<!-- Código Fonte -->
 	<target name="fonte">
 	
-		<echo>Criando código fonte para a versão.</echo>
+		<echo>Criando código fonte.</echo>
 		
 		<mkdir dir="${build}" />
 		
@@ -22,13 +22,14 @@
 			 * Licensed under MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 			 */
 			</header>
-			<fileset file="src/acord.js" />
-            <fileset file="src/focuss.js" />
-            <fileset file="src/modal.js" />
-            <fileset file="src/nav.js" />
-            <fileset file="src/slidetabs.js" />
-            <fileset file="src/tooltip.js" />
-            <fileset file="src/valida.js" />
+			<fileset file="../src/core.js" />
+			<fileset file="../src/acord.js" />
+            <fileset file="../src/focuss.js" />
+            <fileset file="../src/modal.js" />
+            <fileset file="../src/nav.js" />
+            <fileset file="../src/slidetabs.js" />
+            <fileset file="../src/tooltip.js" />
+            <fileset file="../src/valida.js" />
         </concat>
 		
 	</target>
@@ -43,7 +44,7 @@
 				<include name="${name}.js" />
 			</fileset>
 			<arg line="-jar"/>
-			<arg path="build/google-compiler.jar"/>
+			<arg path="google-compiler.jar"/>
 			<arg value="--warning_level" />
 			<arg value="QUIET" />
 			<arg value="--js_output_file" />
@@ -62,8 +63,8 @@
 			<filelist files="${build}/temp"/>
 		</concat>
 		
-		<!--<copy file="${build}/${name}.js" todir="../../xhtml/js/" overwrite="true" />-->
-		<copy file="${build}/${name}.min.js" todir="../../xhtml/js/" overwrite="true" />
+		<!--<copy file="${build}/${name}.js" todir="../../../xhtml/js/" overwrite="true" />-->
+		<copy file="${build}/${name}.min.js" todir="../../../xhtml/js/" overwrite="true" />
 
 		<delete dir="${build}" quiet="true"/>
 	</target>
