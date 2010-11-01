@@ -15,26 +15,57 @@ mark, audio, video, a {
     background:transparent;
 }
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {display:block;}
-nav ul, ul, ol {list-style:none;}
+nav ul, ul, ol { list-style:none; }
 
-blockquote, q {quotes:none;}
-blockquote:before, blockquote:after, q:before, q:after {content:'';content:none;}
+blockquote, q { quotes:none; }
+blockquote:before, blockquote:after, q:before, q:after { content:''; content:none; }
 
-body {line-height:1;}
+body { line-height:1; }
 
-abbr[title], dfn[title] {border-bottom:1px dotted #000; cursor:help;}
+abbr[title], dfn[title] { border-bottom:1px dotted #000; cursor:help; }
 
-table { border-collapse:collapse; border-spacing:0;}
+table { border-collapse:collapse; border-spacing:0; }
 
-input, select { vertical-align:middle;}
-input::-moz-focus-inner {border: 0; padding: 0;}
+td, td img { vertical-align: top; } 
 
-:focus {outline: 0;}
+sub { vertical-align: sub; font-size: smaller; }
+sup { vertical-align: super; font-size: smaller; }
 
-.clear{ clear:both; display: block; height: 0px; overflow:hidden;}
-.clearfix:after{ visibility: hidden; display: block; font-size: 0; content: " ";  clear: both; height: 0px; }
-* html .clearfix {height: 1%;}
+pre, blockquote, textarea {
+	white-space: pre; /* CSS2 */
+	white-space: pre-wrap; /* CSS 2.1 */
+	white-space: pre-line; /* CSS 3 (e 2.1) */
+	word-wrap: break-word; /* IE */
+}
 
-.left{ float: left;}
-.right{ float: right;}
-.hide{ display: none;}
+input, select { vertical-align:middle; }
+input::-moz-focus-inner { border: 0; padding: 0; }
+
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; }
+.ie7 input[type="checkbox"] { vertical-align: baseline; }
+.ie6 input { vertical-align: text-bottom; }
+
+button, input, select, textarea { margin: 0; }
+
+button { width: auto; overflow: visible; }
+
+label, input[type="button"], input[type="submit"], button { cursor: pointer; }
+
+textarea{ overflow: auto; }
+
+:focus { outline: 0; }
+
+::-moz-selection{ background: #535353; color:#fff; text-shadow: none; }
+::selection { background:#535353; color:#fff; text-shadow: none; } 
+
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+.clear { clear:both; display: block; height: 0px; overflow:hidden;}
+.clearfix { zoom: 1; }
+.clearfix:after { visibility: hidden; display: block; font-size: 0; content: " ";  clear: both; height: 0px; }
+* html .clearfix { height: 1%;}
+
+.left { float: left;}
+.right { float: right;}
+.hide { display: none;}

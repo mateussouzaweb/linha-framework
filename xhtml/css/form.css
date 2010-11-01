@@ -59,12 +59,14 @@ select{
 	-khtml-border-radius: 1px;
 	border-radius: 1px;
 }
+.safari select, .chrome select{
+	margin-top: 7px;
+}
 option{
 	padding: 2px 8px 0;
 }
 
 button {
-	overflow: visible;
 	padding: 0 5px;
 }
 
@@ -75,6 +77,6 @@ input[type="password"]:focus,
 textarea:focus,
 select:focus{
 	background-color: #fcfcfc;
-	outline:none;
 	border-color: #aaa;
+	outline:none;
 }

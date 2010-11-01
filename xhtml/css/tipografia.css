@@ -109,6 +109,9 @@ mark {
 	font-style:italic;
 	font-weight:bold;
 }
+del {
+	text-decoration: line-through;
+}
 blockquote{
 	background: #f2f2f2;
 	border: 1px solid #ccc;
