@@ -12,7 +12,7 @@
 
 /*ACORD*/
 .accordion{
-	background: #f9f9f9;
+	background: #F9F9F9;
 	border: 1px solid #222;
 	border-top: none;
 }
@@ -22,7 +22,7 @@
 	border-bottom: 1px solid #434343;
 	color: #FFF;
 	cursor: pointer;
-	display:block;
+	display: block;
 	font-size: 16px;
 	font-weight: bold;
 	padding: 7px 10px;
@@ -35,7 +35,7 @@
 	border-left-color: #5db1e0;
 }
 .accordion div{
-	border: 1px solid #fff;
+	border: 1px solid #FFF;
 	padding: 5px 10px;
 }
 .accordion .accordion-filho-atual{
@@ -79,12 +79,12 @@ ul.accordion{
 	padding: 10px;	
 }
 .modal-fecha{
-	color:#FFFFFF;
+	color: #FFFFFF;
 	cursor: pointer;
-	font-size:21px;
-	font-weight:bold;
-	position:absolute;
-	right:8px;
+	font-size: 21px;
+	font-weight: bold;
+	position: absolute;
+	right: 8px;
 	top: 3px;
 	text-shadow: 1px 1px 1px #000;
 }
@@ -112,7 +112,7 @@ ul.menu li a{
 /*Hover*/
 ul.menu li a:hover, ul.menu li:hover{
 	background: #4698ca;
-	cursor:pointer;
+	cursor: pointer;
 	color: #FFFFFF;
 	z-index: 10;
 }
@@ -197,7 +197,7 @@ div.miniatura{
 	display: block;
 	float: left;
 	font-size: 25px;
-	height:52px;
+	height: 52px;
 	line-height: 52px;
 	margin: 0 0 5px 10px;
 	width: 57px;
@@ -228,10 +228,10 @@ div.miniatura{
 	padding: 0;
 }
 .slider-painel{
-	display:block;
-	float:left;
-	height:55px;
-	overflow:hidden;
+	display: block;
+	float: left;
+	height: 55px;
+	overflow: hidden;
 	width: 266px;
 }
 .slider-painel div div{
@@ -241,7 +241,7 @@ div.miniatura{
 	display: block;
 	font-size: 25px;
 	float: left;
-	height:52px;
+	height: 52px;
 	line-height: 52px;
 	margin: 0 10px 5px 0;
 	text-align: center;
@@ -250,8 +250,8 @@ div.miniatura{
 
 /*TABS*/
 .tabs_area{
-	border: 1px solid #000;
 	background: #222;
+	border: 1px solid #000;
 	display: block;
 	padding: 5px;
 	width: 600px;
@@ -316,77 +316,77 @@ div.miniatura{
 .tooltip-seta .tooltip-posicao-topo-direita,
 .tooltip-seta .tooltip-posicao-topo-lateral-esquerda,
 .tooltip-seta .tooltip-posicao-topo-lateral-direita{
-	border-bottom-color:#434343;
+	border-bottom-color: #434343;
 }
 .tooltip-seta .tooltip-posicao-topo-centro,
 .tooltip-seta .tooltip-posicao-topo-lateral-esquerda,
 .tooltip-seta .tooltip-posicao-topo-lateral-direita{
-	top:-13px;
+	top: -13px;
 }
 .tooltip-seta .tooltip-posicao-topo-centro,
 .tooltip-seta .tooltip-posicao-rodape-centro{
-	left:50%;
+	left: 50%;
 }
 .tooltip-seta .tooltip-posicao-topo-centro,
 .tooltip-seta .tooltip-posicao-rodape-centro,
 .tooltip-seta .tooltip-posicao-rodape-direita,
 .tooltip-seta .tooltip-posicao-topo-direita{
-	margin-left:-6px;
+	margin-left: -6px;
 }
 .tooltip-seta .tooltip-posicao-rodape-centro,
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-rodape-direita,
 .tooltip-seta .tooltip-posicao-rodape-lateral-esquerda,
 .tooltip-seta .tooltip-posicao-rodape-lateral-direita{
-	border-top-color:#434343;
+	border-top-color: #434343;
 }
 .tooltip-seta .tooltip-posicao-rodape-centro,
 .tooltip-seta .tooltip-posicao-rodape-lateral-esquerda,
 .tooltip-seta .tooltip-posicao-rodape-lateral-direita{
-	bottom:-13px;
+	bottom: -13px;
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-topo-esquerda,
 .tooltip-seta .tooltip-posicao-centro-direita {
-	border-right-color:#434343;
+	border-right-color: #434343;
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-rodape-direita {
-	bottom:-10px;
+	bottom: -10px;
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-topo-esquerda,
 .tooltip-seta .tooltip-posicao-rodape-lateral-direita,
 .tooltip-seta .tooltip-posicao-topo-lateral-direita {
-	right:0;
+	right: 0;
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-topo-esquerda {
-	margin-right:-1px;
+	margin-right: -1px;
 }
 .tooltip-seta .tooltip-posicao-topo-esquerda,
 .tooltip-seta .tooltip-posicao-topo-direita {
-	top:-10px;
+	top: -10px;
 }
 .tooltip-seta .tooltip-posicao-rodape-direita,
 .tooltip-seta .tooltip-posicao-topo-direita,
 .tooltip-seta .tooltip-posicao-centro-esquerda {
-	border-left-color:#434343;
+	border-left-color: #434343;
 }
 .tooltip-seta .tooltip-posicao-rodape-direita,
 .tooltip-seta .tooltip-posicao-topo-direita,
 .tooltip-seta .tooltip-posicao-rodape-lateral-esquerda,
 .tooltip-seta .tooltip-posicao-topo-lateral-esquerda {
-	left:0;
+	left: 0;
 }
 .tooltip-seta .tooltip-posicao-centro-direita,
 .tooltip-seta .tooltip-posicao-centro-esquerda {
-	top:50%;
-	margin-top:-6px;
+	top: 50%;
+	margin-top: -6px;
 }
 .tooltip-seta .tooltip-posicao-centro-direita {
-	left:-13px;
+	left: -13px;
 }
 .tooltip-seta .tooltip-posicao-centro-esquerda {
-	right:-13px
+	right: -13px
 }

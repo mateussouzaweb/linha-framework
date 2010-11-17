@@ -56,8 +56,8 @@ textarea{ overflow: auto; }
 
 :focus { outline: 0; }
 
-::-moz-selection{ background: #535353; color:#fff; text-shadow: none; }
-::selection { background:#535353; color:#fff; text-shadow: none; } 
+::-moz-selection{ background: #535353; color:#FFF; text-shadow: none; }
+::selection { background:#535353; color:#FFF; text-shadow: none; } 
 
 .ie7 img { -ms-interpolation-mode: bicubic; }
 

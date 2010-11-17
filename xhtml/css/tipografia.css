@@ -57,8 +57,8 @@ table tr td{
 .alerta{
 	background: #EDEDED;
 	border: 1px solid #C0C0C0;
-	display: block;
 	color: #333;
+	display: block;
 	margin: 5px 0;
 	padding: 10px;
 	-moz-border-radius: 3px;
@@ -67,54 +67,54 @@ table tr td{
 	border-radius: 3px;
 }
 .verde{
-	background: #E9F9E5;
-	border:1px solid #9BDEA8;
+	background-color: #E9F9E5;
+	border-color: #9BDEA8;
 	color: #1C8400;
 }
 .vermelho{
-	background: #F9E5E6;
-	border:1px solid #DF8F8F;
+	background-color: #F9E5E6;
+	border-color: #DF8F8F;
 	color: #C32727;
 }
 .amarelo{
-	background: #FFF6BF;
-	border:1px solid #EFC20E;
+	background-color: #FFF6BF;
+	border-color: #EFC20E;
 }
 .azul{
-	background: #DDEEFF;
-	border:1px solid #85CAF3;
+	background-color: #DDEEFF;
+	border-color: #85CAF3;
 	color: #0055B5;
 }
 .erro{
-	border: 1px solid #F00; 
+	border-color: #F00; 
 }
 
 /*OUTROS*/
 hr {
-	display:block;
-	height:1px;
-	border:0;
-	border-top:1px solid #cccccc;
-	margin:1em 0;
-	padding:0;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #CCC;
+	margin: 1em 0;
+	padding: 0;
 }
 ins {
-	background-color:#ff9; 
-	color:#000;
-	text-decoration:none;
+	background-color: #FF9; 
+	color: #000;
+	text-decoration: none;
 }
 mark {
-	background-color:#ff9;
-	color:#000;
-	font-style:italic;
-	font-weight:bold;
+	background-color: #FF9;
+	color: #000;
+	font-style: italic;
+	font-weight: bold;
 }
 del {
 	text-decoration: line-through;
 }
 blockquote{
-	background: #f2f2f2;
-	border: 1px solid #ccc;
+	background: #F2F2F2;
+	border: 1px solid #CCC;
 	margin-bottom: 10px;
 	padding: 10px 20px 0px;
 	-moz-border-radius: 3px;
@@ -123,7 +123,7 @@ blockquote{
 	border-radius: 3px;
 }
 iframe{
-	border: 1px solid #ccc;
+	border: 1px solid #CCC;
 }
 
 /*CLASSES HELPERS*/
