@@ -1,17 +1,11 @@
 /**
- * Tooltip 1.2
+ * Tooltip 1.3
  */
 (function($){
 	
 	$.fn.tooltip = function(options){
-		return new $.tooltip(options, this);
-	};
-	
-	$.tooltip = function(options, elem){
 		
 		var padrao = {
-			
-			seletor: '.tooltip',						//Seletor padrão caso não haja nenhum, usado caso use o plugin sem o seletor $.plugin
 			seletorImagem: 'imagem',					//Seletor para modo imagem
 			seletorAjax: 'ajax',						//Seletor para modo Ajax
 			
@@ -45,25 +39,23 @@
 			onTermina: null								//Callback
 		};
 		var o = $.extend(padrao, options),
-		tip = {},
-		atual,
-		$d = $(document),
-		$w = $(window);
+			tip = {},
+			atual,
+			$d = $(document),
+			$w = $(window);
 			
-		if(elem === undefined){ elem = $(o.seletor);}
-		
 		/**
 		 * Delegando eventos
 		 * EVENTO INICIAL
 		 */
-		$d.delegate(elem.selector, o.evento , function(e){
+		$d.delegate(this.selector, o.evento , function(e){
 			return iniciaTooltip($(this), e);
 		});
 		
 		/**
 		 * EVENTO FINAL
 		 */
-		$d.delegate(elem.selector, o.eventoFim , function(){
+		$d.delegate(this.selector, o.eventoFim , function(){
 			return removeTooltip($(this));
 		});
 		
@@ -72,7 +64,7 @@
 		 * No caso MOUSEMOVE
 		 */
 		if (!o.fixado) {
-			$d.delegate(elem.selector, 'mousemove', function(e){
+			$d.delegate(this.selector, 'mousemove', function(e){
 				return posicionaTooltip($(this), e);
 			});
 		}
@@ -81,9 +73,9 @@
 		 * Fix de posição para window resize e scroll
 		 */
 		$w.resize(function(e){
-			if(atual){return posicionaTooltip(atual, e);}
+			if(atual) return posicionaTooltip(atual, e);
 		}).scroll(function(e){
-			if(atual){return posicionaTooltip(atual, e);}
+			if(atual) return posicionaTooltip(atual, e);
 		});
 		
 		/**
@@ -108,7 +100,7 @@
 			/**
 			 * Checa se há conteúdo para a tooltip
 			 */
-			if(tip.conteudo === undefined){ return;}
+			if(tip.conteudo == undefined) return;
 			
 			/**
 			 * Se for title, exibe somente o tootip
@@ -120,7 +112,7 @@
 			/**
 			 * Cria o tooltip
 			 */
-			tip.area = $('<div></div>')
+			tip.area = $('<div/>')
 				.addClass(o.classeArea)
 				.css({
 					display: 'none',
@@ -129,14 +121,14 @@
 					height: tip.altura
 				});
 			
-			tip.tip = $('<div></div>')
+			tip.tip = $('<div/>')
 				.addClass(o.classeConteudo)
 				.appendTo(tip.area);
 			
 			/**
 			 * Cria o loading
 			 */
-			tip.load = $('<div></div>')
+			tip.load = $('<div/>')
 				.addClass(o.classeLoad)
 				.css({
 					display: 'none',
@@ -149,7 +141,7 @@
 			 */
 			if($t.hasClass(o.seletorImagem) || $t.hasClass(o.seletorAjax)){
 				tip.load.appendTo('body').fadeIn(o.tempo);
-				tip.load.css({ top: $w.height() - tip.load.outerHeight()});
+				tip.load.css('top', $w.height() - tip.load.outerHeight());
 			}
 			
 			/**
@@ -227,6 +219,8 @@
 					$(this).remove();
 				});
 			}
+			
+			if(!tip.area) return false;
 			tip.area.appendTo('body').fadeIn(o.tempo);
 			
 			return posicionaTooltip($t, e);
