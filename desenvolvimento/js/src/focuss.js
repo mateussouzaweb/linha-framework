@@ -1,47 +1,37 @@
 /**
- * Focus 1.1
+ * Focus 1.2
  */
 (function($){
 	
 	$.fn.focuss = function(options){
-		return new $.focuss(options, this);	
-	};
-	
-	$.focuss = function(options, elem){
 		
 		var padrao = {
-				seletor: 'input, textarea',		//Seletor padrão, usado caso use o plugin sem o seletor $.plugin
+			evento: 'focus',				//Evento para disparar o focuss
+			eventoFim: 'blur',				//Evento para terminar o focuss
 				
-				evento: 'focus',				//Evento para disparar o focuss
-				eventoFim: 'blur',				//Evento para terminar o focuss
+			classe: 'focus', 				//Classe a ser adicionada, no evento inicial
+			removeTexto: false,				//Remover texto pré-escrito, se o valor não for direferente ou nulo retorna o padrão
 				
-				classe: 'focus', 				//Classe a ser adicionada, no evento inicial
-				removeTexto: false,				//Remover texto pré-escrito, se o valor não for direferente ou nulo retorna o padrão
+			onInicia: null,					//Callback
+			onTermina: null,				//Callback
 				
-				onInicia: null,					//Callback
-				onTermina: null,				//Callback
-				
-				live: false,					//Abilitar o monitoramento live
-				liveTempo: 100					//Tempo entra cada checagem, em milisegundos
-			};
+			live: false,					//Abilitar o monitoramento live
+			liveTempo: 100					//Tempo entra cada checagem, em milisegundos
+		};
 		var o = $.extend(padrao, options),
-			$d = $(document);
-		
-		if(elem === undefined){ elem = $(o.seletor);}
-		elem.elements = [];
+			s = this.selector,
+			elems = [];
 		
 		/**
 		 * Delegando evento inicial
 		 */	
-		$d.delegate(elem.selector, 'iniciaFocuss', function(){
+		$(document).delegate(s, 'iniciaFocuss', function(){
 			
-			var elems = elem.elements,
-			els  =  $(elem.selector, elem.context),
-			nEls = els.not(elems).not(':submit');
-			elem.elements = els;
+			var	nEls = $(s).not(elems);
+			elems = $(s);
 
 			/**
-			 * Retorna o processamento dos elementos q passaram
+			 * Retorna o processamento dos elementos que passaram
 			 */
 			nEls.each(function() {
 				var $t = $(this),
@@ -67,10 +57,10 @@
 		 */
 		if(o.live){
 			setInterval(function(){
-				$(elem.selector).trigger('iniciaFocuss');
+				$(s).trigger('iniciaFocuss');
 			}, o.liveTempo);
 		}else{
-			if(elem.length){elem.trigger('iniciaFocuss');}
+			if(this.length) this.trigger('iniciaFocuss');
 		}
 
 		/**
@@ -80,7 +70,7 @@
 		 */
 		function animaFocuss($t, texto){
 		
-			if(o.removeTexto) {if ($t.val() == texto) {$t.val('');}}
+			if(o.removeTexto && $t.val() == texto) $t.val('');
 			
 			$t.addClass(o.classe);
 			
@@ -99,7 +89,7 @@
 		 */
 		function terminaFocuss($t, texto){
 
-			if(o.removeTexto){if($t.val() == ''){$t.val(texto);}}	
+			if(o.removeTexto && $t.val() == '') $t.val(texto);	
 	
 			$t.removeClass(o.classe);
 			
