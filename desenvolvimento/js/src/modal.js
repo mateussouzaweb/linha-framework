@@ -1,16 +1,11 @@
 /**
- * Modal 1.1
+ * Modal 1.2
  */
 (function($){
-	
+
 	$.fn.modal = function(options){
-		return new $.modal(options, this);
-	};
-	
-	$.modal = function(options, elem){
 			
 		var padrao = {
-			seletor: '.modal',								//Seletor padrão/geral, usado caso use o plugin sem o seletor $.plugin
 			seletorImagem: 'imagem',						//Classe seletora para modals com imagem
 			seletorAjax: 'ajax',							//Classe seletora para modals em ajax ou load
 			seletorIframe: 'iframe',						//Classe seletora para modals com iframe
@@ -63,27 +58,22 @@
 		};
 			
 		var o = $.extend(padrao, options),
-			$d = $(document),
 			$w = $(window),
-			m = [],	//modal
+			m = [], //modal
 			el = [],//elemento
-			w = [],	//window
-			$t = '';
-		
-		if(elem === undefined){ elem = $(o.seletor);}
+			w = [], //window
+			$t;
 		
 		/**
 		 * Delegando evento
 		 */
-		$d.delegate(elem.selector, o.evento, function(){
+		$(document).delegate(this.selector, o.evento, function(){
 			
 			/**
 			 * Checa se ja exite uma modal por ai...
 			 */
-			if($('.'+ o.classeModal).length){
-				return false;
-			}
-			
+			if($('.'+ o.classeModal).length) return false;
+						
 			$t = $(this);
 			
 			/**
@@ -129,7 +119,7 @@
 			 * Fundo
 			 */
 			if (o.fundo) {
-				m.fundo = $('<div></div>')
+				m.fundo = $('<div/>')
 					.addClass(o.classeFundo)
 					.css({
 						width: '100%',
@@ -148,7 +138,7 @@
 			/**
 			 * Loading
 			 */
-			m.load = $('<div></div>')
+			m.load = $('<div/>')
 				.addClass(o.classeLoad)
 				.css({
 					position: 'fixed',
@@ -160,7 +150,7 @@
 			/**
 			 * Modal
 			 */
-			m.modal = $('<div></div>')
+			m.modal = $('<div/>')
 				.addClass(o.classeModal)
 				.css({
 					width: el.largura,
@@ -185,10 +175,10 @@
 			m.fecha = $('<span>x</span>').addClass(o.classeFecha);
 
 			if(o.classeTitulo != null && o.classeTitulo){
-				m.titulo = $('<div></div>').addClass(o.classeTitulo);
+				m.titulo = $('<div/>').addClass(o.classeTitulo);
 			}
 			
-			m.conteudo = $('<div></div>').addClass(o.classeConteudo);
+			m.conteudo = $('<div/>').addClass(o.classeConteudo);
 			
 			/**
 			 * Eventos Fecha (Fundo), adicionado agora pq é melhor
@@ -217,7 +207,7 @@
 			 * Adiciona o título
 			 */
 			if(m.titulo) m.titulo.html(o.titulo).append(el.titulo);
-			
+
 			/**
 			 * Checa o loading
 			 */
@@ -317,7 +307,7 @@
 		 * @param {Object} h
 		 */
 		function redimensionaModal(w, h){
-			m.conteudo.css({height: h,width: w});
+			m.conteudo.css({height: h, width: w});
 			mostraModal();
 		}
 		
@@ -349,10 +339,12 @@
 			 * Se for fixed define margin, se não define top e left
 			 */
 			if(o.autoPosiciona){
+				
 				m.modal.css({
 					marginTop: -(m.modal.outerHeight()/2),
 					marginLeft: -(m.modal.outerWidth()/2)
 				});
+				
 			}else{
 				
 				/**
@@ -362,11 +354,10 @@
 				w.h = $w.height();
 				w.sl = $w.scrollLeft();
 				w.st = $w.scrollTop();
-				var mTop = w.h/2 + (w.st) - (m.modal.outerHeight()/2);
-				var mLeft = (w.w/2) + w.sl - (m.modal.outerWidth()/2);
+		
 				m.modal.css({
-					top: mTop,
-					left: mLeft
+					top: (w.h/2 + (w.st) - (m.modal.outerHeight()/2)),
+					left: ((w.w/2) + w.sl - (m.modal.outerWidth()/2))
 				});
 			}
 			
@@ -390,7 +381,8 @@
 					o.onCancela.apply(this, new Array(m, el, $t, o));
 				}
 				return deletaModal();
-			});	
+			});
+			
 			$('.'+o.seletorConfirma)[o.eventoConfirma](function(){
 				/**
 				 * Callback
