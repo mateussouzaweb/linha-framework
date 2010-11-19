@@ -16,12 +16,15 @@
 			atributoUrl: 'url',									//Atributo para url do accordion em ajax
 				
 			evento: 'click',									//Evento para disparar o efeito accordion
-				
+			
+			hash: false,										//Habilitar navegação via hash? 	
 			inicial: 1, 										//Define o acordion que será exibido inicialmente ou default
+			
 			sempreUm: true,										//Deixar sempre exibindo um seletor filho no accordion?
 			autoHeight: false,									//Ajustar automaticamente a altura dos elementos filho?
-			tempoIn: 'normal',									//Tempo para esconder o seletor filho (Entrada)
-			tempoOut: 'normal',									//Tempo para mostrar o seletor filho (Saída)
+			
+			tempoIn: 'fast',									//Tempo para esconder o seletor filho (Entrada)
+			tempoOut: 'fast',									//Tempo para mostrar o seletor filho (Saída)
 			easingIn: 'swing',									//Animação com easing na entrada (IN)...
 			easingOut: 'swing',									//Animação com easing na saída (OUT)...
 				
@@ -35,6 +38,7 @@
 			s = this.selector,
 			p = o.classePai,
 			f = o.classeFilho,
+			hash = window.location.hash,
 			elems = [];
 
 		/**
@@ -80,6 +84,15 @@
 				 * Bind no evento e setagem de valores
 				 */
 				$(o.pai, this).bind(o.evento, function(){
+					
+					/**
+					 * Altera o hash, se tiver
+					 */
+					if(this.hash) window.location.hash = this.hash;
+					
+					/**
+					 * Anima o acord
+					 */
 					if ($(this).hasClass(o.classeAjax)) {
 						return ajaxAcord($t, $(this), $(this).next());
 					}
@@ -95,6 +108,14 @@
 			});
 			
 		});
+		
+		/**
+		 * Hash navigation
+		 * Usa o parâmetro o.inicial
+		 */
+		if(o.hash && hash != '' && $(hash).is(o.filho)){
+			o.inicial = ($(hash).prevAll(o.filho).length) + 1;
+		}
 		
 		/**
 		 * Trigger inicial e monitoramento DOM
