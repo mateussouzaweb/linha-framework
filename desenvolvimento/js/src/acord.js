@@ -9,8 +9,8 @@
 			pai: 'h2',											//Seletor pai, ou cabeçalho, header...
 			filho: 'div',										//Seletor filho, este é o que ficará escondido
 				
-			classePaiAtual: 'accordion-pai-atual', 				//Classe para pai que está em foque | Adicionado pelo plugin
-			classeFilhoAtual: 'accordion-filho-atual',			//Classe para o filho que esta visível | Adicionado pelo plugin
+			classePai: 'acord-pai-atual', 						//Classe para pai que está em foque | Adicionado pelo plugin
+			classeFilho: 'acord-filho-atual',					//Classe para o filho que esta visível | Adicionado pelo plugin
 				
 			classeAjax: 'ajax',									//Classe para accordions em ajax
 			atributoUrl: 'url',									//Atributo para url do accordion em ajax
@@ -33,8 +33,8 @@
 		
 		var o = $.extend(padrao, options),
 			s = this.selector,
-			p = o.classePaiAtual,
-			f = o.classeFilhoAtual,
+			p = o.classePai,
+			f = o.classeFilho,
 			elems = [];
 
 		/**
@@ -50,17 +50,18 @@
 			 * Retorna o processamento dos elementos q passaram
 			 */
 			nEls.each(function() {
-				var $t = $(this);
+				var $t = $(this),
+					$f = $(this).find(o.filho);
 				
 				/**
 				 * Fix para erros de animação
 				 */
-				$(o.filho, this).each(function(){
+				$f.each(function(){
 					$(this).css('height', $(this).height() + 'px').hide();
 				});
 				
 				if(o.sempreUm){
-					$(o.filho, this).eq(o.inicial - 1).addClass(f).show().prev(o.pai).addClass(p);
+					$f.eq(o.inicial - 1).addClass(f).show().prev(o.pai).addClass(p);
 				}
 				
 				/**
@@ -68,7 +69,7 @@
 				 */
 				if(o.autoHeight){
 					var h = 0; 
-					$(o.filho, this).each(function(){
+					$f.each(function(){
 						h = Math.max(h, $(this).outerHeight());
 					}).height(h);
 					
@@ -124,7 +125,7 @@
 			});
 			
 			/**
-			 * Ajuste de altura - heigth
+			 * Ajuste de altura - height
 			 */
 			$filho.height('auto');
 			$acord.height('auto');
