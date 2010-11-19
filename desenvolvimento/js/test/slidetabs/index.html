@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" lang="pt_BR" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-<title>Linha Framework - jQuery Acord</title>
+<title>Linha Framework - jQuery SlideTabs</title>
 
 <!-- Favicon -->
 	<link rel="shortcut icon" href="../../../../xhtml/favicon.ico" />
@@ -75,6 +75,15 @@
 			});
 			
 		});
+		
+		/**
+		 * Hash
+		 */
+		$('#slide4').slideTabs({
+			seletorMiniatura: 'a',
+			hash: true
+		});
+		
     });  
 	</script>
 
@@ -87,16 +96,16 @@
 		
 		<!--Slide 1-->
 		<h3>Slide Completo com Direção Horizontal (y) e Transição Automática</h3>
-		<div class="alerta amarelo">
-			$('#slide').slideTabs({<br/>
-				<b>seletorPainel</b>: '.painel',<br/>
-				<b>seletorMiniatura</b>: '.miniatura',<br/>
-				<b>inicial</b>: 3,<br/>
-				<b>direcao</b>: 'y',<br/>
-				<b>auto</b>: true,<br/>
-				<b>tempo</b>: 700<br/>
-			});
-		</div>
+		<code class="alerta amarelo">
+		$('#slide').slideTabs({
+			seletorPainel: '.painel',
+			seletorMiniatura: '.miniatura',
+			inicial: 3,
+			direcao: 'y',
+			auto: true,
+			tempo: 700
+		});
+		</code>
 			
 		<div class="slide" id="slide">
 				
@@ -164,9 +173,9 @@
 		
 		<!--Slide 2-->
 		<h3>Slide Simples Sem Miniaturas</h3>
-		<div class="alerta amarelo">
-			$('#slide2').slideTabs();
-		</div>
+		<code class="alerta amarelo">
+		$('#slide2').slideTabs();
+		</code>
 		
 		<div class="slide" id="slide2">
 			<div class="slide-conteudo"><!--paineis-->
@@ -223,14 +232,14 @@
 			
 		<!--Slide 3-->
 		<h3>Slide com Transição Automática e Easing</h3>
-		<div class="alerta amarelo">
-		$('#slide3').slideTabs({<br/>
-			<b>auto</b>: true,<br/>
-			<b>tempo</b>: 1000,<br/>
-			<b>pausa</b>: 4000,<br/>
-			<b>easing</b>: 'easeOutBounce'<br/>
+		<code class="alerta amarelo">
+		$('#slide3').slideTabs({
+			auto: true,
+			tempo: 1000,
+			pausa: 4000,
+			easing: 'easeOutBounce'
 		});
-		</div>
+		</code>
 		
 		<div class="slide" id="slide3">
 			<div class="slide-conteudo"><!--paineis-->
@@ -299,15 +308,15 @@
 			
 		<!--Slider-->
 		<h3>Slider Exemplo</h3>
-		<div class="alerta amarelo">
-		$('.slider').slideTabs({<br/>
-			<b>seletorPainel</b>: '.slider-painel div',<br/>
-			<b>seletorAreaPainel</b>: '.slider-painel',<br/>
-			<b>scroll</b>: 5,<br/>
-			<b>visiveis</b>: 4,<br/>
-			<b>auto</b>: true<br/>
+		<code class="alerta amarelo">
+		$('.slider').slideTabs({
+			seletorPainel: '.slider-painel div',
+			seletorAreaPainel: '.slider-painel',
+			scroll: 5,
+			visiveis: 4,
+			auto: true
 		});
-		</div>
+		</code>
 		
 		<div class="slider">
 			<a href="#" class="anterior seta">«</a><!--Btn Anterior-->
@@ -343,16 +352,16 @@
 		
 		<!-- Tabs -->
 		<h3>Tabs Com Altura Automática</h3>
-		<div class="alerta amarelo">
-			$('.tabs_area').slideTabs({<br/>
-				<b>seletorPainel</b>: 'div div',<br/>
-				<b>seletorAreaPainel</b>: '.tabs_conteudo',<br/>
-				<b>seletorMiniatura</b>: 'ul.tabs li',<br/>
-				<b>tempo</b>: 1000,<br/>
-				<b>inicial</b>: 3,<br/>
-				<b>alturaAutomatica</b>: true<br/>
-			})
-		</div>
+		<code class="alerta amarelo">
+		$('.tabs_area').slideTabs({
+			seletorPainel : 'div div',
+			seletorAreaPainel: '.tabs_conteudo',
+			seletorMiniatura: 'ul.tabs li',
+			tempo: 1000,
+			inicial: 3,
+			alturaAutomatica: true
+		})
+		</code>
 		
 		<div class="tabs_area">
 			<ul class="tabs">
@@ -383,14 +392,70 @@
 		
 		<!-- LIVE -->
 		<h3>Slide com Monitoramento Live</h3>
-		<div class="alerta amarelo">
-			$('.slide2').slideTabs({<br/>
-				<b>live</b>: true<br/>
-			});
-		</div>
+		<code class="alerta amarelo">
+		$('.slide2').slideTabs({
+			live: true
+		});
+		</code>
 		<p><button>Clique para carregar slide</button></p>
 		<div id="live"></div>
-					
+		<div class="clear"></div><br/>
+		
+		<!--Slide 4-->
+		<h3>Slide com Hash</h3>
+		<p>Altere o hash clicando em uma miniatura e depois atualize a página. Observe que o <i>target</i> não é o mesmo que o ID do elemento (veja código fonte).</p><hr/> 
+		
+		<code class="alerta amarelo">
+		$('#slide4').slideTabs({
+			seletorMiniatura: 'a',
+			hash: true
+		});
+		</code>
+		
+		<div class="slide" id="slide4">
+			<div class="slide-conteudo"><!--paineis-->
+				<div class="painel" id="slide-painel1">
+					<h2>Painel 1</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel" id="slide-painel2">
+					<h2>Painel 2</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel" id="slide-painel3">
+					<h2>Painel 3</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel" id="slide-painel4">
+					<h2>Painel 4</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel" id="slide-painel5">
+					<h2>Painel 5</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+			</div>
+				
+			<div class="slide-miniaturas">
+				<a href="#painel1" class="primeiro miniatura">1</a>
+				<a href="#painel2" class="miniatura">2</a>
+				<a href="#painel3" class="miniatura">3</a>
+				<a href="#painel4" class="miniatura">4</a>
+				<a href="#painel5" class="miniatura">5</a>
+			</div>
+		</div>
+		<div class="clear"></div><br/>
+			
 	</div><!-- FIM CONTEUDO -->
 	
 </div><!-- FIM TUDO -->
