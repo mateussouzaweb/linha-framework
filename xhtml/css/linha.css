@@ -16,7 +16,7 @@
 	border: 1px solid #222;
 	border-top: none;
 }
-.acord h2, ul.accord li span{
+.acord h2, ul.acord li span{
 	background: #434343;
 	border-top: 1px solid #222;
 	border-bottom: 1px solid #434343;
@@ -28,7 +28,7 @@
 	padding: 7px 10px;
 	margin: 0;
 }
-.acord h2:hover, .accord .acord-pai-atual{
+.acord h2:hover, .acord .acord-pai-atual{
 	background: #4698ca;
 	border-top-color: #222 !important;
 	border-bottom-color: #4698ca;
