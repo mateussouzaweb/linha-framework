@@ -1,15 +1,11 @@
 /**
- * Nav 1.1
+ * Nav 1.2
  */
 (function($){
-	$.fn.nav = function(options){
-		return new $.nav(options, this);	
-	};
 	
-	$.nav = function(options, elem){
+	$.fn.nav = function(options){
 		
 		var padrao = {
-			seletor: '.menu li',					//Seletor padrão
 			seletorFilho: 'ul:first', 				//Seletor filho, o que será exibido
 			
 			classePaiAtual: 'nav-pai-atual', 		//Classe para pai que está em foque | Adicionado pelo plugin
@@ -32,21 +28,19 @@
 			onEsconde: null							//Callback
 		};
 		var o = $.extend(padrao, options),
-			$d = $(document),
 			np = o.classePaiAtual,
 			nf = o.classeFilhoAtual;
 			
-		if(elem === undefined){ elem = $(o.seletor);}
-		
 		/**
 		 * Delegando evento
 		 */
-		$d.delegate(elem.selector, o.evento, function(){
+		$(document).delegate(this.selector, o.evento, function(){
 			
+			var $f = $(this).children(o.seletorFilho);
+
 			/**
 			 * Checa o seletor filho
 			 */
-			var $f = $(this).children(o.seletorFilho);
 			if(!$f.length) return false;
 			
 			exibeNav($(this), $f);
