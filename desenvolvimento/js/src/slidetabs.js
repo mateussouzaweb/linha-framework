@@ -1,24 +1,19 @@
 /**
- * Slidetabs 1.1
+ * Slidetabs 1.2
  */
 (function($){
-
-	$.fn.slideTabs = function(options){
-		return new $.slideTabs(options, this);
-	};
 	
-	$.slideTabs = function(options, elem){
+	$.fn.slideTabs = function(options){
 			
 		var padrao = {
-			seletor: '.slide',									//Seletor padrão/geral, usado caso use o plugin sem o seletor $.plugin
 			seletorAreaPainel: '.slide-conteudo',				//Seletor para área do painel..necessário para wrapInner()
 			seletorPainel:	'.painel',							//Seletor para o painel ou os slides
 			seletorMiniatura: '.miniatura',						//Seletor de miniaturas
 			seletorAnterior: '.anterior',						//Seletor botão anterior
 			seletorProximo: '.proximo',							//Seletor botão proximo
 			
-			classeMiniaturaAtual: 'slide-miniatura-atual', 		//Classe para a miniatura atual | Classe adicionada pelo plugin
-			classePainelAtual: 'slide-painel-atual',			//Classe para o painel atual | Classe adicionada pelo plugin
+			classeMiniatura: 'slide-miniatura-atual', 			//Classe para a miniatura atual | Classe adicionada pelo plugin
+			classePainel: 'slide-painel-atual',					//Classe para o painel atual | Classe adicionada pelo plugin
 			classePainelPrimeiro: 'slide-painel-primeiro',		//Classe para o primeiro painel | Classe adicionada pelo plugin
 			classePainelUltimo: 'slide-painel-ultimo',			//Classe para o ultimo painel | Classe adicionada pelo plugin
 			classePainelConteudo: 'slide-painel-conteudo',		//Classe para "cercar" os painel do plugin | Classe adicionada pelo plugin
@@ -26,7 +21,10 @@
 			eventoMiniatura: 'click',							//Evento para disparar o plugin nas miniaturas
 			eventoSeta: 'click',								//Evento para disparar o plugin não botões/setas próximo e anterior
 			
-			inicial: 1,											//Slide inicial
+			hash: false,										//Habilitar navegação via hash? 
+			hashPrefixo: 'slide-',								//Hash slide apresenta algums problemas, com hashPrefixo você ajusta esses problemas facilmente (Veja documentação)
+			
+			inicial: 1,											//Slide inicial | Se hash = true haverá alteração automática
 			continuo: true, 									//Quando chega no ultimo o proximo será o 1º?
 			
 			auto: false, 										//Troca de slide automaticamente?
@@ -49,22 +47,19 @@
 			
 		};
 		var o = $.extend(padrao, options),
-			$d = $(document);
-			
-			
+			s = this.selector,
+			hash = window.location.hash,
+			elems = [];
 		
-		if(elem === undefined){ elem = $(o.seletor);}
-		elem.elements = [];
-		
+		if(hash != '') hash = '#'+ o.hashPrefixo+ hash.substr(1);
+
 		/**
 		 * Delegando evento inicial para SlideTabs
 		 */
-		$d.delegate(elem.selector, 'iniciaSlideTabs', function(){
+		$(document).delegate(s, 'iniciaSlideTabs', function(){
 			
-			var elems = elem.elements,
-			els  =  $(elem.selector, elem.context),
-			nEls = els.not(elems);
-			elem.elements = els;
+			var	nEls = $(s).not(elems);
+			elems = $(s);
 			
 			/**
 			 * Processamento dos elementos q passaram
@@ -74,8 +69,8 @@
 				var $t = $(this),
 					$sp = $(o.seletorPainel, $t),
 					$sm = $(o.seletorMiniatura, $t), 
-					sma = o.classeMiniaturaAtual,
-					spa = o.classePainelAtual,
+					sma = o.classeMiniatura,
+					spa = o.classePainel,
 					spp = o.classePainelPrimeiro,
 					spu = o.classePainelUltimo,
 					spcw = 0,
@@ -137,10 +132,15 @@
 					$(this).addClass(sma);
 					$sp.eq(l).addClass(spa);
 					
-					if(l == 0){$sp.eq(0).addClass(spp);}
-					if(l == $sp.length - 1){$sp.eq(-1).addClass(spu);}
-						
-					return animaSlide($(this), l);	
+					if(l == 0) $sp.eq(0).addClass(spp);
+					if(l == $sp.length - 1) $sp.eq(-1).addClass(spu);
+					
+					/**
+					 * Altera o hash, se tiver
+					 */
+					if(this.hash) window.location.hash = this.hash;
+					
+					return animaSlide($(this), l);
 				});
 				
 				/**
@@ -168,7 +168,12 @@
 					 */	
 					$sp.removeClass(spa).eq(l).addClass(spa);
 					$sm.removeClass(sma).eq(l).addClass(sma);
-
+					
+					/**
+					 * Altera o hash, se tiver
+					 */
+					if(this.hash) window.location.hash = this.hash;
+					
 					return animaSlide($(this), l);
 				});
 				
@@ -178,6 +183,12 @@
 				 * é usado na transição automática
 				 */
 				$(o.seletorProximo, $t).bind(o.eventoSeta, function(){
+					
+					/**
+					 * Altera o hash, se tiver
+					 */
+					if(this.hash) window.location.hash = this.hash;
+					
 					return proximoSlide($(this)); 
 				});
 				
@@ -272,14 +283,22 @@
 		});
 		
 		/**
+		 * Hash navigation
+		 * Usa o parâmetro o.inicial
+		 */
+		if(o.hash && hash != '' && $(hash).is(o.seletorPainel)){
+			o.inicial = ($(hash).prevAll(o.seletorPainel).length) + 1;
+		}
+			
+		/**
 		 * Trigger inicial e monitoramento DOM
 		 */
 		if(o.live){
 			setInterval(function(){
-				$(elem.selector).trigger('iniciaSlideTabs');
+				$(s).trigger('iniciaSlideTabs');
 			}, o.liveTempo);
 		}else{
-			if(elem.length){elem.trigger('iniciaSlideTabs');}
+			if(this.length) this.trigger('iniciaSlideTabs');
 		}
 		
 	};
