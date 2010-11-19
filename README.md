@@ -72,9 +72,10 @@ Linha ACORD:
 ----
 ### 1.2
 
- * Adicionado suporte a hash navigation
+ * Adicionado suporte a Hash Navigation
+ * Simplificação de algumas opções
  * Otimização de código
- * Remoção da funçaõ $.acord em apoio a função $.fn.acord
+ * Remoção da função $.acord em apoio a função $.fn.acord
  
 ### 1.1
 
@@ -91,8 +92,13 @@ Linha ACORD:
 
 * Inicial
 
-Linha FOCUS:
+Linha FOCUSS:
 ----
+### 1.2
+
+ * Otimização de código
+ * Remoção da função $.focuss em apoio a função $.fn.focuss
+ 
 ### 1.1
 
  * Monitoramento live(DOM e Ajax) para Foccus (use alternativamente $("seletor-focuss").trigger('iniciaFocuss'); caso tenha problemas)
@@ -108,6 +114,11 @@ Linha FOCUS:
 
 Linha MODAL:
 ----
+### 1.2
+
+ * Otimização de código
+ * Remoção da função $.modal em apoio a função $.fn.modal
+ 
 ### 1.1
 
  * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
@@ -127,6 +138,11 @@ Linha MODAL:
 
 Linha NAV:
 ----
+### 1.2
+
+ * Otimização de código
+ * Remoção da função $.nav em apoio a função $.fn.nav
+ 
 ### 1.1
 
  * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
@@ -143,6 +159,13 @@ Linha NAV:
 
 Linha SLIDETABS:
 ----
+### 1.2
+ 
+ * Adicionado suporte a Hash Navigation
+ * Simplificação de algumas opções
+ * Otimização de código
+ * Remoção da função $.slideTabs em apoio a função $.fn.slideTabs
+ 
 ### 1.1
 
  * Monitoramento live(DOM e Ajax) para SlideTabs (use alternativamente $("seletor-slidetabs").trigger('iniciaSlideTabs'); caso tenha problemas)
@@ -157,6 +180,11 @@ Linha SLIDETABS:
 
 Linha TOOLTIP:
 ----
+### 1.3
+
+ * Otimização de código
+ * Remoção da função $.tooltip em apoio a função $.fn.tooltip
+ 
 ### 1.2
 
  * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
@@ -183,12 +211,14 @@ Linha TOOLTIP:
 ## Linha VALIDA:
 ### 1.1
 
+ * Otimização de código
+ * Remoção da função $.valida em apoio a função $.fn.valida
+
+### 1.0
+
+ * Inicial
  * Monitoramento live(DOM e Ajax) para Valida (use alternativamente $("seletor-valida").trigger('iniciaValida'); caso tenha problemas)
  * Renomeado para Linha Valida (anteriormente chamado de Linha Form)
  * Adicionado validação para Checkbox, Radio e Select
  * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
  * Callback melhorado
-
-### 1.0
-
- * Inicial
