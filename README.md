@@ -210,7 +210,9 @@ Linha TOOLTIP:
 
 ## Linha VALIDA:
 ### 1.1
-
+ 
+ * Adicionado suporte a validação inline 
+ * Agora o input que tiver algum erro, será marcado com uma classe, automaticamente (classeErro)
  * Otimização de código
  * Remoção da função $.valida em apoio a função $.fn.valida
 
