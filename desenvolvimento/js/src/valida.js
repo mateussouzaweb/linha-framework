@@ -16,7 +16,7 @@
 			
 			ValorSelectPadrao: 0,					//Valor padrão para validação do campo select
 			
-			classeErro: 'erro', 					//Classe que será adicionada se ouver algum erro
+			classeErro: 'valida-erro', 				//Classe que será adicionada se ouver algum erro na entrada
 			
 			inline: false,							//Habilita validação inline?
 			eventoInline: 'focusout',				//Evento para validação inline

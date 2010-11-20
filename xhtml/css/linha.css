@@ -390,3 +390,16 @@ ul.menu li ul li ul{
 .tooltip-seta .tooltip-posicao-centro-esquerda {
 	right: -13px
 }
+
+/*VALIDA*/
+body .valida-erro{
+	background-color: #ffcfcf;
+	border: 1px solid #d7162b;
+}
+body .valida-erro:focus{
+	background-color: #fdeaed;
+	border-color: #d7162b;
+}
+input[type="checkbox"].valida-erro + label, input[type="radio"].valida-erro + label{
+	color: #B50012;
+}
