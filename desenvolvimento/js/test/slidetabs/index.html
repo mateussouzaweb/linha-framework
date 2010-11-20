@@ -96,7 +96,7 @@
 		
 		<!--Slide 1-->
 		<h3>Slide Completo com Direção Horizontal (y) e Transição Automática</h3>
-		<code class="alerta amarelo">
+		<pre class="alerta amarelo">
 		$('#slide').slideTabs({
 			seletorPainel: '.painel',
 			seletorMiniatura: '.miniatura',
@@ -105,7 +105,7 @@
 			auto: true,
 			tempo: 700
 		});
-		</code>
+		</pre>
 			
 		<div class="slide" id="slide">
 				
@@ -173,9 +173,9 @@
 		
 		<!--Slide 2-->
 		<h3>Slide Simples Sem Miniaturas</h3>
-		<code class="alerta amarelo">
+		<pre class="alerta amarelo">
 		$('#slide2').slideTabs();
-		</code>
+		</pre>
 		
 		<div class="slide" id="slide2">
 			<div class="slide-conteudo"><!--paineis-->
@@ -232,14 +232,14 @@
 			
 		<!--Slide 3-->
 		<h3>Slide com Transição Automática e Easing</h3>
-		<code class="alerta amarelo">
+		<pre class="alerta amarelo">
 		$('#slide3').slideTabs({
 			auto: true,
 			tempo: 1000,
 			pausa: 4000,
 			easing: 'easeOutBounce'
 		});
-		</code>
+		</pre>
 		
 		<div class="slide" id="slide3">
 			<div class="slide-conteudo"><!--paineis-->
@@ -308,7 +308,7 @@
 			
 		<!--Slider-->
 		<h3>Slider Exemplo</h3>
-		<code class="alerta amarelo">
+		<pre class="alerta amarelo">
 		$('.slider').slideTabs({
 			seletorPainel: '.slider-painel div',
 			seletorAreaPainel: '.slider-painel',
@@ -316,7 +316,7 @@
 			visiveis: 4,
 			auto: true
 		});
-		</code>
+		</pre>
 		
 		<div class="slider">
 			<a href="#" class="anterior seta">«</a><!--Btn Anterior-->
@@ -352,7 +352,7 @@
 		
 		<!-- Tabs -->
 		<h3>Tabs Com Altura Automática</h3>
-		<code class="alerta amarelo">
+		<pre class="alerta amarelo">
 		$('.tabs_area').slideTabs({
 			seletorPainel : 'div div',
 			seletorAreaPainel: '.tabs_conteudo',
@@ -361,7 +361,7 @@
 			inicial: 3,
 			alturaAutomatica: true
 		})
-		</code>
+		</pre>
 		
 		<div class="tabs_area">
 			<ul class="tabs">
@@ -392,11 +392,11 @@
 		
 		<!-- LIVE -->
 		<h3>Slide com Monitoramento Live</h3>
-		<code class="alerta amarelo">
+		<pre class="alerta amarelo">
 		$('.slide2').slideTabs({
 			live: true
 		});
-		</code>
+		</pre>
 		<p><button>Clique para carregar slide</button></p>
 		<div id="live"></div>
 		<div class="clear"></div><br/>
@@ -405,12 +405,12 @@
 		<h3>Slide com Hash</h3>
 		<p>Altere o hash clicando em uma miniatura e depois atualize a página. Observe que o <i>target</i> não é o mesmo que o ID do elemento (veja código fonte).</p><hr/> 
 		
-		<code class="alerta amarelo">
+		<pre class="alerta amarelo">
 		$('#slide4').slideTabs({
 			seletorMiniatura: 'a',
 			hash: true
 		});
-		</code>
+		</pre>
 		
 		<div class="slide" id="slide4">
 			<div class="slide-conteudo"><!--paineis-->
