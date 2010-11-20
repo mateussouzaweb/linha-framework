@@ -23,19 +23,8 @@
     <script type="text/javascript">
 	$(document).ready(function(){
 
-		$(".formulario").valida({
+		$("#formulario1").valida({
 			redireciona: false,
-			live: true,
-			onValida: function(){
-				$(this).removeClass('erro').parent().removeClass('erro');
-			},
-			onErro: function(){
-				if($(this).is(':checkbox') || $(this).is(':radio')){
-					$(this).parent().addClass('erro');
-				}else{
-					$(this).addClass('erro');
-				}
-			},
 			onPassa: function(){
 				alert($(this).serialize());
 			}
@@ -44,6 +33,10 @@
 		/**
 		 * Live
 		 */
+		$('#formulario2').valida({
+			live: true
+		});
+		
 		$('button').click(function(){
 			$.ajax({
 				url: 'valida-ajax.html',
@@ -52,6 +45,13 @@
 				}
 			});
 			
+		});
+		
+		/**
+		 * Inline
+		 */
+		$('#formulario3').valida({
+			inline: true
 		});
 		
     });  
@@ -64,10 +64,24 @@
 	
 	<div id="conteudo" class="coluna tamanho12">
 		
-		<div class="coluna tamanho5 primeiro">
-			
 			<h3>Validação Simples de Formulário</h3>
-			<form action="#" method="post" class="formulario">
+			<code class='alerta amarelo'>
+			$("#formulario1").valida({
+				redireciona: false,
+				onValida: function(){
+					$(this).parent().removeClass('erro');
+				},
+				onErro: function(){
+					if($(this).is(':checkbox') || $(this).is(':radio')){
+						$(this).parent().addClass('erro');
+					}
+				},
+				onPassa: function(){
+					alert($(this).serialize());
+				}
+			});
+			</code><br/>
+			<form action="#" method="post" id="formulario1">
 				<p>
 					<label>Nome</label>
 					<input type="text" name="nome" value="" class="valida"/>
@@ -128,33 +142,36 @@
 					<input type="submit" class="enviar" value="Enviar"/>
 				</p>
 			</form>
-		
-		</div>
-		<div class="coluna tamanho7 ultimo">
-			
-			<code class='alerta amarelo'>
-			$(".formulario").valida({
-				redireciona: false,
-				live: true,
-				onValida: function(){
-					$(this).removeClass('erro').parent().removeClass('erro');
-				},
-				onErro: function(){
-					if($(this).is(':checkbox') || $(this).is(':radio')){
-						$(this).parent().addClass('erro');
-					}else{
-						$(this).addClass('erro');
-					}
-				},
-				onPassa: function(){
-					alert($(this).serialize());
-				}
-			});
-			</div><br/>
-			
+			<!-- Fim FORM 1 -->
+
 			<h3>Formulário via Ajax</h3>
+			<code class='alerta amarelo'>
+			$('#formulario2').valida({
+				live: true
+			});
+			</code><br/>
 			<p><button>Clique para carregar formulario</button></p>
 			<div id="live"></div>
+			<br>
+			<!-- Fim FORM 2 -->
+			
+			<h3>Validação Inline</h3>
+			<code class='alerta amarelo'>
+			$('#formulario3').valida({
+				inline: true
+			});
+			</code><br/>
+			<form id="formulario3">
+				<p>
+					<label>Nome</label>
+					<input type="text" class='valida'/>
+				</p>
+				<p>
+					<label>URL</label>
+					<input type="text" class='valida url'/>
+				</p>
+			</form>
+			<!-- Fim FORM 3 -->
 			
 		</div>
 
