@@ -56,7 +56,16 @@
 		 * EVENTO FINAL
 		 */
 		$d.delegate(this.selector, o.eventoFim , function(){
-			return removeTooltip($(this));
+			removeTooltip($(this));
+			
+			/**
+			 * Força remoção do tooltip
+			 */
+			var i = setInterval(function(){
+				if($('.' + o.classeArea).length) $('.' + o.classeArea).remove();
+				else clearInterval(i);
+			}, 200);
+			
 		});
 		
 		/**
@@ -245,10 +254,7 @@
 			atual = null;
 		
 			if(tip.area.length)	tip.area.remove();
-			
-			$('.' + o.classeArea).remove(); //remove o elemento novamente...estranho não? :)
 			tip.load.remove();
-			
 		}
 		
 		/**

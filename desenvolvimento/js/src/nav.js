@@ -16,8 +16,8 @@
 			
 			efeitoIn: 'slideDown',					//Efeito inicial
 			efeitoOut: 'slideUp',					//Efeito Final
-			tempoIn: 'normal',						//Tempo para mostrar o seletor filho (Entrada)
-			tempoOut: 'normal',						//Tempo para esconder o seletor filho (Saída)
+			tempoIn: 'fast',						//Tempo para mostrar o seletor filho (Entrada)
+			tempoOut: 'fast',						//Tempo para esconder o seletor filho (Saída)
 			tempoDelay: 100, 						//Tempo de espera para esconder o seletor filho(Saida)
 			easingIn: 'swing',						//Animação com easing na entrada (IN)...
 			easingOut: 'swing',						//Animação com easing na saída (OUT)...
