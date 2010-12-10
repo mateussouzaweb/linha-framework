@@ -20,7 +20,7 @@
 			
 			eventoMiniatura: 'click',							//Evento para disparar o plugin nas miniaturas
 			eventoSeta: 'click',								//Evento para disparar o plugin não botões/setas próximo e anterior
-			
+
 			hash: false,										//Habilitar navegação via hash? 
 			hashPrefixo: 'slide-',								//Hash slide apresenta algums problemas, com hashPrefixo você ajusta esses problemas facilmente (Veja documentação)
 			
@@ -28,6 +28,7 @@
 			continuo: true, 									//Quando chega no ultimo o proximo será o 1º?
 			
 			auto: false, 										//Troca de slide automaticamente?
+			pausarAuto: true,									//Pausa a troca de slides automática quando o slide está no estado hover
 			pausa: 2000, 										//Tempo entre cada pausa para o slide automático
 			
 			tempo: 'normal',									//Tempo para cada transicão / 0(Zero) para sem animação
@@ -193,6 +194,17 @@
 				});
 				
 				/**
+				 * Faz a checagem para pausar a troca automática de slides
+				 */
+				if(o.auto && o.pausarAuto){
+					$t.hover(function(){
+						$(this).data('slideHover', '1');
+					}, function(){
+						$(this).removeData('slideHover');
+					});
+				}
+				
+				/**
 				 * Vai para o próximo slide
 				 * @param $this -  se tiver um seletor para passar é bom ^^
 				 */
@@ -255,13 +267,15 @@
 					ani['height'] = h;
 					
 					$spc.animate(ani, o.tempo, o.easing);
-	
+										
 					/**
 					 * AUTOMÁTICO
 					 */
 					clearInterval(timeout);
 					if(o.auto){
 						timeout = setInterval(function(){
+							if(o.pausarAuto && $t.data('slideHover')) return false;
+		
 							return proximoSlide(null);
 						},o.pausa);
 					}

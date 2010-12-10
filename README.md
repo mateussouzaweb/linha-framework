@@ -165,6 +165,7 @@ Linha SLIDETABS:
  * Simplificação de algumas opções
  * Otimização de código
  * Remoção da função $.slideTabs em apoio a função $.fn.slideTabs
+ * Nova opção para pausar slide automático quado estiver no estado hover - pausarAuto
  
 ### 1.1
 
