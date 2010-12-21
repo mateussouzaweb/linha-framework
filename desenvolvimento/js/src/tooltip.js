@@ -56,16 +56,7 @@
 		 * EVENTO FINAL
 		 */
 		$d.delegate(this.selector, o.eventoFim , function(){
-			removeTooltip($(this));
-			
-			/**
-			 * Força remoção do tooltip
-			 */
-			var i = setInterval(function(){
-				if($('.' + o.classeArea).length) $('.' + o.classeArea).remove();
-				else clearInterval(i);
-			}, 200);
-			
+			return removeTooltip($(this));
 		});
 		
 		/**
@@ -77,7 +68,7 @@
 				return posicionaTooltip($(this), e);
 			});
 		}
-		
+
 		/**
 		 * Fix de posição para window resize e scroll
 		 */
@@ -93,6 +84,8 @@
 		 * @param {Object} e - evento
 		 */
 		function iniciaTooltip($t, e){
+			
+			$('.' + o.classeArea).remove();
 			
 			/**
 			 * Callback
@@ -248,13 +241,15 @@
 				o.onTermina.apply($t, new Array($t, o));
 			}
 			
-			if(o.atributo == 'title'){
+			if(o.atributo == 'title' && $t){
 				$t.attr('title', tip.conteudo);
 			}
-			atual = null;
-		
-			if(tip.area.length)	tip.area.remove();
+					
+			tip.area.remove();			
 			tip.load.remove();
+			
+			atual = null;
+			tip = {};
 		}
 		
 		/**
@@ -263,7 +258,9 @@
 		 * @param {Object} e - evento
 		 */
 		function posicionaTooltip($t ,e){
-
+			
+			if(!tip.area) return false;
+			
 			/**
 			 * Window
 			 */
