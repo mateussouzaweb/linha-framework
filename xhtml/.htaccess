@@ -1,6 +1,12 @@
 # Gzip compression.
 <IfModule mod_deflate.c>
 
+	# Força deflate
+	<IfModule mod_setenvif.c>
+	  SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s,?\s(gzip|deflate)?|X{4,13}|~{4,13}|-{4,13})$ HAVE_Accept-Encoding
+	  RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+	</IfModule>
+	
 	# html, txt, css, js, json, xml, htc:
 	<IfModule filter_module>
 	  FilterDeclare COMPRESS
@@ -9,11 +15,19 @@
 	  FilterChain COMPRESS
 	  FilterProtocol COMPRESS change=yes;byteranges=no
 	</IfModule>
+	
+	#Se não tiver mod_filter, em algumas versões do Apache
+	<IfModule !mod_filter.c>
+	  AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+	  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+	  AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
+	</IfModule>
 
 	# webfonts and svg:
 	<FilesMatch "\.(ttf|otf|eot|svg)$" >
 	  SetOutputFilter DEFLATE
 	</FilesMatch>
+	
 </IfModule>
 
 # Permite o acesso (sub-dominios por exemplo)
@@ -42,6 +56,9 @@ AddType font/woff woff
 <IfModule mod_expires.c>
   ExpiresActive on
   ExpiresDefault "access plus 1 month"
+  
+  # cache.manifest precisa de re-requests no FF 3.6
+  ExpiresByType text/cache-manifest "access plus 0 seconds"
 
   # html
   ExpiresByType text/html "access plus 0 seconds"
@@ -53,6 +70,9 @@ AddType font/woff woff
 
   # rss feed
   ExpiresByType application/rss+xml "access plus 1 hour"
+  
+  # favicon
+  ExpiresByType image/x-icon "access plus 1 week"
 
   # media: images, video, audio
   ExpiresByType image/gif "access plus 1 month"
