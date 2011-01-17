@@ -1,4 +1,4 @@
-/* FORMULARIOS */
+/* FORMULÁRIOS */
 /* ----------------------------------------- */
 label{
 	display: inline-block;
@@ -13,9 +13,9 @@ label + input[type="radio"], label + input[type="checkbox"]{
 }
 
 input, textarea{
+	background: #FFF url(../img/input.png) repeat-x top;
 	border: 1px solid;
 	border-color: #BBB #DDD #DDD #BBB;
-	background: #FFF url(../img/input.png) repeat-x top;
 	padding: 8px;
 	width: 280px;
 	-moz-border-radius: 1px;
