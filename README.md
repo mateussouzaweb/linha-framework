@@ -6,7 +6,7 @@ LINHA FRAMEWORK - 1.3
 MIT and GPL License - <http://www.opensource.org/licenses/mit-license.php> || <http://www.gnu.org/licenses/gpl.html>
 
 ### Documentação
-Para ver a documentaçõa visite <http://www.linhaframework.com/docs/>
+Para ver a documentação visite <http://www.linhaframework.com/docs/>
 
 PLUGINS USADOS
 ==============
@@ -14,7 +14,6 @@ Tudo isto não foi trabalho apenas do LF, devo dar os créditos a:
 
  * jQuery - <http://jquery.com/>
  * Selectizr - <http://selectivizr.com/>
- * jQuery Browser Selector - <https://github.com/mateus007/jQuery-Browser-Selector>
  * Chrome Frame - <http://www.google.com/chromeframe>
  * HTML5 Boilerplate (Fonte de inspiração para algumas partes do LF) - <https://github.com/paulirish/html5-boilerplate>
  * Closure Compiler - <http://code.google.com/intl/pt-BR/closure/compiler/>
@@ -24,15 +23,17 @@ CHANGELOG
 =====================
 ### 1.3 - XX de XXXXXXXX de 2011
 
- * Adicionado os arquivos .htacess e robots.txt
+ * Adicionado os arquivos exemplo.htaccess (quando concluir renomei para .htaccess) e robots.txt
  * Atualização jQuery para V. 1.4.4
  * Movimentação para changelog
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
  * Novo arquivo para funções core jQuery LF - core.js
- * Adicionado plugin jQuery Browser Selector ao core
+ * Separação do código jQuery do core LF, tornando mais simples o uso de outro framework JS
+ * Criado script "modernizer" com classes CSS. Ex: .mac .chrome .chrome9 .box-shadow
+ * Criado script para adicionar elementos HTML5 em navegadores antigos
  * Adicionado plugin Selectizr
- * Adicionado checagem de carregamento jQuery, também foi adiciona o arquivo em /xhtml/js (apensar de estar disponível desde a versão 1.2 só é valido a partir da versão 1.3) 
+ * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
  
 ### 1.2 - 23 de Setembro de 2010
 
@@ -65,6 +66,11 @@ CHANGELOG
 
  * Inicial
 
+CHANGELOG JS Linha Framework (core)
+=========================
+### 1.0
+
+ * Inicial
 
 CHANGELOG Plugins jQuery Linha Framework
 =========================
