@@ -14,7 +14,7 @@
 		
 		<concat destfile="${build}/${name}.js" encoding="UTF-8">
 			<header trimleading="yes">/**
-			 * Linha Framework v${version}
+			 * jQuery Linha Framework v${version}
 			 * http://www.linhaframework.com
 			 *
 			 * Copyright 2010
@@ -22,14 +22,13 @@
 			 * Licensed under MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 			 */
 			</header>
-			<fileset file="../src/core.js" />
-			<fileset file="../src/acord.js" />
-            <fileset file="../src/focuss.js" />
-            <fileset file="../src/modal.js" />
-            <fileset file="../src/nav.js" />
-            <fileset file="../src/slidetabs.js" />
-            <fileset file="../src/tooltip.js" />
-            <fileset file="../src/valida.js" />
+			<fileset file="../src/jquery/acord.js" />
+            <fileset file="../src/jquery/focuss.js" />
+            <fileset file="../src/jquery/modal.js" />
+            <fileset file="../src/jquery/nav.js" />
+            <fileset file="../src/jquery/slidetabs.js" />
+            <fileset file="../src/jquery/tooltip.js" />
+            <fileset file="../src/jquery/valida.js" />
         </concat>
 		
 	</target>
