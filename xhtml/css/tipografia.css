@@ -1,6 +1,7 @@
 /* TIPOGRAFIA */
 /* ----------------------------------------- */
 body{
+	background: #FFF;
 	color: #222;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -8,17 +9,33 @@ body{
 }
 
 /*LINKS*/
-a, a:link {	color: #3151A2;	text-decoration: none;}
-a:hover, a:visited{	color: #3151A2;}
-a img { border:none; }
+a, a:link {
+	color: #3151A2;
+	text-decoration: none;
+}
+a:hover, a:visited{
+	color: #3151A2;
+}
+a img {
+	border:none;
+	display: block;
+}
 
 /*CABEÇALHOS*/
-h1, h2, h3, h4, h5, h6{line-height: 100%; margin-bottom: 0.5em;}
+h1, h2, h3, h4, h5, h6{
+	display: block;
+	line-height: 100%;
+	margin-bottom: 10px;
+}
 h1{font-size: 250%;}
 h2{font-size: 200%;}
 h3{font-size: 150%;}
 h4{font-size: 120%;}
 h5, h6{font-size: 100%;}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
+	display: block;
+}
 
 /*TEXTOS e ETC*/
 p,ul,ol{margin-bottom: 10px;}
@@ -131,3 +148,19 @@ iframe{
 .align-right{ text-align: right;}
 .align-center{ text-align: center;}
 .align-justify{ text-align: justify;}
+.align-left, img.align-left, img[align="left"]{
+	display: inline;
+	float: left;
+	margin-right: 10px;
+}
+.align-right, img.align-right, img[align="right"]{
+	display: inline;
+	float: right;
+	margin-left: 10px;
+}
+.align-center, img.align-center, img[align="center"]{
+	clear: both;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
