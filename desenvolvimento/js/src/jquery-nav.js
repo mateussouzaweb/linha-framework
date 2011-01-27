@@ -1,5 +1,5 @@
 /**
- * Nav 1.2
+ * jQuery Nav 1.2
  */
 (function($){
 	

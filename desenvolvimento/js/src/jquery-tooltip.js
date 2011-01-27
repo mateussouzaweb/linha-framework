@@ -1,5 +1,5 @@
 /**
- * Tooltip 1.3
+ * jQuery Tooltip 1.3
  */
 (function($){
 	

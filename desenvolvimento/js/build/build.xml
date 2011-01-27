@@ -22,13 +22,13 @@
 			 * Licensed under MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 			 */
 			</header>
-			<fileset file="../src/jquery/acord.js" />
-            <fileset file="../src/jquery/focuss.js" />
-            <fileset file="../src/jquery/modal.js" />
-            <fileset file="../src/jquery/nav.js" />
-            <fileset file="../src/jquery/slidetabs.js" />
-            <fileset file="../src/jquery/tooltip.js" />
-            <fileset file="../src/jquery/valida.js" />
+			<fileset file="../src/jquery-acord.js" />
+            <fileset file="../src/jquery-focuss.js" />
+            <fileset file="../src/jquery-modal.js" />
+            <fileset file="../src/jquery-nav.js" />
+            <fileset file="../src/jquery-slidetabs.js" />
+            <fileset file="../src/jquery-tooltip.js" />
+            <fileset file="../src/jquery-valida.js" />
         </concat>
 		
 	</target>

@@ -1,5 +1,5 @@
 /**
- * Valida 1.1
+ * jQuery Valida 1.1
  */
 (function($){
 

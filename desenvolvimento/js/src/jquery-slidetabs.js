@@ -1,5 +1,5 @@
 /**
- * Slidetabs 1.2
+ * jQuery Slidetabs 1.2
  */
 (function($){
 	

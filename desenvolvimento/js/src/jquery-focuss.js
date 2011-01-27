@@ -1,5 +1,5 @@
 /**
- * Focus 1.2
+ * jQuery Focus 1.2
  */
 (function($){
 	

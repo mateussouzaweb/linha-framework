@@ -1,5 +1,5 @@
 /**
- * Modal 1.2
+ * jQuery Modal 1.2
  */
 (function($){
 

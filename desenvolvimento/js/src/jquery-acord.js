@@ -1,5 +1,5 @@
 /**
- * Acord 1.2
+ * jQuery Acord 1.2
  */
 (function($){
 
