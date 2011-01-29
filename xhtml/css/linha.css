@@ -12,39 +12,50 @@
 
 /*ACORD*/
 .acord{
-	background: #F9F9F9;
-	border: 1px solid #222;
+	background: #FFF;
+	border: 1px solid #555;
 	border-top: none;
+	list-style: none;
+	padding: 0; 
 }
-.acord h2, ul.acord li span{
-	background: #434343;
+.acord .acord-pai, .acord a.acord-pai{
+	background: #555;
 	border-top: 1px solid #222;
-	border-bottom: 1px solid #434343;
 	color: #FFF;
 	cursor: pointer;
 	display: block;
 	font-size: 16px;
 	font-weight: bold;
+	line-height: 16px;
 	margin: 0;
-	padding: 7px 10px;
+	padding: 10px 15px;
 }
-.acord h2:hover, .acord .acord-pai-atual{
-	background: #4698ca;
-	border-top-color: #222 !important;
-	border-bottom-color: #4698ca;
-	border-left-color: #5db1e0;
+.acord .acord-pai:hover, .acord .acord-pai-atual{
+	background: #FFF;
+	color: #555;
 }
-.acord div{
-	border: 1px solid #FFF;
+.acord .acord-filho{
+	display: none;
+	padding: 10px;
+	position: relative;
+}
+
+/*ACORD - SLIDE*/
+.acord-slide .acord-filho{
+	padding-bottom: 75px;
+}
+.acord-slide .acord-descricao{
+	background: #888;
+	background: rgba(0, 0, 0, .5);
+	bottom: -10px;
+	color: #EEE;
+	display: none;
+	left: 0px;
 	padding: 5px 10px;
+	position: absolute;
 }
-.acord .acord-filho-atual{
-	border-top-color: #222 !important;
-}
-ul.acord{
-	list-style: none;
-	margin: 0;
-	padding: 0; 
+.acord-slide .acord-filho-atual .acord-descricao{
+	display: block;
 }
 
 /*MODAL*/
