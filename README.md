@@ -28,10 +28,11 @@ CHANGELOG
  * Movimentação para changelog
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
- * Novo arquivo para funções core jQuery LF - core.js
+ * Introdução a library Linha Framework JS
  * Separação do código jQuery do core LF, tornando mais simples o uso de outro framework JS
- * Criado script "modernizer" com classes CSS. Ex: .mac .chrome .chrome9 .box-shadow
- * Criado script para adicionar elementos HTML5 em navegadores antigos
+ * Linha Framework JS - Criado script "modernizer" com classes CSS. Ex: .mac .chrome .chrome9 .box-shadow
+ * Linha Framework JS - Criado script para adicionar elementos HTML5 em navegadores antigos
+ * Linha Framework JS - Criado script para carregar dinamicamente JS e CSS
  * Adicionado plugin Selectizr
  * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
  

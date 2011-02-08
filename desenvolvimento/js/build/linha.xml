@@ -3,7 +3,7 @@
 	<!-- Opções -->
 	<property name="version" value="1.3" />
 	<property name="build" value="${version}"/>
-	<property name="name" value="linha.framework-1.3" />
+	<property name="name" value="linha.framework-${version}" />
 	
 	<!-- Código Fonte -->
 	<target name="fonte">
@@ -22,7 +22,13 @@
 			 * Licensed under MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 			 */
 			</header>
-			<fileset file="../src/core.js" />
+			
+			<fileset file="../src/linha/core.js" />
+			<fileset file="../src/linha/css.js" />
+			<fileset file="../src/linha/html5.js" />
+			<fileset file="../src/linha/load.js" />
+			<fileset file="../src/linha/selector.js" />
+			
         </concat>
 		
 	</target>
