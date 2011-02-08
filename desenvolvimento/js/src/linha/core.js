@@ -8,7 +8,10 @@ window.Linha = {
 	 * @param object obj
 	 */
 	extend: function(obj){
-		for(item in obj) this[item] = obj[item];
+	
+		for(var item in obj){
+			this[item] = obj[item];
+		}
 		
 		return this;
 	},
