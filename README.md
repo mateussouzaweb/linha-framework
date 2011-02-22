@@ -17,24 +17,39 @@ Tudo isto não foi trabalho apenas do LF, devo dar os créditos a:
  * Chrome Frame - <http://www.google.com/chromeframe>
  * HTML5 Boilerplate (Fonte de inspiração para algumas partes do LF) - <https://github.com/paulirish/html5-boilerplate>
  * Closure Compiler - <http://code.google.com/intl/pt-BR/closure/compiler/>
+ * GitHub.com (vários projetos :P) - <https://github.com/mateus007/following>
  * Google Search - Thanks!!! :)
+ 
+RECOMENDAÇÕES & DICAS
+=====================
+Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo algumas dicas e recomendações:
+ 
+ * Crie versões minifield de seus códigos com uma linguagem serve-side - <http://code.google.com/p/minify/>
+ * Se o site não tiver suporte nativo para o IE6, avise os usuários usando Adeus IE6 - <https://github.com/mateus007/Adeus-IE6>
+ * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
+ * Aprenda a trabalhar com medidas padrões
+ * Alterar o código fonte não é proibido :P
+ * Utilize o fórum do Linha Framework - <http://www.linhaframework.com/forum/>
+ * Contribua!
  
 CHANGELOG 
 =====================
 ### 1.3 - XX de XXXXXXXX de 2011
 
  * Adicionado os arquivos exemplo.htaccess (quando concluir renomei para .htaccess) e robots.txt
- * Atualização jQuery para V. 1.4.4
+ * Atualização jQuery para V. 1.5
  * Movimentação para changelog
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
  * Introdução a library Linha Framework JS
  * Separação do código jQuery do core LF, tornando mais simples o uso de outro framework JS
- * Linha Framework JS - Criado script "modernizer" com classes CSS. Ex: .mac .chrome .chrome9 .box-shadow
- * Linha Framework JS - Criado script para adicionar elementos HTML5 em navegadores antigos
- * Linha Framework JS - Criado script para carregar dinamicamente JS e CSS
+ * Linha Framework JS - Criado plugin "modernizer" com classes CSS. Ex: .mac .chrome .chrome9 .box-shadow
+ * Linha Framework JS - Criado plugin para adicionar elementos HTML5 em navegadores antigos
+ * Linha Framework JS - Criado plugin para carregar dinamicamente JS e CSS
  * Adicionado plugin Selectizr
  * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
+ * Reestruturação dos arquivos.
+ * Arquivos CSS simplificados em 4 arquivos (anteriormente eram 7)
  
 ### 1.2 - 23 de Setembro de 2010
 
