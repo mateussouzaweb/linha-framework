@@ -1,7 +1,13 @@
-/* PLUGINS JQUERY LINHA */
+/**
+ * PLUGINS - Estilo de mídia screen, especial para plugins:
+ * </> Linha Framework
+ * </> Outros, Terceiros?
+ */
+
+/* LINHA FRAMEWORK */
 /* ----------------------------------------- */
 
-/*Loading*/
+/*LOADING*/
 .tooltip-load, .modal-load{
 	background: #434343 url(../img/load.gif) no-repeat center;
 	display: block;
@@ -100,7 +106,7 @@
 	text-shadow: 1px 1px 1px #000;
 }
 
-/*NAV|MENU*/
+/*NAV*/
 ul.menu{
 	background: #434343;
 	border: 1px solid #222;
