@@ -1,42 +1,51 @@
-<project name="Linha.Framework" default="min">
+<project name="Linha" default="all">
 	
 	<!-- Opções -->
 	<property name="version" value="1.3" />
 	<property name="build" value="${version}"/>
-	<property name="name" value="linha.framework-${version}" />
+	<property name="name" value="linha-${version}" />
 	
 	<!-- Código Fonte -->
 	<target name="fonte">
 	
-		<echo>Criando código fonte.</echo>
+		<echo>Criando fonte</echo>
 		
 		<mkdir dir="${build}" />
 		
 		<concat destfile="${build}/${name}.js" encoding="UTF-8">
 			<header trimleading="yes">/**
-			 * Linha Framework v${version}
+			 * Linha v${version}
 			 * http://www.linhaframework.com
 			 *
-			 * Copyright 2010
+			 * Copyright 2011
 			 * By Mateus Souza - http://www.mateussouza.com
 			 * Licensed under MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
 			 */
 			</header>
 			
 			<fileset file="../src/linha/core.js" />
+			<fileset file="../src/linha/string.js" />
+			<fileset file="../src/linha/object.js" />
+			<fileset file="../src/linha/array.js" />
+			<fileset file="../src/linha/dom.js" />
 			<fileset file="../src/linha/css.js" />
-			<fileset file="../src/linha/html5.js" />
-			<fileset file="../src/linha/load.js" />
-			<fileset file="../src/linha/selector.js" />
+			<fileset file="../src/linha/events.js" />
+			<fileset file="../src/linha/dom.js" />
+			
+			<fileset file="../src/plugins/linha/browserSelector.js" />
+			<fileset file="../src/plugins/linha/html5.js" />
+			<fileset file="../src/plugins/linha/load.js" />
 			
         </concat>
 		
 	</target>
 	
-	<!-- Versão Minifield-->
-	<target name="min" depends="fonte">
+	<!-- All -->
+	<target name="all" depends="fonte">
 		
-		<echo>Criando/alterando versão minifield. Localizada em xhtml/js/</echo>
+		<echo>Alterando arquivos
+	/desenvolvimento/arquivos/linha-${version}.js
+	/html/js/linha-${version}.min.js</echo>
 		
 		<apply executable="java" parallel="false" verbose="true" dest="${build}">
 			<fileset dir="${build}">
@@ -62,8 +71,8 @@
 			<filelist files="${build}/temp"/>
 		</concat>
 		
-		<!--<copy file="${build}/${name}.js" todir="../../../xhtml/js/" overwrite="true" />-->
-		<copy file="${build}/${name}.min.js" todir="../../../xhtml/js/" overwrite="true" />
+		<copy file="${build}/${name}.js" todir="../../arquivos/" overwrite="true" />
+		<copy file="${build}/${name}.min.js" todir="../../../html/js/" overwrite="true" />
 
 		<delete dir="${build}" quiet="true"/>
 	</target>
