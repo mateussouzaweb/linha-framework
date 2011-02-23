@@ -92,11 +92,11 @@ L.extend({
 
 			//String
 			case 'string':				
-				return ret == 'string';
+				return ret == '[object String]';
 				
 			//Number
 			case 'number':
-				return ret == 'number';
+				return ret == '[object Number]';
 
 			//Date
 			case 'date':
@@ -104,7 +104,7 @@ L.extend({
 
 			//Boolean
 			case 'boolean':
-				return ret == 'boolean';
+				return ret == '[object Boolean]';
 				
 			//Regex
 			case 'regex':
