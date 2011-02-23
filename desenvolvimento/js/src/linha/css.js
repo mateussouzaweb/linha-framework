@@ -156,8 +156,78 @@ L.implement({
 		return this.setStyle(style, value);
 	},
 	
+	/**
+	 * Recupera a posição do elemento na página, tomando como base o documento
+	 */
 	offset: function(){
-		return;
+		
+		var elem = this[0],
+			t = l = 0, box;
+
+		/**
+		 * Checagem besta, para previnir erros :)
+		 */
+		if(!elem || !elem.ownerDocument) return null;
+		
+		try {
+			box = elem.getBoundingClientRect();
+    	} catch(e) {}
+    		
+		/**
+		 * Se tiver box, faz alguns cálculos
+		 */	
+		if(box){
+			
+			var body = document.body,
+				clientTop = body.clientTop || 0,
+        		clientLeft = body.clientLeft || 0;
+        			
+			t = box.top + body.scrollTop - clientTop;
+			l = box.left + body.scrollLeft - clientLeft;
+		}
+
+		return {top: t, left: l};
+	},
+	
+	/**
+	 * Recupera a posição do elemento em relação ao elemento pai
+	 */
+	position: function(){
+	
+		var elem = this[0];
+		
+		if(!elem) return null;
+		
+		/**
+		 * Recupera as posições
+		 */
+		var offset = this.offset();
+		
+		/**
+		 * Remove as margens
+		 */
+		offset.top -= parseFloat(this.css('marginTop')) || 0;
+    	offset.left -= parseFloat(this.css('marginLeft')) || 0;
+		
+		/**
+		 * Se tiver parent
+		 */
+		if(elem.offsetParent){
+
+			var parentOffset = L(elem.offsetParent).offset();
+			
+			/**
+			 * Adiciona as bordas
+			 */
+    		parentOffset.top += parseFloat(this.css('borderTopWidth')) || 0;
+    		parentOffset.left += parseFloat(this.css('borderLeftWidth')) || 0;
+			
+			offset.left -= parentOffset.left;
+			offset.top -= parentOffset.top;
+			
+		};
+		
+		return {top: offset.top, left: offset.left};
 	}
 	
 });
