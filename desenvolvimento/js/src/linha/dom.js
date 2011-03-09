@@ -147,7 +147,7 @@ L.implement({
 		 */
 		if(typeof value === 'string'){
 			
-			value = value.toLowerCase().replace(L.r_xhtmlTag, '<$1></$2>');
+			value = value.replace(L.r_xhtmlTag, '<$1></$2>');
 			
 			return this.each(function(){
 				
@@ -159,7 +159,7 @@ L.implement({
 				
 		}
 		
-		return this[0] && this[0].nodeType === 1 ? this[0].innerHTML : null;
+		return this[0] && this[0].nodeType === 1 ? this[0].innerHTML.trim() : null;
 	},
 	
 	/**
