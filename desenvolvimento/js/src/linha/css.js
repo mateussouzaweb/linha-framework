@@ -5,7 +5,7 @@ L.extend({
 	 * @param [string] name
 	 */
 	regexClass: function(name){
-		return new RegExp("(^|\\s)" + name + "(\\s|$)")
+		return new RegExp('(^|\\s)' + name + '(\\s|$)')
 	}
 		
 });
@@ -21,7 +21,7 @@ L.implement({
 	 */
 	hasClass: function(name){
 
-		if( !L.is('function', name) ) name = L.regexClass(name);
+		if( !L.is('regex', name) ) name = L.regexClass(name);
 		
 		return name.test(this[0].className);
 	},
@@ -45,7 +45,7 @@ L.implement({
 	removeClass: function(name){
 		
 		return this.each(function(){
-			this.className = this.className.replace( L.is('string', name)? L.regexClass(name) : name, '').trim();
+			this.className = this.className.replace( L.is('string', name)? L.regexClass(name) : name, ' ').trim();
 		});
 	},
 	
