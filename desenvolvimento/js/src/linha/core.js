@@ -33,12 +33,17 @@ Function.prototype.implement = function(implement, overlay){
 }
 
 /**
+ * Grava alguns métodos do CORE JS
+ */
+var toString = Object.prototype.toString,
+	slice = Array.prototype.slice;
+	
+/**
  * Funções Core
  */
 L.extend({
-	
-	slice: [].slice,
-	toString: {}.toString,
+
+ 	ready: false,
  			
 	/**
 	 * Faz o extend simples de um objeto
@@ -65,8 +70,8 @@ L.extend({
 	 * @param [mixed] item
 	 */
 	is: function(type, item){
-
-		var ret = this.toString.call(item);
+		
+		var ret = toString.call(item);
 
 		switch(type.toLowerCase()){
 				
@@ -134,7 +139,7 @@ L.extend({
 	 */
 	delay: function(fn, tempo /*, arguments*/){
 		
-		var args = this.slice.call(arguments, 2);
+		var args = slice.call(arguments, 2);
 		
 		/**
 		 * Define o timeout
@@ -144,6 +149,91 @@ L.extend({
 		fn}, tempo);
 		 
 		return this;
+	},
+	
+	/**
+	 * Checa se o DOM está carregado
+	 */
+	domReady: function(){
+		
+		/**
+		 * Checa se já está pronto o DOM
+		 */
+		if(document.readyState === 'complete')
+			return L.ready();
+    	
+		
+		/**
+		 * Mozilla, Opera e Webkit
+		 */
+		if(document.addEventListener){
+			
+			//document.addEventListener('DOMContentLoaded', DOMContentLoaded, false);
+	        window.addEventListener('load', L.ready, false);
+	        
+	    /**
+	     * IE
+	     */
+	    }else if(document.attachEvent){
+	    
+	    	//document.attachEvent('onreadystatechange', DOMContentLoaded);
+	    	window.attachEvent('onload', L.ready);
+
+        	/**
+        	 * Testa o Scroll, porque o IE só "quebra as perna"
+        	 * Para iframes?
+        	 */
+        	 var head = document.documentElement,
+        	 	 toplevel = false;
+        	 
+        	 try{ toplevel = window.frameElement == null; } catch(e){}
+        	 
+        	 if(head.doScroll && toplevel){
+        	 
+        	 	(function(){
+        	 	
+        	 		try{
+        	 			head.doScroll('left');
+        	 		
+        	 		} catch(e){
+        	 			setTimeout( arguments.callee, 1 );
+						return;
+					}
+					
+					L.ready();
+				
+				})();
+			}
+        }
+	
+	},
+	
+	/**
+	 * Ready \o/
+	 * Executa uma função assim que o DOM for totalmente carregado
+	 * @param [function] fn
+	 */
+	ready: function(fn){
+		
+		if(this.isReady){
+			if(fn && L.is('function', fn)) fn.call(this);
+			return this;
+		}
+		
+		/**
+		 * Garante que existe o body
+		 */
+		if(!document.body){
+            return setTimeout(function(){ L.ready(fn) }, 1);
+        }
+        
+        this.isReady = true;
+        
+        return setTimeout(function(){
+        	L.ready(fn)
+        }, 1);
 	}
 	
 });
+
+L.domReady();
