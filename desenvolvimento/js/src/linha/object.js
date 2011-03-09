@@ -68,7 +68,7 @@ Object.extend({
 				if( fn.call(_this, object[key], key, object ) === false ) break;
 		}
 
-		return this;	
+		return object;	
 	},
 	
 	/**
