@@ -1,13 +1,6 @@
 String.implement({
 	
 	/**
-	 * Transforma a string atual em uma url válida, com - (hyphenate)
-	 */
-	hyphenate: function(){
-		return this.toLowerCase().replace(/\s+/g, '-');
-	},
-	
-	/**
 	 * Testa se a string passa no regex
 	 * @param [string|regex] pattern
 	 * @param optional [string] flags
@@ -21,6 +14,13 @@ String.implement({
 	 */
 	toArray: function(){
 		return this.split('');
+	},
+	
+	/**
+	 * Transforma a string atual em uma url válida, com - (hyphenate)
+	 */
+	toUri: function(){
+		return this.trim().toLowerCase().replace(/\s+/g, '-');
 	},
 	
 	/**
