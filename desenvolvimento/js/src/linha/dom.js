@@ -102,7 +102,7 @@ L.implement({
 		/**
 		 * DOM :)
 		 */
-		if(selector.nodeType){
+		if(selector.nodeType || selector == window){
 			dom[0] = selector;
 			
 		/**
