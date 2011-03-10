@@ -4,7 +4,7 @@ L.ready(function(){
 	
 	test('selectors', function(){
 		
-		expect(4);
+		expect(7);
 		
 		equal(L('#id').length, 1, 'Seletor para IDs');
 		equal(L('.class').length, 2, 'Seletor para classes');
@@ -12,8 +12,11 @@ L.ready(function(){
 		
 		var context = L('#context')[0];
 		
-		equal(L('.dentro', context[0]).length, 2, 'Seletor avançado, com contexto');
-		
+		equal(L('.dentro', context).length, 2, 'Seletor avançado (Class), com contexto');
+		equal(L('#dentro', context).length, 1, 'Seletor avançado (ID), com contexto');
+		equal(L('#fora', context).length, 0, 'Seletor avançado (ID), com contexto que deve dar erro - sem resultados, rs');
+		equal(L('span', context).length, 1, 'Seletor avançado (TAG), com contexto');
+
 	});
 	
 	test('each', function(){

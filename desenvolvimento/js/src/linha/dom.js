@@ -1,3 +1,41 @@
+/**
+ * Implementa protótipo para IE8-
+ * Thanks http://forums.devshed.com/javascript-development-115/javascript-get-all-elements-of-class-abc-24349.html
+ */
+getElementsByClassName = function(name, context){
+	
+	/**
+	 * Nativo
+	 */
+	if(context.getElementsByClassName)
+		return context.getElementsByClassName(name);
+	
+	/**
+	 * IE8-
+	 */	
+	return( function getElementsByClass(name, context){
+		
+		context = context || document;
+		
+		var hasClass = new RegExp('(^|\\s)' + name + '(\\s|$)'),
+			all = context.getElementsByTagName('*'),
+			results = [],
+			elem,
+			i = 0;
+			
+		for(; (elem = all[i]) != null; i++){
+	
+       	    var elementClass = elem.className;
+       
+       	    if(elementClass && elementClass.indexOf(name) != -1 && hasClass.test(elementClass))
+       	        results.push(elem);
+       	}
+
+       	return results;
+       	
+   	})(name, context);
+};
+
 L.extend({
 	
 	/**
@@ -11,6 +49,18 @@ L.extend({
 	 */
 	nodeName: function(elem){
 		return elem.nodeName.toLowerCase();
+	},
+	
+	/**
+	 * Checa se um elemento é filho do parent
+	 * @param [object] elem
+	 * @param [object] parent
+	 */
+	isChildren: function(elem, parent){
+		return( 
+			(elem.parentNode == parent) || (elem.parentNode != document) &&
+			L.isChildren(elem.parentNode, parent)
+		);
 	}
 	
 });
@@ -46,6 +96,7 @@ L.implement({
 	
 		var dom = [];
 		selector = selector || document;
+
 		context = context && context.nodeType ? context : document;
 
 		/**
@@ -55,16 +106,18 @@ L.implement({
 			dom[0] = selector;
 			
 		/**
-		 * IDS
+		 * IDs
 		 */
 		}else if(selector.indexOf('#') == 0){
-			dom[0] = context.getElementById( selector.replace('#', '') );
-
+			
+			dom[0] = document.getElementById( selector.replace('#', '') );
+			if( !L.isChildren(dom[0], context) ) dom[0] = null;
+			
 		/**
 		 * Classes
 		 */
 		}else if(selector.indexOf('.') == 0){
-			dom = context.getElementsByClassName(selector.replace('.', ''));
+			dom = getElementsByClassName(selector.replace('.', ''), context);
 			
 		/**
 		 * TAGs
@@ -73,7 +126,7 @@ L.implement({
 			dom = context.getElementsByTagName(selector);
 		}
 		
-		if(!dom) return this;
+		if(!dom || dom[0] == null) return this;
 		
 		this.selector = selector;
 		this.context = context;
