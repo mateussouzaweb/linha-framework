@@ -91,9 +91,9 @@ L.implement({
 			//IE8-
 			}else{
 				
-				item = item.replace(/\-[a-z]/g, function(l){
-            		return l[1].toUpperCase();
-           		});
+				item = item.replace(/\-(\w)/g, function(all, letter){
+            		return letter.toUpperCase();
+            	});
 				
 				var value = this.currentStyle[item];
 					value = (value === '')? 'auto' : value;
@@ -131,9 +131,9 @@ L.implement({
 		 */
 		Object.forEach(itens, function(value, key){
 		
-			var name = key.replace(/\-[a-z]/g, function(l){
-            	return l[1].toUpperCase();
-            });
+			var name = key.replace(/\-(\w)/g, function(all, letter){
+            		return letter.toUpperCase();
+            	});
             
             styles[name] = value;
         });
