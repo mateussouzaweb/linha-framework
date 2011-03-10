@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" lang="pt_BR" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Linha Framework - Linha Load</title>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../../../../html/favicon.ico" />
+
+	<!-- CSS -->
+    <link rel="stylesheet" type="text/css" media="all" href="../../../../../html/css/all.css" />
+	<style type="text/css">
+	body{
+		background: #FFF;
+		margin: 50px;
+	}
+	</style>
+	
+	<!-- JS -->
+	<script type="text/javascript" src="../../../../arquivos/linha-1.3.js"></script>	
+	<script type="text/javascript" src="../../../src/plugins/linha/load.js"></script>
+	
+	<script type="text/javascript">
+	/**
+	 * Registra o resultado
+	 */
+	var agora = new Date();
+	
+	L.ready(function(){
+		L('#tempo').text( (new Date()).getTime() - agora.getTime() + 'ms' );
+	});
+	
+	/**
+	 * MODO DESATIVADO
+	 */
+	if(window.location.href.indexOf('?') >= 0){
+		
+		document.write(
+		'<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js">\x3C/script>' + 
+		'<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js">\x3C/script>' + 
+		'<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js">\x3C/script>' + 
+		'<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js">\x3C/script>' +
+		'<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js">\x3C/script>' +
+		'<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/yui/3.3.0/build/yui/yui-min.js">\x3C/script>' +
+		'<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.3.1/mootools-yui-compressed.js">\x3C/script>' +
+		'<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js">\x3C/script>' +
+		'<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dojo/dojo.xd.js">\x3C/script>'
+		);
+		
+		L.ready(function(){
+			L('#status').text('DESATIVADO');
+			L('a').text('Ativar?').attr('href', 'load.html');
+		});		
+				
+	/**
+	 * LOAD ATIVADO
+	 */
+	}else{
+	
+		/**
+		 * Carrega CSS dinamicamente
+		 * Repare que está fora do ready (apenas para garantir que está funcionando certinho...)
+		 */
+		L.loadCss([
+			'../../../../../html/css/screen.css',
+			'../../../../../html/css/plugins.css'
+		])
+		
+		/**
+		 * Media print
+		 */
+		.loadCss('../../../../../html/css/print.css', 'print');
+		
+		/**
+		 * Carrega scripts JS dinamicamente
+		 */
+		L.loadScript([
+			'http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js', 
+			'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js', 
+			'http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js', 
+			'http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js', 
+			'http://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js', 
+			'http://ajax.googleapis.com/ajax/libs/yui/3.3.0/build/yui/yui-min.js', 
+			'http://ajax.googleapis.com/ajax/libs/mootools/1.3.1/mootools-yui-compressed.js', 
+			'http://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js', 
+			'http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dojo/dojo.xd.js'
+		], function(){
+			
+			jQuery('body').append('Viu só como funfa? Depois de carregado tudo eu fiz isso com jQuery :)');
+			
+		});
+		
+	}
+	</script>
+		
+</head>
+<body>
+	
+	<h2>Tempo de carregamento da página: <em id="tempo">0ms</em></h2>
+	<p>Status do load: <b id="status">ATIVO</b></p>
+	
+	<p><em><a href="load.html?ativar=0">Desativar?</a></em></p>
+
+</body>
+</html>

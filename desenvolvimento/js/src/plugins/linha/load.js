@@ -1,98 +1,159 @@
 /**
  * Linha Load 1.0
  */
-Linha.extend({
+L.extend({
 	
 	head: document.getElementsByTagName('head')[0],
-	
-	isReady: false,
-	
+
 	fila: [],
 	
 	/**
-	 * Carrega um script Javascript na página
-	 * @param string src
-	 * @param string callback
+	 * Adiciona um item a fila de processamento
+	 * @param [string] type
+	 * @param [array] args
 	 */
-	script: function(src, callback){
-						
+	addFila: function(type, args){
+
 		/**
-		 * Checa se o DOM está pronto para fazer a inserção
+		 * Adiciona à fila
+		 * JS
 		 */
-		if(!this.isReady){
-			
-			var args = arguments,
-			self = this;
-			
-			/**
-			 * Adiciona à fila
-			 */
+		if(type == 'js'){
+		
 			this.fila.push(function(){
-				self.script.apply(self, args);				
+				L.loadScript.apply(L, args);				
 			});
-			
-			return this;
-		}
 		
 		/**
-		 * Cria o script
-		 */	
-		var s = document.createElement('script');
-			s.type = 'text/javascript';
-			s.src = src;
-			s.async = true;
-		
-		/**
-		 * Adicionar o evento quando completar
+		 * CSS
 		 */
-		s.onreadystatechange = s.onload = function(){
-			
-			var state = s.readyState;
-			
-			if(!state || /loaded|complete/.test(state)){
-			
-				/**
-		 		 * Executa a função
-		 		 */
-				if(typeof(callback) === 'function') callback.call();	
-			}
-			
-			/**
-			 * Fix de memória IE
-			 */
-			s.onload = s.onreadystatechange = null;
-		}; 
-			
-		this.head.appendChild(s);
+		}else if(type == 'css'){
+
+			this.fila.push(function(){
+				L.loadCss.apply(L, args);				
+			});
+		}
 		
 		return this;
 	},
 	
 	/**
-	 * Carrega um estilo CSS na página
-	 * @param string src
-	 * @param string media
+	 * Carrega scripts Javascript na página, assim que a página terminar de ser carregada
+	 * @param [string - array] src
+	 * @param [function] callback
 	 */
-	css: function(src, media){
+	loadScript: function(src, callback){
+						
+		/**
+		 * Checa se o DOM está pronto para fazer a inserção
+		 */
+		if(!this.isReady)
+			return this.addFila('js', arguments);
+		
+		var itens = [],
+			ok = 0;	
+		
+		/**
+		 * Força array
+		 */
+		if(!L.is('array', src)) itens.push(src);
+		else itens = src;
+		
+		/**
+		 * Processa cada item
+		 */
+		itens.forEach(function(item){
+			
+			/**
+			 * Cria o script
+			 */	
+			var s = document.createElement('script');
+			
+			s.type = 'text/javascript';
+			s.src = item;
+			s.async = true;
+			
+			/**
+			 * Adicionar o evento quando completar
+			 */
+			s.onreadystatechange = s.onload = function(){
+			
+				var state = s.readyState;
+			
+				if(!state || state.test(/loaded|complete/)){
+					
+					ok++;
+				
+					/**
+		 			 * Executa a função?
+		 			 * Só executa se todos os itens foram carregados
+		 			 */
+		 			if(ok == itens.length && typeof(callback) === 'function')
+		 				callback.call();
+		 									
+				}
+			
+				/**
+				 * Fix de memória IE
+				 */
+				s.onload = s.onreadystatechange = null;
+			};
+			
+			L.head.appendChild(s);
+
+		});
+		
+		return this;
+	},
 	
-		var l = document.createElement('link');
+	/**
+	 * Carrega estilos CSS na página, assim que a página for carregada
+	 * @param [string - array] src
+	 * @param [string] media
+	 */
+	loadCss: function(src, media){
+	
+		/**
+		 * Checa se o DOM está pronto para fazer a inserção
+		 */
+		if(!this.isReady)
+			return this.addFila('css', arguments);
+				
+		/**
+		 * Força array
+		 */
+		var itens = [];
+		
+		if(!L.is('array', src)) itens.push(src);
+		else itens = src;
+		
+		/**
+		 * Processa cada item
+		 */
+		itens.forEach(function(item){
+		
+			var l = document.createElement('link');
+			
 			l.type = 'text/css';
 			l.rel = 'stylesheet';
-			l.href = src;
+			l.href = item;
 			l.media = (media || 'screen');
-						
-		this.head.appendChild(l);
+			
+			L.head.appendChild(l);
+		
+		});
 		
 		return this;
 	}
 });
 
 /**
- * Libera Ready
+ * Processa a fila, se tiver...
  */
-setTimeout(function(){
+L.ready(function(){
+	
+	L.fila.forEach(function(item){
+		item.call();
+	});
 
-	Linha.isReady = true;
-	for(fn in Linha.fila) Linha.fila[fn].call();
-		
-}, 200);
+});
