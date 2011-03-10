@@ -30,6 +30,8 @@ blockquote:before, blockquote:after, q:before, q:after { content:''; content:non
 
 body { line-height:1; }
 
+body, html{ height: 100%; min-height: 100%; }
+
 abbr[title], dfn[title] { border-bottom:1px dotted #000; cursor:help; }
 
 table { border-collapse:collapse; border-spacing:0; }
