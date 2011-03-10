@@ -8,6 +8,32 @@ MIT and GPL License - <http://www.opensource.org/licenses/mit-license.php> || <h
 ### Documentação
 Para ver a documentação visite <http://www.linhaframework.com/docs/>
 
+LINHA FRAMEWORK JS - L()
+==============
+"L" é um framework Javascript como os demais, bem semelhante a jQuery e Mootools. Mas, a grande diferença é que "L" é bem leve - apenas 5kb com gzip - O que torna vantajoso o uso dele em qualquer projeto.
+
+Compatibilidade (Principais Navegadores):
+
+* Chrome 5+
+* Firefox 2+
+* Internex Explorer 6+
+* Opera 9.6+
+* Safari 3+
+
+Compatibilidade (Demais Navegadores):
+
+* Avant Browser 10.2+
+* Camino 1+
+* Fennec 1+
+* Flock 2.6+
+* Maxthon 2.5+
+* OmniWeb 5.1+
+* RockMelt 0+
+* SeaMonkey 1.1+
+* SlimBrowser 4+
+* Stainless 0+
+* Existe outro browser? Avise :)
+
 PLUGINS USADOS
 ==============
 Tudo isto não foi trabalho apenas do LF, devo dar os créditos a:
@@ -27,7 +53,7 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
  * Crie versões minifield de seus códigos com uma linguagem serve-side - <http://code.google.com/p/minify/>
  * Se o site não tiver suporte nativo para o IE6, avise os usuários usando Adeus IE6 - <https://github.com/mateus007/Adeus-IE6>
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
- * Aprenda a trabalhar com medidas padrões
+ * Aprenda a trabalhar com medidas padrões - grids
  * Alterar o código fonte não é proibido :P
  * Utilize o fórum do Linha Framework - <http://www.linhaframework.com/forum/>
  * Contribua!
