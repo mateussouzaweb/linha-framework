@@ -39,43 +39,7 @@
 	<script type="text/javascript" src="../../src/linha/dom.js"></script>
 	<script type="text/javascript" src="../../src/linha/css.js"></script>
 	<script type="text/javascript" src="../../src/linha/events.js"></script>
-	
-	<script type="text/javascript" src="../../src/plugins/linha/browserSelector.js"></script>
-	
-	<script type="text/javascriptt">
-	/**
-	 * Registra os resultados
-	 */
-	var agora = new Date();
-	
-	window.onload = function(){
-		document.getElementById('tempo').innerHTML = (new Date()).getTime() - agora.getTime() + 'ms';
-		//document.getElementById('classes').innerHTML = Linha.html.className;
-		//document.getElementById('elementos').innerHTML = Linha.html5.join(' '); 	
-	}
-	
-	/**
-	 * Carrega CSS dinamicamente
-	 */
-	Linha
-	.css('../../../../html/css/form.css', 'all')
-	.css('../../../../html/css/linha.css');
-		
-	/**
-	 * Carrega scripts JS dinamicamente
-	 */
-	Linha
-	.script('http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', function(){
-		$('body').append('Viu só como funfa?');
-		
-		//Um dentro do outro, rs
-		Linha.script('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js');
-		
-	})	
-	.script('http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js')
-	.script('http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js');
-	</script>
-		
+			
 </head>
 <body>
 	
@@ -186,16 +150,6 @@
 	
 	<button id="add">Adicionar Item</button>
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-	<!-- Só pra testar<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/yui/3.3.0/build/yui/yui-min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.3/scriptaculous.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.5.0/dojo/dojo.xd.js"></script>
-	 -->
 	<!-- QUnit -->	
 	<link rel="stylesheet" type="text/css" href="../../../arquivos/qunit/qunit.css" />
 	<script type="text/javascript" src="../../../arquivos/qunit/qunit.js"></script>
