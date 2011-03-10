@@ -1,7 +1,7 @@
 /**
  * Linha Browser Selector 1.0
  */
-Linha.extend({
+L.extend({
 	
 	/**
 	 * User Agent e HTML Node
@@ -16,22 +16,13 @@ Linha.extend({
 	screens: [320, 480, 640, 768, 1024, 1280, 1440, 1680, 1920],
 	
 	css3: 'background-origin background-clip background-size box-sizing box-shadow box-reflect border-image border-radius columns perspective transform transition'.split(' '),
-	
-	_classes: [],
-	
-	/**
-	 * Adiciona uma classe para o HTML
-	 */
-	htmlClass: function(classe){
-		this._classes.push(classe);
-	},
-	
+		
 	/**
 	 * Define a classe para o OS atual
 	 */
 	osSelector: function(){
 		var ua = /(mac|win|linux|freebsd|mobile|iphone|ipod|ipad|android|blackberry|j2me|webtv)/.exec(this.ua);
-		this.htmlClass(ua[1]);
+		L(this.html).addClass(ua[1]);
 		
 		return this;
 	},
@@ -41,15 +32,16 @@ Linha.extend({
 	 */
 	browserSelector: function(){
 		
-		var ua = /(ie|firefox|chrome|safari|opera)(?:.*version)?(?:[ \/])?([\w.]+)/.exec(this.ua);
+		var html = L(this.html),
+			ua = /(ie|firefox|chrome|safari|opera)(?:.*version)?(?:[ \/])?([\w.]+)/.exec(this.ua);
 		
-		this.htmlClass(ua[1]);
+		html.addClass(ua[1]);
 				
 		/**
 		 * Fix safari
 		 */
-		if(ua[1] == 'safari') this.htmlClass(ua[1] + '-' + ua[2].substring(0, 1));
-		else this.htmlClass(ua[1] + '-' + parseInt(ua[2]));
+		if(ua[1] == 'safari') html.addClass(ua[1] + '-' + ua[2].substring(0, 1));
+		else html.addClass(ua[1] + '-' + parseInt(ua[2]));
 
 		/**
 		 * Condicionais IE
@@ -57,7 +49,7 @@ Linha.extend({
 		if(ua[1] == 'ie'){
 		
 			for(var ver = 3; ver < 10; ver++) {
-				if(parseInt(ua[2]) < ver) this.htmlClass('lt-ie-' + ver);		
+				if(parseInt(ua[2]) < ver) html.addClass('lt-ie-' + ver);		
 			}
 		}
 		
@@ -70,26 +62,25 @@ Linha.extend({
 	 */
 	screenSelector: function(){
 		
-		var w = window.outerWidth || this.html.clientWidth;
+		var html = L(this.html),
+			w = window.outerWidth || html[0].clientWidth;
 		
 		/**
 		 * Remove a classe atual
 		 */
-		this._removeClass(this.html, / ?(screen|width)-\d+/g);
-		
-		this._addClass(this.html, 'width-' + w);
+		this.html.className = this.html.className.replace(/(\s)screen-[0-9]+/ig, '').trim();
 		
 		/**
 		 * Processa cada resolução disponível
 		 */
-		this.each(this.screens, function(){
+		for(var i = 0; i < this.screens.length; i++ ){
 			
-			if(w <= this){
-				Linha._addClass(Linha.html, 'screen-' + this);
-				return false;
+			if(w <= this.screens[i]){
+				html.addClass('screen-' + this.screens[i]);
+				break;
 			}
-			
-		});
+		
+		}
 		
 		return this;	
 	},
@@ -99,8 +90,9 @@ Linha.extend({
 	 */
 	css3Selector: function(){
 		
-		var vendors = ['Khtml', 'Ms', 'O', 'Moz', 'Webkit'],
-		l = vendors.length,
+		var html = L(this.html),
+			vendors = ['Khtml', 'Ms', 'O', 'Moz', 'Webkit'],
+			l = vendors.length,
 		
 		style = document.createElement('div').style,
 		
@@ -135,7 +127,7 @@ Linha.extend({
 		
 		while(i--){
 			var c = this.css3[i]; if(!test(c)) c = 'sem-' + c;
-			this.htmlClass(c);
+			html.addClass(c);
 		}
 		
 		// Demais pripriedades que não funcionam no loop :(
@@ -239,33 +231,28 @@ Linha.extend({
 		/**
 		 * Adiciona outras classes
 		 */ 
-		this.htmlClass( ((style.textShadow === '')? '' : 'sem-') + 'text-shadow');
-		this.htmlClass( ((style.resize === '')? '' : 'sem-') + 'resize');
-		this.htmlClass( ((style.opacity === '')? '' : 'sem-') + 'opacity');
-		this.htmlClass( ((gradientes())? '' : 'sem-') + 'gradientes');
-		this.htmlClass( ((multiBackgrounds())? '' : 'sem-') + 'multiplos-backgrounds');
-		this.htmlClass( ((backgroundColor('rgba(0, 0, 0, 0.5)'))? '' : 'sem-') + 'rgba');
-		this.htmlClass( ((backgroundColor('hsla(120, 40%, 100%, 0.5)'))? '' : 'sem-') + 'hsla');
-		this.htmlClass( ((fontFace())? '' : 'sem-') + 'font-face');
+		html.addClass( ((style.textShadow === '')? '' : 'sem-') + 'text-shadow');
+		html.addClass( ((style.resize === '')? '' : 'sem-') + 'resize');
+		html.addClass( ((style.opacity === '')? '' : 'sem-') + 'opacity');
+		html.addClass( ((gradientes())? '' : 'sem-') + 'gradientes');
+		html.addClass( ((multiBackgrounds())? '' : 'sem-') + 'multiplos-backgrounds');
+		html.addClass( ((backgroundColor('rgba(0, 0, 0, 0.5)'))? '' : 'sem-') + 'rgba');
+		html.addClass( ((backgroundColor('hsla(120, 40%, 100%, 0.5)'))? '' : 'sem-') + 'hsla');
+		html.addClass( ((fontFace())? '' : 'sem-') + 'font-face');
 	
 		return this;
 	}
 	
-})
+});
 
 /**
  * Inicia Teste CSS
  */
-.osSelector()
-.browserSelector()
-.screenSelector()
-.css3Selector()
+L.osSelector()
+ .browserSelector()
+ .css3Selector()
+ .screenSelector();
 
-/**
- * Adiciona as Classes ao HTML
- */
-._addClass(Linha.html, Linha._classes.join(' '));
-
-window.onresize = function(){
-	Linha.screenSelector();
-};
+L(window).bind('resize', function(){
+	L.screenSelector();
+});
