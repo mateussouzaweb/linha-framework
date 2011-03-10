@@ -43,7 +43,7 @@ var toString = Object.prototype.toString,
  */
 L.extend({
 
- 	ready: false,
+ 	isReady: false,
  			
 	/**
 	 * Faz o extend simples de um objeto
