@@ -327,7 +327,7 @@ L.implement({
 				if(one){
 					return index >= 0 ? 
 						
-						options[index].hasAttribute('value') ? 
+						options[index].value ? 
 							options[index].value : 
 							options[index].text : 
 						
@@ -340,7 +340,7 @@ L.implement({
 				Array.each(options, function(option){
 					
 					if(option.selected)
-						values.push( option.hasAttribute('value') ? option.value : option.text );
+						values.push( option.value ? option.value : option.text );
 				});
 				
 				return values;
