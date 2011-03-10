@@ -55,7 +55,7 @@ L.ready(function(){
 			'padding-top': '5px'
 		});
 		
-		notEqual(L('#css').css('marginBottom'), 0, 'Checa se o valor de marginBottom não é igual a zero, depois de ter sido alterado');
+		notEqual(L('#css').css('marginBottom'), '0', 'Checa se o valor de marginBottom não é igual a zero, depois de ter sido alterado');
 		
 		deepEqual(L('#css').css(['margin-bottom', 'paddingTop']), ['10px', '5px'], 'Recupera múltiplos valores de CSS')
 		
@@ -64,17 +64,17 @@ L.ready(function(){
 	test('offset', function(){
 		
 		expect(2);
-		
-		notEqual(L('#offset').offset().top, 0, 'Recupera o offsetTop do elemento');
-		equal(L('#offset').offset().left, 0, 'Recupera o offsetLeft do elemento');
+				
+		equal(L('#offset').offset().top, 100, 'Recupera o offsetTop do elemento');
+		equal(L('#offset').offset().left, 200, 'Recupera o offsetLeft do elemento');
 		
 	});
 	
 	test('position', function(){
 		
 		expect(2);
-		
-		equal(L('#position').position().top, 10, 'Recupera o position, checando se o valor é o correto');
+				
+		equal(L('#position').position().top, 10, 'Recupera o position Top, checando se o valor é o correto');
 		
 		L('#offset').css('paddingTop', '25px');
 		L('#position').css('marginTop', '10px');

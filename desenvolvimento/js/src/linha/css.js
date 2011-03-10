@@ -79,12 +79,27 @@ L.implement({
 		 */
 		itens.forEach(function(item){
 			
-			item = item.replace(/([A-Z])/g, '-$1').toLowerCase();
+			//Não IE >)
+			if(document.defaultView && document.defaultView.getComputedStyle){
 			
-	    	var value = document.defaultView
-	    		.getComputedStyle(this, '')
-	    		.getPropertyValue(item);
-		
+				item = item.replace(/([A-Z])/g, '-$1').toLowerCase();
+				
+				var value = document.defaultView
+	    			.getComputedStyle(this, '')
+	    			.getPropertyValue(item);
+			
+			//IE8-
+			}else{
+				
+				item = item.replace(/\-[a-z]/g, function(l){
+            		return l[1].toUpperCase();
+           		});
+				
+				var value = this.currentStyle[item];
+					value = (value === '')? 'auto' : value;
+					
+			}
+			
 			styles.push ( value ? value : undefined );
 	
 		}, this[0]);
@@ -169,23 +184,50 @@ L.implement({
 		 */
 		if(!elem || !elem.ownerDocument) return null;
 		
-		try {
-			box = elem.getBoundingClientRect();
-    	} catch(e) {}
-    		
 		/**
-		 * Se tiver box, faz alguns cálculos
-		 */	
-		if(box){
-			
-			var body = document.body,
-				clientTop = body.clientTop || 0,
-        		clientLeft = body.clientLeft || 0;
-        			
-			t = box.top + body.scrollTop - clientTop;
-			l = box.left + body.scrollLeft - clientLeft;
-		}
+		 * Método 1 - Novos navegadores
+		 */
+		if(elem.getBoundingClientRect){
+		
+			try {
+				box = elem.getBoundingClientRect();
+	    	} catch(e) {}
+	    		
+			/**
+			 * Se tiver box, faz alguns cálculos
+			 */	
+			if(box){
+				
+				var docElem = elem.ownerDocument.documentElement,
+					body = document.body,
+					
+					clientTop = docElem.clientTop || body.clientTop || 0,
+	        		clientLeft = docElem.clientLeft || body.clientLeft || 0,
+	        		    		
+	        		scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop || 0,
+	        		scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft || 0;
+	        	
+				t = box.top + scrollTop - clientTop;
+				l = box.left + scrollLeft - clientLeft;
 
+			}
+		
+		/**
+		 * Método 2 - Navegadores Antigos
+		 * Camino 1.0, Camino 1.5, Camino 1.6, Firefox 2, IE6, IE7, Safari 3
+		 * Thanks http://www.quirksmode.org/js/findpos.html
+		 */
+		}else{
+			
+			if(elem.offsetParent){
+				
+				do{
+					l += elem.offsetLeft;
+					t += elem.offsetTop;
+				} while (elem = elem.offsetParent);
+			}
+		}
+		
 		return {top: t, left: l};
 	},
 	
@@ -202,7 +244,7 @@ L.implement({
 		 * Recupera as posições
 		 */
 		var offset = this.offset();
-		
+
 		/**
 		 * Remove as margens
 		 */
