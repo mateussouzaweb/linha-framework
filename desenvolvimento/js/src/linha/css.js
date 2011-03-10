@@ -255,8 +255,10 @@ L.implement({
 		 * Se tiver parent
 		 */
 		if(elem.offsetParent){
-
-			var parentOffset = L(elem.offsetParent).offset();
+			
+			var parentOffset = /^(?:body|html)$/i.test(elem.offsetParent.nodeName)?
+				{ top: 0, left: 0 } : 
+				L(elem.offsetParent).offset();
 			
 			/**
 			 * Adiciona as bordas
