@@ -257,7 +257,8 @@ L.implement({
 			
 		}
 		
-		return this[0].getAttribute(name);
+		var attr = this[0].getAttribute(name);
+		return attr ? attr : null;
 	},
 	
 	/**
