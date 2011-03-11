@@ -9,8 +9,20 @@ MIT and GPL License - <http://www.opensource.org/licenses/mit-license.php> || <h
 Para ver a documentação visite <http://www.linhaframework.com/docs/>
 
 LINHA FRAMEWORK JS - L()
-==============
-"L" é um framework Javascript como os demais, bem semelhante a jQuery e Mootools. Mas, a grande diferença é que "L" é bem leve - apenas 5kb com gzip - O que torna vantajoso o uso dele em qualquer projeto.
+========================
+Linha JS - "L" - é um framework Javascript como os demais, bem semelhante ao jQuery e ao Mootools, por exemplo, mas, com uma grande diferença: é extremamente leve - menos de 5kb com gzip -, o que torna vantajoso o uso dele em qualquer projeto. Foi desenvolvido tendo como regras, o básico de qualquer framework JS: selecionar, editar propriedades/atributos, alterar CSS e adicionar/remover eventos a qualquer elemento com mais rapidez e facilidade.
+
+Linha JS, também extende funções em qualquer String, Array e Objeto presente em seu código JS, semelhantemente ao trabalho que faz o Mootools ou Prototype (jQuery não faz isso). Além de tornar tudo totalmente extensível, para desenvolvimentos plugins ou novas funcionalidades, por exemplo - Você pode extender facilmente o Linha JS, Strings, Arrays, Objetos, Datas, Numbers, Regexs, Frameworks... Um exemplo prático que Linha JS já faz, é adicionar algumas funcionalidades do Javascript 1.6 a navegadores antigos.
+
+Conta também, desde sua versão inicial, alguns plugins para facilitar o desenvolvimento de projetos: Browser Selector, Load - lazy loading -, e HTML5 - habilitador de elementos HTML5. 
+
+<b>Linha Browser Selector</b>: adiciona classes ao HTML de acordo com o OS, navegador, resolução do navegador e propriedades CSS3 suportadas. Assim, você pode trabalhar o CSS da melhor maneira pra cada variação disponível, desejada. Ex: Estilos IE, Resposive Webdesign...
+
+<b>Linha Load</b>: faz o carregamento dinâmico para Scripts Javascript e estilos CSS, logo após que o DOM é totalmente carregado, aumentando assim a performance do projeto drásticamente... experimente!
+
+<b>Linha HTML5</b> torna os navegadores antigos compatíveis com os elementos HTML5, até em versões de impressão, permitindo estiliza-los via CSS, por exemplo.
+
+É claro que Linha JS é muito mais do que isto, mas vamos parar por aqui... se quiser saber mais detalhes veja a documentação. 
 
 Compatibilidade (Principais Navegadores):
 
@@ -50,7 +62,8 @@ RECOMENDAÇÕES & DICAS
 =====================
 Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo algumas dicas e recomendações:
  
- * Crie versões minifield de seus códigos com uma linguagem serve-side - <http://code.google.com/p/minify/>
+ * Crie versões minifield de seus códigos com uma linguagem server-side - <http://code.google.com/p/minify/>
+ * Carregue JS dinamicamente, usando Linha Load.
  * Se o site não tiver suporte nativo para o IE6, avise os usuários usando Adeus IE6 - <https://github.com/mateus007/Adeus-IE6>
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
  * Aprenda a trabalhar com medidas padrões - grids
@@ -67,11 +80,11 @@ CHANGELOG
  * Movimentação para changelog
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
- * Introdução a library Linha Framework JS
+ * Introdução a library Linha Framework JS, com testes unitários
  * Separação do código jQuery do core LF, tornando mais simples o uso de outro framework JS
- * Linha Framework JS - Criado plugin "modernizer" com classes CSS. Ex: .mac .chrome .chrome9 .box-shadow
- * Linha Framework JS - Criado plugin para adicionar elementos HTML5 em navegadores antigos
- * Linha Framework JS - Criado plugin para carregar dinamicamente JS e CSS
+ * Linha Framework JS - Criado plugin (Browser Selector) "modernizer" com classes CSS. Ex: .mac .chrome .chrome9 .box-shadow
+ * Linha Framework JS - Criado plugin (HTML5), para adicionar elementos HTML5 em navegadores antigos
+ * Linha Framework JS - Criado plugin (Load), para carregar dinamicamente JS e CSS
  * Adicionado plugin Selectizr
  * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
  * Reestruturação dos arquivos.
