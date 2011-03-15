@@ -364,47 +364,47 @@ ul.menu li ul li ul{
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-topo-esquerda,
-.tooltip-seta .tooltip-posicao-centro-direita {
+.tooltip-seta .tooltip-posicao-centro-direita{
 	border-right-color: #434343;
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
-.tooltip-seta .tooltip-posicao-rodape-direita {
+.tooltip-seta .tooltip-posicao-rodape-direita{
 	bottom: -10px;
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
 .tooltip-seta .tooltip-posicao-topo-esquerda,
 .tooltip-seta .tooltip-posicao-rodape-lateral-direita,
-.tooltip-seta .tooltip-posicao-topo-lateral-direita {
+.tooltip-seta .tooltip-posicao-topo-lateral-direita{
 	right: 0;
 }
 .tooltip-seta .tooltip-posicao-rodape-esquerda,
-.tooltip-seta .tooltip-posicao-topo-esquerda {
+.tooltip-seta .tooltip-posicao-topo-esquerda{
 	margin-right: -1px;
 }
 .tooltip-seta .tooltip-posicao-topo-esquerda,
-.tooltip-seta .tooltip-posicao-topo-direita {
+.tooltip-seta .tooltip-posicao-topo-direita{
 	top: -10px;
 }
 .tooltip-seta .tooltip-posicao-rodape-direita,
 .tooltip-seta .tooltip-posicao-topo-direita,
-.tooltip-seta .tooltip-posicao-centro-esquerda {
+.tooltip-seta .tooltip-posicao-centro-esquerda{
 	border-left-color: #434343;
 }
 .tooltip-seta .tooltip-posicao-rodape-direita,
 .tooltip-seta .tooltip-posicao-topo-direita,
 .tooltip-seta .tooltip-posicao-rodape-lateral-esquerda,
-.tooltip-seta .tooltip-posicao-topo-lateral-esquerda {
+.tooltip-seta .tooltip-posicao-topo-lateral-esquerda{
 	left: 0;
 }
 .tooltip-seta .tooltip-posicao-centro-direita,
-.tooltip-seta .tooltip-posicao-centro-esquerda {
+.tooltip-seta .tooltip-posicao-centro-esquerda{
 	top: 50%;
 	margin-top: -6px;
 }
-.tooltip-seta .tooltip-posicao-centro-direita {
+.tooltip-seta .tooltip-posicao-centro-direita{
 	left: -13px;
 }
-.tooltip-seta .tooltip-posicao-centro-esquerda {
+.tooltip-seta .tooltip-posicao-centro-esquerda{
 	right: -13px
 }
 

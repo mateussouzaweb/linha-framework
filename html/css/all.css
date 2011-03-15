@@ -3,7 +3,6 @@
  * </> Reset
  * </> Tipografia
  * </> Forms
- * </> Grid
  */
 
 /* RESET + HTML5 Reset */
@@ -13,7 +12,7 @@ input, textarea, select, abbr, address, cite, code, del, dfn, em, img, ins, kbd,
 samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form,
 label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
 details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time,
-mark, audio, video, a {
+mark, audio, video, a{
     margin:0;
     padding:0;
     border:0;
@@ -22,63 +21,63 @@ mark, audio, video, a {
     vertical-align:baseline;
     background:transparent;
 }
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {display:block;}
-nav ul, ul, ol { list-style:none; }
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary{ display:block; }
+nav ul, ul, ol{ list-style:none; }
 
-blockquote, q { quotes:none; }
-blockquote:before, blockquote:after, q:before, q:after { content:''; content:none; }
+blockquote, q{ quotes:none; }
+blockquote:before, blockquote:after, q:before, q:after{ content:''; content:none; }
 
-body { line-height:1; }
+body{ line-height:1; }
 
 body, html{ height: 100%; min-height: 100%; }
 
-abbr[title], dfn[title] { border-bottom:1px dotted #000; cursor:help; }
+abbr[title], dfn[title]{ border-bottom:1px dotted #000; cursor:help; }
 
-table { border-collapse:collapse; border-spacing:0; }
+table{ border-collapse:collapse; border-spacing:0; }
 
-td, td img { vertical-align: top; } 
+td, td img{ vertical-align: top; } 
 
-sub { vertical-align: sub; font-size: smaller; }
-sup { vertical-align: super; font-size: smaller; }
+sub{ vertical-align: sub; font-size: smaller; }
+sup{ vertical-align: super; font-size: smaller; }
 
-pre, blockquote, textarea {
+pre, blockquote, textarea{
 	white-space: pre;
 	white-space: pre-wrap;
 	white-space: pre-line;
 	word-wrap: break-word;
 }
 
-input, select { vertical-align:middle; }
-input::-moz-focus-inner { border: 0; padding: 0; }
+input, select{ vertical-align:middle; }
+input::-moz-focus-inner{ border: 0; padding: 0; }
 
-input[type="radio"] { vertical-align: text-bottom; }
-input[type="checkbox"] { vertical-align: baseline; }
-.ie-7 input[type="checkbox"] { vertical-align: baseline; }
-.ie-6 input { vertical-align: text-bottom; }
+input[type="radio"]{ vertical-align: text-bottom; }
+input[type="checkbox"]{ vertical-align: baseline; }
+.ie-7 input[type="checkbox"]{ vertical-align: baseline; }
+.ie-6 input{ vertical-align: text-bottom; }
 
-button, input, select, textarea { margin: 0; }
+button, input, select, textarea{ margin: 0; }
 
-button { width: auto; overflow: visible; }
+button{ width: auto; overflow: visible; }
 
-label, input[type="button"], input[type="submit"], button { cursor: pointer; }
+label, input[type="button"], input[type="submit"], button{ cursor: pointer; }
 
 textarea{ overflow: auto; }
 
-:focus { outline: 0; }
+:focus{ outline: 0; }
 
 ::-moz-selection{ background: #535353; color:#FFF; text-shadow: none; }
-::selection { background:#535353; color:#FFF; text-shadow: none; } 
+::selection{ background:#535353; color:#FFF; text-shadow: none; } 
 
-.ie-7 img { -ms-interpolation-mode: bicubic; }
+.ie-7 img{ -ms-interpolation-mode: bicubic; }
 
-.clear { clear:both; display: block; height: 0px; overflow:hidden;}
-.clearfix { zoom: 1; }
-.clearfix:after { visibility: hidden; display: block; font-size: 0; content: " ";  clear: both; height: 0px; }
-* html .clearfix { height: 1%;}
+.clear{ clear:both; display: block; height: 0px; overflow: hidden; }
+.clearfix{ zoom: 1; }
+.clearfix:after{ visibility: hidden; display: block; font-size: 0; content: " ";  clear: both; height: 0px; }
+* html .clearfix{ height: 1%; }
 
-.left { float: left;}
-.right { float: right;}
-.hide { display: none;}
+.left{ float: left; }
+.right{ float: right; }
+.hide{ display: none; }
 
 /* TIPOGRAFIA */
 /* ----------------------------------------- */
@@ -91,14 +90,14 @@ body{
 }
 
 /*LINKS*/
-a, a:link {
+a, a:link{
 	color: #3151A2;
 	text-decoration: none;
 }
 a:hover, a:visited{
 	color: #3151A2;
 }
-a img {
+a img{
 	border:none;
 	display: block;
 }
@@ -110,33 +109,33 @@ h1, h2, h3, h4, h5, h6{
 	line-height: 100%;
 	margin-bottom: 10px;
 }
-h1{font-size: 250%;}
-h2{font-size: 200%;}
-h3{font-size: 150%;}
-h4{font-size: 120%;}
-h5, h6{font-size: 100%;}
+h1{ font-size: 250%; }
+h2{ font-size: 200%; }
+h3{ font-size: 150%; }
+h4{ font-size: 120%; }
+h5, h6{ font-size: 100%; }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 	display: block;
 }
 
 /*TEXTOS*/
-p,ul,ol{margin-bottom: 10px;}
-small{font-size: 75%;}
-big{font-size: 125%;}
-strong { font-weight: bold; }
-cite, em, dfn { font-style: italic;}
-del {text-decoration: line-through;}
-input, textarea, select, button, option {font-size: 100%; font-family: Arial, Helvetica, sans-serif;}
+p,ul,ol{ margin-bottom: 10px; }
+small{ font-size: 75%; }
+big{ font-size: 125%; }
+strong{ font-weight: bold; }
+cite, em, dfn{ font-style: italic; }
+del{ text-decoration: line-through; }
+input, textarea, select, button, option{ font-size: 100%; font-family: Arial, Helvetica, sans-serif; }
 
 /*LISTAS*/
-ol, ul {padding-left: 35px;}
+ol, ul{ padding-left: 35px; }
 ul{ list-style-type: disc; }
 ol{ list-style-type: decimal; }
 
 dl{ margin: 0 0 1.5em 0; }
 dl dt{ font-weight: bold; }
-dd{ margin-left: 1.5em;} 
+dd{ margin-left: 1.5em; } 
 
 /*TABELAS*/
 table{
@@ -190,7 +189,7 @@ table tr td{
 }
 
 /*OUTROS*/
-hr {
+hr{
 	display: block;
 	height: 1px;
 	border: 0;
@@ -198,18 +197,18 @@ hr {
 	margin: 1em 0;
 	padding: 0;
 }
-ins {
+ins{
 	background-color: #FF9; 
 	color: #000;
 	text-decoration: none;
 }
-mark {
+mark{
 	background-color: #FF9;
 	color: #000;
 	font-style: italic;
 	font-weight: bold;
 }
-del {
+del{
 	text-decoration: line-through;
 }
 blockquote{
@@ -227,10 +226,10 @@ iframe{
 }
 
 /*HELPERS*/
-.align-left{ text-align: left;}
-.align-right{ text-align: right;}
-.align-center{ text-align: center;}
-.align-justify{ text-align: justify;}
+.align-left{ text-align: left; }
+.align-right{ text-align: right; }
+.align-center{ text-align: center; }
+.align-justify{ text-align: justify; }
 .align-left, img.align-left, img[align="left"]{
 	display: inline;
 	float: left;
@@ -327,91 +326,3 @@ select:focus{
 	border-color: #AAA;
 	outline:none;
 }
-
-/* GRID */
-/* ----------------------------------------- */
-.grid-12, .grid-16, .grid-24{
-	margin-left: auto;
-	margin-right:auto;
-	width: 960px;
-}
-.coluna{
-	display: inline;
-	float: left;
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-/*12 COLUNAS*/
-.grid-12 .tamanho1{width: 60px;}
-.grid-12 .tamanho2{width: 140px;}
-.grid-12 .tamanho3{width: 220px;}
-.grid-12 .tamanho4{width: 300px;}
-.grid-12 .tamanho5{width: 380px;}
-.grid-12 .tamanho6{width: 460px;}
-.grid-12 .tamanho7{width: 540px;}
-.grid-12 .tamanho8{width: 620px;}
-.grid-12 .tamanho9{width: 700px;}
-.grid-12 .tamanho10{width: 780px;}
-.grid-12 .tamanho11{width: 860px;}
-.grid-12 .tamanho12{width: 940px;}
-
-/*16 COLUNAS*/
-.grid-16 .tamanho1{width: 40px;}
-.grid-16 .tamanho2{width: 100px;}
-.grid-16 .tamanho3{width: 160px;}
-.grid-16 .tamanho4{width: 220px;}
-.grid-16 .tamanho5{width: 280px;}
-.grid-16 .tamanho6{width: 340px;}
-.grid-16 .tamanho7{width: 400px;}
-.grid-16 .tamanho8{width: 460px;}
-.grid-16 .tamanho9{width: 520px;}
-.grid-16 .tamanho10{width: 580px;}
-.grid-16 .tamanho11{width: 640px;}
-.grid-16 .tamanho12{width: 700px;}
-.grid-16 .tamanho13{width: 760px;}
-.grid-16 .tamanho14{width: 820px;}
-.grid-16 .tamanho15{width: 880px;}
-.grid-16 .tamanho16{width: 940px;}
-
-/*24 COLUNAS*/
-.grid-24 .coluna{margin: 10px 5px;}
-.grid-24 .tamanho1{width: 30px;}
-.grid-24 .tamanho2{width: 70px;}
-.grid-24 .tamanho3{width: 110px;}
-.grid-24 .tamanho4{width: 150px;}
-.grid-24 .tamanho5{width: 190px;}
-.grid-24 .tamanho6{width: 230px;}
-.grid-24 .tamanho7{width: 270px;}
-.grid-24 .tamanho8{width: 310px;}
-.grid-24 .tamanho9{width: 350px;}
-.grid-24 .tamanho10{width: 390px;}
-.grid-24 .tamanho11{width: 430px;}
-.grid-24 .tamanho12{width: 470px;}
-.grid-24 .tamanho13{width: 510px;}
-.grid-24 .tamanho14{width: 550px;}
-.grid-24 .tamanho15{width: 590px;}
-.grid-24 .tamanho16{width: 630px;}
-.grid-24 .tamanho17{width: 670px;}
-.grid-24 .tamanho18{width: 710px;}
-.grid-24 .tamanho19{width: 750px;}
-.grid-24 .tamanho20{width: 790px;}
-.grid-24 .tamanho21{width: 830px;}
-.grid-24 .tamanho22{width: 870px;}
-.grid-24 .tamanho23{width: 910px;}
-.grid-24 .tamanho24{width: 950px;}
-
-.grid-12 .primeiro, .grid-16 .primeiro, .grid-24 .primeiro{margin-left: 0;}
-.grid-12 .ultimo, .grid-16 .ultimo, .grid-24 .ultimo{margin-right: 0;}
-.grid-12 .nenhum, .grid-16 .nenhum, .grid-24 .nenhum{margin-left: 0; margin-right: 0;}
-
-/*HELPERS*/
-.esquerda5{padding-left: 5px;}
-.esquerda10{padding-left: 10px;}
-.esquerda15{padding-left: 15px;}
-.esquerda20{padding-left: 20px;}
-
-.direita5{padding-right: 5px;}
-.direita10{padding-right: 10px;}
-.direita15{padding-right: 15px;}
-.direita20{padding-right: 20px;}
