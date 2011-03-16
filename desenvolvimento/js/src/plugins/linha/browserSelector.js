@@ -41,7 +41,7 @@ L.extend({
 		 * Fix safari
 		 */
 		if(ua[1] == 'safari') html.addClass(ua[1] + '-' + ua[2].substring(0, 1));
-		else html.addClass(ua[1] + '-' + parseInt(ua[2]));
+		else html.addClass(ua[1] + '-' + parseInt(ua[2], 10));
 
 		/**
 		 * Condicionais IE
@@ -49,7 +49,7 @@ L.extend({
 		if(ua[1] == 'ie'){
 		
 			for(var ver = 3; ver < 10; ver++) {
-				if(parseInt(ua[2]) < ver) html.addClass('lt-ie-' + ver);		
+				if(parseInt(ua[2], 10) < ver) html.addClass('lt-ie-' + ver);		
 			}
 		}
 		
@@ -118,7 +118,7 @@ L.extend({
 			}
 			
 			return false;
-		}
+		};
 		
 		/**
 		* Começa a checagem
@@ -149,22 +149,22 @@ L.extend({
 				str2 = 'gradient(linear, left top, right bottom, from(#9f9), to(white));',
 				str3 = 'linear-gradient(left top, #9f9, white);';
 			
-			style.cssText = 
-				str1 + str2
-				+ str1 + '-webkit-' + str2
-				+ str1 + '-moz-' + str2
-				+ str1 + '-khtml-' + str2
-				+ str1 + '-o-' + str2
-				+ str1 + '-ms-' + str2
-				+ str1 + str3
-				+ str1 + '-webkit-' + str3
-				+ str1 + '-moz-' + str3
-				+ str1 + '-khtml-' + str3
-				+ str1 + '-o-' + str3
-				+ str1 + '-ms-' + str3;
-
+			style.cssText =
+				str1 + str2 + 
+				str1 + '-webkit-' + str2 + 
+				str1 + '-moz-' + str2 + 
+				str1 + '-khtml-' + str2 + 
+				str1 + '-o-' + str2 + 
+				str1 + '-ms-' + str2 + 
+				str1 + str3 + 
+				str1 + '-webkit-' + str3 + 
+				str1 + '-moz-' + str3 + 
+				str1 + '-khtml-' + str3 + 
+				str1 + '-o-' + str3 + 
+				str1 + '-ms-' + str3;
+				
 			return !!style.backgroundImage;
-		}
+		};
 		
 		/**
 		 * Background Color - rgba, hsla
@@ -172,7 +172,7 @@ L.extend({
 		var backgroundColor = function(cor){
 			style.cssText = 'background-color: ' + cor;		
 			return !!style.backgroundColor;
-		}
+		};
 		
 		/**
 		 * Font-face
@@ -192,41 +192,41 @@ L.extend({
 			
 			head.insertBefore(style, head.firstChild);
 			sheet = style.sheet || style.styleSheet;
- 			
- 			/**
- 			 * Checa se tem CSS2
- 			 */
- 			var supportAtRule = impl.hasFeature('CSS2', '') ?
-        	
-        	// True
-        	function(rule){
-        	
-            	if (!(sheet && rule)) return false;
-            	var result = false;
-            	
-            	try {
-                	sheet.insertRule(rule, 0);
-                	result = !(/unknown/i).test(sheet.cssRules[0].cssText);
-                	sheet.deleteRule(sheet.cssRules.length - 1);
-            	} catch(e) { }
-            
-            return result;
-        	}:
-        	
-        	// False
-        	function(rule) {
-            	
-            	if (!(sheet && rule)) return false;
-            	sheet.cssText = rule;
- 
-            	return sheet.cssText.length !== 0 && !(/unknown/i).test(sheet.cssText) &&
-              		sheet.cssText
-                	.replace(/\r+|\n+/g, '')
-                	.indexOf(rule.split(' ')[0]) === 0;
-        	};
- 
+			
+			/**
+			 * Checa se tem CSS2
+			 */
+			var supportAtRule = impl.hasFeature('CSS2', '') ?
+			
+				// True
+				function(rule){
+			
+					if (!(sheet && rule)) return false;
+					var result = false;
+			
+					try {
+						sheet.insertRule(rule, 0);
+						result = !(/unknown/i).test(sheet.cssRules[0].cssText);
+						sheet.deleteRule(sheet.cssRules.length - 1);
+					} catch(e) { }
+			
+					return result;
+				}:
+			
+				// False
+				function(rule) {
+			
+					if (!(sheet && rule)) return false;
+					sheet.cssText = rule;
+			
+					return sheet.cssText.length !== 0 && !(/unknown/i).test(sheet.cssText) &&
+						sheet.cssText
+						.replace(/\r+|\n+/g, '')
+						.indexOf(rule.split(' ')[0]) === 0;
+				};
+			
 			return supportAtRule('@font-face { font-family: "font"; src: "font.ttf"; }');
-		}
+		};
 		
 		/**
 		 * Adiciona outras classes

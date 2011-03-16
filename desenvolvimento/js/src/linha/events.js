@@ -26,7 +26,7 @@ L.extend({
 	 */	
 	eventTrigger: function(event, data, elem){
 		
-		if (!elem || elem.nodeType === 3 || elem.nodeType === 8) {
+		if(!elem || elem.nodeType === 3 || elem.nodeType === 8){
             return undefined;
         }
 		
@@ -36,7 +36,7 @@ L.extend({
 		if(typeof event !== 'object'){
 			
 			/**
-		 	 * Define namespace e type
+			 * Define namespace e type
 			 */
 			var ns = (event.indexOf('.') != -1) ? event.split('.')[0] : false,
 				type = (ns) ? event.split('.')[1] : event;
@@ -55,7 +55,7 @@ L.extend({
 				array.push(data);
 				
 				data = array;
-			};
+			}
 			
 			data.unshift(event);
 		}
@@ -89,15 +89,15 @@ L.extend({
 		if(!event.isPropagationStopped() && parent)
 			L.eventTrigger(event, data, parent);       			
 	}
-	
+		
 });
 
 /**
  * Implementa os itens para o Event, nas especificações do DOM3 Events
  * http://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
  */
-var returnFalse = function(){ return false },
-	returnTrue = function(){ return true };
+var returnFalse = function(){ return false; },
+	returnTrue = function(){ return true; };
 
 L.Event.implement({
 	
@@ -209,7 +209,7 @@ L.implement({
 		 */
 		return this.each(function(){	
 			
-			if(this.events){;
+			if(this.events){
 				
 				/**
 				 * Recupera o último evento registrado para ser removido
@@ -258,8 +258,8 @@ L.implement({
 			/**
 			 * Chama a função
 			 */
-        	if( target && !(target === this) && !(target === document) )
-        		fn.apply(target, arguments)
+			if( target && (target !== this) && (target !== document) )
+				fn.apply(target, arguments);
 
 		});
 	},

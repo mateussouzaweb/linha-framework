@@ -5,7 +5,7 @@ L.extend({
 	 * @param [string] name
 	 */
 	regexClass: function(name){
-		return new RegExp('(^|\\s)' + name + '(\\s|$)')
+		return new RegExp('(^|\\s)' + name + '(\\s|$)');
 	}
 		
 });
@@ -44,8 +44,10 @@ L.implement({
 	 */
 	removeClass: function(name){
 		
+		var regex = L.is('string', name)? L.regexClass(name) : name;
+		
 		return this.each(function(){
-			this.className = this.className.replace( L.is('string', name)? L.regexClass(name) : name, ' ').trim();
+			this.className = this.className.replace(regex, ' ').trim();
 		});
 	},
 	
@@ -58,8 +60,10 @@ L.implement({
 		return this.each(function(){
 		
 			var elem = L(this);
-			elem.hasClass(name)? 
-				elem.removeClass(name) : 
+			
+			if(elem.hasClass(name))
+				elem.removeClass(name); 
+			else
 				elem.addClass(name);
 		});
 	},
@@ -72,7 +76,8 @@ L.implement({
 	
 		var one = L.is('string', name)? true : false,
 			styles = [],
-			itens = one? [name] : name;
+			itens = one? [name] : name,
+			value;
 			
 		/**
 		 * Processa cada item
@@ -84,19 +89,19 @@ L.implement({
 			
 				item = item.replace(/([A-Z])/g, '-$1').toLowerCase();
 				
-				var value = document.defaultView
-	    			.getComputedStyle(this, '')
-	    			.getPropertyValue(item);
-			
+				value = document.defaultView
+					.getComputedStyle(this, '')
+					.getPropertyValue(item);
+				
 			//IE8-
 			}else{
 				
 				item = item.replace(/\-(\w)/g, function(all, letter){
-            		return letter.toUpperCase();
-            	});
+					return letter.toUpperCase();
+				});
 				
-				var value = this.currentStyle[item];
-					value = (value === '')? 'auto' : value;
+				value = this.currentStyle[item];
+				value = (value === '')? 'auto' : value;
 					
 			}
 			
@@ -132,8 +137,8 @@ L.implement({
 		Object.forEach(itens, function(value, key){
 		
 			var name = key.replace(/\-(\w)/g, function(all, letter){
-            		return letter.toUpperCase();
-            	});
+				return letter.toUpperCase();
+			});
             
             styles[name] = value;
         });
@@ -177,7 +182,9 @@ L.implement({
 	offset: function(){
 		
 		var elem = this[0],
-			t = l = 0, box;
+			t = 0,
+			l = 0,
+			box;
 
 		/**
 		 * Checagem besta, para previnir erros :)
@@ -188,28 +195,28 @@ L.implement({
 		 * Método 1 - Novos navegadores
 		 */
 		if(elem.getBoundingClientRect){
-		
+			
 			try {
 				box = elem.getBoundingClientRect();
-	    	} catch(e) {}
-	    		
+			} catch(e) {}
+			
 			/**
-			 * Se tiver box, faz alguns cálculos
-			 */	
+			* Se tiver box, faz alguns cálculos
+			*/	
 			if(box){
-				
+			
 				var docElem = elem.ownerDocument.documentElement,
 					body = document.body,
-					
+			
 					clientTop = docElem.clientTop || body.clientTop || 0,
-	        		clientLeft = docElem.clientLeft || body.clientLeft || 0,
-	        		    		
-	        		scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop || 0,
-	        		scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft || 0;
-	        	
+					clientLeft = docElem.clientLeft || body.clientLeft || 0,
+			
+					scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop || 0,
+					scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft || 0;
+			
 				t = box.top + scrollTop - clientTop;
 				l = box.left + scrollLeft - clientLeft;
-
+			
 			}
 		
 		/**
@@ -224,7 +231,7 @@ L.implement({
 				do{
 					l += elem.offsetLeft;
 					t += elem.offsetTop;
-				} while (elem = elem.offsetParent);
+				} while ( (elem = elem.offsetParent) );
 			}
 		}
 		
@@ -249,27 +256,27 @@ L.implement({
 		 * Remove as margens
 		 */
 		offset.top -= parseFloat(this.css('marginTop')) || 0;
-    	offset.left -= parseFloat(this.css('marginLeft')) || 0;
+		offset.left -= parseFloat(this.css('marginLeft')) || 0;
 		
 		/**
 		 * Se tiver parent
 		 */
 		if(elem.offsetParent){
-			
+		
 			var parentOffset = /^(?:body|html)$/i.test(elem.offsetParent.nodeName)?
 				{ top: 0, left: 0 } : 
 				L(elem.offsetParent).offset();
-			
+		
 			/**
 			 * Adiciona as bordas
 			 */
-    		parentOffset.top += parseFloat(this.css('borderTopWidth')) || 0;
-    		parentOffset.left += parseFloat(this.css('borderLeftWidth')) || 0;
+			parentOffset.top += parseFloat(this.css('borderTopWidth')) || 0;
+			parentOffset.left += parseFloat(this.css('borderLeftWidth')) || 0;
 			
 			offset.left -= parentOffset.left;
 			offset.top -= parentOffset.top;
-			
-		};
+		
+		}
 		
 		return {top: offset.top, left: offset.left};
 	}

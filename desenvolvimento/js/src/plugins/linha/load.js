@@ -81,16 +81,16 @@ L.extend({
 				var state = s.readyState;
 			
 				if(!state || state.test(/loaded|complete/)){
-					
+				
 					ok++;
 				
 					/**
-		 			 * Executa a função?
-		 			 * Só executa se todos os itens foram carregados
-		 			 */
-		 			if(ok == itens.length && typeof(callback) === 'function')
-		 				callback.call();
-		 									
+					 * Executa a função?
+					 * Só executa se todos os itens foram carregados
+					 */
+					if(ok == itens.length && typeof(callback) === 'function')
+						callback.call();
+						
 				}
 			
 				/**

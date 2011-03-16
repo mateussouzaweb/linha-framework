@@ -2,7 +2,7 @@
  * Implementa protótipo para IE8-
  * Thanks http://forums.devshed.com/javascript-development-115/javascript-get-all-elements-of-class-abc-24349.html
  */
-getElementsByClassName = function(name, context){
+function getElementsByClassName(name, context){
 	
 	/**
 	 * Nativo
@@ -14,27 +14,27 @@ getElementsByClassName = function(name, context){
 	 * IE8-
 	 */	
 	return( function getElementsByClass(name, context){
-		
+	
 		context = context || document;
-		
+	
 		var hasClass = new RegExp('(^|\\s)' + name + '(\\s|$)'),
 			all = context.getElementsByTagName('*'),
 			results = [],
 			elem,
 			i = 0;
-			
-		for(; (elem = all[i]) != null; i++){
 	
-       	    var elementClass = elem.className;
-       
-       	    if(elementClass && elementClass.indexOf(name) != -1 && hasClass.test(elementClass))
-       	        results.push(elem);
-       	}
-
-       	return results;
-       	
-   	})(name, context);
-};
+		for(; (elem = all[i]) !== null; i++){
+	
+			var elementClass = elem.className;
+	
+			if(elementClass && elementClass.indexOf(name) != -1 && hasClass.test(elementClass))
+				results.push(elem);
+		}
+	
+		return results;
+	
+	})(name, context);
+}
 
 L.extend({
 	
@@ -108,7 +108,7 @@ L.implement({
 		/**
 		 * IDs
 		 */
-		}else if(selector.indexOf('#') == 0){
+		}else if(selector.indexOf('#') === 0){
 			
 			dom[0] = document.getElementById( selector.replace('#', '') );
 			if( !L.isChildren(dom[0], context) ) dom[0] = null;
@@ -116,7 +116,7 @@ L.implement({
 		/**
 		 * Classes
 		 */
-		}else if(selector.indexOf('.') == 0){
+		}else if(selector.indexOf('.') === 0){
 			dom = getElementsByClassName(selector.replace('.', ''), context);
 			
 		/**
@@ -126,7 +126,7 @@ L.implement({
 			dom = context.getElementsByTagName(selector);
 		}
 		
-		if(!dom || dom[0] == null) return this;
+		if(!dom || dom[0] === null) return this;
 		
 		this.selector = selector;
 		this.context = context;
@@ -179,14 +179,14 @@ L.implement({
      * Retorna o primeiro elemento
      */
     first: function(){
-    	return L(this[0]);
+		return L(this[0]);
     },
     
     /**
      * Retorna o último elemento
      */
     last: function(){
-    	return L(this[this.length - 1]);
+		return L(this[this.length - 1]);
     },
 	
 	/**
@@ -249,7 +249,7 @@ L.implement({
 	 */
 	attr: function(name, value){
 		
-		if(value != undefined){
+		if(value !== undefined){
 			
 			this.each(function(){
 				this.setAttribute(name, value);
@@ -304,7 +304,7 @@ L.implement({
 		/**
 		 * Recupera os valores
 		 */
-		if(value == undefined){
+		if(value === undefined){
 			
 			if(!this.length) return undefined;
 			
@@ -377,24 +377,24 @@ L.implement({
 				 * Força Array
 				 */
 				var values = !L.is('array', value)? [value] : value;
-
+				
 				/**
 				 * Processa cada opção do array
 				 */
 				L('option', this).each(function(){
 				
-				   	this.selected = ( values.indexOf(this.value) >= 0 || values.indexOf(this.text) >= 0);
-            	
-            	});
-
-            	if(!values.length) this.selectedIndex = -1;
+					this.selected = ( values.indexOf(this.value) >= 0 || values.indexOf(this.text) >= 0);
+				
+				});
+				
+				if(!values.length) this.selectedIndex = -1;
 			
 			/**
 			 * Demais
 			 */
-        	}else{
-        		this.value = value;
-    		}
-    	});
+			}else{
+				this.value = value;
+			}
+		});
 	}	
 });

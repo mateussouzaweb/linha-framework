@@ -1,16 +1,19 @@
-/**
- * Linha Framework 1.3
- * @param [string] selector
- * @param [object] context
+/*!
+ * Linha JS 1.3
+ * http://www.linhaframework.com
+ *
+ * Copyright 2011
+ * By Mateus Souza - http://www.mateussouza.com
+ * Licensed under MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
  */
-window.L = function(selector, context){
+function L(selector, context){
 
 	//Força o this
 	if(!L.prototype.init.prototype.init)
 		L.prototype.init.prototype = L.prototype;
 	
 	return new L.prototype.init(selector, context);
-};
+}
 
 /**
  * Estende um objeto
@@ -18,7 +21,7 @@ window.L = function(selector, context){
  */
 Function.prototype.extend = function(extend){
 	for(var item in extend) this[item] = extend[item];
-}
+};
 
 /**
  * Implementa protótipos a um objeto
@@ -30,7 +33,7 @@ Function.prototype.implement = function(implement, overlay){
 	for(var item in implement){
 		if(!this.prototype[item] || overlay) this.prototype[item] = implement[item];
 	}
-}
+};
 
 /**
  * Grava alguns métodos do CORE JS
@@ -42,9 +45,9 @@ var toString = Object.prototype.toString,
  * Funções Core
  */
 L.extend({
-
- 	isReady: false,
- 			
+	
+	isReady: false,
+	
 	/**
 	 * Faz o extend simples de um objeto
 	 * @param [object] object
@@ -121,7 +124,7 @@ L.extend({
 				
 			//Undefined
 			case 'undefined':
-				return item === void 0;
+				return item === undefined;
 		
 			//Padrão
 			default:
@@ -146,7 +149,7 @@ L.extend({
 		 */
 		window.setTimeout(function(){
 			return fn.apply(fn, args);
-		fn}, tempo);
+		}, tempo);
 		 
 		return this;
 	},
@@ -155,56 +158,56 @@ L.extend({
 	 * Checa se o DOM está carregado
 	 */
 	domReady: function(){
-		
+	
 		/**
 		 * Checa se já está pronto o DOM
 		 */
 		if(document.readyState === 'complete')
 			return L.ready();
-    	
 		
 		/**
 		 * Mozilla, Opera e Webkit
 		 */
 		if(document.addEventListener){
-			
+		
 			//document.addEventListener('DOMContentLoaded', DOMContentLoaded, false);
-	        window.addEventListener('load', L.ready, false);
-	        
-	    /**
-	     * IE
-	     */
-	    }else if(document.attachEvent){
-	    
-	    	//document.attachEvent('onreadystatechange', DOMContentLoaded);
-	    	window.attachEvent('onload', L.ready);
-
-        	/**
-        	 * Testa o Scroll, porque o IE só "quebra as perna"
-        	 * Para iframes?
-        	 */
-        	 var head = document.documentElement,
-        	 	 toplevel = false;
-        	 
-        	 try{ toplevel = window.frameElement == null; } catch(e){}
-        	 
-        	 if(head.doScroll && toplevel){
-        	 
-        	 	(function(){
-        	 	
-        	 		try{
-        	 			head.doScroll('left');
-        	 		
-        	 		} catch(e){
-        	 			setTimeout( arguments.callee, 1 );
+			window.addEventListener('load', L.ready, false);
+		
+		/**
+		 * IE
+		 */
+		}else if(document.attachEvent){
+		
+			//document.attachEvent('onreadystatechange', DOMContentLoaded);
+			window.attachEvent('onload', L.ready);
+		
+			/**
+			 * Testa o Scroll, porque o IE só "quebra as perna"
+			 * Para iframes?
+			 */
+			var head = document.documentElement,
+			toplevel = false;
+		
+			try{ toplevel = window.frameElement === null; } catch(e){}
+		
+			if(head.doScroll && toplevel){
+		
+				(function(){
+		
+					try{
+						head.doScroll('left');
+		
+					} catch(e){
+						setTimeout( arguments.callee, 1 );
 						return;
 					}
-					
-					L.ready();
-				
+		
+				L.ready();
+		
 				})();
+			
 			}
-        }
+		}
 	
 	},
 	
@@ -224,14 +227,14 @@ L.extend({
 		 * Garante que existe o body
 		 */
 		if(!document.body){
-            return setTimeout(function(){ L.ready(fn) }, 1);
-        }
+			return setTimeout(function(){ L.ready(fn); }, 1);
+		}
         
         this.isReady = true;
-        
-        return setTimeout(function(){
-        	L.ready(fn)
-        }, 1);
+		
+		return setTimeout(function(){
+			L.ready(fn);
+		}, 1);
 	}
 	
 });
