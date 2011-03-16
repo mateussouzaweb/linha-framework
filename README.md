@@ -6,7 +6,7 @@ LINHA FRAMEWORK - 1.3
 MIT and GPL License - <http://www.opensource.org/licenses/mit-license.php> || <http://www.gnu.org/licenses/gpl.html>
 
 ### Documentação
-Para ver a documentação visite <http://www.linhaframework.com/docs/>
+Para ver a documentação completa, visite <http://www.linhaframework.com/docs/>
 
 LINHA FRAMEWORK JS - L()
 ========================
@@ -16,7 +16,7 @@ Linha JS, também extende funções em qualquer String, Array e Objeto presente 
 
 Conta também, desde sua versão inicial, alguns plugins para facilitar o desenvolvimento de projetos: Browser Selector, Load - lazy loading -, e HTML5 - habilitador de elementos HTML5. 
 
-<b>Linha Browser Selector</b>: adiciona classes ao HTML de acordo com o OS, navegador, resolução do navegador e propriedades CSS3 suportadas. Assim, você pode trabalhar o CSS da melhor maneira pra cada variação disponível, desejada. Ex: Estilos IE, Resposive Webdesign...
+<b>Linha Browser Selector</b>: adiciona classes ao HTML de acordo com o OS, navegador, resolução do navegador e propriedades CSS3 suportadas. Assim, você pode trabalhar o CSS da melhor maneira pra cada variação disponível, desejada. Ex: Estilos IE, Responsive Webdesign...
 
 <b>Linha Load</b>: faz o carregamento dinâmico para Scripts Javascript e estilos CSS, logo após que o DOM é totalmente carregado, aumentando assim a performance do projeto drásticamente... experimente!
 
@@ -46,6 +46,22 @@ Compatibilidade (Demais Navegadores):
 * Stainless 0+
 * Existe outro browser? Avise :)
 
+### Compilando seu JS
+
+Para compilar qualquer JS do Linha Framework, você precisa ter em mãos [NodeJS + NPM + JSMin package + JSHint](https://gist.github.com/866799). O processo é bem simples: Depois de terminada as alterações do SRC do JS, abra o terminal na pasta /desenvolvimento/js/build e execute os seguintes comandos:
+	
+	make # compila tudo, modo básico
+	
+	node build.js # o mesmo que "make"
+	
+	node build.js dev # compila apenas a versão de desenvolvimento dos JSs
+	
+	node build.js linha #compila apenas os scripts do Linha JS
+	
+	node build.js dev jquery # compila apenas a versão de desenvolvimento do jquery
+	
+Recomendo que dêem uma olhada no arquivo /desenvolvimento/js/build/build.js, pois nele há algumas opções para customização do compilador.
+
 PLUGINS USADOS
 ==============
 Tudo isto não foi trabalho apenas do LF, devo dar os créditos a:
@@ -54,7 +70,7 @@ Tudo isto não foi trabalho apenas do LF, devo dar os créditos a:
  * Selectizr - <http://selectivizr.com/>
  * Chrome Frame - <http://www.google.com/chromeframe>
  * HTML5 Boilerplate (Fonte de inspiração para algumas partes do LF) - <https://github.com/paulirish/html5-boilerplate>
- * Closure Compiler - <http://code.google.com/intl/pt-BR/closure/compiler/>
+ * NodeJS - <http://nodejs.org>
  * GitHub.com (vários projetos :P) - <https://github.com/mateus007/following>
  * Google Search - Thanks!!! :)
  
@@ -62,11 +78,12 @@ RECOMENDAÇÕES & DICAS
 =====================
 Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo algumas dicas e recomendações:
  
- * Crie versões minifield de seus códigos com uma linguagem server-side - <http://code.google.com/p/minify/>
+ * Aprenda a trabalhar com medidas padrões - Grids
+ * Escolha um padrão de Grid e apague os demais (html/css/grid.css)
  * Carregue JS dinamicamente, usando Linha Load.
+ * Crie versões minifield de seus códigos com uma linguagem server-side - <http://code.google.com/p/minify/>
  * Se o site não tiver suporte nativo para o IE6, avise os usuários usando Adeus IE6 - <https://github.com/mateus007/Adeus-IE6>
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
- * Aprenda a trabalhar com medidas padrões - grids
  * Alterar o código fonte não é proibido :P
  * Utilize o fórum do Linha Framework - <http://www.linhaframework.com/forum/>
  * Contribua!
@@ -76,11 +93,12 @@ CHANGELOG
 ### 1.3 - XX de XXXXXXXX de 2011
 
  * Adicionado os arquivos exemplo.htaccess (quando concluir renomei para .htaccess) e robots.txt
- * Atualização jQuery para V. 1.5
+ * Atualização jQuery para V. 1.5.1
  * Movimentação para changelog
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
- * Introdução a library Linha Framework JS, com testes unitários
+ * Introdução a library Linha Framework JS, com testes unitários e jsHint
+ * Novo build para JS - feito em NodeJS
  * Separação do código jQuery do core LF, tornando mais simples o uso de outro framework JS
  * Linha Framework JS - Criado plugin (Browser Selector) "modernizer" com classes CSS. Ex: .mac .chrome .chrome9 .box-shadow
  * Linha Framework JS - Criado plugin (HTML5), para adicionar elementos HTML5 em navegadores antigos
@@ -88,7 +106,8 @@ CHANGELOG
  * Adicionado plugin Selectizr
  * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
  * Reestruturação dos arquivos.
- * Arquivos CSS simplificados em 4 arquivos (anteriormente eram 7)
+ * Arquivos CSS simplificados em 5 arquivos (anteriormente eram 7)
+ * Nodo sistema de grid, chamado de grid flex (fluído ou flexivel), com um pouco de Responsive Webdesign
  
 ### 1.2 - 23 de Setembro de 2010
 
