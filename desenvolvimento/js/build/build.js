@@ -103,7 +103,7 @@ var Build = {
 		
 		if(!nivel) nivel = 2;
 	
-		codigo = JSMIN(src.replace(regex, '__COMENTARIO__'), nivel);
+		src = JSMIN(src.replace(regex, '__COMENTARIO__'), nivel);
 	
 		/**
 		 * Re-coloca (isso existe?) os comentários
@@ -139,7 +139,7 @@ var Build = {
 		 * Processa cada arquivo do CORE
 		 * É feito na mão, porque há uma ordem nos elementos que se for feito automaticamente sai errado
 		 */
-		['core.js', 'string.js', 'object.js', 'array.js', 'dom.js', 'css.js', 'events.js', 'dom.js'].forEach(function(file){
+		['core.js', 'string.js', 'object.js', 'array.js', 'dom.js', 'css.js', 'events.js'].forEach(function(file){
 		
 			data += FS.readFileSync(linha.dir + file, 'UTF-8') + '\n\n';
 		
@@ -202,8 +202,9 @@ var Build = {
 		/**
 		 * Remove a versão de desenvolvimento? Para ficar com uma novinha...
 		 */
-		if(OPTIONS.novo)
-			FS.unlinkSync(BUILD_DIR + linha.arquivo);
+		if(OPTIONS.novo){
+			try{ FS.unlinkSync(BUILD_DIR + linha.arquivo); } catch(e){}
+		}
 		
 		/**
 		 * Tenta (nem que seja forçando) pegar o conteúdo do Linha JS
@@ -295,9 +296,10 @@ var Build = {
 		/**
 		 * Remove a versão de desenvolvimento? Para ficar com uma novinha...
 		 */
-		if(OPTIONS.novo)
-			FS.unlinkSync(BUILD_DIR + pluginsJquery.arquivo);
-			
+		if(OPTIONS.novo){
+			try{ FS.unlinkSync(BUILD_DIR + pluginsJquery.arquivo);} catch(e){}
+		}
+		
 		/**
 		 * Tenta (nem que seja forçando) pegar o conteúdo dos Plugins jQuery
 		 */
