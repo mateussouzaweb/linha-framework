@@ -10,17 +10,15 @@ Para ver a documentação completa, visite <http://www.linhaframework.com/docs/>
 
 LINHA FRAMEWORK JS - L()
 ========================
-Linha JS - "L" - é um framework Javascript como os demais, bem semelhante ao jQuery e ao Mootools, por exemplo, mas, com uma grande diferença: é extremamente leve - menos de 5kb com gzip -, o que torna vantajoso o uso dele em qualquer projeto. Foi desenvolvido tendo como regras, o básico de qualquer framework JS: selecionar, editar propriedades/atributos, alterar CSS e adicionar/remover eventos a qualquer elemento com mais rapidez e facilidade.
+Linha JS - "L" - é um framework Javascript como os demais, bem semelhante ao jQuery e ao Mootools, por exemplo, mas, com uma grande diferença: é extremamente leve - apenas 5kb com gzip -, o que torna vantajoso o uso dele em qualquer projeto. Foi desenvolvido tendo como regras, o básico de qualquer framework JS: selecionar, editar propriedades/atributos, alterar CSS e adicionar/remover eventos a qualquer elemento com mais rapidez e facilidade.
 
-Linha JS, também extende funções em qualquer String, Array e Objeto presente em seu código JS, semelhantemente ao trabalho que faz o Mootools ou Prototype (jQuery não faz isso). Além de tornar tudo totalmente extensível, para desenvolvimentos plugins ou novas funcionalidades, por exemplo - Você pode extender facilmente o Linha JS, Strings, Arrays, Objetos, Datas, Numbers, Regexs, Frameworks... Um exemplo prático que Linha JS já faz, é adicionar algumas funcionalidades do Javascript 1.6 a navegadores antigos.
+Linha JS, também extende funções em qualquer String, Array e Objeto presente em seu código JS, semelhantemente ao trabalho que faz o Mootools ou Prototype (jQuery não faz isso). Além de tornar tudo totalmente extensível, para desenvolvimentos de plugins ou novas funcionalidades, por exemplo - Você pode extender facilmente o Linha JS, Strings, Arrays, Objetos, Datas, Numbers, Regexs, Frameworks... Um exemplo prático que Linha JS já faz é, adicionar algumas funcionalidades do Javascript 1.6 a navegadores antigos.
 
-Conta também, desde sua versão inicial, alguns plugins para facilitar o desenvolvimento de projetos: Browser Selector, Load - lazy loading -, e HTML5 - habilitador de elementos HTML5. 
+Conta também, desde sua versão inicial, alguns plugins para facilitar o desenvolvimento de projetos: Browser Selector e Load - lazy loading. 
 
-<b>Linha Browser Selector</b>: adiciona classes ao HTML de acordo com o OS, navegador, resolução do navegador e propriedades CSS3 suportadas. Assim, você pode trabalhar o CSS da melhor maneira pra cada variação disponível, desejada. Ex: Estilos IE, Responsive Webdesign...
+<b>Linha Browser Selector</b>: adiciona classes ao HTML de acordo com o OS, navegador, resolução do navegador e propriedades CSS3 suportadas. Assim, você pode trabalhar o CSS da melhor maneira pra cada variação disponível e desejada. Ex: Estilos IE, Responsive Webdesign...
 
 <b>Linha Load</b>: faz o carregamento dinâmico para Scripts Javascript e estilos CSS, logo após que o DOM é totalmente carregado, aumentando assim a performance do projeto drásticamente... experimente!
-
-<b>Linha HTML5</b> torna os navegadores antigos compatíveis com os elementos HTML5, até em versões de impressão, permitindo estiliza-los via CSS, por exemplo.
 
 É claro que Linha JS é muito mais do que isto, mas vamos parar por aqui... se quiser saber mais detalhes veja a documentação. 
 
@@ -68,6 +66,7 @@ Tudo isto não foi trabalho apenas do LF, devo dar os créditos a:
 
  * jQuery - <http://jquery.com/>
  * Selectizr - <http://selectivizr.com/>
+ * HTML5 Shiv <http://code.google.com/p/html5shiv/>
  * Chrome Frame - <http://www.google.com/chromeframe>
  * HTML5 Boilerplate (Fonte de inspiração para algumas partes do LF) - <https://github.com/paulirish/html5-boilerplate>
  * NodeJS - <http://nodejs.org>
@@ -101,13 +100,13 @@ CHANGELOG
  * Novo build para JS - feito em NodeJS
  * Separação do código jQuery do core LF, tornando mais simples o uso de outro framework JS
  * Linha Framework JS - Criado plugin (Browser Selector) "modernizer" com classes CSS. Ex: .mac .chrome .chrome9 .box-shadow
- * Linha Framework JS - Criado plugin (HTML5), para adicionar elementos HTML5 em navegadores antigos
  * Linha Framework JS - Criado plugin (Load), para carregar dinamicamente JS e CSS
  * Adicionado plugin Selectizr
+ * Adicionado plugin HTML5 shiv
  * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
  * Reestruturação dos arquivos.
  * Arquivos CSS simplificados em 5 arquivos (anteriormente eram 7)
- * Nodo sistema de grid, chamado de grid flex (fluído ou flexivel), com um pouco de Responsive Webdesign
+ * Novo sistema de grid, chamado de grid flex (fluído ou flexivel), com um pouco de Responsive Webdesign
  
 ### 1.2 - 23 de Setembro de 2010
 
