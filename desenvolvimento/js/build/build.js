@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Build para todos os itens do Linha Framework
+ * Build/Compilador para todos os itens JS do Linha Framework
  * Requer NodeJS
  *
  * Ao executar o comando "node build.js" você pode passar alguns parâmentros:
