@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Tooltip 1.3
  */
 (function($){

@@ -1,4 +1,4 @@
-/**
+/*!
  * Linha Load 1.0
  */
 L.extend({

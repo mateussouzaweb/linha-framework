@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Modal 1.2
  */
 (function($){

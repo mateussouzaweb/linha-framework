@@ -1,4 +1,4 @@
-/**
+/*!
  * Linha Browser Selector 1.0
  */
 L.extend({

@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Acord 1.3
  */
 (function($){

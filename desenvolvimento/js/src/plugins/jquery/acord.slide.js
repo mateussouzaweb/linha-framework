@@ -1,4 +1,4 @@
-/**
+/*!
  * Extend para Acord 1.3+
  * Simula um pouco o slide, aparecendo a descrição do item
  */

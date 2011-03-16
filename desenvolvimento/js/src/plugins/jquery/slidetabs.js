@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Slidetabs 1.2
  */
 (function($){

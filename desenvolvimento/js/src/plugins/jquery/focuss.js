@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Focus 1.2
  */
 (function($){

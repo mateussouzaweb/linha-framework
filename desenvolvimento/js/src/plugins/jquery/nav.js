@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Nav 1.2
  */
 (function($){

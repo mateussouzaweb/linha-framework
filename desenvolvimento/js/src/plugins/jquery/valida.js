@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Valida 1.1
  */
 (function($){
