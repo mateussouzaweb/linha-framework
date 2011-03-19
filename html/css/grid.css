@@ -2,6 +2,7 @@
  * GRID - Estilo de mídia all, especial para os grids
  * </> Grid
  * </> Grid Flex
+ * </> Grid Responsive
  * </> Helpers
  */
 
@@ -202,6 +203,86 @@ html.screen-640 .grid-24-flex .coluna{
 .grid-24-flex .tamanho22{ width: 90.666%; }       /* 98 */
 .grid-24-flex .tamanho23{ width: 94.833333333%; } /* 98 */
 .grid-24-flex .tamanho24{ width: 99%; }           /* 99 */
+
+/* GRID RESPONSIVE 
+   Basicamente este grid se adpta a resolução do navegador, é uma alternativa a @media max-width
+   Colunas de tamanho maior do que o permitido, serão convertidas para o tamanho máximo, se adptando a resolução
+   
+   Você também pode usar classes hide de acordo com a resolução
+   
+   SCREEN    AREA   "LIVRE"   COLUNAS
+   320       280    260       4      
+   480       420    400       6      
+   620       560    540       8      
+   768       700    680       10     
+   1024      980    960       14     
+   1280      1190   1170      17     
+   1440      1330   1310      19     
+----------------------------------------- */
+.grid-responsive{
+	display: block;
+	margin: 0 auto;
+	max-width: 1330px;
+	overflow: hidden;
+}
+.grid-responsive .coluna{
+	display: inline;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	max-width: 1310px;
+}
+.grid-responsive .coluna img{
+	max-width: 100%;
+}
+
+.grid-responsive .tamanho1{ width: 50px; }
+.grid-responsive .tamanho2{ width: 120px; }
+.grid-responsive .tamanho3{ width: 190px; }
+.grid-responsive .tamanho4{ width: 260px; }
+.grid-responsive .tamanho5{ width: 330px; }
+.grid-responsive .tamanho6{ width: 400px; }
+.grid-responsive .tamanho7{ width: 470px; }
+.grid-responsive .tamanho8{ width: 540px; }
+.grid-responsive .tamanho9{ width: 610px; }
+.grid-responsive .tamanho10{ width: 680px; }
+.grid-responsive .tamanho11{ width: 750px; }
+.grid-responsive .tamanho12{ width: 820px; }
+.grid-responsive .tamanho13{ width: 890px; }
+.grid-responsive .tamanho14{ width: 960px; }
+.grid-responsive .tamanho15{ width: 1030px; }
+.grid-responsive .tamanho16{ width: 1100px; }
+.grid-responsive .tamanho17{ width: 1170px; }
+.grid-responsive .tamanho18{ width: 1240px; }
+.grid-responsive .tamanho19{ width: 1310px; }
+
+/*Screen Resolution*/
+.screen-320 .grid-responsive{ width: 280px; }
+.screen-320 .grid-responsive .coluna{ max-width: 260px; }
+.screen-320 .grid-responsive .screen-320-hide{ display: none; }
+
+.screen-480 .grid-responsive{ width: 420px; }
+.screen-480 .grid-responsive .coluna{ max-width: 400px; }
+.screen-480 .grid-responsive .screen-480-hide{ display: none; } 
+
+.screen-640 .grid-responsive{ width: 560px; }
+.screen-640 .grid-responsive .coluna{ max-width: 540px; }
+.screen-640 .grid-responsive .screen-640-hide{ display: none; } 
+
+.screen-768 .grid-responsive{ width: 700px; }
+.screen-768 .grid-responsive .coluna{ max-width: 680px; }
+.screen-768 .grid-responsive .screen-768-hide{ display: none; }
+
+.screen-1024 .grid-responsive{ width: 980px; }
+.screen-1024 .grid-responsive .coluna{ max-width: 960px;}
+.screen-1024 .grid-responsive .screen-1024-hide{ display: none; }
+
+.screen-1280 .grid-responsive{ width: 1190px; }
+.screen-1280 .grid-responsive .coluna{ max-width: 1170px;}
+.screen-1280 .grid-responsive .screen-1280-hide{ display: none; }
+
+.screen-1440 .grid-responsive{ width: 1330px; }
+.screen-1440 .grid-responsive .screen-1440-hide{ display: none; }
 
 /* HELPERS */
 /* ----------------------------------------- */
