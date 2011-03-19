@@ -22,12 +22,12 @@ var VERSION = '1.3',
 	
 	OPTIONS = {
 		dev: true, //Manter versão dev no BUILD_DIR?,
-		novo: true, //Se true, sempre irá deletar o arquivo anterior e criar um novo, se aplica apenas a versão dev
-		
 		lint: true, //Checa código com JSHint?
+		lintPlugins: false,
 		
-		separado: false, //Se true, irá separar o Linha JS dos Plugins Linha
-		extend: true //Se true, também irá pegar os extends dos Plugins jQuery
+		novo: true, //Se true, sempre irá deletar o arquivo anterior e criar um novo, se aplica apenas a versão dev
+		separado: false, //Se true, irá separar o Linha JS dos Plugins Linha, na versão minifield (NÂO SE APLICA A VERSÂO DEV)
+		extend: true //Se true, também irá pegar os extends dos Plugins jQuery - Ex. acord.extend.js
 	},
 	
 	//Linha JS
@@ -47,8 +47,8 @@ var VERSION = '1.3',
 	//Plugins jQuery
 	pluginsJquery = {
 		dir: '../src/plugins/jquery/',
-		arquivo: 'jquery.plugins.linha-' + VERSION + '.js',
-		arquivoMin: 'jquery.plugins.linha-' + VERSION + '.min.js'
+		arquivo: 'jquery.plugins.linha.js',
+		arquivoMin: 'jquery.plugins.linha.min.js'
 	};
 	
 /**
@@ -63,14 +63,15 @@ var FS = require('fs'),
  */
 var Build = {
 	
+	_arquivos: [],
+	criadoLinhaMin: false,
+	
 	/**
 	 * Checa por erros no JS
 	 * Se passar não para a execução do script :)
 	 * @param [string] src
 	 */
 	lint: function(src){
-		
-		if(!OPTIONS.lint) return this;
 		
 		try{
 		
@@ -125,15 +126,24 @@ var Build = {
 	},
 	
 	/**
-	 * Cria a versão de desenvolvimento do Linha JS + Plugins Linha
+	 * Adiciona um arquivo para dar console no final
+	 * @param [string] src
+	 */
+	addArquivo: function(src){
+		
+		this._arquivos.push(src);
+		
+		return this;
+	},
+	
+	/**
+	 * Cria a versão de desenvolvimento do Linha JS
 	 */
 	linhaDev: function(){
 	
-		var data = '', 
-			plugins = '';
-			
-		console.log();
-		console.log('--- Criando código fonte para Linha JS');
+		var data = '';
+
+		console.log('--- Criando fonte do Linha JS.');
 		
 		/**
 		 * Processa cada arquivo do CORE
@@ -145,65 +155,35 @@ var Build = {
 		
 		});
 		
-		console.log('--- Os plugins estaram ' + ((!OPTIONS.separado)? 'JUNTOS' : 'SEPARADOS') + ' do Linha JS');
-		
 		/**
-		 * Lê a pasta dos Plugins Linha
-		 * Processa cada arquivo
-		 * Se não for separado, adiciona o conteúdo do arquivo à data
-		 * Se for, adiciona à datap
-		 */
-		FS.readdirSync(pluginsLinha.dir).forEach(function(file){
-			
-			var content = FS.readFileSync(pluginsLinha.dir + file, 'UTF-8') + '\n\n';
-			
-			if(!OPTIONS.separado)
-				data += content;
-			else
-				plugins += content;
-				
-		});
-		
-		/**
-		 * Escreve no arquivo
+		 * Testa e escreve no arquivo
 		 */	
-		if(!plugins){
-			
-			this.lint(data + plugins);
-			
-			FS.writeFileSync(BUILD_DIR + linha.arquivo, data + plugins);
-	
-			console.log('--- Arquivo criado: ' + BUILD_DIR + linha.arquivo);
-			
-		}else{
+		if(OPTIONS.lint) this.lint(data);
+		FS.writeFileSync(BUILD_DIR + linha.arquivo, data);
 		
-			this.lint(data);
-			FS.writeFileSync(BUILD_DIR + linha.arquivo, data);
-						
-			this.lint(plugins);
-			FS.writeFileSync(BUILD_DIR + pluginsLinha.arquivo, plugins);
-			
-			console.log('--- Arquivos criados/atualizados: ');
-			console.log('--- --- ' + BUILD_DIR + linha.arquivo);
-			console.log('--- --- ' + BUILD_DIR + pluginsLinha.arquivo);
-			
-		}
-		
-	return this;
+		console.log('--- Fonte criado com sucesso!');
+				
+	return this.addArquivo(BUILD_DIR + linha.arquivo);
 	},
 	
 	/**
- 	 * Cria a versão minifield do Linha JS + Plugins Linha
+ 	 * Cria a versão minifield do Linha JS
  	 */
 	linhaMin: function(){
 	
-		var data, plugins;
+		var data;
 		
 		/**
 		 * Remove a versão de desenvolvimento? Para ficar com uma novinha...
 		 */
 		if(OPTIONS.novo){
-			try{ FS.unlinkSync(BUILD_DIR + linha.arquivo); } catch(e){}
+			try{ 
+				FS.unlinkSync(BUILD_DIR + linha.arquivo);
+				
+				if(!OPTIONS.separado)
+					FS.unlinkSync(BUILD_DIR + pluginsLinha.arquivo);
+			
+			} catch(e){}
 		}
 		
 		/**
@@ -220,48 +200,129 @@ var Build = {
 		}
 		
 		/**
-		 * Tenta pegar o conteúdo dos Plugins Linha
+		 * Pegar o conteúdo dos Plugins Linha
 		 */
-		try{				
-			plugins = FS.readFileSync(BUILD_DIR + pluginsLinha.arquivo, 'UTF-8');
-		}catch(e){}
+		if(!OPTIONS.separado){
+		
+			var plugins;
+			
+			while(plugins == undefined){
+			
+				try{ plugins = FS.readFileSync(BUILD_DIR + pluginsLinha.arquivo, 'UTF-8'); }catch(e){}
+			
+				if(!plugins) this.pluginsLinhaDev();
+		
+			}
+			
+			data += plugins;
+			
+		}
+		
+		this.criadoLinhaMin = true;
 		
 		/**
 		 * CRIA MINIFIELD
 		 */
-		console.log();
-		console.log('--- Criando versão minifield do Linha JS' + (plugins? ' + versão minifield Linha JS Plugins' : ''));
-		
-		//Core
-		FS.writeFileSync(
-			MIN_DIR + linha.arquivoMin,
-			this.minifield(data));
-		
-		//Plugins
-		if(plugins){
-		
-			FS.writeFileSync(
-			MIN_DIR + pluginsLinha.arquivoMin,
-			this.minifield(plugins));
+		console.log('--- Criando minifield do Linha JS.');	
+		console.log('--- --- Os plugins estaram ' + ((!OPTIONS.separado)? 'JUNTOS' : 'SEPARADOS') + ' do Linha JS no minifield.');
 			
+		FS.writeFileSync(MIN_DIR + linha.arquivoMin, this.minifield(data));
+			
+		console.log('--- Minifield criado com sucesso!');
+
+	return this.addArquivo(MIN_DIR + linha.arquivoMin);
+	},
+	
+	/**
+	 * Cria a versão de desenvolvimento dos Plugins Linha
+	 */
+	pluginsLinhaDev: function(){
+		
+		var data = '';
+		
+		console.log('--- Criando fonte dos Plugins Linha.');
+	
+		/**
+		 * Lê a pasta dos Plugins Linha
+		 * Processa cada arquivo
+		 */
+		FS.readdirSync(pluginsLinha.dir).forEach(function(file){
+			
+			data += FS.readFileSync(pluginsLinha.dir + file, 'UTF-8') + '\n\n';
+				
+		});
+		
+		/**
+		 * Testa e escreve no arquivo
+		 */				
+		if(OPTIONS.lintPlugins) this.lint(data);
+		FS.writeFileSync(BUILD_DIR + pluginsLinha.arquivo, data);
+		
+		console.log('--- Fonte criado com sucesso!');
+		
+	return this.addArquivo(BUILD_DIR + pluginsLinha.arquivo);
+	},
+	
+	/**
+	 * Cria a versão minifield dos Plugins Linha
+	 */
+	pluginsLinhaMin: function(){
+		
+		/**
+		 * Checa se não é pra ficar junto
+		 */
+		if(!OPTIONS.separado){
+		
+			if(!this.criadoLinhaMin){
+				console.log('--- PLUGINS LINHA DEVEM ESTAR JUNTOS DO LINHA JS - Alternando para minifield Linha JS...')
+				return this.linhaMin();
+			}
+			
+			return this;
+		}
+				
+		var data;
+		
+		/**
+		 * Remove a versão de desenvolvimento? Para ficar com uma novinha...
+		 */
+		if(OPTIONS.novo){
+			try{ FS.unlinkSync(BUILD_DIR + pluginsLinha.arquivo); } catch(e){}
 		}
 		
-		console.log('--- Minifield criado com sucesso! Arquivos criados/atualizados:');
-		console.log('--- --- ' + MIN_DIR + linha.arquivoMin);
-		if(plugins) console.log('--- --- ' + MIN_DIR + pluginsLinha.arquivoMin);
-	
-	return this;
+		/**
+		 * Tenta (nem que seja forçando) pegar o conteúdo dos Plugins Linha
+		 */
+		while(data == undefined){
+			
+			try{				
+				data = FS.readFileSync(BUILD_DIR + pluginsLinha.arquivo, 'UTF-8');
+			}catch(e){}
+			
+			if(!data) this.pluginsLinhaDev();
+		
+		}
+		
+		/**
+		 * CRIA MINIFIELD
+		 */
+		console.log('--- Criando minifield dos Plugins Linha.');
+		
+		FS.writeFileSync( MIN_DIR + pluginsLinha.arquivoMin,	this.minifield(data) );
+		
+		console.log('--- Minifield criado com sucesso!');
+		
+	return this.addArquivo(MIN_DIR + pluginsLinha.arquivoMin);	
 	},
 	
 	/**
  	 * Cria a versão de desenvolvimento dos Plugins jQuery
  	 */
-	jqueryDev: function(){
+	pluginsJqueryDev: function(){
 	
 		var data = '';
 	
-		console.log();	
-		console.log('--- Criando código fonte para os Plugins jQuery');
+		console.log('--- Criando fonte dos Plugins jQuery.');
 		
 		/**
 		 * Lê a pasta dos PLUGINS
@@ -274,22 +335,22 @@ var Build = {
 			
 			data += FS.readFileSync(pluginsJquery.dir + file, 'UTF-8') + '\n\n';			
 		});
-		
-		this.lint(data);
-		
+				
 		/**
-		 * Escreve no arquivo
+		 * Testa e escreve no arquivo
 		 */	
+		if(OPTIONS.lintPlugins) this.lint(data);
 		FS.writeFileSync(BUILD_DIR + pluginsJquery.arquivo, data);
-		console.log('--- Arquivo criado: ' + BUILD_DIR + pluginsJquery.arquivo);
-	
-	return this;
+		
+		console.log('--- Fonte criado com sucesso!');
+		
+	return this.addArquivo(BUILD_DIR + pluginsJquery.arquivo);
 	},
 	
 	/**
 	 * Cria a versão minifield dos Plugins jQuery
 	 */
-	jqueryMin: function(){
+	pluginsJqueryMin: function(){
 	
 		var data;
 		
@@ -309,24 +370,22 @@ var Build = {
 				data = FS.readFileSync(BUILD_DIR + pluginsJquery.arquivo, 'UTF-8');
 			}catch(e){}
 			
-			if(!data) this.jqueryDev();
+			if(!data) this.pluginsJqueryDev();
 		
 		}
 		
 		/**
 		 * CRIA MINIFIELD
 		 */
-		console.log();
-		console.log('--- Criando versão minifield dos Plugins jQuery');
+		console.log('--- Criando minifield dos Plugins jQuery.');
 		
 		FS.writeFileSync(
 			MIN_DIR + pluginsJquery.arquivoMin,
 			this.minifield(data));
 		
-		console.log('--- Minifield criado com sucesso! Arquivo criado/atualizado:');
-		console.log('--- --- ' + MIN_DIR + pluginsJquery.arquivoMin);
+		console.log('--- Minifield criado com sucesso!');
 		
-	return this;
+	return this.addArquivo(MIN_DIR + pluginsJquery.arquivoMin);
 	}
 }
 
@@ -355,8 +414,11 @@ if(process.argv.length > 2){
 	/**
 	 * Passo 3, executa os scripts
 	 */
-	if(linha) (dev)? Build.linhaDev() : Build.linhaMin();
-	if(jquery) (dev)? Build.jqueryDev() : Build.jqueryMin();
+	if(linha)
+		(dev)? Build.linhaDev().pluginsLinhaDev() : Build.linhaMin().pluginsLinhaMin();
+	
+	if(jquery)
+		(dev)? Build.pluginsJqueryDev() : Build.pluginsJqueryMin();
 
 })();
 	
@@ -367,8 +429,16 @@ if(process.argv.length > 2){
 	
 	Build
 	.linhaMin()
-	.jqueryMin();
+	.pluginsLinhaMin()
+	.pluginsJqueryMin();
 	
 }
 
-console.log();
+/**
+ * Exibe os arquivos que foram atualizados
+ */
+console.log('--- Arquivo(s) criado(s)/atualizado(s):');
+
+Build._arquivos.forEach(function(item){
+	console.log('--- --- ' + item);
+});
