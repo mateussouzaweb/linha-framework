@@ -155,5 +155,7 @@ L.ready(function(){
 	L.fila.forEach(function(item){
 		item.call();
 	});
+	
+	L.fila = [];
 
 });
