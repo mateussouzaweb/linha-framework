@@ -1,24 +1,19 @@
-/**
-* Linha v1.3
-* http://www.linhaframework.com
-*
-* Copyright 2011
-* By Mateus Souza - http://www.mateussouza.com
-* Licensed under MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
-*/
-/**
- * Linha Framework 1.3
- * @param [string] selector
- * @param [object] context
+/*!
+ * Linha JS 1.3
+ * http://www.linhaframework.com
+ *
+ * Copyright 2011
+ * By Mateus Souza - http://www.mateussouza.com
+ * Licensed under MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
  */
-window.L = function(selector, context){
+function L(selector, context){
 
 	//Força o this
 	if(!L.prototype.init.prototype.init)
 		L.prototype.init.prototype = L.prototype;
 	
 	return new L.prototype.init(selector, context);
-};
+}
 
 /**
  * Estende um objeto
@@ -26,7 +21,7 @@ window.L = function(selector, context){
  */
 Function.prototype.extend = function(extend){
 	for(var item in extend) this[item] = extend[item];
-}
+};
 
 /**
  * Implementa protótipos a um objeto
@@ -38,16 +33,21 @@ Function.prototype.implement = function(implement, overlay){
 	for(var item in implement){
 		if(!this.prototype[item] || overlay) this.prototype[item] = implement[item];
 	}
-}
+};
 
+/**
+ * Grava alguns métodos do CORE JS
+ */
+var toString = Object.prototype.toString,
+	slice = Array.prototype.slice;
+	
 /**
  * Funções Core
  */
 L.extend({
 	
-	slice: [].slice,
-	toString: {}.toString,
- 			
+	isReady: false,
+	
 	/**
 	 * Faz o extend simples de um objeto
 	 * @param [object] object
@@ -73,8 +73,8 @@ L.extend({
 	 * @param [mixed] item
 	 */
 	is: function(type, item){
-
-		var ret = this.toString.call(item);
+		
+		var ret = toString.call(item);
 
 		switch(type.toLowerCase()){
 				
@@ -100,11 +100,11 @@ L.extend({
 
 			//String
 			case 'string':				
-				return ret == 'string';
+				return ret == '[object String]';
 				
 			//Number
 			case 'number':
-				return ret == 'number';
+				return ret == '[object Number]';
 
 			//Date
 			case 'date':
@@ -112,7 +112,7 @@ L.extend({
 
 			//Boolean
 			case 'boolean':
-				return ret == 'boolean';
+				return ret == '[object Boolean]';
 				
 			//Regex
 			case 'regex':
@@ -124,7 +124,7 @@ L.extend({
 				
 			//Undefined
 			case 'undefined':
-				return item === void 0;
+				return item === undefined;
 		
 			//Padrão
 			default:
@@ -142,26 +142,106 @@ L.extend({
 	 */
 	delay: function(fn, tempo /*, arguments*/){
 		
-		var args = this.slice.call(arguments, 2);
+		var args = slice.call(arguments, 2);
 		
 		/**
 		 * Define o timeout
 		 */
 		window.setTimeout(function(){
 			return fn.apply(fn, args);
-		fn}, tempo);
+		}, tempo);
 		 
 		return this;
-	}
-	
-});String.implement({
+	},
 	
 	/**
-	 * Transforma a string atual em uma url válida, com - (hyphenate)
+	 * Checa se o DOM está carregado
 	 */
-	hyphenate: function(){
-		return this.toLowerCase().replace(/\s+/g, '-');
+	domReady: function(){
+	
+		/**
+		 * Checa se já está pronto o DOM
+		 */
+		if(document.readyState === 'complete')
+			return L.ready();
+		
+		/**
+		 * Mozilla, Opera e Webkit
+		 */
+		if(document.addEventListener){
+		
+			//document.addEventListener('DOMContentLoaded', DOMContentLoaded, false);
+			window.addEventListener('load', L.ready, false);
+		
+		/**
+		 * IE
+		 */
+		}else if(document.attachEvent){
+		
+			//document.attachEvent('onreadystatechange', DOMContentLoaded);
+			window.attachEvent('onload', L.ready);
+		
+			/**
+			 * Testa o Scroll, porque o IE só "quebra as perna"
+			 * Para iframes?
+			 */
+			var head = document.documentElement,
+			toplevel = false;
+		
+			try{ toplevel = window.frameElement === null; } catch(e){}
+		
+			if(head.doScroll && toplevel){
+		
+				(function(){
+		
+					try{
+						head.doScroll('left');
+		
+					} catch(e){
+						setTimeout( arguments.callee, 1 );
+						return;
+					}
+		
+				L.ready();
+		
+				})();
+			
+			}
+		}
+	
 	},
+	
+	/**
+	 * Ready \o/
+	 * Executa uma função assim que o DOM for totalmente carregado
+	 * @param [function] fn
+	 */
+	ready: function(fn){
+		
+		if(this.isReady){
+			if(fn && L.is('function', fn)) fn.call(this);
+			return this;
+		}
+		
+		/**
+		 * Garante que existe o body
+		 */
+		if(!document.body){
+			return setTimeout(function(){ L.ready(fn); }, 1);
+		}
+        
+        this.isReady = true;
+		
+		return setTimeout(function(){
+			L.ready(fn);
+		}, 1);
+	}
+	
+});
+
+L.domReady();
+
+String.implement({
 	
 	/**
 	 * Testa se a string passa no regex
@@ -180,13 +260,22 @@ L.extend({
 	},
 	
 	/**
+	 * Transforma a string atual em uma url válida, com - (hyphenate)
+	 */
+	toUri: function(){
+		return this.trim().toLowerCase().replace(/\s+/g, '-');
+	},
+	
+	/**
 	 * Remove espaços do começo e final da string
 	 */
 	trim: function(){
 		return this.replace(/^\s+|\s+$/g, '');
 	}
 	
-});Object.extend({
+});
+
+Object.extend({
 	
 	/**
 	 * Cria um novo objeto limpo, sem valores null ou undefined 
@@ -256,7 +345,7 @@ L.extend({
 				if( fn.call(_this, object[key], key, object ) === false ) break;
 		}
 
-		return this;	
+		return object;	
 	},
 	
 	/**
@@ -356,7 +445,9 @@ L.extend({
 		return values;
 	}
 	
-});Array.extend({
+});
+
+Array.extend({
 	
 	/**
 	 * Método espelho para Array.forEach - JS 1.6
@@ -498,7 +589,47 @@ Array.implement({
 		return this.length;
 	}
 		
-});L.extend({
+});
+
+/**
+ * Implementa protótipo para IE8-
+ * Thanks http://forums.devshed.com/javascript-development-115/javascript-get-all-elements-of-class-abc-24349.html
+ */
+function getElementsByClassName(name, context){
+	
+	/**
+	 * Nativo
+	 */
+	if(context.getElementsByClassName)
+		return context.getElementsByClassName(name);
+	
+	/**
+	 * IE8-
+	 */	
+	return( function getElementsByClass(name, context){
+	
+		context = context || document;
+	
+		var hasClass = new RegExp('(^|\\s)' + name + '(\\s|$)'),
+			all = context.getElementsByTagName('*'),
+			results = [],
+			elem,
+			i = 0;
+	
+		for(; (elem = all[i]) !== null; i++){
+	
+			var elementClass = elem.className;
+	
+			if(elementClass && elementClass.indexOf(name) != -1 && hasClass.test(elementClass))
+				results.push(elem);
+		}
+	
+		return results;
+	
+	})(name, context);
+}
+
+L.extend({
 	
 	/**
 	 * Regex's
@@ -511,6 +642,18 @@ Array.implement({
 	 */
 	nodeName: function(elem){
 		return elem.nodeName.toLowerCase();
+	},
+	
+	/**
+	 * Checa se um elemento é filho do parent
+	 * @param [object] elem
+	 * @param [object] parent
+	 */
+	isChildren: function(elem, parent){
+		return( 
+			(elem.parentNode == parent) || (elem.parentNode != document) &&
+			L.isChildren(elem.parentNode, parent)
+		);
 	}
 	
 });
@@ -546,25 +689,28 @@ L.implement({
 	
 		var dom = [];
 		selector = selector || document;
+
 		context = context && context.nodeType ? context : document;
 
 		/**
 		 * DOM :)
 		 */
-		if(selector.nodeType){
+		if(selector.nodeType || selector == window){
 			dom[0] = selector;
 			
 		/**
-		 * IDS
+		 * IDs
 		 */
-		}else if(selector.indexOf('#') == 0){
-			dom[0] = context.getElementById( selector.replace('#', '') );
-
+		}else if(selector.indexOf('#') === 0){
+			
+			dom[0] = document.getElementById( selector.replace('#', '') );
+			if( !L.isChildren(dom[0], context) ) dom[0] = null;
+			
 		/**
 		 * Classes
 		 */
-		}else if(selector.indexOf('.') == 0){
-			dom = context.getElementsByClassName(selector.replace('.', ''));
+		}else if(selector.indexOf('.') === 0){
+			dom = getElementsByClassName(selector.replace('.', ''), context);
 			
 		/**
 		 * TAGs
@@ -573,7 +719,7 @@ L.implement({
 			dom = context.getElementsByTagName(selector);
 		}
 		
-		if(!dom) return this;
+		if(!dom || dom[0] === null) return this;
 		
 		this.selector = selector;
 		this.context = context;
@@ -626,14 +772,14 @@ L.implement({
      * Retorna o primeiro elemento
      */
     first: function(){
-    	return L(this[0]);
+		return L(this[0]);
     },
     
     /**
      * Retorna o último elemento
      */
     last: function(){
-    	return L(this[this.length - 1]);
+		return L(this[this.length - 1]);
     },
 	
 	/**
@@ -647,7 +793,7 @@ L.implement({
 		 */
 		if(typeof value === 'string'){
 			
-			value = value.toLowerCase().replace(L.r_xhtmlTag, '<$1></$2>');
+			value = value.replace(L.r_xhtmlTag, '<$1></$2>');
 			
 			return this.each(function(){
 				
@@ -659,7 +805,7 @@ L.implement({
 				
 		}
 		
-		return this[0] && this[0].nodeType === 1 ? this[0].innerHTML : null;
+		return this[0] && this[0].nodeType === 1 ? this[0].innerHTML.trim() : null;
 	},
 	
 	/**
@@ -696,7 +842,7 @@ L.implement({
 	 */
 	attr: function(name, value){
 		
-		if(value != undefined){
+		if(value !== undefined){
 			
 			this.each(function(){
 				this.setAttribute(name, value);
@@ -704,7 +850,8 @@ L.implement({
 			
 		}
 		
-		return this[0].getAttribute(name);
+		var attr = this[0].getAttribute(name);
+		return attr ? attr : null;
 	},
 	
 	/**
@@ -750,7 +897,7 @@ L.implement({
 		/**
 		 * Recupera os valores
 		 */
-		if(value == undefined){
+		if(value === undefined){
 			
 			if(!this.length) return undefined;
 			
@@ -773,7 +920,7 @@ L.implement({
 				if(one){
 					return index >= 0 ? 
 						
-						options[index].hasAttribute('value') ? 
+						options[index].value ? 
 							options[index].value : 
 							options[index].text : 
 						
@@ -786,7 +933,7 @@ L.implement({
 				Array.each(options, function(option){
 					
 					if(option.selected)
-						values.push( option.hasAttribute('value') ? option.value : option.text );
+						values.push( option.value ? option.value : option.text );
 				});
 				
 				return values;
@@ -823,34 +970,36 @@ L.implement({
 				 * Força Array
 				 */
 				var values = !L.is('array', value)? [value] : value;
-
+				
 				/**
 				 * Processa cada opção do array
 				 */
 				L('option', this).each(function(){
 				
-				   	this.selected = ( values.indexOf(this.value) >= 0 || values.indexOf(this.text) >= 0);
-            	
-            	});
-
-            	if(!values.length) this.selectedIndex = -1;
+					this.selected = ( values.indexOf(this.value) >= 0 || values.indexOf(this.text) >= 0);
+				
+				});
+				
+				if(!values.length) this.selectedIndex = -1;
 			
 			/**
 			 * Demais
 			 */
-        	}else{
-        		this.value = value;
-    		}
-    	});
+			}else{
+				this.value = value;
+			}
+		});
 	}	
-});L.extend({
+});
+
+L.extend({
 	
 	/**
 	 * Faz o regex pque procura uma classe
 	 * @param [string] name
 	 */
 	regexClass: function(name){
-		return new RegExp("(^|\\s)" + name + "(\\s|$)")
+		return new RegExp('(^|\\s)' + name + '(\\s|$)');
 	}
 		
 });
@@ -866,7 +1015,7 @@ L.implement({
 	 */
 	hasClass: function(name){
 
-		if( !L.is('function', name) ) name = L.regexClass(name);
+		if( !L.is('regex', name) ) name = L.regexClass(name);
 		
 		return name.test(this[0].className);
 	},
@@ -889,8 +1038,10 @@ L.implement({
 	 */
 	removeClass: function(name){
 		
+		var regex = L.is('string', name)? L.regexClass(name) : name;
+		
 		return this.each(function(){
-			this.className = this.className.replace( L.is('string', name)? L.regexClass(name) : name, '').trim();
+			this.className = this.className.replace(regex, ' ').trim();
 		});
 	},
 	
@@ -903,8 +1054,10 @@ L.implement({
 		return this.each(function(){
 		
 			var elem = L(this);
-			elem.hasClass(name)? 
-				elem.removeClass(name) : 
+			
+			if(elem.hasClass(name))
+				elem.removeClass(name); 
+			else
 				elem.addClass(name);
 		});
 	},
@@ -917,19 +1070,35 @@ L.implement({
 	
 		var one = L.is('string', name)? true : false,
 			styles = [],
-			itens = one? [name] : name;
+			itens = one? [name] : name,
+			value;
 			
 		/**
 		 * Processa cada item
 		 */
 		itens.forEach(function(item){
 			
-			item = item.replace(/([A-Z])/g, '-$1').toLowerCase();
+			//Não IE >)
+			if(document.defaultView && document.defaultView.getComputedStyle){
 			
-	    	var value = document.defaultView
-	    		.getComputedStyle(this, '')
-	    		.getPropertyValue(item);
-		
+				item = item.replace(/([A-Z])/g, '-$1').toLowerCase();
+				
+				value = document.defaultView
+					.getComputedStyle(this, '')
+					.getPropertyValue(item);
+				
+			//IE8-
+			}else{
+				
+				item = item.replace(/\-(\w)/g, function(all, letter){
+					return letter.toUpperCase();
+				});
+				
+				value = this.currentStyle[item];
+				value = (value === '')? 'auto' : value;
+					
+			}
+			
 			styles.push ( value ? value : undefined );
 	
 		}, this[0]);
@@ -961,9 +1130,9 @@ L.implement({
 		 */
 		Object.forEach(itens, function(value, key){
 		
-			var name = key.replace(/\-[a-z]/g, function(l){
-            	return l[1].toUpperCase();
-            });
+			var name = key.replace(/\-(\w)/g, function(all, letter){
+				return letter.toUpperCase();
+			});
             
             styles[name] = value;
         });
@@ -1001,760 +1170,400 @@ L.implement({
 		return this.setStyle(style, value);
 	},
 	
+	/**
+	 * Recupera a posição do elemento na página, tomando como base o documento
+	 */
 	offset: function(){
-		return;
-	}
-	
-});L.implement({
+		
+		var elem = this[0],
+			t = 0,
+			l = 0,
+			box;
 
-	bind: function(event, fn){
+		/**
+		 * Checagem besta, para previnir erros :)
+		 */
+		if(!elem || !elem.ownerDocument) return null;
+		
+		/**
+		 * Método 1 - Novos navegadores
+		 */
+		if(elem.getBoundingClientRect){
+			
+			try {
+				box = elem.getBoundingClientRect();
+			} catch(e) {}
+			
+			/**
+			* Se tiver box, faz alguns cálculos
+			*/	
+			if(box){
+			
+				var docElem = elem.ownerDocument.documentElement,
+					body = document.body,
+			
+					clientTop = docElem.clientTop || body.clientTop || 0,
+					clientLeft = docElem.clientLeft || body.clientLeft || 0,
+			
+					scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop || 0,
+					scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft || 0;
+			
+				t = box.top + scrollTop - clientTop;
+				l = box.left + scrollLeft - clientLeft;
+			
+			}
+		
+		/**
+		 * Método 2 - Navegadores Antigos
+		 * Camino 1.0, Camino 1.5, Camino 1.6, Firefox 2, IE6, IE7, Safari 3
+		 * Thanks http://www.quirksmode.org/js/findpos.html
+		 */
+		}else{
+			
+			if(elem.offsetParent){
+				
+				do{
+					l += elem.offsetLeft;
+					t += elem.offsetTop;
+				} while ( (elem = elem.offsetParent) );
+			}
+		}
+		
+		return {top: t, left: l};
 	},
-	
-	unbind: function(event){
-	},
-	
-	delegate: function(event, fn){
-	},
-	
-	undelegate: function(event){
-	}
-	
-});L.extend({
 	
 	/**
-	 * Regex's
+	 * Recupera a posição do elemento em relação ao elemento pai
 	 */
-	r_xhtmlTag: /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi,
+	position: function(){
 	
-	/**
-	 * Retorna o node name do elemento
-	 * @param [object] elem
-	 */
-	nodeName: function(elem){
-		return elem.nodeName.toLowerCase();
+		var elem = this[0];
+		
+		if(!elem) return null;
+		
+		/**
+		 * Recupera as posições
+		 */
+		var offset = this.offset();
+
+		/**
+		 * Remove as margens
+		 */
+		offset.top -= parseFloat(this.css('marginTop')) || 0;
+		offset.left -= parseFloat(this.css('marginLeft')) || 0;
+		
+		/**
+		 * Se tiver parent
+		 */
+		if(elem.offsetParent){
+		
+			var parentOffset = /^(?:body|html)$/i.test(elem.offsetParent.nodeName)?
+				{ top: 0, left: 0 } : 
+				L(elem.offsetParent).offset();
+		
+			/**
+			 * Adiciona as bordas
+			 */
+			parentOffset.top += parseFloat(this.css('borderTopWidth')) || 0;
+			parentOffset.left += parseFloat(this.css('borderLeftWidth')) || 0;
+			
+			offset.left -= parentOffset.left;
+			offset.top -= parentOffset.top;
+		
+		}
+		
+		return {top: offset.top, left: offset.left};
 	}
 	
 });
 
+L.extend({
+	
+	/**
+	 * Inicia um evento QUASE nas especificações do DOM3 Events
+	 */	
+	Event: function(src){
+		
+		/**
+		 * Se já tiver o evento
+		 */
+		if(src && src.type){
+		
+			this.originalEvent = src;
+			this.type = src.type;
+		
+		}else{
+			this.type = src;
+		}
+	},
+	
+	/**
+	 * Dispara um evento no #elem
+	 * @param [string] event
+	 * @param [array] data
+	 * @param [object] elem
+	 */	
+	eventTrigger: function(event, data, elem){
+		
+		if(!elem || elem.nodeType === 3 || elem.nodeType === 8){
+            return undefined;
+        }
+		
+		/**
+		 * Cria o evento, se já não foi criado
+		 */
+		if(typeof event !== 'object'){
+			
+			/**
+			 * Define namespace e type
+			 */
+			var ns = (event.indexOf('.') != -1) ? event.split('.')[0] : false,
+				type = (ns) ? event.split('.')[1] : event;
+			
+			event = new L.Event(type);
+			
+			event.target = elem;
+			event.namespace = ns;
+			
+			/**
+			 * Incopora o evento a data e transforma data em array se for necessário
+			 */
+			if(!L.is('array', data)){
+				
+				var	array = [];
+				array.push(data);
+				
+				data = array;
+			}
+			
+			data.unshift(event);
+		}
+		
+		event.currentTarget = elem;
+		
+		/**
+		 * Se tiver algum evento registrado no parent
+		 */
+		if(elem.events){
+
+			/**
+			 * Recupera o evento
+			 */
+			var fn = event.namespace ? 
+				elem.events[event.namespace][event.type] : 
+				elem.events[event.type];
+								
+			/**
+			 * Se tive o evento
+			 */
+			if(fn) fn.apply(elem, data);
+			
+		}
+		
+		/**
+		 * Checa no elemento parente
+		 */
+		var parent = elem.parentNode || elem.ownerDocument;
+		
+		if(!event.isPropagationStopped() && parent)
+			L.eventTrigger(event, data, parent);       			
+	}
+		
+});
+
 /**
- * Protótipos
+ * Implementa os itens para o Event, nas especificações do DOM3 Events
+ * http://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
  */
+var returnFalse = function(){ return false; },
+	returnTrue = function(){ return true; };
+
+L.Event.implement({
+	
+	isDefaultPrevented: returnFalse,
+	isPropagationStopped: returnFalse,
+	isImmediatePropagationStopped: returnFalse,
+	
+	/**
+	 * Previne ação padrão
+	 */
+	preventDefault: function() {
+	
+		this.isDefaultPrevented = returnTrue;
+
+		var e = this.originalEvent;
+		if( !e ) return;
+		
+		e.returnValue = false;
+	},
+	
+	/**
+	 * Paraliza a propagação
+	 */
+	stopPropagation: function() {
+		
+		this.isPropagationStopped = returnTrue;
+
+		var e = this.originalEvent;
+		if( !e ) return;
+
+		e.cancelBubble = true;
+	},
+	
+	/**
+	 * Paraliza propagação imediata
+	 */
+	stopImmediatePropagation: function() {
+	
+		this.isImmediatePropagationStopped = returnTrue;
+		this.stopPropagation();
+	
+	}
+
+});
+
 L.implement({
 	
 	/**
-	 * Valores padrão
-	 */
-	selector: '',
-	context: document,
-	length: 0,
-	
-	/**
-	 * Faz com que o this seja uma array :P - roubei do jQuery 
-	 */
-	push: [].push,
-	sort: [].sort,
-	splice: [].splice,
-	
-	/**
-	 * Seleciona os elementos de acordo com o selector
-	 *  - #id
-	 *  - .class
-	 *  - div
-	 * @param [string|object] selector
-	 * @param [object] context
-	 */
-	init: function(selector, context){
-	
-		var dom = [];
-		selector = selector || document;
-		context = context && context.nodeType ? context : document;
-
-		/**
-		 * DOM :)
-		 */
-		if(selector.nodeType){
-			dom[0] = selector;
-			
-		/**
-		 * IDS
-		 */
-		}else if(selector.indexOf('#') == 0){
-			dom[0] = context.getElementById( selector.replace('#', '') );
-
-		/**
-		 * Classes
-		 */
-		}else if(selector.indexOf('.') == 0){
-			dom = context.getElementsByClassName(selector.replace('.', ''));
-			
-		/**
-		 * TAGs
-		 */	
-		}else{
-			dom = context.getElementsByTagName(selector);
-		}
-		
-		if(!dom) return this;
-		
-		this.selector = selector;
-		this.context = context;
-		
-		/**
-		 * Puxa os elementos
-		 */
-		if(dom.length){
-			
-			for(var i = 0, l = dom.length; i < l; i++) this.push( dom[i] );
-			this.length = dom.length;
-			
-		}else{
-			
-			this.push( dom[0] );
-			this.length = 1;
-		
-		} 
-
-		return this;
-	},
-	
-	/**
-	 * Processa cada elemento, semelhante a Array.each
+	 * Adiciona uma função a um determinado evento
+	 * @param [string] type
 	 * @param [function] fn
 	 */
-	each: function(fn){
-		
-		return Array.each(this, function(elem, index){
-			fn.call(elem, index, elem);
-		}, this);
-	},
-	
-	/**
-	 * Retorna o número de elementos selecionados
-	 */
-	size: function(){
-		return this.length;
-	},
-	
-	/**
-	 * Retorna o elemento da posição eq
-	 * @param [number] eq
-	 */
-	eq: function(eq){
-		return L(this[eq]);
-	},
-    
-    /**
-     * Retorna o primeiro elemento
-     */
-    first: function(){
-    	return L(this[0]);
-    },
-    
-    /**
-     * Retorna o último elemento
-     */
-    last: function(){
-    	return L(this[this.length - 1]);
-    },
-	
-	/**
-	 * Recupera/Seta o HTML do elemento
-	 * @param optional [string] value
-	 */
-	html: function(value){
-		
-		/**
-		 * Seta o HTML
-		 */
-		if(typeof value === 'string'){
-			
-			value = value.toLowerCase().replace(L.r_xhtmlTag, '<$1></$2>');
-			
-			return this.each(function(){
-				
-				if(this.nodeType === 1){
-					this.innerHTML = value;
-				}
-				
-			});
-				
-		}
-		
-		return this[0] && this[0].nodeType === 1 ? this[0].innerHTML : null;
-	},
-	
-	/**
-	 * Recupera/Seta o texto ao elemento
-	 * @param optional [string] text
-	 */
-	text: function(text){
-		
-		var all = document.all;
-		
-		/**
-		 * Seta o texto
-		 */
-		if(typeof text === 'string'){
-			
-			return this.each(function(){
-			
-				if(all)
-					this.innerText = text;
-				else
-					this.textContent = text;
-				
-			});
+	bind: function(type, fn){
 
-		}
-		
-		return (all)? this[0].innerText : this[0].textContent;
-	},
-	
-	/**
-	 * Recupera/Seta um atributo ao elemento
-	 * @param [string] name
-	 * @param optional [mixed] value
-	 */
-	attr: function(name, value){
-		
-		if(value != undefined){
-			
-			this.each(function(){
-				this.setAttribute(name, value);
-			});
-			
-		}
-		
-		return this[0].getAttribute(name);
-	},
-	
-	/**
-	 * Remove um atributo dos elementos
-	 * @param [string] name
-	 */	
-	removeAttr: function(name){
-		
-		return this.each(function(){
-
-			this[name] = '';
-			
-			if(this.nodeType === 1)
-				this.removeAttribute(name);
-        
-        });
-	
-	},
-	
-	/**
-	 * Recupera/Seta um atributo do tipo data-
-	 * @param [string] name
-	 * @param optional [mixed] value
-	 */
-	data: function(name, value){
-		return this.attr('data-' + name, value);
-	},
-	
-	/**
-	 * Remove um atributo data- dos elementos
-	 * @param [string] name
-	 */	
-	removeData: function(name){
-		return this.removeAttr('data-' + name);
-	},
-	
-	/**
-	 * Recupera/Seta o valor do input atual. input: input|textarea|select|...
-	 * @param optional [mixed] value
-	 */
-	val: function(value){
-	
 		/**
-		 * Recupera os valores
+		 * Define namespace
 		 */
-		if(value == undefined){
-			
-			if(!this.length) return undefined;
-			
-			var elem = this[0],
-				nodeName = L.nodeName(elem);
-			
-			/**
-			 * Se for select
-			 */
-			if(nodeName == 'select'){
-				
-				var index = elem.selectedIndex,
-                    values = [],
-                    options = elem.options,
-                    one = elem.type == 'select-one';
-				
-				/**
-				 * Valor único
-				 */
-				if(one){
-					return index >= 0 ? 
-						
-						options[index].hasAttribute('value') ? 
-							options[index].value : 
-							options[index].text : 
-						
-						null;
-				}
-				
-				/**
-				 * Junta os valores
-				 */
-				Array.each(options, function(option){
-					
-					if(option.selected)
-						values.push( option.hasAttribute('value') ? option.value : option.text );
-				});
-				
-				return values;
-			}
-			
-			/**
-			 * Demais itens
-			 */
-			return (elem.value || "").replace(/\r/g, "");			
-		}
-		
-		if( value.constructor == Number ) value += '';
+		var ns = (type.indexOf('.') != -1) ? type.split('.')[0] : false;
+		if(ns) type = type.split('.')[1];
 		
 		/**
-		 * Seta o valor
+		 * Registra o evento
 		 */
 		return this.each(function(){
-		
-			if(this.nodeType != 1) return;
 			
 			/**
-			 * Se for radio/checkbox
+			 * Checa se já existe os eventos e o namespace
 			 */
-			if( value.constructor == Array && /radio|checkbox/.test(this.type) ){
-				
-				this.checked = ( value.indexOf(this.value) >= 0 || value.indexOf(this.name) >= 0);
+			if(!this.events) this.events = {};
+			
+			if(ns && !this.events[ns]) this.events[ns] = {};
 			
 			/**
-			 * Se for select
+			 * Adiciona no índice de eventos
+			 * registra apenas um vez, sobreescrevendo o anterior
 			 */
-			}else if( L.nodeName(this) == 'select' ){
-				
-				/**
-				 * Força Array
-				 */
-				var values = !L.is('array', value)? [value] : value;
-
-				/**
-				 * Processa cada opção do array
-				 */
-				L('option', this).each(function(){
-				
-				   	this.selected = ( values.indexOf(this.value) >= 0 || values.indexOf(this.text) >= 0);
-            	
-            	});
-
-            	if(!values.length) this.selectedIndex = -1;
-			
+			if(ns)
+				this.events[ns][type] = fn;
+			else
+				this.events[type] = fn;
+		
 			/**
-			 * Demais
+			 * Adiciona Nativo
 			 */
-        	}else{
-        		this.value = value;
-    		}
-    	});
-	}	
-});/**
- * Linha Browser Selector 1.0
- */
-Linha.extend({
-	
-	/**
-	 * User Agent e HTML Node
-	 */
-	ua: navigator.userAgent.toLowerCase(),
-	
-	html: document.childNodes[1],
-	
-	/**
-	 * Classes CSS
-	 */
-	screens: [320, 480, 640, 768, 1024, 1280, 1440, 1680, 1920],
-	
-	css3: 'background-origin background-clip background-size box-sizing box-shadow box-reflect border-image border-radius columns perspective transform transition'.split(' '),
-	
-	_classes: [],
-	
-	/**
-	 * Adiciona uma classe para o HTML
-	 */
-	htmlClass: function(classe){
-		this._classes.push(classe);
-	},
-	
-	/**
-	 * Define a classe para o OS atual
-	 */
-	osSelector: function(){
-		var ua = /(mac|win|linux|freebsd|mobile|iphone|ipod|ipad|android|blackberry|j2me|webtv)/.exec(this.ua);
-		this.htmlClass(ua[1]);
-		
-		return this;
-	},
-	
-	/**
-	 * Define a classe para o browser atual e a sua versão
-	 */
-	browserSelector: function(){
-		
-		var ua = /(ie|firefox|chrome|safari|opera)(?:.*version)?(?:[ \/])?([\w.]+)/.exec(this.ua);
-		
-		this.htmlClass(ua[1]);
+			if(this.addEventListener)			
+				this.addEventListener(type, fn, false);
 				
-		/**
-		 * Fix safari
-		 */
-		if(ua[1] == 'safari') this.htmlClass(ua[1] + '-' + ua[2].substring(0, 1));
-		else this.htmlClass(ua[1] + '-' + parseInt(ua[2]));
+			else if(this.attachEvent)
+				this.attachEvent('on' + type, fn);
 
-		/**
-		 * Condicionais IE
-		 */
-		if(ua[1] == 'ie'){
-		
-			for(var ver = 3; ver < 10; ver++) {
-				if(parseInt(ua[2]) < ver) this.htmlClass('lt-ie-' + ver);		
-			}
-		}
-		
-		return this;
-	},
-	
-	/**
-	 * Define a classe para o tamanho da tela atual
-	 * Suporta redimensionamento...
-	 */
-	screenSelector: function(){
-		
-		var w = window.outerWidth || this.html.clientWidth;
-		
-		/**
-		 * Remove a classe atual
-		 */
-		this._removeClass(this.html, / ?(screen|width)-\d+/g);
-		
-		this._addClass(this.html, 'width-' + w);
-		
-		/**
-		 * Processa cada resolução disponível
-		 */
-		this.each(this.screens, function(){
-			
-			if(w <= this){
-				Linha._addClass(Linha.html, 'screen-' + this);
-				return false;
-			}
-			
 		});
-		
-		return this;	
 	},
 	
 	/**
-	 * Define quais itens do CSS3 funcionam no navegador e adiciona a classe correspodente
+	 * Remove um evento previamente anexado ao elemento
+	 * @param [string] type
+	 * @param [function] fn
 	 */
-	css3Selector: function(){
-		
-		var vendors = ['Khtml', 'Ms', 'O', 'Moz', 'Webkit'],
-		l = vendors.length,
-		
-		style = document.createElement('div').style,
+	unbind: function(type, fn){
 		
 		/**
-		* Faz o teste do suporte a propriedade
-		*/	
-		test = function(item){
-			
-			/**
-			* Upercase nos itens
-			*/
-			item = item.replace(/(^|-)[a-z]/ig, function(val){
-				return val.replace('-', '').toUpperCase();
-			});
-
-			if(item in style) return true;
-			
-			/**
-			 * Checa com os verdors
-			 */
-			for(var i = 0; i < l; i++){
-				if(vendors[i] + item in style) return true;			
-			}
-			
-			return false;
-		}
-		
-		/**
-		* Começa a checagem
-		*/
-		var i = this.css3.length;
-		
-		while(i--){
-			var c = this.css3[i]; if(!test(c)) c = 'sem-' + c;
-			this.htmlClass(c);
-		}
-		
-		// Demais pripriedades que não funcionam no loop :(
-		 
-		/**
-		 * Multi-backgrounds
-		 */ 
-		var multiBackgrounds = function(){
-			style.cssText = 'background: url(//:), url(//:), white url(//:)';
-			return new RegExp('(url\\s*\\(.*?){3}').test(style.background);
-		};
-		
-		/**
-		 * Gradientes
+		 * Checa por namespace no #type
 		 */
-		var gradientes = function(){
-		
-			var str1 = 'background-image:',
-				str2 = 'gradient(linear, left top, right bottom, from(#9f9), to(white));',
-				str3 = 'linear-gradient(left top, #9f9, white);';
-			
-			style.cssText = 
-				str1 + str2
-				+ str1 + '-webkit-' + str2
-				+ str1 + '-moz-' + str2
-				+ str1 + '-khtml-' + str2
-				+ str1 + '-o-' + str2
-				+ str1 + '-ms-' + str2
-				+ str1 + str3
-				+ str1 + '-webkit-' + str3
-				+ str1 + '-moz-' + str3
-				+ str1 + '-khtml-' + str3
-				+ str1 + '-o-' + str3
-				+ str1 + '-ms-' + str3;
-
-			return !!style.backgroundImage;
-		}
+		var ns = (type.indexOf('.') != -1) ? type.split('.')[0] : false;
+		if(ns) type = type.split('.')[1];
 		
 		/**
-		 * Background Color - rgba, hsla
+		 * Remove o evento
 		 */
-		var backgroundColor = function(cor){
-			style.cssText = 'background-color: ' + cor;		
-			return !!style.backgroundColor;
-		}
-		
-		/**
-		 * Font-face
-		 * http://paulirish.com/2009/font-face-feature-detection/
-		 */
-		var fontFace = function(){
-		
-			var head = document.getElementsByTagName('head')[0],
-				sheet,
-				style = document.createElement("style"),
-				impl = document.implementation || { hasFeature: function() { return false; } };
+		return this.each(function(){	
 			
-			/**
-			 * Seta o tipo e insere no head
-			 */	
-			style.type = 'text/css';
-			
-			head.insertBefore(style, head.firstChild);
-			sheet = style.sheet || style.styleSheet;
- 			
- 			/**
- 			 * Checa se tem CSS2
- 			 */
- 			var supportAtRule = impl.hasFeature('CSS2', '') ?
-        	
-        	// True
-        	function(rule){
-        	
-            	if (!(sheet && rule)) return false;
-            	var result = false;
-            	
-            	try {
-                	sheet.insertRule(rule, 0);
-                	result = !(/unknown/i).test(sheet.cssRules[0].cssText);
-                	sheet.deleteRule(sheet.cssRules.length - 1);
-            	} catch(e) { }
-            
-            return result;
-        	}:
-        	
-        	// False
-        	function(rule) {
-            	
-            	if (!(sheet && rule)) return false;
-            	sheet.cssText = rule;
- 
-            	return sheet.cssText.length !== 0 && !(/unknown/i).test(sheet.cssText) &&
-              		sheet.cssText
-                	.replace(/\r+|\n+/g, '')
-                	.indexOf(rule.split(' ')[0]) === 0;
-        	};
- 
-			return supportAtRule('@font-face { font-family: "font"; src: "font.ttf"; }');
-		}
-		
-		/**
-		 * Adiciona outras classes
-		 */ 
-		this.htmlClass( ((style.textShadow === '')? '' : 'sem-') + 'text-shadow');
-		this.htmlClass( ((style.resize === '')? '' : 'sem-') + 'resize');
-		this.htmlClass( ((style.opacity === '')? '' : 'sem-') + 'opacity');
-		this.htmlClass( ((gradientes())? '' : 'sem-') + 'gradientes');
-		this.htmlClass( ((multiBackgrounds())? '' : 'sem-') + 'multiplos-backgrounds');
-		this.htmlClass( ((backgroundColor('rgba(0, 0, 0, 0.5)'))? '' : 'sem-') + 'rgba');
-		this.htmlClass( ((backgroundColor('hsla(120, 40%, 100%, 0.5)'))? '' : 'sem-') + 'hsla');
-		this.htmlClass( ((fontFace())? '' : 'sem-') + 'font-face');
-	
-		return this;
-	}
-	
-})
-
-/**
- * Inicia Teste CSS
- */
-.osSelector()
-.browserSelector()
-.screenSelector()
-.css3Selector()
-
-/**
- * Adiciona as Classes ao HTML
- */
-._addClass(Linha.html, Linha._classes.join(' '));
-
-window.onresize = function(){
-	Linha.screenSelector();
-};/**
- * Linha HTML5 1.0
- */
-Linha.extend({
-	
-	/**
-	 * Elementos HTML5 que serão inseridos
-	 */
-	html5: 'abbr article aside audio canvas datalist details figure footer header hgroup mark menu meter nav output progress ruby rt section time video'.split(' '),
-		
-	/**
-	 * Cria alguns elementos HTML5 em navegadores antigos
-	 */
-	criarHtml5: function(){
-
-        var i = this.html5.length;
-        while( i-- ){
-            elem = document.createElement( this.html5[i] );
-        }
-        
-    	return this;
-    }
-	
-})
-
-// Cria o HTML5
-.criarHtml5();/**
- * Linha Load 1.0
- */
-Linha.extend({
-	
-	head: document.getElementsByTagName('head')[0],
-	
-	isReady: false,
-	
-	fila: [],
-	
-	/**
-	 * Carrega um script Javascript na página
-	 * @param string src
-	 * @param string callback
-	 */
-	script: function(src, callback){
-						
-		/**
-		 * Checa se o DOM está pronto para fazer a inserção
-		 */
-		if(!this.isReady){
-			
-			var args = arguments,
-			self = this;
-			
-			/**
-			 * Adiciona à fila
-			 */
-			this.fila.push(function(){
-				self.script.apply(self, args);				
-			});
-			
-			return this;
-		}
-		
-		/**
-		 * Cria o script
-		 */	
-		var s = document.createElement('script');
-			s.type = 'text/javascript';
-			s.src = src;
-			s.async = true;
-		
-		/**
-		 * Adicionar o evento quando completar
-		 */
-		s.onreadystatechange = s.onload = function(){
-			
-			var state = s.readyState;
-			
-			if(!state || /loaded|complete/.test(state)){
-			
+			if(this.events){
+				
 				/**
-		 		 * Executa a função
-		 		 */
-				if(typeof(callback) === 'function') callback.call();	
-			}
-			
-			/**
-			 * Fix de memória IE
-			 */
-			s.onload = s.onreadystatechange = null;
-		}; 
-			
-		this.head.appendChild(s);
-		
-		return this;
+				 * Recupera o último evento registrado para ser removido
+				 */
+				if(!fn){
+					fn = ns ? this.events[ns][type] : this.events[type];
+				}
+				
+				if(ns) 
+					delete this.events[ns][type];
+				else 
+					delete this.events[type];
+				
+				/**
+				 * Remove Nativo
+				 */			
+				if(this.removeEventListener)
+					this.removeEventListener(type, fn, false);
+				
+				else if(this.detachEvent)
+					this.detachEvent('on' + type, fn);
+
+			}	
+		});
 	},
 	
 	/**
-	 * Carrega um estilo CSS na página
-	 * @param string src
-	 * @param string media
+	 * Delega um evento para o #seletor agora e no futuro
+	 * @param [string] selector 
+	 * @param [string] type
+	 * @param [function] fn
 	 */
-	css: function(src, media){
+	delegate: function(selector, type, fn){
 	
-		var l = document.createElement('link');
-			l.type = 'text/css';
-			l.rel = 'stylesheet';
-			l.href = src;
-			l.media = (media || 'screen');
+		return this.bind('delegate.' + type, function(e){
 						
-		this.head.appendChild(l);
+			var target = e ? e.target : window.event.srcElement,
+				nodes = L(selector, this);
+			
+			/**
+			 * Força encontrar o #seletor
+			 */
+			while(target && Array.prototype.indexOf.call(nodes, target) < 0)
+				target = target.parentNode;
+			
+			/**
+			 * Chama a função
+			 */
+			if( target && (target !== this) && (target !== document) )
+				fn.apply(target, arguments);
+
+		});
+	},
+	
+	/**
+	 * Remove a Delegação de um evento para o #seletor agora e no futuro
+	 * @param [string] selector 
+	 * @param [string] type
+	 * @param [function] fn
+	 */
+	undelegate: function(selector, type, fn){
+		return this.unbind('delegate.' + type, fn);
+	},
+	
+	/**
+	 * Dispara um determinado evento do elemento
+	 * @param [string] type
+	 * @param [array] data
+	 */
+	trigger: function(type, data){
 		
-		return this;
+		return this.each(function(){
+			L.eventTrigger(type, data, this);
+		});
 	}
+	
 });
 
-/**
- * Libera Ready
- */
-setTimeout(function(){
-
-	Linha.isReady = true;
-	for(fn in Linha.fila) Linha.fila[fn].call();
-		
-}, 200);
