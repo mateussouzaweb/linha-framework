@@ -30,6 +30,16 @@ JSBUILD = {
 	parser: true,
 	
 	/**
+	 * Adds a message to JSHintOK
+	 */
+	addHintOk: function(message){
+		
+		JSHintOK[message] = true;
+		
+	return this;
+	},
+	
+	/**
 	 * Check for erros in JS code
 	 * @param [string] src
 	 */

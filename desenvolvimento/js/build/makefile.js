@@ -141,7 +141,7 @@ Makefile = {
 			arquivos.push( pluginsLinha.dir + file );
 		});
 		
-		JSBUILD.parser = false;
+		JSBUILD.addHintOk("'L' is not defined.");
 		JSBUILD.dev('Plugins Linha', arquivos, BUILD_DIR + pluginsLinha.arquivo);
 	
 	return this;
@@ -196,7 +196,7 @@ Makefile = {
 			
 		});
 		
-		JSBUILD.parser = false;
+		JSBUILD.addHintOk("'jQuery' is not defined.");
 		JSBUILD.dev('Plugins jQuery', arquivos, BUILD_DIR + pluginsJquery.arquivo);
 	
 	return this;
