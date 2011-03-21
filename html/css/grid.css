@@ -1,5 +1,5 @@
 /**
- * GRID - Estilo de mídia all, especial para os grids
+ * GRID - Estilo de mídia all, especial para os grids (Escolha um e delete os demais)
  * </> Grid
  * </> Grid Flex
  * </> Grid Responsive
@@ -147,65 +147,65 @@ html.screen-640 .grid-24-flex .coluna{
 }
 
 /*12 COLUNAS*/
-.grid-12-flex .tamanho1{ width: 6.334%; }   /*  */
-.grid-12-flex .tamanho2{ width: 14.667%; }  /*  */
-.grid-12-flex .tamanho3{ width: 23%; }      /*  */
-.grid-12-flex .tamanho4{ width: 31.334%; }  /*  */
-.grid-12-flex .tamanho5{ width: 39.667%; }  /*  */
-.grid-12-flex .tamanho6{ width: 48%; }      /*  */
-.grid-12-flex .tamanho7{ width: 56.334%; }  /*  */
-.grid-12-flex .tamanho8{ width: 64.667%; }  /*  */
-.grid-12-flex .tamanho9{ width: 73%; }      /*  */
-.grid-12-flex .tamanho10{ width: 81.334%; } /*  */
-.grid-12-flex .tamanho11{ width: 89.667%; } /*  */
-.grid-12-flex .tamanho12{ width: 98%; }     /*  */
+.grid-12-flex .tamanho1{ width: 6.334%; }
+.grid-12-flex .tamanho2{ width: 14.667%; }
+.grid-12-flex .tamanho3{ width: 23%; }
+.grid-12-flex .tamanho4{ width: 31.334%; }
+.grid-12-flex .tamanho5{ width: 39.667%; }
+.grid-12-flex .tamanho6{ width: 48%; }
+.grid-12-flex .tamanho7{ width: 56.334%; }
+.grid-12-flex .tamanho8{ width: 64.667%; }
+.grid-12-flex .tamanho9{ width: 73%; }
+.grid-12-flex .tamanho10{ width: 81.334%; }
+.grid-12-flex .tamanho11{ width: 89.667%; }
+.grid-12-flex .tamanho12{ width: 98%; }
 
 /*16 COLUNAS*/
-.grid-16-flex .tamanho1{ width: 4.25%; }    /* 68 */
-.grid-16-flex .tamanho2{ width: 10.5%; }    /* 84 */
-.grid-16-flex .tamanho3{ width: 16.75%; }   /* 88 */
-.grid-16-flex .tamanho4{ width: 23%; }      /* 92 */
-.grid-16-flex .tamanho5{ width: 29.25%; }   /* 92 */
-.grid-16-flex .tamanho6{ width: 35.5%; }    /* 94 */
-.grid-16-flex .tamanho7{ width: 41.75%; }   /* 94 */
-.grid-16-flex .tamanho8{ width: 48%; }      /* 96 */
-.grid-16-flex .tamanho9{ width: 54.25%; }   /* 96 */
-.grid-16-flex .tamanho10{ width: 60.5%; }   /* 96 */
-.grid-16-flex .tamanho11{ width: 66.75%; }  /* 96 */
-.grid-16-flex .tamanho12{ width: 73%; }     /* 96 */
-.grid-16-flex .tamanho13{ width: 79.25%; }  /* 96 */
-.grid-16-flex .tamanho14{ width: 85.5%; }   /* 96 */
-.grid-16-flex .tamanho15{ width: 91.75%; }  /* 96 */
-.grid-16-flex .tamanho16{ width: 98%; }     /* 98 */
+.grid-16-flex .tamanho1{ width: 4.25%; }
+.grid-16-flex .tamanho2{ width: 10.5%; }
+.grid-16-flex .tamanho3{ width: 16.75%; }
+.grid-16-flex .tamanho4{ width: 23%; }
+.grid-16-flex .tamanho5{ width: 29.25%; }
+.grid-16-flex .tamanho6{ width: 35.5%; }
+.grid-16-flex .tamanho7{ width: 41.75%; }
+.grid-16-flex .tamanho8{ width: 48%; }
+.grid-16-flex .tamanho9{ width: 54.25%; }
+.grid-16-flex .tamanho10{ width: 60.5%; }
+.grid-16-flex .tamanho11{ width: 66.75%; }
+.grid-16-flex .tamanho12{ width: 73%; }
+.grid-16-flex .tamanho13{ width: 79.25%; }
+.grid-16-flex .tamanho14{ width: 85.5%; }
+.grid-16-flex .tamanho15{ width: 91.75%; }
+.grid-16-flex .tamanho16{ width: 98%; }
 
 /*24 COLUNAS*/
-.grid-24-flex .tamanho1{ width: 3.166666667%; }   /* 76 */
-.grid-24-flex .tamanho2{ width: 7.334%; }         /* 88 */
-.grid-24-flex .tamanho3{ width: 11.5%; }          /* 92 */
-.grid-24-flex .tamanho4{ width: 15.667%; }        /* 94 */
-.grid-24-flex .tamanho5{ width: 19.83325%; }      /* 95 */
-.grid-24-flex .tamanho6{ width: 24%; }            /* 96 */
-.grid-24-flex .tamanho7{ width: 28.167%; }        /* 96 */
-.grid-24-flex .tamanho8{ width: 32.334%; }        /* 97 */
-.grid-24-flex .tamanho9{ width: 36.5%; }          /* 97 */
-.grid-24-flex .tamanho10{ width: 40.6665%; }      /* 97 */
-.grid-24-flex .tamanho11{ width: 44.833%; }       /* 97 */
-.grid-24-flex .tamanho12{ width: 49%; }           /* 98 */
-.grid-24-flex .tamanho13{ width: 53.167%; }       /* 98 */
-.grid-24-flex .tamanho14{ width: 57.3335%; }      /* 98 */
-.grid-24-flex .tamanho15{ width: 61.5%; }         /* 98 */
-.grid-24-flex .tamanho16{ width: 65.666%; }       /* 98 */
-.grid-24-flex .tamanho17{ width: 69.833%; }       /* 98 */
-.grid-24-flex .tamanho18{ width: 74%; }           /* 98 */
-.grid-24-flex .tamanho19{ width: 78.16675%; }     /* 98 */
-.grid-24-flex .tamanho20{ width: 82.333%; }       /* 98 */
-.grid-24-flex .tamanho21{ width: 86.5%; }         /* 98 */
-.grid-24-flex .tamanho22{ width: 90.666%; }       /* 98 */
-.grid-24-flex .tamanho23{ width: 94.833333333%; } /* 98 */
-.grid-24-flex .tamanho24{ width: 99%; }           /* 99 */
+.grid-24-flex .tamanho1{ width: 3.166666667%; }
+.grid-24-flex .tamanho2{ width: 7.334%; }
+.grid-24-flex .tamanho3{ width: 11.5%; }
+.grid-24-flex .tamanho4{ width: 15.667%; }
+.grid-24-flex .tamanho5{ width: 19.83325%; }
+.grid-24-flex .tamanho6{ width: 24%; }
+.grid-24-flex .tamanho7{ width: 28.167%; }
+.grid-24-flex .tamanho8{ width: 32.334%; }
+.grid-24-flex .tamanho9{ width: 36.5%; }
+.grid-24-flex .tamanho10{ width: 40.6665%; }
+.grid-24-flex .tamanho11{ width: 44.833%; }
+.grid-24-flex .tamanho12{ width: 49%; }
+.grid-24-flex .tamanho13{ width: 53.167%; }
+.grid-24-flex .tamanho14{ width: 57.3335%; }
+.grid-24-flex .tamanho15{ width: 61.5%; }
+.grid-24-flex .tamanho16{ width: 65.666%; }
+.grid-24-flex .tamanho17{ width: 69.833%; }
+.grid-24-flex .tamanho18{ width: 74%; }
+.grid-24-flex .tamanho19{ width: 78.16675%; }
+.grid-24-flex .tamanho20{ width: 82.333%; }
+.grid-24-flex .tamanho21{ width: 86.5%; }
+.grid-24-flex .tamanho22{ width: 90.666%; }
+.grid-24-flex .tamanho23{ width: 94.833333333%; }
+.grid-24-flex .tamanho24{ width: 99%; }
 
 /* GRID RESPONSIVE 
-   Basicamente este grid se adpta a resolução do navegador, é uma alternativa a @media max-width
+   Basicamente este grid se adpta a resolução do navegador, é uma alternativa a @media max-width - CSS3
    Colunas de tamanho maior do que o permitido, serão convertidas para o tamanho máximo, se adptando a resolução
    
    Você também pode usar classes hide de acordo com a resolução
@@ -216,7 +216,7 @@ html.screen-640 .grid-24-flex .coluna{
    620       560    540       8      
    768       700    680       10     
    1024      980    960       14     
-   1280      1190   1170      17     
+   1280      1190   1170      17
    1440      1330   1310      19     
 ----------------------------------------- */
 .grid-responsive{
@@ -232,7 +232,9 @@ html.screen-640 .grid-24-flex .coluna{
 	margin-right: 10px;
 	max-width: 1310px;
 }
-.grid-responsive .coluna img{
+.grid-responsive .coluna img, 
+.grid-responsive .coluna object, 
+.grid-responsive .coluna embed{
 	max-width: 100%;
 }
 
