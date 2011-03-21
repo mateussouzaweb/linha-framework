@@ -137,7 +137,7 @@ CHANGELOG
 
  * Inicial
 
-CHANGELOG JS Linha Framework (core)
+CHANGELOG JS Linha Framework
 =========================
 ### 1.0
 
