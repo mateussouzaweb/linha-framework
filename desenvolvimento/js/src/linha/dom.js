@@ -23,7 +23,7 @@ function getElementsByClassName(name, context){
 			elem,
 			i = 0;
 	
-		for(; (elem = all[i]) !== null; i++){
+		for(; (elem = all[i]) != null; i++){
 	
 			var elementClass = elem.className;
 	
@@ -126,7 +126,7 @@ L.implement({
 			dom = context.getElementsByTagName(selector);
 		}
 		
-		if(!dom || dom[0] === null) return this;
+		if(!dom || dom[0] == null) return this;
 		
 		this.selector = selector;
 		this.context = context;

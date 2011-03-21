@@ -189,7 +189,7 @@ L.extend({
 			var head = document.documentElement,
 			toplevel = false;
 		
-			try{ toplevel = window.frameElement === null; } catch(e){}
+			try{ toplevel = window.frameElement == null; } catch(e){}
 		
 			if(head.doScroll && toplevel){
 		
