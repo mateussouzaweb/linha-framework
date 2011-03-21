@@ -15,25 +15,25 @@
 			
 			pai: 'h2',											//Seletor pai, ou cabeçalho, header...
 			filho: 'div',										//Seletor filho, este é o que ficará escondido
-	
+			
 			classeAjax: 'ajax',									//Classe para accordions em ajax (classe presente no elemento pai)
 			atributoUrl: 'url',									//Atributo para url do accordion em ajax (atributo presente no elemento pai)
-				
+			
 			evento: 'click',									//Evento para disparar o efeito accordion
 			
-			hash: false,										//Habilitar navegação via hash? 	
-			inicial: 1, 										//Define o acordion que será exibido inicialmente ou default
-				
+			hash: false,										//Habilitar navegação via hash?
+			inicial: 1,											//Define o acordion que será exibido inicialmente ou default
+			
 			sempreUm: true,										//Deixar sempre exibindo um seletor filho no accordion?
 			autoHeight: false,									//Ajustar automaticamente a altura dos elementos filho?
-	
+			
 			tempoIn: 'fast',									//Tempo para esconder o seletor filho (Entrada)
 			tempoOut: 'fast',									//Tempo para mostrar o seletor filho (Saída)
 			easingIn: 'swing',									//Animação com easing na entrada (IN)...
 			easingOut: 'swing',									//Animação com easing na saída (OUT)...
-					
-			onAnima: null, 										//Callback
-					
+			
+			onAnima: null,										//Callback
+			
 			live: false,										//Abilitar o monitoramento live
 			liveTempo: 150										//Tempo entra cada checagem, em milisegundos
 		},
@@ -56,10 +56,10 @@
 			});
 			
 			/**
-		 	 * Hash navigation
-		  	 * Usa o parâmetro o.inicial
-		 	 */
-			if(o.hash && hash != '' && $(hash).is('.acord-filho')){
+			 * Hash navigation
+			 * Usa o parâmetro o.inicial
+			 */
+			if(o.hash && hash !== '' && $(hash).is('.acord-filho')){
 				o.inicial = ($(hash).prevAll('.acord-filho').length) + 1;
 			}
 					
@@ -123,10 +123,10 @@
 				 * Anima o acord
 				 */
 				if( $(this).hasClass(o.classeAjax) ){
-					return $.acord.ajax.apply( self, new Array($(this), $(this).next('.acord-filho')) );
+					return $.acord.ajax.apply( self, [$(this), $(this).next('.acord-filho')] );
 				}
 				
-				return $.acord.anima.apply( self, new Array($(this), $(this).next('.acord-filho')) );
+				return $.acord.anima.apply( self, [$(this), $(this).next('.acord-filho')] );
 			});
 					
 			/**
@@ -141,7 +141,9 @@
 		 * DESTROY
 		 */
 		destroy: function(){
-		
+			
+			var o = $(this).data('acord');
+			
 			$('.acord-pai', this).unbind(o.evento);
 			$(this).removeData('acord');
 		
@@ -193,7 +195,7 @@
 					f.height('auto');
 					$(self).height('auto');
 						
-					return $.acord.anima.apply(self, new Array(p, f) );
+					return $.acord.anima.apply(self, [p, f] );
 				}
 			});
 							
@@ -218,16 +220,16 @@
 			/**
 			* Callback
 			*/
-			if ($.isFunction(o.onAnima)) o.onAnima.apply(this, new Array(p, f));
+			if ($.isFunction(o.onAnima)) o.onAnima.apply(this, [p, f]);
 			
 			/**
 			 * Faz a animação
 			 */		
-			$.acord.fx[o.fx].apply(this, new Array(p, f));
+			$.acord.fx[o.fx].apply(this, [p, f]);
 				
 		return false;
 		}
-	}
+	};
 
 	$.fn.acord = function(method){
 				
@@ -240,7 +242,7 @@
 		/**
 		 * Chama o evento inicial
 		 */	
-    	}else if(typeof method === 'object' || !method){
+		}else if(typeof method === 'object' || !method){
 			
 			var options = $.extend(true, {}, $.acord.padrao, method);
 				
@@ -279,9 +281,9 @@
 					
 				});
 			}
-    	}
-    	
-    return this;
+		}
+		
+	return this;
 	};
 
 })(jQuery);
