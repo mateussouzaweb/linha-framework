@@ -1,4 +1,4 @@
-# Gzip compression.
+# Gzip compression
 <IfModule mod_deflate.c>
 
 	# Força deflate
