@@ -4,6 +4,11 @@
 L.extend({
 	
 	/**
+	 * Registra qual é o browser atual
+	 */
+	browser: {},
+	
+	/**
 	 * User Agent e HTML Node
 	 */
 	ua: navigator.userAgent.toLowerCase(),
@@ -40,8 +45,11 @@ L.extend({
 		/**
 		 * Fix safari
 		 */
-		if(ua[1] == 'safari') html.addClass(ua[1] + '-' + ua[2].substring(0, 1));
-		else html.addClass(ua[1] + '-' + parseInt(ua[2], 10));
+		ua[2] = (ua[1] == 'safari')? 
+			ua[2].substring(0, 1) : 
+			parseInt(ua[2], 10);
+		
+		html.addClass(ua[1] + '-' + ua[2]);
 
 		/**
 		 * Condicionais IE
@@ -49,9 +57,16 @@ L.extend({
 		if(ua[1] == 'ie'){
 		
 			for(var ver = 3; ver < 10; ver++) {
-				if(parseInt(ua[2], 10) < ver) html.addClass('lt-ie-' + ver);		
+				if(ua[2] < ver) html.addClass('lt-ie-' + ver);		
 			}
 		}
+		
+		/**
+		 * Define qual é o browser
+		 */
+		this.browser[ ua[1] ] = true;
+		this.browser.browser = ua[1];
+		this.browser.version = ua[2];
 		
 		return this;
 	},
