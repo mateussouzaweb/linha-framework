@@ -85,11 +85,11 @@ L.extend({
 		 * Checa no elemento parente
 		 */
 		var parent = elem.parentNode || elem.ownerDocument;
-		
+				
 		if(!event.isPropagationStopped() && parent)
-			L.eventTrigger(event, data, parent);       			
+			L.eventTrigger(event, data, parent);
 	}
-		
+	
 });
 
 /**

@@ -33,6 +33,7 @@ Function.prototype.implement = function(implement, overlay){
 	for(var item in implement){
 		if(!this.prototype[item] || overlay) this.prototype[item] = implement[item];
 	}
+	
 };
 
 /**
@@ -1364,11 +1365,11 @@ L.extend({
 		 * Checa no elemento parente
 		 */
 		var parent = elem.parentNode || elem.ownerDocument;
-		
+				
 		if(!event.isPropagationStopped() && parent)
-			L.eventTrigger(event, data, parent);       			
+			L.eventTrigger(event, data, parent);
 	}
-		
+	
 });
 
 /**
@@ -1566,4 +1567,3 @@ L.implement({
 	}
 	
 });
-

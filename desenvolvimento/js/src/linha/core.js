@@ -33,6 +33,7 @@ Function.prototype.implement = function(implement, overlay){
 	for(var item in implement){
 		if(!this.prototype[item] || overlay) this.prototype[item] = implement[item];
 	}
+	
 };
 
 /**
