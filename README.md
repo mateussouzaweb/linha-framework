@@ -46,19 +46,17 @@ Compatibilidade (Demais Navegadores):
 
 ### Compilando seu JS
 
-Para compilar qualquer JS do Linha Framework, você precisa ter em mãos [NodeJS + NPM + JSMin package + JSHint](https://gist.github.com/866799). O processo é bem simples: Depois de terminada as alterações do SRC do JS, abra o terminal na pasta /desenvolvimento/js/build e execute os seguintes comandos:
+Para compilar qualquer JS do Linha Framework, você precisa ter em mãos [NodeJS + NPM + Uglify JS + JSHint](https://gist.github.com/866799). O processo é bem simples: Depois de terminada as alterações do SRC do JS, abra o terminal na pasta /desenvolvimento/js/build e execute os seguintes comandos:
 	
-	make # compila tudo, modo básico
+	node makefile.js # compila tudo!
 	
-	node build.js # o mesmo que "make"
+	node makefile.js dev # compila apenas a versão de desenvolvimento dos JSs
 	
-	node build.js dev # compila apenas a versão de desenvolvimento dos JSs
+	node makefile.js linha #compila apenas os scripts do Linha JS
 	
-	node build.js linha #compila apenas os scripts do Linha JS
+	node makefile.js dev jquery # compila apenas a versão de desenvolvimento do jquery
 	
-	node build.js dev jquery # compila apenas a versão de desenvolvimento do jquery
-	
-Recomendo que dêem uma olhada no arquivo /desenvolvimento/js/build/build.js, pois nele há algumas opções para customização do compilador.
+Recomendo que dêem uma olhada no arquivo /desenvolvimento/js/build/makefile.js, pois nele há algumas opções para customização do compilador.
 
 PLUGINS USADOS
 ==============
