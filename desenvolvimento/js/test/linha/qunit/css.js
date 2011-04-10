@@ -43,7 +43,7 @@ L.ready(function(){
 	
 	test('css', function(){
 		
-		expect(3);
+		expect(4);
 		
 		L('#css').css('margin-bottom', 0);
 		
@@ -58,6 +58,8 @@ L.ready(function(){
 		notEqual(L('#css').css('marginBottom'), '0', 'Checa se o valor de marginBottom não é igual a zero, depois de ter sido alterado');
 		
 		deepEqual(L('#css').css(['margin-bottom', 'paddingTop']), ['10px', '5px'], 'Recupera múltiplos valores de CSS')
+		
+		equal( L('#elemento-que-nao-existe').css('margin-bottom'), undefined, 'Checa se o valor do margin bottom de um elemento que não existe é undefined' );
 		
 	});
 	

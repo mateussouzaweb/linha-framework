@@ -20,7 +20,9 @@ L.implement({
 	 * @param [string] name
 	 */
 	hasClass: function(name){
-
+		
+		if(!this[0]) return false;
+		
 		if( !L.is('regex', name) ) name = L.regexClass(name);
 		
 		return name.test(this[0].className);
@@ -73,7 +75,9 @@ L.implement({
 	 * @param [mixed] name
 	 */
 	getStyle: function(name){
-	
+		
+		if(!this[0]) return undefined;
+		
 		var one = L.is('string', name)? true : false,
 			styles = [],
 			itens = one? [name] : name,
@@ -120,7 +124,7 @@ L.implement({
 	 */
 	setStyle: function(name, value){
 		
-		if(!value && L.is('string', name)) return;
+		if(!this[0] || !value && L.is('string', name)) return this;
 		
 		var styles = {},
 			itens = {};
