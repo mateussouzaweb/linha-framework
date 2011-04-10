@@ -1,5 +1,5 @@
 /*!
- * Linha JS 1.3
+ * Linha JS 1.3.1
  * http://www.linhaframework.com
  *
  * Copyright 2011

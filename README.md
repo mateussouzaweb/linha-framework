@@ -139,7 +139,14 @@ CHANGELOG
 
 CHANGELOG JS Linha Framework
 =========================
-### 1.0
+
+### 1.3.1
+
+ * Adicionado métodos Array.clone & L.filter
+ * Fix de parâmetro para L.ready()
+ * Fix para previnir erros onde nenhum elemento é selecionado
+
+### 1.3
 
  * Inicial
 
