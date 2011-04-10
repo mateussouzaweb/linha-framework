@@ -76,6 +76,20 @@ L.ready(function(){
 		
 	});
 	
+	test('filter', function(){
+		
+		expect(2);
+		
+		var itens = L('.filter');
+		equal(itens.length, 6, 'Checa o nº de itens ANTES do filtro');
+		
+		itens.filter(function(){
+			return (L(this).attr('rel') == '1') ? true : false;
+		});
+		
+		equal(itens.length, 4, 'Checa o nº de itens DEPOIS do filtro');
+	});
+	
 	test('html', function(){
 		
 		expect(2);

@@ -57,6 +57,9 @@ L.extend({
 	 * @param [object] parent
 	 */
 	isChildren: function(elem, parent){
+		
+		if(!elem || !parent) return false;
+		
 		return( 
 			(elem.parentNode == parent) || (elem.parentNode != document) &&
 			L.isChildren(elem.parentNode, parent)
@@ -188,6 +191,31 @@ L.implement({
     last: function(){
 		return L(this[this.length - 1]);
     },
+	
+	/**
+	 * Filtra elementos de seletor, se o filtro retornar false, o index é removido
+	 * @param [function] fn
+	 */
+	filter: function(fn){
+		
+		var remove = [];
+		
+		/**
+		 * Define quem será removido
+		 */
+		this.each(function(index, elem){
+			if( fn.call(elem, index, elem) === false ) remove.push( index );	
+		});
+		
+		/**
+		 * Remove os itens
+		 */
+		Array.each(remove, function(index){
+			this.splice(index, 1);
+		}, this);
+		
+		return this;
+	},
 	
 	/**
 	 * Recupera/Seta o HTML do elemento
