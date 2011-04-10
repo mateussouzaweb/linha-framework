@@ -84,7 +84,7 @@ CHANGELOG
 ### 1.3 - XX de XXXXXXXX de 2011
 
  * Adicionado os arquivos exemplo.htaccess (quando concluir renomei para .htaccess) e robots.txt
- * Atualização jQuery para V. 1.5.1
+ * Atualização jQuery para V. 1.5.2
  * Movimentação para changelog
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
