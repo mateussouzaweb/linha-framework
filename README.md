@@ -46,17 +46,11 @@ Compatibilidade (Demais Navegadores):
 
 ### Compilando seu JS
 
-Para compilar qualquer JS do Linha Framework, você precisa ter em mãos [NodeJS + NPM + Uglify JS + JSHint](https://gist.github.com/866799). O processo é bem simples: Depois de terminada as alterações do SRC do JS, abra o terminal na pasta /desenvolvimento/js/build e execute os seguintes comandos:
+Para compilar qualquer JS do Linha Framework, você precisa ter em mãos [NodeJS + NPM + Tuild](https://gist.github.com/866799). O processo é bem simples: Depois de terminada as alterações do SRC do JS, abra o terminal na pasta /desenvolvimento/js/build e execute os seguintes comando:
 	
-	node makefile.js # compila tudo!
+	node build.js 
 	
-	node makefile.js dev # compila apenas a versão de desenvolvimento dos JSs
-	
-	node makefile.js linha #compila apenas os scripts do Linha JS
-	
-	node makefile.js dev jquery # compila apenas a versão de desenvolvimento do jquery
-	
-Recomendo que dêem uma olhada no arquivo /desenvolvimento/js/build/makefile.js, pois nele há algumas opções para customização do compilador.
+Recomendo que dêem uma olhada no arquivo /desenvolvimento/js/build/build.js, pois nele há algumas opções para customização do compilador.
 
 PLUGINS USADOS
 ==============
@@ -95,7 +89,7 @@ CHANGELOG
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
  * Introdução a library Linha Framework JS, com testes unitários e jsHint
- * Novo build para JS - feito em NodeJS
+ * Novo build para JS - Tuild, feito em NodeJS
  * Separação do código jQuery do core LF, tornando mais simples o uso de outro framework JS
  * Linha Framework JS - Criado plugin (Browser Selector) "modernizer" com classes CSS. Ex: .mac .chrome .chrome9 .box-shadow
  * Linha Framework JS - Criado plugin (Load), para carregar dinamicamente JS e CSS
