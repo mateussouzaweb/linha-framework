@@ -42,6 +42,13 @@ Array.implement({
 	},
 	
 	/**
+	 * Clona a array atual 
+	 */
+	clone: function(){
+		return this.slice(0);
+	},
+	
+	/**
 	 * Método espelho para forEach - JS 1.6
 	 * @param [function] fn
 	 * @param optional [object] _this

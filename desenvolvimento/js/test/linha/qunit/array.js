@@ -8,6 +8,19 @@ test('clean', function(){
 
 });
 
+test('clone', function(){
+	
+	expect(1);
+	
+	var a = [1, 2, 3];
+	var b = a.clone();
+	
+	a.reverse();
+	
+	notDeepEqual(a, b, 'Checa se a array clonada é igual a original, que foi "reversada"');
+	
+});
+
 test('each', function(){
 
 	expect(2);
