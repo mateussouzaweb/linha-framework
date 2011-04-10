@@ -1,5 +1,5 @@
 /*!
- * Linha JS 1.3
+ * Linha JS 1.3.1
  * http://www.linhaframework.com
  *
  * Copyright 2011
@@ -220,7 +220,7 @@ L.extend({
 	ready: function(fn){
 		
 		if(this.isReady){
-			if(fn && L.is('function', fn)) fn.call(this);
+			if(fn && L.is('function', fn)) fn.call(this, this);
 			return this;
 		}
 		
@@ -492,6 +492,13 @@ Array.implement({
 	},
 	
 	/**
+	 * Clona a array atual 
+	 */
+	clone: function(){
+		return this.slice(0);
+	},
+	
+	/**
 	 * Método espelho para forEach - JS 1.6
 	 * @param [function] fn
 	 * @param optional [object] _this
@@ -651,6 +658,9 @@ L.extend({
 	 * @param [object] parent
 	 */
 	isChildren: function(elem, parent){
+		
+		if(!elem || !parent) return false;
+		
 		return( 
 			(elem.parentNode == parent) || (elem.parentNode != document) &&
 			L.isChildren(elem.parentNode, parent)
@@ -782,6 +792,31 @@ L.implement({
     last: function(){
 		return L(this[this.length - 1]);
     },
+	
+	/**
+	 * Filtra elementos de seletor, se o filtro retornar false, o index é removido
+	 * @param [function] fn
+	 */
+	filter: function(fn){
+		
+		var remove = [];
+		
+		/**
+		 * Define quem será removido
+		 */
+		this.each(function(index, elem){
+			if( fn.call(elem, index, elem) === false ) remove.push( index );	
+		});
+		
+		/**
+		 * Remove os itens
+		 */
+		Array.each(remove, function(index){
+			this.splice(index, 1);
+		}, this);
+		
+		return this;
+	},
 	
 	/**
 	 * Recupera/Seta o HTML do elemento
@@ -1015,7 +1050,9 @@ L.implement({
 	 * @param [string] name
 	 */
 	hasClass: function(name){
-
+		
+		if(!this[0]) return false;
+		
 		if( !L.is('regex', name) ) name = L.regexClass(name);
 		
 		return name.test(this[0].className);
@@ -1068,7 +1105,9 @@ L.implement({
 	 * @param [mixed] name
 	 */
 	getStyle: function(name){
-	
+		
+		if(!this[0]) return undefined;
+		
 		var one = L.is('string', name)? true : false,
 			styles = [],
 			itens = one? [name] : name,
@@ -1115,7 +1154,7 @@ L.implement({
 	 */
 	setStyle: function(name, value){
 		
-		if(!value && L.is('string', name)) return;
+		if(!this[0] || !value && L.is('string', name)) return this;
 		
 		var styles = {},
 			itens = {};
