@@ -220,7 +220,7 @@ L.extend({
 	ready: function(fn){
 		
 		if(this.isReady){
-			if(fn && L.is('function', fn)) fn.call(this);
+			if(fn && L.is('function', fn)) fn.call(this, this);
 			return this;
 		}
 		
