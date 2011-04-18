@@ -9,7 +9,7 @@ var	VERSION = '1.3.1',
 	DEV_DIR = '../../arquivos/',
 	MIN_DIR = '../../../html/js/',
 	
-	SEPARADO = false, //Se true, irá separar o Linha JS dos Plugins Linha, na versão minifield (NÂO SE APLICA A VERSÂO DEV)
+	SEPARADO = false, //Se true, irá separar o Linha JS dos Plugins Linha, na versão minified (NÂO SE APLICA A VERSÂO DEV)
 	EXTEND = false, //Se true, também irá pegar os extends dos Plugins jQuery - Ex. acord.extend.js
 	
 	// Linha JS

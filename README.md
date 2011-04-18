@@ -72,7 +72,7 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
  * Aprenda a trabalhar com medidas padrões - Grids
  * Escolha um padrão de Grid e apague os demais (html/css/grid.css)
  * Carregue JS dinamicamente, usando Linha Load.
- * Crie versões minifield de seus códigos com uma linguagem server-side - <http://code.google.com/p/minify/>
+ * Crie versões minified de seus códigos com uma linguagem server-side - <http://code.google.com/p/minify/>
  * Se o site não tiver suporte nativo para o IE6, avise os usuários usando Adeus IE6 - <https://github.com/mateus007/Adeus-IE6>
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
  * Alterar o código fonte não é proibido :P
