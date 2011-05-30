@@ -209,8 +209,9 @@ L.implement({
 		
 		/**
 		 * Remove os itens
+		 * A lista é revertida, para começar pelos últimos elementos
 		 */
-		Array.each(remove, function(index){
+		Array.each(remove.reverse(), function(index, elem){
 			this.splice(index, 1);
 		}, this);
 		
