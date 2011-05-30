@@ -12,7 +12,7 @@ LINHA FRAMEWORK JS - L()
 ========================
 Linha JS - "L" - é um framework Javascript como os demais, bem semelhante ao jQuery e ao Mootools, por exemplo, mas, com uma grande diferença: é extremamente leve - apenas 5kb com gzip -, o que torna vantajoso o uso dele em qualquer projeto. Foi desenvolvido tendo como regras, o básico de qualquer framework JS: selecionar, editar propriedades/atributos, alterar CSS e adicionar/remover eventos a qualquer elemento com mais rapidez e facilidade.
 
-Linha JS, também extende funções em qualquer String, Array e Objeto presente em seu código JS, semelhantemente ao trabalho que faz o Mootools ou Prototype (jQuery não faz isso). Além de tornar tudo totalmente extensível, para desenvolvimentos de plugins ou novas funcionalidades, por exemplo - Você pode extender facilmente o Linha JS, Strings, Arrays, Objetos, Datas, Numbers, Regexs, Frameworks... Um exemplo prático que Linha JS já faz é, adicionar algumas funcionalidades do Javascript 1.6 a navegadores antigos.
+Linha JS, também extende funções em qualquer String, Array e Objeto presente em seu código JS, semelhantemente ao trabalho que faz o Mootools ou Prototype (jQuery não faz isso). Além de tornar tudo totalmente extensível, para desenvolvimentos de plugins ou novas funcionalidades, por exemplo - Você pode extender facilmente o Linha JS, Strings, Arrays, Objetos, Datas, Numbers, Regexs, Frameworks... Um exemplo prático que Linha JS já faz é, adicionar algumas funcionalidades do Javascript 1.8.5 a navegadores antigos.
 
 Conta também, desde sua versão inicial, alguns plugins para facilitar o desenvolvimento de projetos: Browser Selector e Load - lazy loading. 
 
@@ -20,7 +20,7 @@ Conta também, desde sua versão inicial, alguns plugins para facilitar o desenv
 
 <b>Linha Load</b>: faz o carregamento dinâmico para Scripts Javascript e estilos CSS, logo após que o DOM é totalmente carregado, aumentando assim a performance do projeto drásticamente... experimente!
 
-É claro que Linha JS é muito mais do que isto, mas vamos parar por aqui... se quiser saber mais detalhes veja a documentação. 
+É claro que Linha JS é muito mais do que isto, mas vamos parar por aqui... se quiser saber mais detalhes veja a documentação.
 
 Compatibilidade (Principais Navegadores):
 
