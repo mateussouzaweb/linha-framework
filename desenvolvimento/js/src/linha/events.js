@@ -2,14 +2,14 @@ L.extend({
 	
 	/**
 	 * Inicia um evento QUASE nas especificações do DOM3 Events
-	 */	
+	 */
 	Event: function(src){
 		
 		/**
 		 * Se já tiver o evento
 		 */
 		if(src && src.type){
-		
+			
 			this.originalEvent = src;
 			this.type = src.type;
 		
@@ -27,8 +27,8 @@ L.extend({
 	eventTrigger: function(event, data, elem){
 		
 		if(!elem || elem.nodeType === 3 || elem.nodeType === 8){
-            return undefined;
-        }
+			return undefined;
+		}
 		
 		/**
 		 * Cria o evento, se já não foi criado
@@ -66,14 +66,14 @@ L.extend({
 		 * Se tiver algum evento registrado no parent
 		 */
 		if(elem.events){
-
+		
 			/**
 			 * Recupera o evento
 			 */
 			var fn = event.namespace ? 
 				elem.events[event.namespace][event.type] : 
 				elem.events[event.type];
-								
+			
 			/**
 			 * Se tive o evento
 			 */
@@ -85,7 +85,7 @@ L.extend({
 		 * Checa no elemento parente
 		 */
 		var parent = elem.parentNode || elem.ownerDocument;
-				
+		
 		if(!event.isPropagationStopped() && parent)
 			L.eventTrigger(event, data, parent);
 	}
@@ -109,9 +109,9 @@ L.Event.implement({
 	 * Previne ação padrão
 	 */
 	preventDefault: function() {
-	
+		
 		this.isDefaultPrevented = returnTrue;
-
+		
 		var e = this.originalEvent;
 		if( !e ) return;
 		
@@ -124,10 +124,10 @@ L.Event.implement({
 	stopPropagation: function() {
 		
 		this.isPropagationStopped = returnTrue;
-
+		
 		var e = this.originalEvent;
 		if( !e ) return;
-
+		
 		e.cancelBubble = true;
 	},
 	
@@ -135,7 +135,7 @@ L.Event.implement({
 	 * Paraliza propagação imediata
 	 */
 	stopImmediatePropagation: function() {
-	
+		
 		this.isImmediatePropagationStopped = returnTrue;
 		this.stopPropagation();
 	
@@ -151,7 +151,7 @@ L.implement({
 	 * @param [function] fn
 	 */
 	bind: function(type, fn){
-
+		
 		/**
 		 * Define namespace
 		 */
@@ -182,12 +182,12 @@ L.implement({
 			/**
 			 * Adiciona Nativo
 			 */
-			if(this.addEventListener)			
+			if(this.addEventListener)
 				this.addEventListener(type, fn, false);
 				
 			else if(this.attachEvent)
 				this.attachEvent('on' + type, fn);
-
+			
 		});
 	},
 	
@@ -207,7 +207,7 @@ L.implement({
 		/**
 		 * Remove o evento
 		 */
-		return this.each(function(){	
+		return this.each(function(){
 			
 			if(this.events){
 				
@@ -225,13 +225,13 @@ L.implement({
 				
 				/**
 				 * Remove Nativo
-				 */			
+				 */
 				if(this.removeEventListener)
 					this.removeEventListener(type, fn, false);
 				
 				else if(this.detachEvent)
 					this.detachEvent('on' + type, fn);
-
+			
 			}	
 		});
 	},
@@ -245,7 +245,7 @@ L.implement({
 	delegate: function(selector, type, fn){
 	
 		return this.bind('delegate.' + type, function(e){
-						
+			
 			var target = e ? e.target : window.event.srcElement,
 				nodes = L(selector, this);
 			
@@ -260,7 +260,7 @@ L.implement({
 			 */
 			if( target && (target !== this) && (target !== document) )
 				fn.apply(target, arguments);
-
+			
 		});
 	},
 	

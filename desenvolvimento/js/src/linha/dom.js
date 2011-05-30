@@ -12,7 +12,7 @@ function getElementsByClassName(name, context){
 	
 	/**
 	 * IE8-
-	 */	
+	 */
 	return( function getElementsByClass(name, context){
 	
 		context = context || document;
@@ -24,13 +24,13 @@ function getElementsByClassName(name, context){
 			i = 0;
 	
 		for(; (elem = all[i]) != null; i++){
-	
+			
 			var elementClass = elem.className;
-	
+			
 			if(elementClass && elementClass.indexOf(name) != -1 && hasClass.test(elementClass))
 				results.push(elem);
 		}
-	
+		
 		return results;
 	
 	})(name, context);
@@ -99,15 +99,15 @@ L.implement({
 	
 		var dom = [];
 		selector = selector || document;
-
+	
 		context = context && context.nodeType ? context : document;
-
+	
 		/**
 		 * DOM :)
 		 */
 		if(selector.nodeType || selector == window){
 			dom[0] = selector;
-			
+		
 		/**
 		 * IDs
 		 */
@@ -115,13 +115,13 @@ L.implement({
 			
 			dom[0] = document.getElementById( selector.replace('#', '') );
 			if( !L.isChildren(dom[0], context) ) dom[0] = null;
-			
+		
 		/**
 		 * Classes
 		 */
 		}else if(selector.indexOf('.') === 0){
 			dom = getElementsByClassName(selector.replace('.', ''), context);
-			
+		
 		/**
 		 * TAGs
 		 */	
@@ -147,8 +147,8 @@ L.implement({
 			this.push( dom[0] );
 			this.length = 1;
 		
-		} 
-
+		}
+		
 		return this;
 	},
 	
@@ -177,20 +177,20 @@ L.implement({
 	eq: function(eq){
 		return L(this[eq]);
 	},
-    
-    /**
-     * Retorna o primeiro elemento
-     */
-    first: function(){
+	
+	/**
+	 * Retorna o primeiro elemento
+	 */
+	first: function(){
 		return L(this[0]);
-    },
-    
-    /**
-     * Retorna o último elemento
-     */
-    last: function(){
+	},
+	
+	/**
+	 * Retorna o último elemento
+	 */
+	last: function(){
 		return L(this[this.length - 1]);
-    },
+	},
 	
 	/**
 	 * Filtra elementos de seletor, se o filtro retornar false, o index é removido
@@ -204,7 +204,7 @@ L.implement({
 		 * Define quem será removido
 		 */
 		this.each(function(index, elem){
-			if( fn.call(elem, index, elem) === false ) remove.push( index );	
+			if( fn.call(elem, index, elem) === false ) remove.push( index );
 		});
 		
 		/**
@@ -237,7 +237,7 @@ L.implement({
 				}
 				
 			});
-				
+			
 		}
 		
 		return this[0] && this[0].nodeType === 1 ? this[0].innerHTML.trim() : null;
@@ -264,7 +264,7 @@ L.implement({
 					this.textContent = text;
 				
 			});
-
+			
 		}
 		
 		return (all)? this[0].innerText : this[0].textContent;
@@ -296,13 +296,13 @@ L.implement({
 	removeAttr: function(name){
 		
 		return this.each(function(){
-
+			
 			this[name] = '';
 			
 			if(this.nodeType === 1)
 				this.removeAttribute(name);
-        
-        });
+		
+		});
 	
 	},
 	
@@ -345,9 +345,9 @@ L.implement({
 			if(nodeName == 'select'){
 				
 				var index = elem.selectedIndex,
-                    values = [],
-                    options = elem.options,
-                    one = elem.type == 'select-one';
+					values = [],
+					options = elem.options,
+					one = elem.type == 'select-one';
 				
 				/**
 				 * Valor único
@@ -377,7 +377,7 @@ L.implement({
 			/**
 			 * Demais itens
 			 */
-			return (elem.value || "").replace(/\r/g, "");			
+			return (elem.value || "").replace(/\r/g, "");
 		}
 		
 		if( value.constructor == Number ) value += '';

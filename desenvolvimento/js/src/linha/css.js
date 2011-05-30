@@ -7,7 +7,7 @@ L.extend({
 	regexClass: function(name){
 		return new RegExp('(^|\\s)' + name + '(\\s|$)');
 	}
-		
+	
 });
 
 /**
@@ -64,7 +64,7 @@ L.implement({
 			var elem = L(this);
 			
 			if(elem.hasClass(name))
-				elem.removeClass(name); 
+				elem.removeClass(name);
 			else
 				elem.addClass(name);
 		});
@@ -106,7 +106,7 @@ L.implement({
 				
 				value = this.currentStyle[item];
 				value = (value === '')? 'auto' : value;
-					
+				
 			}
 			
 			styles.push ( value ? value : undefined );
@@ -143,15 +143,15 @@ L.implement({
 			var name = key.replace(/\-(\w)/g, function(all, letter){
 				return letter.toUpperCase();
 			});
-            
-            styles[name] = value;
-        });
+			
+			styles[name] = value;
+		});
 		
 		/**
 		 * Processa cada elemento
 		 */
 		return this.each(function(){
-
+			
 			/**
 			 * Checa se permite estilo CSS
 			 */
@@ -176,7 +176,7 @@ L.implement({
 		
 		/**
 		 * Seta o CSS
-		 */	
+		 */
 		return this.setStyle(style, value);
 	},
 	
@@ -189,7 +189,7 @@ L.implement({
 			t = 0,
 			l = 0,
 			box;
-
+		
 		/**
 		 * Checagem besta, para previnir erros :)
 		 */
@@ -255,7 +255,7 @@ L.implement({
 		 * Recupera as posições
 		 */
 		var offset = this.offset();
-
+		
 		/**
 		 * Remove as margens
 		 */

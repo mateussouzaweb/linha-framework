@@ -10,7 +10,7 @@ Object.extend({
 			return value != null;
 		}, _this);
 	},
-				
+	
 	/**
 	 * Método espelho para forEach
 	 * @param [object] object
@@ -20,7 +20,7 @@ Object.extend({
 	each: function(object, fn, _this){
 		return this.forEach(object, fn, _this);
 	},
-		
+	
 	/**
 	 * Testa se todos os elementos passam em uma determinada função
 	 * @param [object] object
@@ -35,7 +35,7 @@ Object.extend({
 		
 		return true;
 	},
-		
+	
 	/**
 	 * Cria um novo objeto com todos os elementos que passaram no teste da função executada
 	 * @param [object] object
@@ -67,8 +67,8 @@ Object.extend({
 			if(object.hasOwnProperty(key))
 				if( fn.call(_this, object[key], key, object ) === false ) break;
 		}
-
-		return object;	
+	
+		return object;
 	},
 	
 	/**
@@ -79,7 +79,7 @@ Object.extend({
 	keyOf: function(object, value){
 		
 		for (var key in object){
-			if (object.hasOwnProperty(key) && object[key] === value) return key;
+			if (object[key] === value) return key;
 		}
 		return null;
 	},
@@ -89,13 +89,13 @@ Object.extend({
 	 * @param [object] object 
 	 */
 	keys: function(object){
-
+		
 		var keys = [];
 		
 		for(var key in object){
-			if(object.hasOwnProperty(key)) keys.push(key);
+			keys.push(key);
 		}
-				
+		
 		return keys;
 	},
 	
@@ -144,7 +144,7 @@ Object.extend({
 	size: function(object){
 		return this.keys(object).length;
 	},
-			
+	
 	/**
 	 * Método espelho para values
 	 * @param [object] object
@@ -162,9 +162,9 @@ Object.extend({
 		var values = [];
 		
 		for(var key in object){
-			if(object.hasOwnProperty(key)) values.push(object[key]);
+			values.push(object[key]);
 		}
-				
+		
 		return values;
 	}
 	

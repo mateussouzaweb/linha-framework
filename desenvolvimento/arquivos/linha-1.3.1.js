@@ -41,7 +41,7 @@ Function.prototype.implement = function(implement, overlay){
  */
 var toString = Object.prototype.toString,
 	slice = Array.prototype.slice;
-	
+
 /**
  * Funções Core
  */
@@ -66,7 +66,7 @@ L.extend({
 		
 		return object;
 	},
-		
+	
 	/**
 	 * Retorna se o item é do tipo type
 	 * TIPOS: empty, element, node, array, object, function, string, number, date, boolean, regex, null, undefined
@@ -76,7 +76,7 @@ L.extend({
 	is: function(type, item){
 		
 		var ret = toString.call(item);
-
+		
 		switch(type.toLowerCase()){
 				
 			//Empty
@@ -98,7 +98,7 @@ L.extend({
 			//Function
 			case 'function':
 				return item.call !== undefined && item.apply !== undefined;
-
+			
 			//String
 			case 'string':				
 				return ret == '[object String]';
@@ -106,11 +106,11 @@ L.extend({
 			//Number
 			case 'number':
 				return ret == '[object Number]';
-
+			
 			//Date
 			case 'date':
-				return item.setDate !== undefined;	
-
+				return item.setDate !== undefined;
+			
 			//Boolean
 			case 'boolean':
 				return ret == '[object Boolean]';
@@ -118,7 +118,7 @@ L.extend({
 			//Regex
 			case 'regex':
 				 return item.test !== undefined && item.exec !== undefined;
-
+			
 			//Null
 			case 'null':
 				return item === null;
@@ -126,14 +126,14 @@ L.extend({
 			//Undefined
 			case 'undefined':
 				return item === undefined;
-		
+			
 			//Padrão
 			default:
 				return (typeof item === type || item == type);
 		}
 		
-        return false;
-    },
+		return false;
+	},
 	
 	/**
 	 * Executa uma função depois de um certo tempo/delay
@@ -151,7 +151,7 @@ L.extend({
 		window.setTimeout(function(){
 			return fn.apply(fn, args);
 		}, tempo);
-		 
+		
 		return this;
 	},
 	
@@ -159,7 +159,7 @@ L.extend({
 	 * Checa se o DOM está carregado
 	 */
 	domReady: function(){
-	
+		
 		/**
 		 * Checa se já está pronto o DOM
 		 */
@@ -192,19 +192,19 @@ L.extend({
 			try{ toplevel = window.frameElement == null; } catch(e){}
 		
 			if(head.doScroll && toplevel){
-		
+			
 				(function(){
-		
+				
 					try{
 						head.doScroll('left');
-		
+						
 					} catch(e){
 						setTimeout( arguments.callee, 1 );
 						return;
 					}
-		
+				
 				L.ready();
-		
+				
 				})();
 			
 			}
@@ -230,8 +230,8 @@ L.extend({
 		if(!document.body){
 			return setTimeout(function(){ L.ready(fn); }, 1);
 		}
-        
-        this.isReady = true;
+		
+		this.isReady = true;
 		
 		return setTimeout(function(){
 			L.ready(fn);
@@ -288,7 +288,7 @@ Object.extend({
 			return value != null;
 		}, _this);
 	},
-				
+	
 	/**
 	 * Método espelho para forEach
 	 * @param [object] object
@@ -298,7 +298,7 @@ Object.extend({
 	each: function(object, fn, _this){
 		return this.forEach(object, fn, _this);
 	},
-		
+	
 	/**
 	 * Testa se todos os elementos passam em uma determinada função
 	 * @param [object] object
@@ -313,7 +313,7 @@ Object.extend({
 		
 		return true;
 	},
-		
+	
 	/**
 	 * Cria um novo objeto com todos os elementos que passaram no teste da função executada
 	 * @param [object] object
@@ -345,8 +345,8 @@ Object.extend({
 			if(object.hasOwnProperty(key))
 				if( fn.call(_this, object[key], key, object ) === false ) break;
 		}
-
-		return object;	
+	
+		return object;
 	},
 	
 	/**
@@ -357,7 +357,7 @@ Object.extend({
 	keyOf: function(object, value){
 		
 		for (var key in object){
-			if (object.hasOwnProperty(key) && object[key] === value) return key;
+			if (object[key] === value) return key;
 		}
 		return null;
 	},
@@ -367,13 +367,13 @@ Object.extend({
 	 * @param [object] object 
 	 */
 	keys: function(object){
-
+		
 		var keys = [];
 		
 		for(var key in object){
-			if(object.hasOwnProperty(key)) keys.push(key);
+			keys.push(key);
 		}
-				
+		
 		return keys;
 	},
 	
@@ -422,7 +422,7 @@ Object.extend({
 	size: function(object){
 		return this.keys(object).length;
 	},
-			
+	
 	/**
 	 * Método espelho para values
 	 * @param [object] object
@@ -440,9 +440,9 @@ Object.extend({
 		var values = [];
 		
 		for(var key in object){
-			if(object.hasOwnProperty(key)) values.push(object[key]);
+			values.push(object[key]);
 		}
-				
+		
 		return values;
 	}
 	
@@ -471,11 +471,11 @@ Array.extend({
 		var i = 0,
 			l = array.length;
 		
-		// Processa cada item	
+		// Processa cada item
 		for( ; i < l; i++ ){
 			if( fn.call(_this, array[i], i, array ) === false ) break;
 		}
-
+	
 	}
 	
 });
@@ -596,7 +596,7 @@ Array.implement({
 	size: function(){
 		return this.length;
 	}
-		
+	
 });
 
 /**
@@ -613,7 +613,7 @@ function getElementsByClassName(name, context){
 	
 	/**
 	 * IE8-
-	 */	
+	 */
 	return( function getElementsByClass(name, context){
 	
 		context = context || document;
@@ -625,13 +625,13 @@ function getElementsByClassName(name, context){
 			i = 0;
 	
 		for(; (elem = all[i]) != null; i++){
-	
+			
 			var elementClass = elem.className;
-	
+			
 			if(elementClass && elementClass.indexOf(name) != -1 && hasClass.test(elementClass))
 				results.push(elem);
 		}
-	
+		
 		return results;
 	
 	})(name, context);
@@ -700,15 +700,15 @@ L.implement({
 	
 		var dom = [];
 		selector = selector || document;
-
+	
 		context = context && context.nodeType ? context : document;
-
+	
 		/**
 		 * DOM :)
 		 */
 		if(selector.nodeType || selector == window){
 			dom[0] = selector;
-			
+		
 		/**
 		 * IDs
 		 */
@@ -716,13 +716,13 @@ L.implement({
 			
 			dom[0] = document.getElementById( selector.replace('#', '') );
 			if( !L.isChildren(dom[0], context) ) dom[0] = null;
-			
+		
 		/**
 		 * Classes
 		 */
 		}else if(selector.indexOf('.') === 0){
 			dom = getElementsByClassName(selector.replace('.', ''), context);
-			
+		
 		/**
 		 * TAGs
 		 */	
@@ -748,8 +748,8 @@ L.implement({
 			this.push( dom[0] );
 			this.length = 1;
 		
-		} 
-
+		}
+		
 		return this;
 	},
 	
@@ -778,20 +778,20 @@ L.implement({
 	eq: function(eq){
 		return L(this[eq]);
 	},
-    
-    /**
-     * Retorna o primeiro elemento
-     */
-    first: function(){
+	
+	/**
+	 * Retorna o primeiro elemento
+	 */
+	first: function(){
 		return L(this[0]);
-    },
-    
-    /**
-     * Retorna o último elemento
-     */
-    last: function(){
+	},
+	
+	/**
+	 * Retorna o último elemento
+	 */
+	last: function(){
 		return L(this[this.length - 1]);
-    },
+	},
 	
 	/**
 	 * Filtra elementos de seletor, se o filtro retornar false, o index é removido
@@ -805,7 +805,7 @@ L.implement({
 		 * Define quem será removido
 		 */
 		this.each(function(index, elem){
-			if( fn.call(elem, index, elem) === false ) remove.push( index );	
+			if( fn.call(elem, index, elem) === false ) remove.push( index );
 		});
 		
 		/**
@@ -838,7 +838,7 @@ L.implement({
 				}
 				
 			});
-				
+			
 		}
 		
 		return this[0] && this[0].nodeType === 1 ? this[0].innerHTML.trim() : null;
@@ -865,7 +865,7 @@ L.implement({
 					this.textContent = text;
 				
 			});
-
+			
 		}
 		
 		return (all)? this[0].innerText : this[0].textContent;
@@ -897,13 +897,13 @@ L.implement({
 	removeAttr: function(name){
 		
 		return this.each(function(){
-
+			
 			this[name] = '';
 			
 			if(this.nodeType === 1)
 				this.removeAttribute(name);
-        
-        });
+		
+		});
 	
 	},
 	
@@ -946,9 +946,9 @@ L.implement({
 			if(nodeName == 'select'){
 				
 				var index = elem.selectedIndex,
-                    values = [],
-                    options = elem.options,
-                    one = elem.type == 'select-one';
+					values = [],
+					options = elem.options,
+					one = elem.type == 'select-one';
 				
 				/**
 				 * Valor único
@@ -978,7 +978,7 @@ L.implement({
 			/**
 			 * Demais itens
 			 */
-			return (elem.value || "").replace(/\r/g, "");			
+			return (elem.value || "").replace(/\r/g, "");
 		}
 		
 		if( value.constructor == Number ) value += '';
@@ -1037,7 +1037,7 @@ L.extend({
 	regexClass: function(name){
 		return new RegExp('(^|\\s)' + name + '(\\s|$)');
 	}
-		
+	
 });
 
 /**
@@ -1094,7 +1094,7 @@ L.implement({
 			var elem = L(this);
 			
 			if(elem.hasClass(name))
-				elem.removeClass(name); 
+				elem.removeClass(name);
 			else
 				elem.addClass(name);
 		});
@@ -1136,7 +1136,7 @@ L.implement({
 				
 				value = this.currentStyle[item];
 				value = (value === '')? 'auto' : value;
-					
+				
 			}
 			
 			styles.push ( value ? value : undefined );
@@ -1173,15 +1173,15 @@ L.implement({
 			var name = key.replace(/\-(\w)/g, function(all, letter){
 				return letter.toUpperCase();
 			});
-            
-            styles[name] = value;
-        });
+			
+			styles[name] = value;
+		});
 		
 		/**
 		 * Processa cada elemento
 		 */
 		return this.each(function(){
-
+			
 			/**
 			 * Checa se permite estilo CSS
 			 */
@@ -1206,7 +1206,7 @@ L.implement({
 		
 		/**
 		 * Seta o CSS
-		 */	
+		 */
 		return this.setStyle(style, value);
 	},
 	
@@ -1219,7 +1219,7 @@ L.implement({
 			t = 0,
 			l = 0,
 			box;
-
+		
 		/**
 		 * Checagem besta, para previnir erros :)
 		 */
@@ -1285,7 +1285,7 @@ L.implement({
 		 * Recupera as posições
 		 */
 		var offset = this.offset();
-
+		
 		/**
 		 * Remove as margens
 		 */
@@ -1321,14 +1321,14 @@ L.extend({
 	
 	/**
 	 * Inicia um evento QUASE nas especificações do DOM3 Events
-	 */	
+	 */
 	Event: function(src){
 		
 		/**
 		 * Se já tiver o evento
 		 */
 		if(src && src.type){
-		
+			
 			this.originalEvent = src;
 			this.type = src.type;
 		
@@ -1346,8 +1346,8 @@ L.extend({
 	eventTrigger: function(event, data, elem){
 		
 		if(!elem || elem.nodeType === 3 || elem.nodeType === 8){
-            return undefined;
-        }
+			return undefined;
+		}
 		
 		/**
 		 * Cria o evento, se já não foi criado
@@ -1385,14 +1385,14 @@ L.extend({
 		 * Se tiver algum evento registrado no parent
 		 */
 		if(elem.events){
-
+		
 			/**
 			 * Recupera o evento
 			 */
 			var fn = event.namespace ? 
 				elem.events[event.namespace][event.type] : 
 				elem.events[event.type];
-								
+			
 			/**
 			 * Se tive o evento
 			 */
@@ -1404,7 +1404,7 @@ L.extend({
 		 * Checa no elemento parente
 		 */
 		var parent = elem.parentNode || elem.ownerDocument;
-				
+		
 		if(!event.isPropagationStopped() && parent)
 			L.eventTrigger(event, data, parent);
 	}
@@ -1428,9 +1428,9 @@ L.Event.implement({
 	 * Previne ação padrão
 	 */
 	preventDefault: function() {
-	
+		
 		this.isDefaultPrevented = returnTrue;
-
+		
 		var e = this.originalEvent;
 		if( !e ) return;
 		
@@ -1443,10 +1443,10 @@ L.Event.implement({
 	stopPropagation: function() {
 		
 		this.isPropagationStopped = returnTrue;
-
+		
 		var e = this.originalEvent;
 		if( !e ) return;
-
+		
 		e.cancelBubble = true;
 	},
 	
@@ -1454,7 +1454,7 @@ L.Event.implement({
 	 * Paraliza propagação imediata
 	 */
 	stopImmediatePropagation: function() {
-	
+		
 		this.isImmediatePropagationStopped = returnTrue;
 		this.stopPropagation();
 	
@@ -1470,7 +1470,7 @@ L.implement({
 	 * @param [function] fn
 	 */
 	bind: function(type, fn){
-
+		
 		/**
 		 * Define namespace
 		 */
@@ -1501,12 +1501,12 @@ L.implement({
 			/**
 			 * Adiciona Nativo
 			 */
-			if(this.addEventListener)			
+			if(this.addEventListener)
 				this.addEventListener(type, fn, false);
 				
 			else if(this.attachEvent)
 				this.attachEvent('on' + type, fn);
-
+			
 		});
 	},
 	
@@ -1526,7 +1526,7 @@ L.implement({
 		/**
 		 * Remove o evento
 		 */
-		return this.each(function(){	
+		return this.each(function(){
 			
 			if(this.events){
 				
@@ -1544,13 +1544,13 @@ L.implement({
 				
 				/**
 				 * Remove Nativo
-				 */			
+				 */
 				if(this.removeEventListener)
 					this.removeEventListener(type, fn, false);
 				
 				else if(this.detachEvent)
 					this.detachEvent('on' + type, fn);
-
+			
 			}	
 		});
 	},
@@ -1564,7 +1564,7 @@ L.implement({
 	delegate: function(selector, type, fn){
 	
 		return this.bind('delegate.' + type, function(e){
-						
+			
 			var target = e ? e.target : window.event.srcElement,
 				nodes = L(selector, this);
 			
@@ -1579,7 +1579,7 @@ L.implement({
 			 */
 			if( target && (target !== this) && (target !== document) )
 				fn.apply(target, arguments);
-
+			
 		});
 	},
 	

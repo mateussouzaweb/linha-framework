@@ -41,7 +41,7 @@ Function.prototype.implement = function(implement, overlay){
  */
 var toString = Object.prototype.toString,
 	slice = Array.prototype.slice;
-	
+
 /**
  * Funções Core
  */
@@ -66,7 +66,7 @@ L.extend({
 		
 		return object;
 	},
-		
+	
 	/**
 	 * Retorna se o item é do tipo type
 	 * TIPOS: empty, element, node, array, object, function, string, number, date, boolean, regex, null, undefined
@@ -76,7 +76,7 @@ L.extend({
 	is: function(type, item){
 		
 		var ret = toString.call(item);
-
+		
 		switch(type.toLowerCase()){
 				
 			//Empty
@@ -98,7 +98,7 @@ L.extend({
 			//Function
 			case 'function':
 				return item.call !== undefined && item.apply !== undefined;
-
+			
 			//String
 			case 'string':				
 				return ret == '[object String]';
@@ -106,11 +106,11 @@ L.extend({
 			//Number
 			case 'number':
 				return ret == '[object Number]';
-
+			
 			//Date
 			case 'date':
-				return item.setDate !== undefined;	
-
+				return item.setDate !== undefined;
+			
 			//Boolean
 			case 'boolean':
 				return ret == '[object Boolean]';
@@ -118,7 +118,7 @@ L.extend({
 			//Regex
 			case 'regex':
 				 return item.test !== undefined && item.exec !== undefined;
-
+			
 			//Null
 			case 'null':
 				return item === null;
@@ -126,14 +126,14 @@ L.extend({
 			//Undefined
 			case 'undefined':
 				return item === undefined;
-		
+			
 			//Padrão
 			default:
 				return (typeof item === type || item == type);
 		}
 		
-        return false;
-    },
+		return false;
+	},
 	
 	/**
 	 * Executa uma função depois de um certo tempo/delay
@@ -151,7 +151,7 @@ L.extend({
 		window.setTimeout(function(){
 			return fn.apply(fn, args);
 		}, tempo);
-		 
+		
 		return this;
 	},
 	
@@ -159,7 +159,7 @@ L.extend({
 	 * Checa se o DOM está carregado
 	 */
 	domReady: function(){
-	
+		
 		/**
 		 * Checa se já está pronto o DOM
 		 */
@@ -192,19 +192,19 @@ L.extend({
 			try{ toplevel = window.frameElement == null; } catch(e){}
 		
 			if(head.doScroll && toplevel){
-		
+			
 				(function(){
-		
+				
 					try{
 						head.doScroll('left');
-		
+						
 					} catch(e){
 						setTimeout( arguments.callee, 1 );
 						return;
 					}
-		
+				
 				L.ready();
-		
+				
 				})();
 			
 			}
@@ -230,8 +230,8 @@ L.extend({
 		if(!document.body){
 			return setTimeout(function(){ L.ready(fn); }, 1);
 		}
-        
-        this.isReady = true;
+		
+		this.isReady = true;
 		
 		return setTimeout(function(){
 			L.ready(fn);

@@ -21,11 +21,11 @@ Array.extend({
 		var i = 0,
 			l = array.length;
 		
-		// Processa cada item	
+		// Processa cada item
 		for( ; i < l; i++ ){
 			if( fn.call(_this, array[i], i, array ) === false ) break;
 		}
-
+	
 	}
 	
 });
@@ -146,5 +146,5 @@ Array.implement({
 	size: function(){
 		return this.length;
 	}
-		
+	
 });
