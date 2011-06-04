@@ -1,11 +1,13 @@
 /**
  * PRINT - Estilo de mídia print, depois leia http://www.phpied.com/delay-loading-your-print-css/:
  * </> Print Reset
- * </> Estilos?
+ * </> Novos Estilos?
  */
 
 /* PRINT RESET */
 /* ----------------------------------------- */
+@media print{
+
 @page{
 	margin: 0.5cm;
 }
@@ -36,4 +38,6 @@ tr, img{
 }
 h2, h3{
 	page-break-after: avoid;
+}
+
 }

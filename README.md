@@ -57,8 +57,8 @@ PLUGINS USADOS
 Tudo isto não foi trabalho apenas do LF, devo dar os créditos a:
 
  * jQuery - <http://jquery.com/>
- * Selectizr - <http://selectivizr.com/>
  * HTML5 Shiv <http://code.google.com/p/html5shiv/>
+ * Respond.js <https://github.com/scottjehl/Respond>
  * Chrome Frame - <http://www.google.com/chromeframe>
  * HTML5 Boilerplate (Fonte de inspiração para algumas partes do LF) - <https://github.com/paulirish/html5-boilerplate>
  * NodeJS - <http://nodejs.org>
@@ -81,10 +81,10 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
  
 CHANGELOG 
 =====================
-### 1.3 - XX de XXXXXXXX de 2011
+#### 1.3 - XX de XXXXXXXX de 2011
 
  * Adicionado os arquivos exemplo.htaccess (quando concluir renomei para .htaccess) e robots.txt
- * Atualização jQuery para V. 1.5.2
+ * Atualização jQuery para V. 1.6.1
  * Movimentação para changelog
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
@@ -93,14 +93,14 @@ CHANGELOG
  * Separação do código jQuery do core LF, tornando mais simples o uso de outro framework JS
  * Linha Framework JS - Criado plugin (Browser Selector) "modernizer" com classes CSS. Ex: .mac .chrome .chrome9 .box-shadow
  * Linha Framework JS - Criado plugin (Load), para carregar dinamicamente JS e CSS
- * Adicionado plugin Selectizr
+ * Adicionado plugin Respond.js
  * Adicionado plugin HTML5 shiv
  * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
  * Reestruturação dos arquivos.
- * Arquivos CSS simplificados em 5 arquivos (anteriormente eram 7)
- * Novo sistema de grid, chamado de grid flex (fluído ou flexivel), com um pouco de Responsive Webdesign
+ * Arquivos CSS simplificados em 3 arquivos (anteriormente eram 7)
+ * Novo sistema de grid: responsive
  
-### 1.2 - 23 de Setembro de 2010
+#### 1.2 - 23 de Setembro de 2010
 
  * Atualização para os plugins: Linha Acord, Linha Focuss, Linha Modal, Linha Nav, Linha Slidetabs, Linha Tooltip e Linha Form (agora chamado Valida),
  * Linha Form renomeado pra Linha Valida (o nome tem mais relação com a função do plugin)
@@ -115,7 +115,7 @@ CHANGELOG
  * Adicionado estilos básicos para html5 (html5.css)
  * Reestruturação para desenvolvimento
 
-### 1.1 - 03 de Abril de 2010
+#### 1.1 - 03 de Abril de 2010
 
  * Alguns fixs sem importancia :)
  * Implementação de css para tabelas (&lt;table&gt;)
@@ -127,35 +127,34 @@ CHANGELOG
  * Adição de Classes fix: .primeiro e .ultimo
  * Atualização versões plugins js
 
-### 1.0 - 28 de Março de 2010
+#### 1.0 - 28 de Março de 2010
 
  * Inicial
 
 CHANGELOG JS Linha Framework
 =========================
 
-### 1.3.1
+#### 1.3.1
 
  * Adicionado métodos Array.clone & L.filter
  * Fix de parâmetro para L.ready()
  * Fix para previnir erros onde nenhum elemento é selecionado
 
-### 1.3
+#### 1.3
 
  * Inicial
 
 CHANGELOG Plugins jQuery Linha Framework
 =========================
-Linha ACORD:
-----
-### 1.2
+### Linha ACORD:
+#### 1.2
 
  * Adicionado suporte a Hash Navigation
  * Simplificação de algumas opções
  * Otimização de código
  * Remoção da função $.acord em apoio a função $.fn.acord
  
-### 1.1
+#### 1.1
 
  * Monitoramento live(DOM e Ajax) para Accordions (use alternativamente $("seletor-accordion").trigger('iniciaAcord'); caso tenha problemas)
  * Animação com Easing
@@ -166,13 +165,12 @@ Linha ACORD:
  * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
  * Callback melhorado
 
-### 1.0
+#### 1.0
 
 * Inicial
 
-Linha FOCUSS:
-----
-### 1.2
+### Linha FOCUSS:
+#### 1.2
 
  * Otimização de código
  * Remoção da função $.focuss em apoio a função $.fn.focuss
@@ -186,18 +184,17 @@ Linha FOCUSS:
  * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
  * Callbacks melhorados
 
-### 1.0
+#### 1.0
 
  * Inicial
 
-Linha MODAL:
-----
-### 1.2
+### Linha MODAL:
+#### 1.2
 
  * Otimização de código
  * Remoção da função $.modal em apoio a função $.fn.modal
  
-### 1.1
+#### 1.1
 
  * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
  * Adicionado fix de posição (ou o mesmo q usar position:fixed)
@@ -210,18 +207,17 @@ Linha MODAL:
  * Callbacks melhorados
  * Outros...
 
-### 1.0
+#### 1.0
 
  * Inicial
 
-Linha NAV:
-----
-### 1.2
+### Linha NAV:
+#### 1.2
 
  * Otimização de código
  * Remoção da função $.nav em apoio a função $.fn.nav
  
-### 1.1
+#### 1.1
 
  * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
  * Animação com Easing
@@ -231,13 +227,12 @@ Linha NAV:
  * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
  * Callbacks melhorados
 
-### 1.0
+#### 1.0
 
  * Inicial
 
-Linha SLIDETABS:
-----
-### 1.2
+### Linha SLIDETABS:
+#### 1.2
  
  * Adicionado suporte a Hash Navigation
  * Simplificação de algumas opções
@@ -245,7 +240,7 @@ Linha SLIDETABS:
  * Remoção da função $.slideTabs em apoio a função $.fn.slideTabs
  * Nova opção para pausar slide automático quado estiver no estado hover - pausarAuto
  
-### 1.1
+#### 1.1
 
  * Monitoramento live(DOM e Ajax) para SlideTabs (use alternativamente $("seletor-slidetabs").trigger('iniciaSlideTabs'); caso tenha problemas)
  * Animação com Easing
@@ -253,18 +248,17 @@ Linha SLIDETABS:
  * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
  * Callback melhorado
 
-### 1.0
+#### 1.0
 
  * Inicial
 
-Linha TOOLTIP:
-----
-### 1.3
+### Linha TOOLTIP:
+#### 1.3
 
  * Otimização de código
  * Remoção da função $.tooltip em apoio a função $.fn.tooltip
  
-### 1.2
+#### 1.2
 
  * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
  * Adicionado fix de posição pra os eventos window resize e window scroll
@@ -278,24 +272,24 @@ Linha TOOLTIP:
  * Callback melhorado
  * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
 
-### 1.1
+#### 1.1
 
  * Ajuste opções padding_top e padding_left
  * Adicionado opção para wrapper
 
-### 1.0
+#### 1.0
 
  * Inicial
 
-## Linha VALIDA:
-### 1.1
+### Linha VALIDA:
+#### 1.1
  
  * Adicionado suporte a validação inline 
  * Agora o input que tiver algum erro, será marcado com uma classe, automaticamente (classeErro)
  * Otimização de código
  * Remoção da função $.valida em apoio a função $.fn.valida
 
-### 1.0
+#### 1.0
 
  * Inicial
  * Monitoramento live(DOM e Ajax) para Valida (use alternativamente $("seletor-valida").trigger('iniciaValida'); caso tenha problemas)

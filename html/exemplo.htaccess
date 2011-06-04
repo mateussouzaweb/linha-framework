@@ -3,38 +3,38 @@
 
 	# Força deflate
 	<IfModule mod_setenvif.c>
-	  SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s,?\s(gzip|deflate)?|X{4,13}|~{4,13}|-{4,13})$ HAVE_Accept-Encoding
-	  RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+		SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s,?\s(gzip|deflate)?|X{4,13}|~{4,13}|-{4,13})$ HAVE_Accept-Encoding
+		RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
 	</IfModule>
 	
 	# html, txt, css, js, json, xml, htc:
 	<IfModule filter_module>
-	  FilterDeclare COMPRESS
-	  FilterProvider COMPRESS DEFLATE resp=Content-Type /text/(html|css|javascript|plain|x(ml|-component))/
-	  FilterProvider COMPRESS DEFLATE resp=Content-Type /application/(javascript|json|xml|x-javascript)/
-	  FilterChain COMPRESS
-	  FilterProtocol COMPRESS change=yes;byteranges=no
+		FilterDeclare COMPRESS
+		FilterProvider COMPRESS DEFLATE resp=Content-Type /text/(html|css|javascript|plain|x(ml|-component))/
+		FilterProvider COMPRESS DEFLATE resp=Content-Type /application/(javascript|json|xml|x-javascript)/
+		FilterChain COMPRESS
+		FilterProtocol COMPRESS change=yes;byteranges=no
 	</IfModule>
 	
 	# Se não tiver mod_filter, em algumas versões do Apache
 	<IfModule !mod_filter.c>
-	  AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
-	  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
-	  AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
+		AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+		AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+		AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
 	</IfModule>
 
 	# webfonts and svg:
 	<FilesMatch "\.(ttf|otf|eot|svg)$" >
-	  SetOutputFilter DEFLATE
+		SetOutputFilter DEFLATE
 	</FilesMatch>
 	
 </IfModule>
 
 # Permite o acesso (sub-dominios por exemplo)
 <FilesMatch "\.(ttf|otf|eot|woff|font.css)$">
-  <IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
-  </IfModule>
+	<IfModule mod_headers.c>
+		Header set Access-Control-Allow-Origin "*"
+	</IfModule>
 </FilesMatch>
 
 # Adiciona os formatos
@@ -45,7 +45,7 @@ AddType audio/ogg oga ogg
 AddType video/ogg ogv
 AddType video/mp4 mp4
 AddType video/webm webm
-                                       
+
 # webfonts
 AddType application/vnd.ms-fontobject eot
 AddType font/truetype ttf
@@ -54,54 +54,54 @@ AddType font/woff woff
 
 # Expires header
 <IfModule mod_expires.c>
-  ExpiresActive on
-  ExpiresDefault "access plus 1 month"
-  
-  # cache.manifest precisa de re-requests no FF 3.6
-  ExpiresByType text/cache-manifest "access plus 0 seconds"
-
-  # html
-  ExpiresByType text/html "access plus 0 seconds"
-  
-  # data
-  ExpiresByType text/xml "access plus 0 seconds"
-  ExpiresByType application/xml "access plus 0 seconds"
-  ExpiresByType application/json "access plus 0 seconds"
-
-  # rss feed
-  ExpiresByType application/rss+xml "access plus 1 hour"
-  
-  # favicon
-  ExpiresByType image/x-icon "access plus 1 week"
-
-  # media: images, video, audio
-  ExpiresByType image/gif "access plus 1 month"
-  ExpiresByType image/png "access plus 1 month"
-  ExpiresByType image/jpg "access plus 1 month"
-  ExpiresByType image/jpeg "access plus 1 month"
-  ExpiresByType video/ogg "access plus 1 month"
-  ExpiresByType audio/ogg "access plus 1 month"
-  ExpiresByType video/mp4 "access plus 1 month"
-  ExpiresByType video/webm "access plus 1 month"
-  
-  # webfonts
-  ExpiresByType font/truetype "access plus 1 month"
-  ExpiresByType font/opentype "access plus 1 month"
-  ExpiresByType font/woff "access plus 1 month"
-  ExpiresByType image/svg+xml "access plus 1 month"
-  ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
-    
-  # css and javascript
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
-  ExpiresByType text/javascript "access plus 1 month"
-
-  Header append Cache-Control "public"
+	ExpiresActive on
+	ExpiresDefault "access plus 1 month"
+	
+	# cache.manifest precisa de re-requests no FF 3.6
+	ExpiresByType text/cache-manifest "access plus 0 seconds"
+	
+	# html
+	ExpiresByType text/html "access plus 0 seconds"
+	
+	# data
+	ExpiresByType text/xml "access plus 0 seconds"
+	ExpiresByType application/xml "access plus 0 seconds"
+	ExpiresByType application/json "access plus 0 seconds"
+	
+	# rss feed
+	ExpiresByType application/rss+xml "access plus 1 hour"
+	
+	# favicon
+	ExpiresByType image/x-icon "access plus 1 week"
+	
+	# media: images, video, audio
+	ExpiresByType image/gif "access plus 1 month"
+	ExpiresByType image/png "access plus 1 month"
+	ExpiresByType image/jpg "access plus 1 month"
+	ExpiresByType image/jpeg "access plus 1 month"
+	ExpiresByType video/ogg "access plus 1 month"
+	ExpiresByType audio/ogg "access plus 1 month"
+	ExpiresByType video/mp4 "access plus 1 month"
+	ExpiresByType video/webm "access plus 1 month"
+	
+	# webfonts
+	ExpiresByType font/truetype "access plus 1 month"
+	ExpiresByType font/opentype "access plus 1 month"
+	ExpiresByType font/woff "access plus 1 month"
+	ExpiresByType image/svg+xml "access plus 1 month"
+	ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+	
+	# css and javascript
+	ExpiresByType text/css "access plus 1 month"
+	ExpiresByType application/javascript "access plus 1 month"
+	ExpiresByType text/javascript "access plus 1 month"
+	
+	Header append Cache-Control "public"
 </IfModule>
 
 <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
-  Header set Cache-Control "public"
-  Header set Expires "Thu, 15 Apr 2020 20:00:00 GMT"
+	Header set Cache-Control "public"
+	Header set Expires "Thu, 15 Apr 2020 20:00:00 GMT"
 </FilesMatch>
 
 # Etag
