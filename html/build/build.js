@@ -9,7 +9,7 @@ var Tuild = require('tuild').Tuild,
 
 //CSS
 Tuild.command(
-'css ' + ( (watch) ? '--watch ': '' ) + 
+'css -min ' + ( (watch) ? '--watch ': '' ) + 
 	'../css/all.css+' +
 	'../css/screen.css+' +
 	'../css/print.css' + 
@@ -19,7 +19,7 @@ Tuild.command(
 
 //JS
 Tuild.command(
-'js ' + ( (watch) ? '--watch ': '' ) + 
+'js -min ' + ( (watch) ? '--watch ': '' ) + 
 	'../js/plugins.js+' + 
 	'../js/eventos.js' + 
 ' > ' + 
