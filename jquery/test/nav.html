@@ -1,0 +1,225 @@
+CTYPE html>
+<html class="no-js">
+<head>
+	
+	<meta charset="utf-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<meta name="robots" content="index,follow">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="canonical" href="/">
+	
+	<title>Linha Framework - jQuery Nav</title>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../html/favicon.ico">
+	
+	<!-- No JS & IE -->
+	<script >document.getElementsByTagName('html')[0].className = 'js';</script>
+	<!--[if(gte IE 6) & (lte IE 8)]>
+		<script src="js/ie.min.js"></script>
+	<![endif]-->
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="../../html/css/all.css">
+	<link rel="stylesheet" href="../../html/css/screen.css">
+	<link rel="stylesheet" href="../../html/css/print.css">
+	
+	<style type='text/css'>
+	body{
+		background: #FFF;
+		padding: 50px;
+	}
+	</style>
+	
+	<!-- JS -->
+	<script src="../../html/js/jquery.js"></script>
+	<script src="../src/nav.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+	
+		$('ul#dropdown li').nav();
+		
+		$('ul#menu1 li').nav({
+			evento: 'click',
+			tempoIn: 0,
+			tempoOut: 0
+		});
+		
+		$('ul#menu2 li').nav({
+			easingIn: 'easeOutBounce',
+			easingOut: 'easeInBounce',
+			tempoIn: 1500,
+			tempoOut: 1000
+		});
+		
+		/**
+		 * Live
+		 */
+		$('ul.menu-ajax li').nav();
+		
+		$('button').click(function(){
+			$.ajax({
+				url: 'ajax/nav.html',
+				success: function(data){
+					$('button').parent().after(data);
+				}
+			});
+		return false;
+		});
+		
+	});
+	</script>
+
+</head>
+<body>
+	
+	<h3>Menu Simples</h3>
+	<pre class="alerta amarelo">
+	$('ul#dropdown li').nav();
+	</pre>
+	<ul id="dropdown" class="menu">
+		<li><a href="#" title="link">Link</a></li>
+		<li><a href="#" title="link">Link</a>
+			<ul>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink grande</a></li>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink</a></li>
+			</ul>
+		</li>
+		<li><a href="#" title="link">Link</a></li>
+		<li><a href="#" title="link">Link</a>
+			<ul>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink grande</a></li>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink</a>
+					<ul>
+						<li><a href="#" title="link">Sublink</a></li>
+						<li><a href="#" title="link">Sublink grande</a></li>
+						<li><a href="#" title="link">Sublink</a></li>
+						<li><a href="#" title="link">Sublink</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li><a href="#" title="link">Link</a></li>
+		<li><a href="#" title="link">Link</a></li>
+		<li><a href="#" title="link">Link</a>
+			<ul>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink grande</a></li>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink</a>
+					<ul>
+						<li><a href="#" title="link">Sublink</a></li>
+						<li><a href="#" title="link">Sublink grande</a></li>
+						<li><a href="#" title="link">Sublink</a></li>
+						<li><a href="#" title="link">Sublink</a></li>
+						<li><a href="#" title="link">Sublink</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	
+	<div class="clear"></div><br/>
+	<h3>Menu Com Evento Click E Sem Animação</h3>
+	<pre class="alerta amarelo">
+	$('ul#menu1 li').nav({
+		evento: 'click',
+		tempoIn: 0,
+		tempoOut: 0
+	});
+	</pre>
+	<ul id="menu1" class="menu">
+		<li><a href="#" title="link">Link</a></li>
+		<li><a href="#" title="link">Link</a>
+			<ul>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink grande</a></li>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink</a></li>
+			</ul>
+		</li>
+		<li><a href="#" title="link">Link</a></li>
+		<li><a href="#" title="link">Link</a>
+			<ul>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink grande</a></li>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink</a>
+					<ul>
+						<li><a href="#" title="link">Sublink</a></li>
+						<li><a href="#" title="link">Sublink grande</a></li>
+						<li><a href="#" title="link">Sublink</a></li>
+						<li><a href="#" title="link">Sublink</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li><a href="#" title="link">Link</a></li>
+		<li><a href="#" title="link">Link</a></li>
+	</ul>
+	
+	<h3>Menu Com Easing</h3>
+	<pre class="alerta amarelo">
+	$('ul#menu2 li').nav({
+		easingIn: 'easeOutBounce',
+		easingOut: 'easeInBounce',
+		tempoIn: 1500,
+		tempoOut: 1000
+	});
+	</pre>
+	<ul id="menu2" class="menu">
+		<li><a href="#" title="link">Link</a></li>
+		<li><a href="#" title="link">Link</a>
+			<ul>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink grande</a></li>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink</a></li>
+			</ul>
+		</li>
+		<li><a href="#" title="link">Link</a></li>
+		<li><a href="#" title="link">Link</a>
+			<ul>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink grande</a></li>
+				<li><a href="#" title="link">Sublink</a></li>
+				<li><a href="#" title="link">Sublink</a>
+					<ul>
+						<li><a href="#" title="link">Sublink</a></li>
+						<li><a href="#" title="link">Sublink grande</a></li>
+						<li><a href="#" title="link">Sublink</a></li>
+						<li><a href="#" title="link">Sublink</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li><a href="#" title="link">Link</a></li>
+		<li><a href="#" title="link">Link</a></li>
+	</ul>
+	
+	<div class="clear"></div><br/>
+	<h3>Menu Via AJAX :)</h3>
+	<pre class="alerta amarelo">
+		$('ul.menu-ajax li').nav();
+	</pre>
+	<p><button>Clique para carregar menu</button></p>
+	
+	<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+	suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+	Pellentesque at nisl nibh. </p><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
+	
+	<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+	suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+	Pellentesque at nisl nibh. </p><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
+	
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	
+	<meta charset="utf-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<meta name="robots" content="index,follow">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="canonical" href="/">
+	
+	<title>Linha Framework - jQuery Valida</title>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../html/favicon.ico">
+	
+	<!-- No JS & IE -->
+	<script >document.getElementsByTagName('html')[0].className = 'js';</script>
+	<!--[if(gte IE 6) & (lte IE 8)]>
+		<script src="js/ie.min.js"></script>
+	<![endif]-->
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="../../html/css/all.css">
+	<link rel="stylesheet" href="../../html/css/screen.css">
+	<link rel="stylesheet" href="../../html/css/print.css">
+	
+	<style type='text/css'>
+	body{
+		background: #FFF;
+		padding: 50px;
+	}
+	</style>
+	
+	<!-- JS -->
+	<script src="../../html/js/jquery.js"></script>
+	<script src="../src/valida.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("#formulario1").valida({
+			redireciona: false,
+			onPassa: function(){
+				alert($(this).serialize());
+			}
+		});
+		
+		/**
+		 * Live
+		 */
+		$('#formulario2').valida({
+			live: true
+		});
+		
+		$('button').click(function(){
+			$.ajax({
+				url: 'ajax/valida.html',
+				success: function(data){
+					$('#live').prepend(data);
+				}
+			});
+			
+		});
+		
+		/**
+		 * Inline
+		 */
+		$('#formulario3').valida({
+			inline: true,
+			eventoInline: 'keyup'
+		});
+		
+	});
+	</script>
+
+</head>
+<body>
+	
+	<h3>Validação Simples de Formulário</h3>
+	<pre class='alerta amarelo'>
+	$("#formulario1").valida({
+		redireciona: false,
+		onValida: function(){
+			$(this).parent().removeClass('erro');
+		},
+		onErro: function(){
+			if($(this).is(':checkbox') || $(this).is(':radio')){
+				$(this).parent().addClass('erro');
+			}
+		},
+		onPassa: function(){
+			alert($(this).serialize());
+		}
+	});
+	</pre><br/>
+	<form action="#" method="post" id="formulario1">
+		<p>
+			<label>Nome</label>
+			<input type="text" name="nome" value="" class="valida"/>
+		</p>
+		<p>
+			<label>E-mail</label>
+			<input type="text" name="email" value="" class="valida email"/>
+		</p>
+		<p>
+			<label>URL</label>
+			<input type="text" name="url" value="" class="valida url"/>
+		</p>
+		<p>
+			<label>Número</label>
+			<input type="text" name="url" value="10" class="valida numero"/>
+		</p>
+		<p>
+			<label>Assunto</label>
+			<input type="text" name="assunto" class="valida regex" regex="(^-?\d\d*\.\d*$)|(^-?\d\d*$)|(^-?\.\d\d*$)|(^-?\d*$)" value="Regex personalizado...sómente números"/>
+		</p>
+		<p>
+			<label>Mensagem</label>
+			<textarea rows="5" cols="42" class="valida">Eu vou escrever um texto aqui se quiser enviar esta mensagem</textarea>
+		</p>
+		
+		<p>
+			<select name="select" class="valida">
+				<option value="0">-- Selecione --</option>
+				<option value="1">Não sei</option>
+				<option value="2">Não quero saber</option>
+			</select>
+		</p>
+		
+		<p>
+			<input type="checkbox" name="checkbox-email" class="valida"/> <label>Enviar por e-mail?</label>
+		</p>
+		<p>
+			<input type="checkbox" name="checkbox[]" class="valida"/> <label>Checkbox 1</label>
+			<input type="checkbox" name="checkbox[]" class="valida"/> <label>Checkbox 2</label>
+			<input type="checkbox" name="checkbox[]" class="valida"/> <label>Checkbox 3</label>
+		</p>
+		
+		<p><label>Sexo</label>
+			<input type="radio" name="sexo" value="homem" class="valida"/> Homem
+			<input type="radio" name="sexo" value="mulher" class="valida"/> Mulher
+		</p>
+		
+		<p><label>O que tem no seu jardim?</label>
+		<select name="garden" multiple="multiple" class="valida">
+			<option>Flowers</option>
+			<option>Shrubs</option>
+			<option>Trees</option>
+			<option>Bushes</option>
+			<option>Grass</option>
+			<option>Dirt</option>
+		</select>
+		</p>
+		<p>
+			<input type="submit" class="enviar" value="Enviar"/>
+		</p>
+		
+	</form>
+	<!-- Fim FORM 1 -->
+	
+	<h3>Formulário via Ajax</h3>
+	<pre class='alerta amarelo'>
+	$('#formulario2').valida({
+		live: true
+	});
+	</pre><br/>
+	<p><button>Clique para carregar formulario</button></p>
+	<div id="live"></div>
+	<br>
+	<!-- Fim FORM 2 -->
+	
+	<h3>Validação Inline</h3>
+	<pre class='alerta amarelo'>
+	$('#formulario3').valida({
+		inline: true,
+		eventoInline: 'keyup'
+	});
+	</pre><br/>
+	<form id="formulario3">
+		<p>
+			<label>E-mail</label>
+			<input type="text" class='valida email'/>
+		</p>
+		<p>
+			<label>URL</label>
+			<input type="text" class='valida url'/>
+		</p>
+	</form>
+	<!-- Fim FORM 3 -->
+	
+</div>
+
+</body>
+</html>
