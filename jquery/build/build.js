@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Build para CSS e JS
+ * Build para Jquery
  * Use Tuild para rodar este script - https://github.com/mateus007/tuild
  */
 var Tuild = require('tuild').Tuild,
