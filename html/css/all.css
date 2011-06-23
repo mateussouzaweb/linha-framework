@@ -69,7 +69,7 @@ textarea{ overflow: auto; }
 :focus{ outline: 0; }
 
 ::-moz-selection{ background: #535353; color:#FFF; text-shadow: none; }
-::selection{ background:#535353; color:#FFF; text-shadow: none; } 
+::selection{ background:#535353; color:#FFF; text-shadow: none; }
 
 .ie-7 img{ -ms-interpolation-mode: bicubic; }
 
@@ -138,7 +138,7 @@ ol{ list-style-type: decimal; }
 
 dl{ margin: 0 0 1.5em 0; }
 dl dt{ font-weight: bold; }
-dd{ margin-left: 1.5em; } 
+dd{ margin-left: 1.5em; }
 
 /*TABELAS*/
 table{
@@ -188,7 +188,7 @@ table tr td{
 	color: #0055B5;
 }
 .erro{
-	border-color: #F00; 
+	border-color: #F00;
 }
 
 /*OUTROS*/
@@ -201,7 +201,7 @@ hr{
 	padding: 0;
 }
 ins{
-	background-color: #FF9; 
+	background-color: #FF9;
 	color: #000;
 	text-decoration: none;
 }
@@ -365,11 +365,11 @@ select:focus{
 .grid-16 .tamanho4{ width: 220px; }
 .grid-16 .tamanho5{ width: 280px; }
 .grid-16 .tamanho6{ width: 340px; }
-.grid-16 .tamanho7{ width: 400px; } 
+.grid-16 .tamanho7{ width: 400px; }
 .grid-16 .tamanho8{ width: 460px; }
 .grid-16 .tamanho9{ width: 520px; }
 .grid-16 .tamanho10{ width: 580px; }
-.grid-16 .tamanho11{ width: 640px; } 
+.grid-16 .tamanho11{ width: 640px; }
 .grid-16 .tamanho12{ width: 700px; }
 .grid-16 .tamanho13{ width: 760px; }
 .grid-16 .tamanho14{ width: 820px; }
@@ -435,8 +435,8 @@ select:focus{
 	margin-right: 10px;
 	max-width: 1310px;
 }
-.grid-responsive .coluna img, 
-.grid-responsive .coluna object, 
+.grid-responsive .coluna img,
+.grid-responsive .coluna object,
 .grid-responsive .coluna embed{
 	max-width: 100%;
 }
@@ -468,11 +468,11 @@ select:focus{
 
 .screen-480 .grid-responsive{ width: 420px; }
 .screen-480 .grid-responsive .coluna{ max-width: 400px; }
-.screen-480 .grid-responsive .screen-480-hide{ display: none; } 
+.screen-480 .grid-responsive .screen-480-hide{ display: none; }
 
 .screen-640 .grid-responsive{ width: 560px; }
 .screen-640 .grid-responsive .coluna{ max-width: 540px; }
-.screen-640 .grid-responsive .screen-640-hide{ display: none; } 
+.screen-640 .grid-responsive .screen-640-hide{ display: none; }
 
 .screen-768 .grid-responsive{ width: 700px; }
 .screen-768 .grid-responsive .coluna{ max-width: 680px; }

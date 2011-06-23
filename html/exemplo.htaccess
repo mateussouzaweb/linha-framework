@@ -1,6 +1,6 @@
 # Gzip compression
 <IfModule mod_deflate.c>
-
+	
 	# Força deflate
 	<IfModule mod_setenvif.c>
 		SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s,?\s(gzip|deflate)?|X{4,13}|~{4,13}|-{4,13})$ HAVE_Accept-Encoding
@@ -22,7 +22,7 @@
 		AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
 		AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
 	</IfModule>
-
+	
 	# webfonts and svg:
 	<FilesMatch "\.(ttf|otf|eot|svg)$" >
 		SetOutputFilter DEFLATE
@@ -38,15 +38,15 @@
 </FilesMatch>
 
 # Adiciona os formatos
-# audio
+# Audio
 AddType audio/ogg oga ogg
 
-# video
+# Video
 AddType video/ogg ogv
 AddType video/mp4 mp4
 AddType video/webm webm
 
-# webfonts
+# Webfonts
 AddType application/vnd.ms-fontobject eot
 AddType font/truetype ttf
 AddType font/opentype otf
@@ -57,24 +57,24 @@ AddType font/woff woff
 	ExpiresActive on
 	ExpiresDefault "access plus 1 month"
 	
-	# cache.manifest precisa de re-requests no FF 3.6
+	# Cache.manifest precisa de re-requests no FF 3.6
 	ExpiresByType text/cache-manifest "access plus 0 seconds"
 	
-	# html
+	# HTML
 	ExpiresByType text/html "access plus 0 seconds"
 	
-	# data
+	# Data
 	ExpiresByType text/xml "access plus 0 seconds"
 	ExpiresByType application/xml "access plus 0 seconds"
 	ExpiresByType application/json "access plus 0 seconds"
 	
-	# rss feed
+	# RSS feed
 	ExpiresByType application/rss+xml "access plus 1 hour"
 	
-	# favicon
+	# Favicon
 	ExpiresByType image/x-icon "access plus 1 week"
 	
-	# media: images, video, audio
+	# Mídia: imagens, video, audio
 	ExpiresByType image/gif "access plus 1 month"
 	ExpiresByType image/png "access plus 1 month"
 	ExpiresByType image/jpg "access plus 1 month"
@@ -84,14 +84,14 @@ AddType font/woff woff
 	ExpiresByType video/mp4 "access plus 1 month"
 	ExpiresByType video/webm "access plus 1 month"
 	
-	# webfonts
+	# Webfonts
 	ExpiresByType font/truetype "access plus 1 month"
 	ExpiresByType font/opentype "access plus 1 month"
 	ExpiresByType font/woff "access plus 1 month"
 	ExpiresByType image/svg+xml "access plus 1 month"
 	ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
 	
-	# css and javascript
+	# CSS and javascript
 	ExpiresByType text/css "access plus 1 month"
 	ExpiresByType application/javascript "access plus 1 month"
 	ExpiresByType text/javascript "access plus 1 month"
