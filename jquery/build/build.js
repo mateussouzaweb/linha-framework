@@ -11,11 +11,10 @@ var Tuild = require('tuild').Tuild,
 	watch = false;
 
 /**
- * Forma apenas a versão minifield que vai no arquivo plugins.js...
- * Se quiser a versão dev altere "-min" para "-dev"
+ * Versão DEV
  */
 Tuild.command(
-'js -min --no-hint ' + ( (watch) ? '--watch ': '' ) + 
+'js --no-hint ' + ( (watch) ? '--watch ': '' ) + 
 	'../src/acord.js+' + 
 	( EXTEND ? '../src/acord.slide.js+' : '' ) + 
 	'../src/focuss.js+' + 
@@ -25,5 +24,15 @@ Tuild.command(
 	'../src/tooltip.js+' +  
 	'../src/valida.js' + 
 ' > ' + 
-	'../../html/js/plugins.js'
+	'../dist/jquery.linha.plugins.js'
+);
+
+/**
+ * Versão MIN - adicionar manualmente no arquivo plugins.js
+ */
+Tuild.command(
+'js -min --no-hint ' + ( (watch) ? '--watch ': '' ) + 
+	'../dist/jquery.linha.plugins.js' + 
+' > ' + 
+	'../dist/jquery.linha.plugins.min.js'
 );
