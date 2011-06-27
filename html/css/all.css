@@ -11,7 +11,7 @@
 /* RESET + HTML5 Reset */
 /* ----------------------------------------- */
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-input, textarea, select, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q,
+input, textarea, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q,
 samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form,
 label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
 details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time,
@@ -301,19 +301,9 @@ input.submit, input[type="submit"]{
 
 /*SELECT*/
 select{
-	background: #FFF url(../img/input.png) repeat-x top;
-	border: 1px solid;
-	border-color: #BBB #DDD #DDD #BBB;
 	line-height: 1em;
-	padding: 6px 8px;
-	min-width: 298px;
-	-moz-border-radius: 1px;
-	-webkit-border-radius: 1px;
-	-khtml-border-radius: 1px;
-	border-radius: 1px;
-}
-.safari select, .chrome select{
 	margin-top: 7px;
+	min-width: 298px;
 }
 option{
 	padding: 2px 8px 0;
@@ -323,8 +313,7 @@ option{
 .focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
-textarea:focus,
-select:focus{
+textarea:focus{
 	background-color: #FCFCFC;
 	border-color: #AAA;
 	outline: none;
