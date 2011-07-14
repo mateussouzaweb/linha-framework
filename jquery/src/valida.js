@@ -94,7 +94,7 @@
 				 */
 				if(o.inline){
 					$(this).find('input, textarea, select, checkbox, radio').not(':submit').bind(o.eventoInline, function(){
-						return $.validaEntrada($(this), o);
+						return $(this).hasClass(o.classeValidacao) && $.validaEntrada($(this), o);
 					});
 				}
 				
