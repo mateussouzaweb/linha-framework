@@ -1,6 +1,6 @@
 /*!
  * jQuery Browser Selectors - The solution for special selectors
- * By Mateus Souza - http://mateussouza.com
+ * By Mateus Souza - http://mateussouzaweb.com
  * @version 1.2
  *
  * Copyright 2011

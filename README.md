@@ -1,12 +1,12 @@
 LINHA FRAMEWORK - 1.3
 =====================
-<http://www.linhaframework.com> || by Mateus Souza - mateussouzaweb@gmail.com | <http://mateussouza.com>
+<http://linhaframework.org> || by Mateus Souza - mateussouzaweb@gmail.com | <http://mateussouzaweb.com>
 
 ### Licença
 MIT and GPL License - <http://www.opensource.org/licenses/mit-license.php> || <http://www.gnu.org/licenses/gpl.html>
 
 ### Documentação
-Para ver a documentação completa, visite <http://www.linhaframework.com/docs/>
+Para ver a documentação completa, visite <http://linhaframework.org/docs/>
 
 PLUGINS USADOS
 ==============
@@ -33,7 +33,6 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
  * Se o site não tiver suporte nativo para o IE6, avise os usuários usando Adeus IE6 - <https://github.com/mateus007/Adeus-IE6>
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
  * Alterar o código fonte não é proibido :P
- * Utilize o fórum do Linha Framework - <http://www.linhaframework.com/forum/>
  * Contribua!
  
 CHANGELOG 
