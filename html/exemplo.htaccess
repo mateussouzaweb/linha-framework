@@ -57,9 +57,19 @@ AddType video/webm webm
 
 # Webfonts
 AddType application/vnd.ms-fontobject eot
-AddType font/truetype ttf
+AddType application/x-font-ttf ttf ttc
 AddType font/opentype otf
-AddType font/woff woff
+AddType application/x-font-woff woff
+
+# Outros
+AddType image/x-icon ico
+AddType image/webp webp
+AddType text/cache-manifest appcache manifest
+AddType text/x-component htc
+AddType text/x-vcard vcf
+
+# Força JS
+AddType application/javascript js
 
 # Expires header
 <IfModule mod_expires.c>
@@ -114,7 +124,9 @@ AddType font/woff woff
 </FilesMatch>
 
 # Etag
-Header unset ETag
+<IfModule mod_headers.c>
+	Header unset ETag
+</IfModule>
 FileETag none
 
 # Força utf-8
