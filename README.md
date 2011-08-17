@@ -172,6 +172,13 @@ CHANGELOG Plugins jQuery Linha Framework
  * Inicial
 
 ### Linha SLIDETABS:
+#### 1.3
+ * Reescrita total de código
+ * Utilização mais parecida com o jQuery UI
+ * Removido suporte a hash (faça isto manualmente, é bem fácil...)
+ * Slide contínuo agora não volta ao começo, funciona como se fosse o próximo slide
+ * Removido opções para definições de classes
+
 #### 1.2
  
  * Adicionado suporte a Hash Navigation

@@ -173,25 +173,47 @@ ul.menu li ul li ul{
 }
 
 /*SLIDE*/
-.slide{
-	display: block;
-	height: 290px;
-	width: 600px;
-}
-.slide-conteudo{
+.slidetabs-conteudo{
 	background: #EEE;
 	border: 1px solid #ABABAB;
 	display: block;
 	height: 220px;
 	margin-bottom: 10px;
-	overflow: hidden;
+	overflow: hidden !important;
+	width: 600px;
+    position: relative;
 }
-.painel{
+.slidetabs-scroll{
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 9999px !important;
+	height: 9999px !important;
+}
+.slidetabs-conteudo .painel{
 	display: block;
 	float: left;
 	height: 180px;
 	padding: 20px;
 	width: 560px;
+}
+.slidetabs-miniaturas .miniatura{
+	background: #EEE;
+	border: 1px solid #ABABAB;
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-size: 25px;
+	height: 52px;
+	line-height: 52px;
+	margin: 0 0 5px 10px;
+	width: 57px;
+	text-align: center;
+}
+.slidetabs-miniaturas .slidetabs-miniatura-atual{
+	background: #222;
+	border-color: #000;
+	color: #FFF;
 }
 .seta, a.seta{
 	color: #222;
@@ -205,85 +227,59 @@ ul.menu li ul li ul{
 .seta:visited, a.seta:visited{
 	color: #222;
 }
-.slide-miniaturas{
-	display: block;
-	float: left;
-	line-height: 41px;
-}
-.slide-miniaturas .miniatura{
-	background: #EEE;
-	border: 1px solid #ABABAB;
-	cursor: pointer;
-	display: block;
-	float: left;
-	font-size: 25px;
-	height: 52px;
-	line-height: 52px;
-	margin: 0 0 5px 10px;
-	width: 57px;
-	text-align: center;
-}
-.slide-miniaturas .slide-miniatura-atual{
-	background: #222;
-	border-color: #000;
-	color: #FFF;
-}
-.slide-miniaturas .primeiro{
-	margin: 0;
-	padding: 0;
-}
 .proximo{
 	float: right;
 }
 
 /*SLIDER*/
-.slider{
-	width: 700px;
-}
-.slider .proximo{
+.slider .seta{
+	line-height: 80px;
 	float: left;
 }
-.slider-painel .primeiro{
-	margin: 0;
-	padding: 0;
-}
-.slider-painel{
+.slider .slidetabs-conteudo{
+	background: none;
+	border: 1px solid #ABABAB;
 	display: block;
 	float: left;
-	height: 55px;
+	height: 82px;
+	margin: 0;
+	margin-bottom: 10px;
 	overflow: hidden;
-	width: 266px;
+	padding: 0;
+	width: 440px;
 }
-.slider-painel div div{
+.slider .slidetabs-scroll div.painel{
 	background: #EEE;
 	border: 1px solid #ABABAB;
 	cursor: pointer;
 	display: block;
 	font-size: 25px;
 	float: left;
-	height: 52px;
-	line-height: 52px;
-	margin: 0 10px 5px 0;
+	height: 60px;
+	line-height: 60px;
+	margin: 10px 0 5px 10px;
 	text-align: center;
-	width: 57px;
+    padding: 0;
+	width: 60px;
 }
 
 /*TABS*/
-.tabs_area{
-	background: #222;
-	border: 1px solid #000;
+.tabs{
+	background: #444;
+	border: 1px solid #222;
 	display: block;
 	padding: 5px;
 	width: 600px;
 }
-.tabs_area ul.tabs{
+.tabs ul.tabs-navigation{
 	list-style: none;
 	margin: 0;
 	padding: 0;
 } 
-.tabs_area ul.tabs li{
+.tabs ul.tabs-navigation li{
 	background: #DDD;
 	border: 1px solid #222;
+	border-bottom: none;
 	cursor: pointer;
 	display: block;
 	float: left;
@@ -291,21 +287,20 @@ ul.menu li ul li ul{
 	margin-left: 5px;
 	padding: 5px 10px;
 }
-.tabs_area ul.tabs li.slide-miniatura-atual{
+.tabs ul.tabs-navigation li:hover{
+	background-color: #EEE;
+}
+.tabs ul.tabs-navigation li.slidetabs-miniatura-atual{
 	background: #FFF;
 	border-bottom-color: #FFF;
 }
-.tabs_area .tabs_conteudo{
-	overflow: hidden;
-	display: block;
-	width: 600px;
+.tabs .slidetabs-conteudo{
+	background-color: #FFF;
+	border-color: #222;
+	margin-bottom: 0;
 }
-.tabs_area div div{
+.tabs div div{
 	background: #FFF;
-	display: block;
-	float: left;
-	padding: 5px;
-	width: 590px;
 }
 
 /*TOOLTIP */

@@ -40,15 +40,27 @@
 	<script src="../src/slidetabs.js"></script>
 	
 	<script type="text/javascript">
+	jQuery.extend( jQuery.easing, {
+		easeOutBounce: function (x, t, b, c, d) {
+			if ((t/=d) < (1/2.75)) {
+				return c*(7.5625*t*t) + b;
+			} else if (t < (2/2.75)) {
+				return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+			} else if (t < (2.5/2.75)) {
+				return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+			} else {
+				return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+			}
+		}
+	});
+	
 	$(document).ready(function(){
 		
-		$('#slide').slideTabs({
-			seletorPainel: '.painel',
-			seletorMiniatura: '.miniatura',
+		$('#slide1').slideTabs({
 			inicial: 3,
-			direcao: 'y',
+			direcao: 'x',
 			auto: true,
-			tempo: 700
+			tempo: 500
 		});
 		
 		$('#slide2').slideTabs();
@@ -61,30 +73,25 @@
 		});
 		
 		$('.slider').slideTabs({
-			seletorPainel: '.slider-painel div',
-			seletorAreaPainel: '.slider-painel',
-			scroll: 5,
-			visiveis: 4,
+			seletorPainel: '.slidetabs-scroll div',
+			scroll: 6,
 			auto: true
 		});
 		
-		$('.tabs_area').slideTabs({
-			seletorPainel : 'div div',
-			seletorAreaPainel: '.tabs_conteudo',
-			seletorMiniatura: 'ul.tabs li',
-			tempo: 1000,
-			inicial: 3,
-			alturaAutomatica: true
-		})
+		$('.tabs').slideTabs({
+			seletorMiniatura: 'ul li',
+			tempo: 100
+		});
 		
 		/**
 		 * Live
 		 */
-		$('.slide2').slideTabs({
+		$('.slide-live').slideTabs({
 			live: true
 		});
 		
 		$('button').click(function(){
+			
 			$.ajax({
 				url: 'ajax/slidetabs.html',
 				success: function(data){
@@ -94,85 +101,76 @@
 			
 		});
 		
-		/**
-		 * Hash
-		 */
-		$('#slide4').slideTabs({
-			seletorMiniatura: 'a',
-			hash: true
-		});
-		
 	});
 	</script>
 	
 </head>
 <body>
 	
-	<!--Slide 1-->
 	<h3>Slide Completo com Direção Horizontal (y) e Transição Automática</h3>
-	<pre class="alerta amarelo">
-	$('#slide').slideTabs({
-		seletorPainel: '.painel',
-		seletorMiniatura: '.miniatura',
-		inicial: 3,
-		direcao: 'y',
-		auto: true,
-		tempo: 700
-	});
-	</pre>
+<pre class="alerta amarelo">
+$('#slide').slideTabs({
+	inicial: 3,
+	direcao: 'y',
+	auto: true,
+	tempo: 500
+});
+</pre>
 	
-	<div class="slide" id="slide">
+	<div class="slide clearfix" id="slide1">
 		
-		<div class="slide-conteudo"><!--paineis-->
-			
-			<div class="painel">
-				<h2>Painel 1</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 2</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 3</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 4</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 5</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 6</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 7</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
+		<div class="slidetabs-conteudo">
+			<div class="slidetabs-scroll">
+				
+				<div class="painel">
+					<h2>Painel 1</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 2</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 3</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 4</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 5</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 6</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 7</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				
+			</div><!-- .slide-scroll -->
 		</div>
+		<a href="#" class="anterior seta">«</a><!-- .anterior -->
 		
-		<a href="#" class="anterior seta">«</a><!--Btn Anterior-->
-		
-		<div class="slide-miniaturas">
-			<div class="primeiro miniatura">1</div>
+		<div class="slidetabs-miniaturas">
+			<div class="miniatura">1</div>
 			<div class="miniatura">2</div>
 			<div class="miniatura">3</div>
 			<div class="miniatura">4</div>
@@ -181,134 +179,140 @@
 			<div class="miniatura">7</div>
 		</div>
 		
-		<a href="#" class="proximo seta">»</a><!--Btn Próximo-->
-	</div>
-	<div class="clear"></div><br/>
+		<a href="#" class="proximo seta">»</a><!-- .proximo -->
+		
+	</div><br/><!-- #slide1 -->
 	
-	<!--Slide 2-->
 	<h3>Slide Simples Sem Miniaturas</h3>
-	<pre class="alerta amarelo">
-	$('#slide2').slideTabs();
-	</pre>
+<pre class="alerta amarelo">
+$('#slide2').slideTabs();
+</pre>
 	
-	<div class="slide" id="slide2">
-		<div class="slide-conteudo"><!--paineis-->
-			<div class="painel">
-				<h2>Painel 1</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 2</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 3</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 4</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 5</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 6</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 7</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
+	<div class="slide clearfix" id="slide2">
 		
+		<div class="slidetabs-conteudo">
+			<div class="slidetabs-scroll">
+				
+				<div class="painel">
+					<h2>Painel 1</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 2</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 3</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 4</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 5</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 6</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 7</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				
+			</div><!-- .slide-scroll -->
 		</div>
 		
-		<a href="#" class="anterior seta">«</a><!--Btn Anterior-->
+		<a href="#" class="anterior seta">«</a><!-- .anterior -->
+		<a href="#" class="proximo seta">»</a><!-- .proximo -->
 		
-		<a href="#" class="proximo seta">»</a><!--Btn Próximo-->
-	</div>
-	<div class="clear"></div><br/>
+	</div><br/><!-- #slide2 -->
 	
-	<!--Slide 3-->
 	<h3>Slide com Transição Automática e Easing</h3>
-	<pre class="alerta amarelo">
-	$('#slide3').slideTabs({
-		auto: true,
-		tempo: 1000,
-		pausa: 4000,
-		easing: 'easeOutBounce'
-	});
-	</pre>
+<pre class="alerta amarelo">
+$('#slide3').slideTabs({
+	auto: true,
+	tempo: 1000,
+	pausa: 4000,
+	easing: 'easeOutBounce'
+});
+</pre>
 	
-	<div class="slide" id="slide3">
-		<div class="slide-conteudo"><!--paineis-->
-			<div class="painel">
-				<h2>Painel 1</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 2</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 3</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 4</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 5</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 6</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 7</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel">
-				<h2>Painel 8</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
+	<div class="slide clearfix" id="slide3">
+		
+		<div class="slidetabs-conteudo">
+			<div class="slidetabs-scroll">
+				
+				<div class="painel">
+					<h2>Painel 1</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 2</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 3</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 4</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 5</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 6</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 7</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				<div class="painel">
+					<h2>Painel 8</h2>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				
+			</div><!-- .slide-scroll -->
 		</div>
 		
-		<div class="slide-miniaturas">
-			<div class="primeiro miniatura">1</div>
+		<div class="slidetabs-miniaturas">
+			<div class="miniatura">1</div>
 			<div class="miniatura">2</div>
 			<div class="miniatura">3</div>
 			<div class="miniatura">4</div>
@@ -317,158 +321,109 @@
 			<div class="miniatura">7</div>
 			<div class="miniatura">8</div>
 		</div>
-	</div>
-	<div class="clear"></div><br/>
+		
+	</div><br/><!-- #slide3 -->
 	
-	<!--Slider-->
 	<h3>Slider Exemplo</h3>
 	<pre class="alerta amarelo">
-	$('.slider').slideTabs({
-		seletorPainel: '.slider-painel div',
-		seletorAreaPainel: '.slider-painel',
-		scroll: 5,
-		visiveis: 4,
-		auto: true
-	});
-	</pre>
+$('.slider').slideTabs({
+	seletorPainel: '.slidetabs-scroll div'
+	scroll: 6,
+	auto: true
+});
+</pre>
 	
-	<div class="slider">
-		<a href="#" class="anterior seta">«</a><!--Btn Anterior-->
+	<div class="slider clearfix">
 		
-		<div class="slider-painel">
-			<div>1</div>
-			<div>2</div>
-			<div>3</div>
-			<div>4</div>
-			<div>5</div>
-			<div>6</div>
-			<div>7</div>
-			<div>8</div>
-			<div>9</div>
-			<div>10</div>
-			<div>11</div>
-			<div>12</div>
-			<div>13</div>
-			<div>14</div>
-			<div>15</div>
-			<div>16</div>
-			<div>17</div>
-			<div>18</div>
-			<div>19</div>
-			<div>20</div>
-			<div>21</div>
+		<a href="#" class="seta anterior">«</a><!-- .anterior -->
+		
+		<div class="slidetabs-conteudo">
+			<div class="slidetabs-scroll">
+				
+				<div class="painel">1</div>
+				<div class="painel">2</div>
+				<div class="painel">3</div>
+				<div class="painel">4</div>
+				<div class="painel">5</div>
+				<div class="painel">6</div>
+				<div class="painel">7</div>
+				<div class="painel">8</div>
+				<div class="painel">9</div>
+				<div class="painel">10</div>
+				<div class="painel">11</div>
+				<div class="painel">12</div>
+				<div class="painel">13</div>
+				<div class="painel">14</div>
+				<div class="painel">15</div>
+				<div class="painel">16</div>
+				<div class="painel">17</div>
+				<div class="painel">18</div>
+				<div class="painel">19</div>
+				<div class="painel">20</div>
+				<div class="painel">21</div>
+				<div class="painel">22</div>
+				<div class="painel">23</div>
+				<div class="painel">24</div>
+				
+			</div><!-- .slide-scroll -->
 		</div>
 		
-		<a href="#" class="proximo seta">»</a><!--Btn Próximo-->
-	</div>
+		<a href="#" class="seta proximo">»</a><!-- .proximo -->
+		
+	</div><!-- .slider -->
 	
-	<div class="clear"></div><br/>
-	
-	<!-- Tabs -->
 	<h3>Tabs Com Altura Automática</h3>
-	<pre class="alerta amarelo">
-	$('.tabs_area').slideTabs({
-		seletorPainel : 'div div',
-		seletorAreaPainel: '.tabs_conteudo',
-		seletorMiniatura: 'ul.tabs li',
-		tempo: 1000,
-		inicial: 3,
-		alturaAutomatica: true
-	})
-	</pre>
+<pre class="alerta amarelo">
+$('.tabs').slideTabs({
+	seletorMiniatura: 'ul li',
+	tempo: 100
+});
+</pre>
 	
-	<div class="tabs_area">
-		<ul class="tabs">
+	<div class="tabs clearfix">
+		
+		<ul class="tabs-navigation clearfix">
 			<li>Tab 1</li>
 			<li>Tab 2</li>
 			<li>Tab 3</li>
 		</ul>
-		<div class="tabs_conteudo">
-			<div id="tab1">
-				<p><strong>Tab 1</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam suscipit condimentum. </p>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div id="tab2">
-				<p><strong>Tab 2</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam suscipit condimentum. </p>
-			</div>
-			<div id="tab3">
-				<p><strong>Tab 3</strong>  sodales sapien eu egestas. Nulla laoreet sem ac diam suscipit condimentum. </p>
-			</div>
+		
+		<div class="slidetabs-conteudo">
+			<div class="slidetabs-scroll">
 				
-		</div>
-	</div>
-	<div class="clear"></div><br/>
-	
-	<!-- LIVE -->
-	<h3>Slide com Monitoramento Live</h3>
-	<pre class="alerta amarelo">
-	$('.slide2').slideTabs({
-		live: true
-	});
-	</pre>
-	<p><button>Clique para carregar slide</button></p>
-	<div id="live"></div>
-	<div class="clear"></div><br/>
-	
-	<!--Slide 4-->
-	<h3>Slide com Hash</h3>
-	<p>Altere o hash clicando em uma miniatura e depois atualize a página. Observe que o <i>target</i> não é o mesmo que o ID do elemento (veja código fonte).</p><hr/> 
-	
-	<pre class="alerta amarelo">
-	$('#slide4').slideTabs({
-		seletorMiniatura: 'a',
-		hash: true
-	});
-	</pre>
-	
-	<div class="slide" id="slide4">
-		<div class="slide-conteudo"><!--paineis-->
-			<div class="painel" id="slide-painel1">
-				<h2>Painel 1</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel" id="slide-painel2">
-				<h2>Painel 2</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel" id="slide-painel3">
-				<h2>Painel 3</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel" id="slide-painel4">
-				<h2>Painel 4</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
-			<div class="painel" id="slide-painel5">
-				<h2>Painel 5</h2>
-				<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-				suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
-				Pellentesque at nisl nibh. </p>
-			</div>
+				<div class="painel">
+					<p><strong>Tab 1</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam suscipit condimentum. </p>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+					<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				
+				<div class="painel">
+					<p><strong>Tab 2</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam suscipit condimentum. </p>
+				</div>
+				
+				<div class="painel">
+					<p><strong>Tab 3</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+					suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+					Pellentesque at nisl nibh. </p>
+				</div>
+				
+			</div><!-- .slide-scroll -->
 		</div>
 		
-		<div class="slide-miniaturas">
-			<a href="#painel1" class="primeiro miniatura">1</a>
-			<a href="#painel2" class="miniatura">2</a>
-			<a href="#painel3" class="miniatura">3</a>
-			<a href="#painel4" class="miniatura">4</a>
-			<a href="#painel5" class="miniatura">5</a>
-		</div>
-	</div>
-	<div class="clear"></div><br/>
+	</div><br/><!-- .tabs -->
+	
+	<h3>Slide com Monitoramento Live</h3>
+<pre class="alerta amarelo">
+$('.slide-live').slideTabs({
+	live: true
+});
+</pre>
+	<p><button>Clique para carregar slide</button></p>
+	<div id="live"></div><br /><!-- #live -->
 	
 </body>
 </html>
