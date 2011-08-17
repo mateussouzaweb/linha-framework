@@ -30,7 +30,7 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
  * Escolha um padrão de Grid e apague os demais (html/css/all.css)
  * Carregue JS dinamicamente, usando um plugin para lazy loading.
  * Crie versões minified de seus códigos com uma linguagem server-side - <http://code.google.com/p/minify/>
- * Se o site não tiver suporte nativo para o IE6, avise os usuários usando Adeus IE6 - <https://github.com/mateus007/Adeus-IE6>
+ * Se o site não tiver suporte nativo para o IE6, avise os usuários usando Adeus IE6 - <https://github.com/mateus007/adeus-ie6>
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
  * Alterar o código fonte não é proibido :P
  * Contribua!
@@ -41,7 +41,7 @@ CHANGELOG
 
  * HTML migrado para HTML5 (não vá confundir com as funcionalidades do HTML5)
  * Adicionado os arquivos exemplo.htaccess (quando concluir renomei para .htaccess) e robots.txt
- * Atualização jQuery para V. 1.6.1
+ * Atualização jQuery para V. 1.6.2
  * Movimentação para changelog
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
