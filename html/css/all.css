@@ -46,7 +46,6 @@ sup{ vertical-align: super; font-size: smaller; }
 pre, blockquote, textarea{
 	white-space: pre;
 	white-space: pre-wrap;
-	white-space: pre-line;
 	word-wrap: break-word;
 }
 
