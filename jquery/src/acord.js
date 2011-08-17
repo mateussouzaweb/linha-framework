@@ -62,24 +62,24 @@
 			if(o.hash && hash !== '' && $(hash).is('.acord-filho')){
 				o.inicial = ($(hash).prevAll('.acord-filho').length) + 1;
 			}
-					
+			
 			/**
 			 * Se for sempreUm
-			 */	
+			 */
 			if(o.sempreUm) f.eq(o.inicial - 1).addClass('acord-filho-atual').show().prev(o.pai).addClass('acord-pai-atual');
-							
+			
 			/**
 			 * Altura automática
 			 */
 			if(o.autoHeight){
-					
-				var h = 0; 
-					
+				
+				var h = 0;
+				
 				f.each(function(){
 					h = Math.max(h, $(this).outerHeight());
 				}).height(h);
-					
-					
+				
+				
 				$(this).height( $(this).height() ).css({overflow: 'hidden'});
 			}
 			
@@ -92,7 +92,7 @@
 			 * Aplica a classe relativa ao FX
 			 */
 			$(this).addClass('acord-' + o.fx);
-					
+			
 			$.acord.bind.apply(this);
 		},
 		
@@ -100,7 +100,7 @@
 		 * BIND
 		 */
 		bind: function(){
-		
+			
 			var o = $(this).data('acord'),
 				self = $(this);
 				
@@ -232,7 +232,7 @@
 	};
 
 	$.fn.acord = function(method){
-				
+		
 		/**
 		 * Chama o evento se existir
 		 */
