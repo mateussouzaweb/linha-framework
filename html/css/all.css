@@ -74,14 +74,14 @@ textarea{ overflow: auto; }
 .ie-7 img{ -ms-interpolation-mode: bicubic; }
 
 .clear{ clear:both; display: block; height: 0px; overflow: hidden; }
-.clearfix{ zoom: 1; }
-.clearfix:after{ visibility: hidden; display: block; font-size: 0; content: " ";  clear: both; height: 0px; }
-* html .clearfix{ height: 1%; }
+.clearfix:before, .clearfix:after{ content:""; display:table; }
+.clearfix:after{ clear:both; }
+.clearfix{ zoom:1; }
 
 .left{ float: left; }
 .right{ float: right; }
 .hide{ display: none; }
- 
+
 /* TIPOGRAFIA */
 /* ----------------------------------------- */
 body{
