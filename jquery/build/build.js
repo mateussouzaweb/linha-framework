@@ -14,7 +14,7 @@ var Tuild = require('tuild').Tuild,
  * Versão DEV
  */
 Tuild.command(
-'js --no-hint ' + ( (watch) ? '--watch ': '' ) + 
+'js -dev --no-hint ' + ( (watch) ? '--watch ': '' ) + 
 	'../src/acord.js+' + 
 	( EXTEND ? '../src/acord.slide.js+' : '' ) + 
 	'../src/focuss.js+' + 
