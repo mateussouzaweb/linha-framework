@@ -78,11 +78,9 @@
 	position: absolute;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
 	border-radius: 5px;
 	-moz-box-shadow: 0 4px 18px #222;
 	-webkit-box-shadow: 0 4px 18px #222;
-	-khtml-box-shadow: 0 4px 18px #222;
 	box-shadow: 0 4px 18px #222;
 }
 .modal-titulo{
@@ -94,7 +92,6 @@
 	text-shadow: 1px 1px 1px #000;
 	-moz-border-radius: 3px 3px 0 0;
 	-webkit-border-radius: 3px 3px 0 0;
-	-khtml-border-radius: 3px 3px 0 0;
 	border-radius: 3px 3px 0 0;
 }
 .modal-conteudo{

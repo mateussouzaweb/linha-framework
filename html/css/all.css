@@ -165,7 +165,6 @@ table tr td{
 	padding: 10px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
 	border-radius: 3px;
 }
 .verde{
@@ -221,7 +220,6 @@ blockquote{
 	padding: 10px 20px 0px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
 	border-radius: 3px;
 }
 iframe{
@@ -272,7 +270,6 @@ input, textarea{
 	width: 280px;
 	-moz-border-radius: 1px;
 	-webkit-border-radius: 1px;
-	-khtml-border-radius: 1px;
 	border-radius: 1px;
 }
 input[type="radio"], input[type="checkbox"]{
@@ -295,7 +292,6 @@ input.submit, input[type="submit"]{
 	text-shadow: 1px 1px 1px #000;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
-	-khtml-border-radius: 2px;
 	border-radius: 2px;
 }
 
