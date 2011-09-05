@@ -58,7 +58,7 @@
 }
 .acord-slide .acord-descricao{
 	background: #888;
-	background: rgba(0, 0, 0, .5);
+	background: rgba(0, 0, 0, 0.5);
 	bottom: -10px;
 	color: #EEE;
 	display: none;
@@ -181,7 +181,7 @@ ul.menu li ul li ul{
 	margin-bottom: 10px;
 	overflow: hidden !important;
 	width: 600px;
-    position: relative;
+	position: relative;
 }
 .slidetabs-scroll{
 	position: relative;
@@ -259,7 +259,7 @@ ul.menu li ul li ul{
 	line-height: 60px;
 	margin: 10px 0 5px 10px;
 	text-align: center;
-    padding: 0;
+	padding: 0;
 	width: 60px;
 }
 
