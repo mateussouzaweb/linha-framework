@@ -39,8 +39,9 @@ CHANGELOG
 =====================
 #### 1.3 - XX de XXXXXXXX de 2011
 
+ * Código agora está no padrão internacional - INGLÊS (Código, não comentários e textos...)
  * HTML migrado para HTML5 (não vá confundir com as funcionalidades do HTML5)
- * Adicionado os arquivos exemplo.htaccess (quando concluir renomei para .htaccess) e robots.txt
+ * Adicionado os arquivos example.htaccess (quando concluir renomei para .htaccess) e robots.txt
  * Atualização jQuery para V. 1.6.2
  * Movimentação para changelog
  * Otimização CSS e JS - Veja log plugins
