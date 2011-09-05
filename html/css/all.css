@@ -30,9 +30,10 @@ nav ul, ul, ol{ list-style: none; }
 blockquote, q{ quotes: none; }
 blockquote:before, blockquote:after, q:before, q:after{ content: ''; content: none; }
 
-body{ line-height: 1; }
+body{ line-height: 1; overflow-y: scroll; }
 
 body, html{ height: 100%; min-height: 100%; }
+.opera body{ height: auto; }
 
 abbr[title], dfn[title]{ border-bottom: 1px dotted #000; cursor: help; }
 
