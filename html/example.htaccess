@@ -16,7 +16,7 @@
 		RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
 	</IfModule>
 	
-	# html, txt, css, js, json, xml, htc:
+	# Html, txt, css, js, json, xml, htc:
 	<IfModule filter_module>
 		FilterDeclare COMPRESS
 		FilterProvider COMPRESS DEFLATE resp=Content-Type /text/(html|css|javascript|plain|x(ml|-component))/
@@ -32,7 +32,7 @@
 		AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
 	</IfModule>
 	
-	# webfonts and svg:
+	# Webfonts and svg:
 	<FilesMatch "\.(ttf|otf|eot|svg)$" >
 		SetOutputFilter DEFLATE
 	</FilesMatch>
