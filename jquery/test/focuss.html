@@ -23,7 +23,7 @@
 		document.getElementsByTagName('html')[0].className.replace('no-js', 'js');
 	</script>
 	<!--[if(gte IE 6) & (lte IE 8)]>
-		<script src="js/ie.min.js"></script>
+		<script src="../../js/ie.min.js"></script>
 	<![endif]-->
 	
 	<!-- CSS -->
@@ -90,7 +90,7 @@
 <body>
 	
 	<h3>Formulário Exemplo com Remoção de Texto Default</h3>
-	<pre class="alerta amarelo">
+	<pre class="alert yellow">
 	$("input:not(.input-ajax), textarea").focuss({
 		removeTexto: true,
 		classe: 'blue',
@@ -100,30 +100,30 @@
 	<form action="#" method="post" id="formulario">
 		<p>
 			<label>Nome</label>
-			<input type="text" name="nome" value="nome completo" class="tamanho4 obrigatorio"/>
+			<input type="text" name="nome" value="nome completo" class="width4 obrigatorio"/>
 		</p>
 		<p>
 			<label>E-mail</label>
-			<input type="text" name="email" value="seu_email@email.com" class="tamanho4 obrigatorio email"/>
+			<input type="text" name="email" value="seu_email@email.com" class="width4 obrigatorio email"/>
 		</p>
 		<p>
 			<label>URL</label>
-			<input type="text" name="url" value="www.minhaurl.com.br" class="tamanho4 obrigatorio url"/>
+			<input type="text" name="url" value="www.minhaurl.com.br" class="width4 obrigatorio url"/>
 		</p>
 		<p>
 			<label>Assunto</label>
-			<input type="text" name="assunto" class="tamanho4" value="Vou pensar..."/>
+			<input type="text" name="assunto" class="width4" value="Vou pensar..."/>
 		</p>
 		<p>
 			<label>Mensagem</label>
-			<textarea class="obrigatorio tamanho4" rows="5" cols="42">Eu vou escrever um texto aqui se quiser enviar esta mensagem</textarea>
+			<textarea class="obrigatorio width4" rows="5" cols="42">Eu vou escrever um texto aqui se quiser enviar esta mensagem</textarea>
 		</p>
 		<p>
 			<button id="novo">Clique para adicionar um novo campo</button>
 		</p><br/>
 		
 		<h3>Adicionado via ajax, com cor diferente e sem remoção de texto</h3>
-		<pre class="alerta amarelo">
+		<pre class="alert yellow">
 		$('input.input-ajax').focuss({
 			classe: 'green',
 			live: true

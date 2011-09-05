@@ -156,7 +156,7 @@ table tr td{
 }
 
 /*ALERTAS*/
-.alerta{
+.alert{
 	background: #EDEDED;
 	border: 1px solid #C0C0C0;
 	color: #333;
@@ -167,26 +167,26 @@ table tr td{
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
-.verde{
+.green{
 	background-color: #E9F9E5;
 	border-color: #9BDEA8;
 	color: #1C8400;
 }
-.vermelho{
+.red{
 	background-color: #F9E5E6;
 	border-color: #DF8F8F;
 	color: #C32727;
 }
-.amarelo{
+.yellow{
 	background-color: #FFF6BF;
 	border-color: #EFC20E;
 }
-.azul{
+.blue{
 	background-color: #DDEEFF;
 	border-color: #85CAF3;
 	color: #0055B5;
 }
-.erro{
+.error{
 	border-color: #F00;
 }
 
@@ -322,7 +322,7 @@ textarea:focus{
 	margin-right: auto;
 	width: 960px;
 }
-.coluna{
+.column{
 	display: inline;
 	float: left;
 	margin-left: 10px;
@@ -330,71 +330,71 @@ textarea:focus{
 }
 
 /*12 COLUNAS*/
-.grid-12 .tamanho1{ width: 60px; }
-.grid-12 .tamanho2{ width: 140px; }
-.grid-12 .tamanho3{ width: 220px; }
-.grid-12 .tamanho4{ width: 300px; }
-.grid-12 .tamanho5{ width: 380px; }
-.grid-12 .tamanho6{ width: 460px; }
-.grid-12 .tamanho7{ width: 540px; }
-.grid-12 .tamanho8{ width: 620px; }
-.grid-12 .tamanho9{ width: 700px; }
-.grid-12 .tamanho10{ width: 780px; }
-.grid-12 .tamanho11{ width: 860px; }
-.grid-12 .tamanho12{ width: 940px; }
+.grid-12 .width1{ width: 60px; }
+.grid-12 .width2{ width: 140px; }
+.grid-12 .width3{ width: 220px; }
+.grid-12 .width4{ width: 300px; }
+.grid-12 .width5{ width: 380px; }
+.grid-12 .width6{ width: 460px; }
+.grid-12 .width7{ width: 540px; }
+.grid-12 .width8{ width: 620px; }
+.grid-12 .width9{ width: 700px; }
+.grid-12 .width10{ width: 780px; }
+.grid-12 .width11{ width: 860px; }
+.grid-12 .width12{ width: 940px; }
 
 /*16 COLUNAS*/
-.grid-16 .tamanho1{ width: 40px; }
-.grid-16 .tamanho2{ width: 100px; }
-.grid-16 .tamanho3{ width: 160px; }
-.grid-16 .tamanho4{ width: 220px; }
-.grid-16 .tamanho5{ width: 280px; }
-.grid-16 .tamanho6{ width: 340px; }
-.grid-16 .tamanho7{ width: 400px; }
-.grid-16 .tamanho8{ width: 460px; }
-.grid-16 .tamanho9{ width: 520px; }
-.grid-16 .tamanho10{ width: 580px; }
-.grid-16 .tamanho11{ width: 640px; }
-.grid-16 .tamanho12{ width: 700px; }
-.grid-16 .tamanho13{ width: 760px; }
-.grid-16 .tamanho14{ width: 820px; }
-.grid-16 .tamanho15{ width: 880px; }
-.grid-16 .tamanho16{ width: 940px; }
+.grid-16 .width1{ width: 40px; }
+.grid-16 .width2{ width: 100px; }
+.grid-16 .width3{ width: 160px; }
+.grid-16 .width4{ width: 220px; }
+.grid-16 .width5{ width: 280px; }
+.grid-16 .width6{ width: 340px; }
+.grid-16 .width7{ width: 400px; }
+.grid-16 .width8{ width: 460px; }
+.grid-16 .width9{ width: 520px; }
+.grid-16 .width10{ width: 580px; }
+.grid-16 .width11{ width: 640px; }
+.grid-16 .width12{ width: 700px; }
+.grid-16 .width13{ width: 760px; }
+.grid-16 .width14{ width: 820px; }
+.grid-16 .width15{ width: 880px; }
+.grid-16 .width16{ width: 940px; }
 
 /*24 COLUNAS*/
-.grid-24 .coluna{ margin-left: 5px; margin-right: 5px; }
-.grid-24 .tamanho1{ width: 30px; }
-.grid-24 .tamanho2{ width: 70px; }
-.grid-24 .tamanho3{ width: 110px; }
-.grid-24 .tamanho4{ width: 150px; }
-.grid-24 .tamanho5{ width: 190px; }
-.grid-24 .tamanho6{ width: 230px; }
-.grid-24 .tamanho7{ width: 270px; }
-.grid-24 .tamanho8{ width: 310px; }
-.grid-24 .tamanho9{ width: 350px; }
-.grid-24 .tamanho10{ width: 390px; }
-.grid-24 .tamanho11{ width: 430px; }
-.grid-24 .tamanho12{ width: 470px; }
-.grid-24 .tamanho13{ width: 510px; }
-.grid-24 .tamanho14{ width: 550px; }
-.grid-24 .tamanho15{ width: 590px; }
-.grid-24 .tamanho16{ width: 630px; }
-.grid-24 .tamanho17{ width: 670px; }
-.grid-24 .tamanho18{ width: 710px; }
-.grid-24 .tamanho19{ width: 750px; }
-.grid-24 .tamanho20{ width: 790px; }
-.grid-24 .tamanho21{ width: 830px; }
-.grid-24 .tamanho22{ width: 870px; }
-.grid-24 .tamanho23{ width: 910px; }
-.grid-24 .tamanho24{ width: 950px; }
+.grid-24 .column{ margin-left: 5px; margin-right: 5px; }
+.grid-24 .width1{ width: 30px; }
+.grid-24 .width2{ width: 70px; }
+.grid-24 .width3{ width: 110px; }
+.grid-24 .width4{ width: 150px; }
+.grid-24 .width5{ width: 190px; }
+.grid-24 .width6{ width: 230px; }
+.grid-24 .width7{ width: 270px; }
+.grid-24 .width8{ width: 310px; }
+.grid-24 .width9{ width: 350px; }
+.grid-24 .width10{ width: 390px; }
+.grid-24 .width11{ width: 430px; }
+.grid-24 .width12{ width: 470px; }
+.grid-24 .width13{ width: 510px; }
+.grid-24 .width14{ width: 550px; }
+.grid-24 .width15{ width: 590px; }
+.grid-24 .width16{ width: 630px; }
+.grid-24 .width17{ width: 670px; }
+.grid-24 .width18{ width: 710px; }
+.grid-24 .width19{ width: 750px; }
+.grid-24 .width20{ width: 790px; }
+.grid-24 .width21{ width: 830px; }
+.grid-24 .width22{ width: 870px; }
+.grid-24 .width23{ width: 910px; }
+.grid-24 .width24{ width: 950px; }
 
-.grid-12 .primeiro, .grid-16 .primeiro, .grid-24 .primeiro{ margin-left: 0; }
-.grid-12 .ultimo, .grid-16 .ultimo, .grid-24 .ultimo{ margin-right: 0; }
-.grid-12 .nenhum, .grid-16 .nenhum, .grid-24 .nenhum{ margin-left: 0; margin-right: 0; }
+.grid-12 .first, .grid-16 .first, .grid-24 .first{ margin-left: 0; }
+.grid-12 .last, .grid-16 .last, .grid-24 .last{ margin-right: 0; }
+.grid-12 .nothing, .grid-16 .nothing, .grid-24 .nothing{ margin-left: 0; margin-right: 0; }
 
 /* GRID RESPONSIVE 
    Basicamente este grid se adpta a resolução do navegador, é uma alternativa a @media max-width - CSS3
-   Colunas de tamanho maior do que o permitido, serão convertidas para o tamanho máximo, se adptando a resolução
+   Colunas de width maior do que o permitido, serão convertidas para o width máximo, se adptando a resolução
    
    Você também pode usar classes hide de acordo com a resolução
    
@@ -413,62 +413,62 @@ textarea:focus{
 	max-width: 1330px;
 	overflow: hidden;
 }
-.grid-responsive .coluna{
+.grid-responsive .column{
 	display: inline;
 	float: left;
 	margin-left: 10px;
 	margin-right: 10px;
 	max-width: 1310px;
 }
-.grid-responsive .coluna img,
-.grid-responsive .coluna object,
-.grid-responsive .coluna embed{
+.grid-responsive .column img,
+.grid-responsive .column object,
+.grid-responsive .column embed{
 	max-width: 100%;
 }
 
-.grid-responsive .tamanho1{ width: 50px; }
-.grid-responsive .tamanho2{ width: 120px; }
-.grid-responsive .tamanho3{ width: 190px; }
-.grid-responsive .tamanho4{ width: 260px; }
-.grid-responsive .tamanho5{ width: 330px; }
-.grid-responsive .tamanho6{ width: 400px; }
-.grid-responsive .tamanho7{ width: 470px; }
-.grid-responsive .tamanho8{ width: 540px; }
-.grid-responsive .tamanho9{ width: 610px; }
-.grid-responsive .tamanho10{ width: 680px; }
-.grid-responsive .tamanho11{ width: 750px; }
-.grid-responsive .tamanho12{ width: 820px; }
-.grid-responsive .tamanho13{ width: 890px; }
-.grid-responsive .tamanho14{ width: 960px; }
-.grid-responsive .tamanho15{ width: 1030px; }
-.grid-responsive .tamanho16{ width: 1100px; }
-.grid-responsive .tamanho17{ width: 1170px; }
-.grid-responsive .tamanho18{ width: 1240px; }
-.grid-responsive .tamanho19{ width: 1310px; }
+.grid-responsive .width1{ width: 50px; }
+.grid-responsive .width2{ width: 120px; }
+.grid-responsive .width3{ width: 190px; }
+.grid-responsive .width4{ width: 260px; }
+.grid-responsive .width5{ width: 330px; }
+.grid-responsive .width6{ width: 400px; }
+.grid-responsive .width7{ width: 470px; }
+.grid-responsive .width8{ width: 540px; }
+.grid-responsive .width9{ width: 610px; }
+.grid-responsive .width10{ width: 680px; }
+.grid-responsive .width11{ width: 750px; }
+.grid-responsive .width12{ width: 820px; }
+.grid-responsive .width13{ width: 890px; }
+.grid-responsive .width14{ width: 960px; }
+.grid-responsive .width15{ width: 1030px; }
+.grid-responsive .width16{ width: 1100px; }
+.grid-responsive .width17{ width: 1170px; }
+.grid-responsive .width18{ width: 1240px; }
+.grid-responsive .width19{ width: 1310px; }
 
 /*Screen Resolution*/
 .screen-320 .grid-responsive{ width: 280px; }
-.screen-320 .grid-responsive .coluna{ max-width: 260px; }
+.screen-320 .grid-responsive .column{ max-width: 260px; }
 .screen-320 .grid-responsive .screen-320-hide{ display: none; }
 
 .screen-480 .grid-responsive{ width: 420px; }
-.screen-480 .grid-responsive .coluna{ max-width: 400px; }
+.screen-480 .grid-responsive .column{ max-width: 400px; }
 .screen-480 .grid-responsive .screen-480-hide{ display: none; }
 
 .screen-640 .grid-responsive{ width: 560px; }
-.screen-640 .grid-responsive .coluna{ max-width: 540px; }
+.screen-640 .grid-responsive .column{ max-width: 540px; }
 .screen-640 .grid-responsive .screen-640-hide{ display: none; }
 
 .screen-768 .grid-responsive{ width: 700px; }
-.screen-768 .grid-responsive .coluna{ max-width: 680px; }
+.screen-768 .grid-responsive .column{ max-width: 680px; }
 .screen-768 .grid-responsive .screen-768-hide{ display: none; }
 
 .screen-1024 .grid-responsive{ width: 980px; }
-.screen-1024 .grid-responsive .coluna{ max-width: 960px;}
+.screen-1024 .grid-responsive .column{ max-width: 960px;}
 .screen-1024 .grid-responsive .screen-1024-hide{ display: none; }
 
 .screen-1280 .grid-responsive{ width: 1190px; }
-.screen-1280 .grid-responsive .coluna{ max-width: 1170px;}
+.screen-1280 .grid-responsive .column{ max-width: 1170px;}
 .screen-1280 .grid-responsive .screen-1280-hide{ display: none; }
 
 .screen-1440 .grid-responsive{ width: 1330px; }
@@ -476,12 +476,12 @@ textarea:focus{
 
 /* GRID HELPERS */
 /* ----------------------------------------- */
-.esquerda5{ padding-left: 5px; }
-.esquerda10{ padding-left: 10px; }
-.esquerda15{ padding-left: 15px; }
-.esquerda20{ padding-left: 20px; }
+.left5{ padding-left: 5px; }
+.left10{ padding-left: 10px; }
+.left15{ padding-left: 15px; }
+.left20{ padding-left: 20px; }
 
-.direita5{ padding-right: 5px; }
-.direita10{ padding-right: 10px; }
-.direita15{ padding-right: 15px; }
-.direita20{ padding-right: 20px; }
+.right5{ padding-right: 5px; }
+.right10{ padding-right: 10px; }
+.right15{ padding-right: 15px; }
+.right20{ padding-right: 20px; }

@@ -23,7 +23,7 @@
 		document.getElementsByTagName('html')[0].className.replace('no-js', 'js');
 	</script>
 	<!--[if(gte IE 6) & (lte IE 8)]>
-		<script src="js/ie.min.js"></script>
+		<script src="../../js/ie.min.js"></script>
 	<![endif]-->
 	
 	<!-- CSS -->
@@ -84,15 +84,15 @@
 <body>
 	
 	<h3>Validação Simples de Formulário</h3>
-	<pre class='alerta amarelo'>
+	<pre class='alert yellow'>
 	$("#formulario1").valida({
 		redireciona: false,
 		onValida: function(){
-			$(this).parent().removeClass('erro');
+			$(this).parent().removeClass('error');
 		},
 		onErro: function(){
 			if($(this).is(':checkbox') || $(this).is(':radio')){
-				$(this).parent().addClass('erro');
+				$(this).parent().addClass('error');
 			}
 		},
 		onPassa: function(){
@@ -166,7 +166,7 @@
 	<!-- Fim FORM 1 -->
 	
 	<h3>Formulário via Ajax</h3>
-	<pre class='alerta amarelo'>
+	<pre class='alert yellow'>
 	$('#formulario2').valida({
 		live: true
 	});
@@ -177,7 +177,7 @@
 	<!-- Fim FORM 2 -->
 	
 	<h3>Validação Inline</h3>
-	<pre class='alerta amarelo'>
+	<pre class='alert yellow'>
 	$('#formulario3').valida({
 		inline: true,
 		eventoInline: 'keyup'

@@ -77,7 +77,7 @@ CHANGELOG
  * Estilos para iframe (&lt;iframe&gt;)
  * Fim do suporte para modelos
  * Adicionado suporte a grid 12, 16 e 24 colunas
- * Adição de Classes fix: .primeiro e .ultimo
+ * Adição de Classes fix: .first e .last
  * Atualização versões plugins js
 
 #### 1.0 - 28 de Março de 2010
