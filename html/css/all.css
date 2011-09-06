@@ -30,8 +30,8 @@ nav ul, ul, ol{ list-style: none; }
 blockquote, q{ quotes: none; }
 blockquote:before, blockquote:after, q:before, q:after{ content: ''; content: none; }
 
-body{ line-height: 1; overflow-y: scroll; }
-
+html{ overflow-y: scroll; }
+body{ line-height: 1; }
 body, html{ height: 100%; min-height: 100%; }
 .opera body{ height: auto; }
 
