@@ -25,7 +25,7 @@ mark, audio, video, a{
 	background: transparent;
 }
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary{ display: block; }
-nav ul, ul, ol{ list-style: none; }
+nav ul, nav ol{ list-style: none; }
 
 blockquote, q{ quotes: none; }
 blockquote:before, blockquote:after, q:before, q:after{ content: ''; content: none; }
@@ -33,7 +33,6 @@ blockquote:before, blockquote:after, q:before, q:after{ content: ''; content: no
 html{ overflow-y: scroll; }
 body{ line-height: 1; }
 body, html{ height: 100%; min-height: 100%; }
-.opera body{ height: auto; }
 
 abbr[title], dfn[title]{ border-bottom: 1px dotted #000; cursor: help; }
 
@@ -108,7 +107,6 @@ a img{
 /*CABEÇALHOS*/
 h1, h2, h3, h4, h5, h6{
 	display: block;
-	font-weight: bold;
 	line-height: 100%;
 	margin-bottom: 10px;
 }
@@ -119,15 +117,13 @@ h4{ font-size: 120%; }
 h5, h6{ font-size: 100%; }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
-	display: block;
+	display: inline-block;
 }
 
 /*TEXTOS*/
-p,ul,ol{ margin-bottom: 10px; }
-small{ font-size: 75%; }
-big{ font-size: 125%; }
-strong{ font-weight: bold; }
-cite, em, dfn{ font-style: italic; }
+p,ul,ol{ margin-bottom: 15px; }
+strong, b{ font-weight: bold; }
+cite, em, dfn, i{ font-style: italic; }
 del{ text-decoration: line-through; }
 input, textarea, select, button, option{ font-size: 100%; font-family: Arial, Helvetica, sans-serif; }
 
@@ -153,6 +149,36 @@ table tr th{
 table tr td{
 	border: 1px solid #DDD;
 	padding: 5px 10px;
+}
+
+/*OUTROS*/
+hr{
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #CCC;
+	margin: 1em 0;
+	padding: 0;
+}
+ins{
+	background-color: #FF9;
+	color: #000;
+	text-decoration: none;
+}
+mark{
+	background-color: #FF9;
+	color: #000;
+	font-style: italic;
+	font-weight: bold;
+}
+blockquote{
+	background: #F2F2F2;
+	border: 1px solid #CCC;
+	margin-bottom: 10px;
+	padding: 10px 20px 0px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 /*ALERTAS*/
@@ -190,58 +216,22 @@ table tr td{
 	border-color: #F00;
 }
 
-/*OUTROS*/
-hr{
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 1px solid #CCC;
-	margin: 1em 0;
-	padding: 0;
-}
-ins{
-	background-color: #FF9;
-	color: #000;
-	text-decoration: none;
-}
-mark{
-	background-color: #FF9;
-	color: #000;
-	font-style: italic;
-	font-weight: bold;
-}
-del{
-	text-decoration: line-through;
-}
-blockquote{
-	background: #F2F2F2;
-	border: 1px solid #CCC;
-	margin-bottom: 10px;
-	padding: 10px 20px 0px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-}
-iframe{
-	border: 1px solid #CCC;
-}
-
 /*HELPERS*/
 .align-left{ text-align: left; }
 .align-right{ text-align: right; }
 .align-center{ text-align: center; }
 .align-justify{ text-align: justify; }
-.align-left, img.align-left, img[align="left"]{
+img.align-left, img[align="left"]{
 	display: inline;
 	float: left;
 	margin-right: 10px;
 }
-.align-right, img.align-right, img[align="right"]{
+img.align-right, img[align="right"]{
 	display: inline;
 	float: right;
 	margin-left: 10px;
 }
-.align-center, img.align-center, img[align="center"]{
+img.align-center, img[align="center"]{
 	clear: both;
 	display: block;
 	margin-right: auto;
@@ -254,12 +244,6 @@ label{
 	display: inline-block;
 	font-weight: bold;
 	padding-bottom: 5px;
-}
-label + input, label + textarea, label + select{
-	display: block;
-}
-label + input[type="radio"], label + input[type="checkbox"]{
-	display: inline-block;
 }
 
 input, textarea{
@@ -278,13 +262,12 @@ input[type="radio"], input[type="checkbox"]{
 	padding: 0;
 	width: auto;
 }
-input.submit, input[type="submit"]{
+input[type="submit"]{
 	background: #434343;
 	border: 1px solid #222;
 	color: #FFF;
 	cursor: pointer;
 	display: inline-block;
-	font-weight: bold;
 	height: 30px;
 	overflow: visible;
 	padding: 6px 10px;
@@ -295,7 +278,6 @@ input.submit, input[type="submit"]{
 	border-radius: 2px;
 }
 
-/*SELECT*/
 select{
 	line-height: 1em;
 	margin-top: 7px;
@@ -305,14 +287,10 @@ option{
 	padding: 2px 8px 0;
 }
 
-/*FOCUS*/
-.focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
+input:focus,
 textarea:focus{
 	background-color: #FCFCFC;
 	border-color: #AAA;
-	outline: none;
 }
 
 /* GRID */
