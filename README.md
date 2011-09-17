@@ -53,6 +53,7 @@ CHANGELOG
  * Reestruturação dos arquivos.
  * Arquivos CSS simplificados em 3 arquivos (anteriormente eram 7)
  * Novo sistema de grid: responsive
+ * Removido plugin Linha Focuss (o HTML5 oferece o atributo "placeholder" como alternativa)
  
 #### 1.2 - 23 de Setembro de 2010
 
@@ -109,25 +110,6 @@ CHANGELOG Plugins jQuery Linha Framework
 #### 1.0
 
 * Inicial
-
-### Linha FOCUSS:
-#### 1.2
-
- * Otimização de código
- * Remoção da função $.focuss em apoio a função $.fn.focuss
- 
-### 1.1
-
- * Monitoramento live(DOM e Ajax) para Foccus (use alternativamente $("seletor-focuss").trigger('iniciaFocuss'); caso tenha problemas)
- * Ajustes para retirada de focuss em elemento do tipo input[type="submit"]
- * Removido a opção "remove" (o mesmo pode ser feito com css .tal-classe{outline: none;}
- * Opção "cor" foi removida por "classe", assim a customização é maior pois fica feita através da classe
- * Alterações de nome de opções: "opcao_tal" agora é "opcaoTal"
- * Callbacks melhorados
-
-#### 1.0
-
- * Inicial
 
 ### Linha MODAL:
 #### 1.2

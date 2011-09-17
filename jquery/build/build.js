@@ -17,7 +17,6 @@ Tuild.command(
 'js -dev --no-hint ' + ( (watch) ? '--watch ': '' ) + 
 	'../src/acord.js+' + 
 	( EXTEND ? '../src/acord.slide.js+' : '' ) + 
-	'../src/focuss.js+' + 
 	'../src/modal.js+' +
 	'../src/nav.js+' + 
 	'../src/slidetabs.js+' + 
