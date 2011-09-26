@@ -12,11 +12,9 @@ PLUGINS USADOS
 ==============
 Tudo isto não foi trabalho apenas do LF, devo dar os créditos a:
 
+ * Modernizr - <http://www.modernizr.com/>
  * jQuery - <http://jquery.com/>
- * HTML5 Shiv <http://code.google.com/p/html5shiv/>
- * Respond.js <https://github.com/scottjehl/Respond>
  * jQuery Browser Selector - <https://github.com/mateus007/jquery-browser-selector>
- * Chrome Frame - <http://www.google.com/chromeframe>
  * Tuild - <https://github.com/mateus007/tuild>
  * HTML5 Boilerplate (Fonte de inspiração para algumas partes do LF) - <https://github.com/paulirish/html5-boilerplate>
  * GitHub.com (vários projetos :P) - <https://github.com/mateus007/following>
@@ -28,8 +26,9 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
  
  * Aprenda a trabalhar com medidas padrões - Grids
  * Escolha um padrão de Grid e apague os demais (html/css/all.css)
- * Carregue JS dinamicamente, usando um plugin para lazy loading.
- * Crie versões minified de seus códigos com uma linguagem server-side - <http://code.google.com/p/minify/>
+ * Carregue JS dinamicamente, usando um plugin para lazy loading (YepNope)
+ * Compile uma versão mais exclusiva do Modernizr pelo site do desenvolvedor
+ * Use o build incluso no framework para criar versões minifield do seu código
  * Se o site não tiver suporte nativo para o IE6, avise os usuários usando Adeus IE6 - <https://github.com/mateus007/adeus-ie6>
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
  * Alterar o código fonte não é proibido :P
@@ -42,15 +41,14 @@ CHANGELOG
  * Código agora está no padrão internacional - INGLÊS (Código, não comentários e textos...)
  * HTML migrado para HTML5 (não vá confundir com as funcionalidades do HTML5)
  * Adicionado os arquivos example.htaccess (quando concluir renomei para .htaccess) e robots.txt
- * Atualização jQuery para V. 1.6.2
+ * Atualização jQuery para V. 1.6.4
  * Movimentação para changelog
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
  * Novo build para JS - Tuild, feito em NodeJS
- * Adicionado plugin Respond.js
- * Adicionado plugin HTML5 shiv
+ * Adicionado plugin Modernizr
  * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
- * Reestruturação dos arquivos.
+ * Reestruturação dos arquivos
  * Arquivos CSS simplificados em 3 arquivos (anteriormente eram 7)
  * Novo sistema de grid: responsive
  * Removido plugin Linha Focuss (o HTML5 oferece o atributo "placeholder" como alternativa)
