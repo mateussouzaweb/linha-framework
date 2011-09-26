@@ -3,5 +3,6 @@
 .settings
 *.~
 *.*~
+*.swp
 .DS_Store
 .buildpath
