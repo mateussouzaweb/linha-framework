@@ -1,11 +1,6 @@
 /*!
  * Extra Selectors - Script fork do jQuery Browser Selector
  * Não depende do jQuery e é mais rápido!
- * By Mateus Souza - http://mateussouzaweb.com
- * @version 1.0
- *
- * Copyright 2011
- * Licensed under MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
  */
 (function(){
 

@@ -14,16 +14,15 @@ Tudo isto não foi trabalho apenas do LF, devo dar os créditos a:
 
  * Modernizr - <http://www.modernizr.com/>
  * jQuery - <http://jquery.com/>
- * jQuery Browser Selector - <https://github.com/mateus007/jquery-browser-selector>
  * Tuild - <https://github.com/mateus007/tuild>
  * HTML5 Boilerplate (Fonte de inspiração para algumas partes do LF) - <https://github.com/paulirish/html5-boilerplate>
  * GitHub.com (vários projetos :P) - <https://github.com/mateus007/following>
  * Google Search - Thanks!!! :)
- 
+
 RECOMENDAÇÕES & DICAS
 =====================
 Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo algumas dicas e recomendações:
- 
+
  * Aprenda a trabalhar com medidas padrões - Grids
  * Escolha um padrão de Grid e apague os demais (html/css/all.css)
  * Carregue JS dinamicamente, usando um plugin para lazy loading (YepNope)
@@ -33,8 +32,8 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
  * Alterar o código fonte não é proibido :P
  * Contribua!
- 
-CHANGELOG 
+
+CHANGELOG
 =====================
 #### 1.3 - XX de XXXXXXXX de 2011
 
@@ -52,7 +51,7 @@ CHANGELOG
  * Arquivos CSS simplificados em 3 arquivos (anteriormente eram 7)
  * Novo sistema de grid: responsive
  * Removido plugin Linha Focuss (o HTML5 oferece o atributo "placeholder" como alternativa)
- 
+
 #### 1.2 - 23 de Setembro de 2010
 
  * Atualização para os plugins: Linha Acord, Linha Focuss, Linha Modal, Linha Nav, Linha Slidetabs, Linha Tooltip e Linha Form (agora chamado Valida),
@@ -93,7 +92,7 @@ CHANGELOG Plugins jQuery Linha Framework
  * Simplificação de algumas opções
  * Otimização de código
  * Remoção da função $.acord em apoio a função $.fn.acord
- 
+
 #### 1.1
 
  * Monitoramento live(DOM e Ajax) para Accordions (use alternativamente $("seletor-accordion").trigger('iniciaAcord'); caso tenha problemas)
@@ -114,7 +113,7 @@ CHANGELOG Plugins jQuery Linha Framework
 
  * Otimização de código
  * Remoção da função $.modal em apoio a função $.fn.modal
- 
+
 #### 1.1
 
  * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
@@ -137,7 +136,7 @@ CHANGELOG Plugins jQuery Linha Framework
 
  * Otimização de código
  * Remoção da função $.nav em apoio a função $.fn.nav
- 
+
 #### 1.1
 
  * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
@@ -161,13 +160,13 @@ CHANGELOG Plugins jQuery Linha Framework
  * Removido opções para definições de classes
 
 #### 1.2
- 
+
  * Adicionado suporte a Hash Navigation
  * Simplificação de algumas opções
  * Otimização de código
  * Remoção da função $.slideTabs em apoio a função $.fn.slideTabs
  * Nova opção para pausar slide automático quado estiver no estado hover - pausarAuto
- 
+
 #### 1.1
 
  * Monitoramento live(DOM e Ajax) para SlideTabs (use alternativamente $("seletor-slidetabs").trigger('iniciaSlideTabs'); caso tenha problemas)
@@ -185,7 +184,7 @@ CHANGELOG Plugins jQuery Linha Framework
 
  * Otimização de código
  * Remoção da função $.tooltip em apoio a função $.fn.tooltip
- 
+
 #### 1.2
 
  * Live Events (não é o mesmo que Monitoramento live, mais tem o mesmo resultado :))
@@ -211,8 +210,8 @@ CHANGELOG Plugins jQuery Linha Framework
 
 ### Linha VALIDA:
 #### 1.1
- 
- * Adicionado suporte a validação inline 
+
+ * Adicionado suporte a validação inline
  * Agora o input que tiver algum erro, será marcado com uma classe, automaticamente (classeErro)
  * Otimização de código
  * Remoção da função $.valida em apoio a função $.fn.valida
