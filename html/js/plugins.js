@@ -1,12 +1,46 @@
 /*!
- * jQuery Browser Selectors - The solution for special selectors
+ * Extra Selectors - Script fork do jQuery Browser Selector
+ * Não depende do jQuery e é mais rápido!
  * By Mateus Souza - http://mateussouzaweb.com
- * @version 1.2
+ * @version 1.0
  *
  * Copyright 2011
  * Licensed under MIT and GPL License - http://www.opensource.org/licenses/mit-license.php || http://www.gnu.org/licenses/gpl.html
  */
-(function(a){(a.browserSelector=function(){var b=navigator.userAgent.toLowerCase(),c=document.childNodes[1],d=[320,480,640,768,1024,1280,1440,1680,1920],e=/(mac|win|linux|freebsd|mobile|iphone|ipod|ipad|android|blackberry|j2me|webtv)/.exec(b),f=/(ie|firefox|chrome|safari|opera)(?:.*version)?(?:[ \/])?([\w.]+)/.exec(b);a(c).addClass(e[1]+" "+f[1]),f[1]=="safari"?a(c).addClass(f[1]+"-"+f[2].substring(0,1)):a(c).addClass(f[1]+"-"+parseInt(f[2]));if(f[1]=="ie")for(var g=3;g<10;g++)parseInt(f[2])<g&&a(c).addClass("lt-ie-"+g);a(window).bind("resize",function(){var b=window.outerWidth||c.clientWidth;c.className=a.trim(c.className.replace(/(\s)screen-[0-9]+/ig,""));for(var e=0;e<d.length;e++)if(b<=d[e]){a(c).addClass("screen-"+d[e]);break}}).trigger("resize")})()})(jQuery);
+(function(){
+
+	var userAgent = navigator.userAgent.toLowerCase(),
+		html = document.getElementsByTagName('html')[0],
+		os = /(mac|win|linux|freebsd|mobile|iphone|ipod|ipad|android|blackberry|j2me|webtv)/.exec(userAgent),
+		ua = /(ie|firefox|chrome|safari|opera)(?:.*version)?(?:[ \/])?([\w.]+)/.exec(userAgent);
+
+	var addClass = function(name){
+		html.className += ' ' + name;
+	};
+
+	addClass(os[1] + ' ' + ua[1]);
+
+	/**
+	 * Fix Safari
+	 */
+	if(ua[1] == 'safari')
+		addClass(ua[1] + '-' + ua[2].substring(0, 1));
+	else
+		addClass(ua[1] + '-' + parseInt(ua[2]));
+
+	/**
+	 * IE conditional
+	 */
+	if(ua[1] == 'ie'){
+
+		for(var ver = 3; ver < 10; ver++) {
+			if(parseInt(ua[2]) < ver)
+				addClass('lt-ie-' + ver);
+		}
+
+	}
+
+})();
 
 /*!
  * jQuery Acord 1.3
