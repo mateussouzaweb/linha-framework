@@ -16,32 +16,56 @@ samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form
 label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
 details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time,
 mark, audio, video, a{
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-size: 100%;
-	vertical-align: baseline;
 	background: transparent;
+	border: 0;
+	font-size: 100%;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	vertical-align: baseline;
 }
-article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary{ display: block; }
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup,
+menu, nav, section, summary{ display: block; }
+
 nav ul, nav ol{ list-style: none; }
 
 blockquote, q{ quotes: none; }
-blockquote:before, blockquote:after, q:before, q:after{ content: ''; content: none; }
+blockquote:before, blockquote:after, q:before, q:after{
+	content: '';
+	content: none;
+}
 
-html{ overflow-y: scroll; }
-body{ line-height: 1; }
-body, html{ height: 100%; min-height: 100%; }
+html{
+	line-height: 1;
+	overflow-y: scroll;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+body, html{
+	height: 100%;
+	min-height: 100%;
+}
 
-abbr[title], dfn[title]{ border-bottom: 1px dotted #000; cursor: help; }
+abbr[title], dfn[title]{
+	border-bottom: 1px dotted #000;
+	cursor: help;
+}
 
-table{ border-collapse: collapse; border-spacing: 0; }
+table{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 
-td, td img{ vertical-align: top; } 
+td, td img{ vertical-align: top; }
 
-sub{ vertical-align: sub; font-size: smaller; }
-sup{ vertical-align: super; font-size: smaller; }
+sub{
+	vertical-align: sub;
+	font-size: smaller;
+}
+sup{
+	vertical-align: super;
+	font-size: smaller;
+}
 
 pre, blockquote, textarea{
 	white-space: pre;
@@ -59,7 +83,10 @@ input[type="checkbox"]{ vertical-align: baseline; }
 
 button, input, select, textarea{ margin: 0; }
 
-button{ width: auto; overflow: visible; }
+button{
+	width: auto;
+	overflow: visible;
+}
 
 label, input[type="button"], input[type="submit"], button{ cursor: pointer; }
 
@@ -67,19 +94,43 @@ textarea{ overflow: auto; }
 
 :focus{ outline: 0; }
 
-::-moz-selection{ background: #535353; color:#FFF; text-shadow: none; }
-::selection{ background:#535353; color:#FFF; text-shadow: none; }
+::-moz-selection{
+	background: #535353;
+	color: #FFF;
+	text-shadow: none;
+}
+::selection{
+	background: #535353;
+	color: #FFF;
+	text-shadow: none;
+}
 
-.ie-7 img{ -ms-interpolation-mode: bicubic; }
+img, object, embed, table, iframe{ max-width: 100%; }
+img{ -ms-interpolation-mode: bicubic; }
 
-.clear{ clear:both; display: block; height: 0px; overflow: hidden; }
-.clearfix:before, .clearfix:after{ content:""; display:table; }
-.clearfix:after{ clear:both; }
-.clearfix{ zoom:1; }
+.clear{
+	clear: both;
+	display: block;
+	height: 0px;
+	overflow: hidden;
+}
+.clearfix:before, .clearfix:after{
+	content: "";
+	display: table;
+}
+.clearfix:after{ clear: both; }
+.clearfix{ zoom: 1; }
 
 .left{ float: left; }
 .right{ float: right; }
 .hide{ display: none; }
+
+.first{ margin-left: 0 !important; }
+.last{ margin-right: 0 !important; }
+.nothing{
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
 
 /* TIPOGRAFIA */
 /* ----------------------------------------- */
@@ -91,7 +142,7 @@ body{
 	line-height: 22px;
 }
 
-/*LINKS*/
+/* LINKS */
 a, a:link{
 	color: #3151A2;
 	text-decoration: none;
@@ -104,7 +155,7 @@ a img{
 	display: block;
 }
 
-/*CABEÇALHOS*/
+/* CABEÇALHOS */
 h1, h2, h3, h4, h5, h6{
 	display: block;
 	line-height: 100%;
@@ -116,18 +167,19 @@ h3{ font-size: 150%; }
 h4{ font-size: 120%; }
 h5, h6{ font-size: 100%; }
 
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
-	display: inline-block;
-}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{ display: inline-block; }
 
-/*TEXTOS*/
-p,ul,ol{ margin-bottom: 15px; }
+/* TEXTOS */
+p, ul, ol{ margin-bottom: 15px; }
 strong, b{ font-weight: bold; }
 cite, em, dfn, i{ font-style: italic; }
 del{ text-decoration: line-through; }
-input, textarea, select, button, option{ font-size: 100%; font-family: Arial, Helvetica, sans-serif; }
+input, textarea, select, button, option{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+}
 
-/*LISTAS*/
+/* LISTAS */
 ol, ul{ padding-left: 35px; }
 ul{ list-style-type: disc; }
 ol{ list-style-type: decimal; }
@@ -136,7 +188,7 @@ dl{ margin: 0 0 1.5em 0; }
 dl dt{ font-weight: bold; }
 dd{ margin-left: 1.5em; }
 
-/*TABELAS*/
+/* TABELAS */
 table{
 	margin-bottom: 10px;
 }
@@ -151,12 +203,12 @@ table tr td{
 	padding: 5px 10px;
 }
 
-/*OUTROS*/
+/* OUTROS */
 hr{
-	display: block;
-	height: 1px;
 	border: 0;
 	border-top: 1px solid #CCC;
+	display: block;
+	height: 1px;
 	margin: 1em 0;
 	padding: 0;
 }
@@ -174,24 +226,24 @@ mark{
 blockquote{
 	background: #F2F2F2;
 	border: 1px solid #CCC;
-	margin-bottom: 10px;
-	padding: 10px 20px 0px;
+	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	border-radius: 3px;
+	margin-bottom: 10px;
+	padding: 10px 20px 0px;
 }
 
-/*ALERTAS*/
+/* ALERTAS */
 .alert{
 	background: #EDEDED;
 	border: 1px solid #C0C0C0;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 	color: #333;
 	display: block;
 	margin: 5px 0;
 	padding: 10px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
 }
 .green{
 	background-color: #E9F9E5;
@@ -216,7 +268,7 @@ blockquote{
 	border-color: #F00;
 }
 
-/*HELPERS*/
+/* HELPERS */
 .align-left{ text-align: left; }
 .align-right{ text-align: right; }
 .align-center{ text-align: center; }
@@ -250,11 +302,15 @@ input, textarea{
 	background: #FFF url(../img/input.png) repeat-x top;
 	border: 1px solid;
 	border-color: #BBB #DDD #DDD #BBB;
-	padding: 8px;
-	width: 280px;
+	border-radius: 1px;
 	-moz-border-radius: 1px;
 	-webkit-border-radius: 1px;
-	border-radius: 1px;
+	padding: 8px;
+	width: 280px;
+}
+textarea{
+	min-height: 100px;
+	min-width: 200px;
 }
 input[type="radio"], input[type="checkbox"]{
 	background: none;
@@ -265,17 +321,17 @@ input[type="radio"], input[type="checkbox"]{
 input[type="submit"]{
 	background: #434343;
 	border: 1px solid #222;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
 	color: #FFF;
 	cursor: pointer;
 	display: inline-block;
 	height: 30px;
 	overflow: visible;
 	padding: 6px 10px;
-	width: auto;
 	text-shadow: 1px 1px 1px #000;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
+	width: auto;
 }
 
 select{
