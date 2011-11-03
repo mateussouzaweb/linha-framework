@@ -307,7 +307,7 @@ textarea:focus{
 	margin-right: 10px;
 }
 
-/*12 COLUNAS*/
+/* 12 COLUNAS */
 .grid-12 .width1{ width: 60px; }
 .grid-12 .width2{ width: 140px; }
 .grid-12 .width3{ width: 220px; }
@@ -321,7 +321,7 @@ textarea:focus{
 .grid-12 .width11{ width: 860px; }
 .grid-12 .width12{ width: 940px; }
 
-/*16 COLUNAS*/
+/* 16 COLUNAS */
 .grid-16 .width1{ width: 40px; }
 .grid-16 .width2{ width: 100px; }
 .grid-16 .width3{ width: 160px; }
@@ -339,7 +339,7 @@ textarea:focus{
 .grid-16 .width15{ width: 880px; }
 .grid-16 .width16{ width: 940px; }
 
-/*24 COLUNAS*/
+/* 24 COLUNAS */
 .grid-24 .column{ margin-left: 5px; margin-right: 5px; }
 .grid-24 .width1{ width: 30px; }
 .grid-24 .width2{ width: 70px; }
@@ -366,42 +366,26 @@ textarea:focus{
 .grid-24 .width23{ width: 910px; }
 .grid-24 .width24{ width: 950px; }
 
-.grid-12 .first, .grid-16 .first, .grid-24 .first{ margin-left: 0; }
-.grid-12 .last, .grid-16 .last, .grid-24 .last{ margin-right: 0; }
-.grid-12 .nothing, .grid-16 .nothing, .grid-24 .nothing{ margin-left: 0; margin-right: 0; }
-
-/* GRID RESPONSIVE 
-   Basicamente este grid se adpta a resolução do navegador, é uma alternativa a @media max-width - CSS3
+/* GRID RESPONSIVE
+   Basicamente este grid se adpta a resolução do navegador, usando @media max-width - CSS3
    Colunas de width maior do que o permitido, serão convertidas para o width máximo, se adptando a resolução
-   
+
    Você também pode usar classes hide de acordo com a resolução
-   
+
    SCREEN    AREA   "LIVRE"   COLUNAS
-   320       280    260       4      
-   480       420    400       6      
-   620       560    540       8      
-   768       700    680       10     
-   1024      980    960       14     
-   1280      1190   1170      17
-   1440      1330   1310      19     
+   480       280    260       4
+   620       420    400       6
+   768       560    540       8
+   1024      700    680       10
+   1280      980    960       14
+   1440      1190   1170      17
+   1680      1330   1310      19
 ----------------------------------------- */
 .grid-responsive{
 	display: block;
 	margin: 0 auto;
 	max-width: 1330px;
 	overflow: hidden;
-}
-.grid-responsive .column{
-	display: inline;
-	float: left;
-	margin-left: 10px;
-	margin-right: 10px;
-	max-width: 1310px;
-}
-.grid-responsive .column img,
-.grid-responsive .column object,
-.grid-responsive .column embed{
-	max-width: 100%;
 }
 
 .grid-responsive .width1{ width: 50px; }
@@ -424,33 +408,48 @@ textarea:focus{
 .grid-responsive .width18{ width: 1240px; }
 .grid-responsive .width19{ width: 1310px; }
 
-/*Screen Resolution*/
-.screen-320 .grid-responsive{ width: 280px; }
-.screen-320 .grid-responsive .column{ max-width: 260px; }
-.screen-320 .grid-responsive .screen-320-hide{ display: none; }
+/* MEDIA QUERIES */
+@media screen and (max-width: 480px){
+	.grid-responsive{ width: 280px; }
+	.grid-responsive .column{ max-width: 260px; }
+	.grid-responsive .screen-480-hide{ display: none !important; }
+}
 
-.screen-480 .grid-responsive{ width: 420px; }
-.screen-480 .grid-responsive .column{ max-width: 400px; }
-.screen-480 .grid-responsive .screen-480-hide{ display: none; }
+@media screen and (min-width: 481px) and (max-width: 640px){
+	.grid-responsive{ width: 420px; }
+	.grid-responsive .column{ max-width: 400px; }
+	.grid-responsive .screen-640-hide{ display: none !important; }
+}
 
-.screen-640 .grid-responsive{ width: 560px; }
-.screen-640 .grid-responsive .column{ max-width: 540px; }
-.screen-640 .grid-responsive .screen-640-hide{ display: none; }
+@media screen and (min-width: 645px) and (max-width: 768px){
+	.grid-responsive{ width: 560px; }
+	.grid-responsive .column{ max-width: 540px; }
+	.grid-responsive .screen-768-hide{ display: none !important; }
+}
 
-.screen-768 .grid-responsive{ width: 700px; }
-.screen-768 .grid-responsive .column{ max-width: 680px; }
-.screen-768 .grid-responsive .screen-768-hide{ display: none; }
+@media screen and (min-width: 769px) and (max-width: 1024px){
+	.grid-responsive{ width: 700px; }
+	.grid-responsive .column{ max-width: 680px; }
+	.grid-responsive .screen-1024-hide{ display: none !important; }
+}
 
-.screen-1024 .grid-responsive{ width: 980px; }
-.screen-1024 .grid-responsive .column{ max-width: 960px;}
-.screen-1024 .grid-responsive .screen-1024-hide{ display: none; }
+@media screen and (min-width: 1025px) and (max-width: 1280px){
+	.grid-responsive{ width: 980px; }
+	.grid-responsive .column{ max-width: 960px; }
+	.grid-responsive .screen-1280-hide{ display: none !important; }
+}
 
-.screen-1280 .grid-responsive{ width: 1190px; }
-.screen-1280 .grid-responsive .column{ max-width: 1170px;}
-.screen-1280 .grid-responsive .screen-1280-hide{ display: none; }
+@media screen and (min-width: 1281px) and (max-width: 1440px){
+	.grid-responsive{ width: 1190px; }
+	.grid-responsive .column{ max-width: 1170px;}
+	.grid-responsive .screen-1440-hide{ display: none !important; }
+}
 
-.screen-1440 .grid-responsive{ width: 1330px; }
-.screen-1440 .grid-responsive .screen-1440-hide{ display: none; }
+@media screen and (min-width: 1441px){
+	.grid-responsive{ width: 1330px; }
+	.grid-responsive .column{ max-width: 1310px;}
+	.grid-responsive .screen-1680-hide{ display: none !important; }
+}
 
 /* GRID HELPERS */
 /* ----------------------------------------- */

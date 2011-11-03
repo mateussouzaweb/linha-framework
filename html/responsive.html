@@ -25,28 +25,43 @@
 	<link rel="stylesheet" href="css/print.css">
 	<style>
 	.grid-responsive{
-		background: #F59;
+		background: #BBB;
 	}
 	.column{
 		background: #EEE;
-		height: 100px;
-		line-height: 50px;
 		margin-bottom: 10px;
+		min-height: 100px;
 		text-align: center;
+	}
+	header{
+		padding-top: 20px;
 	}
 	.demo{
 		display: none;
 	}
-	.screen-320 .demo-320,
-	.screen-480 .demo-480,
-	.screen-640 .demo-640,
-	.screen-768 .demo-768,
-	.screen-1024 .demo-1024,
-	.screen-1280 .demo-1280,
-	.screen-1440 .demo-1440,
-	.screen-1680 .demo-1440,
-	.screen-1920 .demo-1440{
-		display: block;
+
+	/* MEDIA QUERIES EXEMPLO */
+	/* Não faça assim... você deve usar as classes hide */
+	@media screen and (max-width: 480px){
+		.demo-480{ display: block; }
+	}
+	@media screen and (min-width: 481px) and (max-width: 640px){
+		.demo-640{ display: block; }
+	}
+	@media screen and (min-width: 641px) and (max-width: 768px){
+		.demo-768{ display: block; }
+	}
+	@media screen and (min-width: 769px) and (max-width: 1024px){
+		.demo-1024{ display: block; }
+	}
+	@media screen and (min-width: 1025px) and (max-width: 1280px){
+		.demo-1280{ display: block; }
+	}
+	@media screen and (min-width: 1281px) and (max-width: 1440px){
+		.demo-1440{ display: block; }
+	}
+	@media screen and (min-width: 1441px){
+		.demo-1680{ display: block; }
 	}
 	</style>
 </head>
@@ -56,11 +71,11 @@
 	
 	<header class="column width19">
 		<h2>Linha Framework</h2>
-		<p>Grid Responsive (redimensione o seu browser).</p>
+		<p>Grid Responsive</p>
 	</header>
-	
-	<div class="demo demo-320">
-		
+
+	<div class="demo demo-480">
+
 		<div class="column width1"></div>
 		<div class="column width1"></div>
 		<div class="column width1"></div>
@@ -73,11 +88,11 @@
 		<div class="column width1"></div>
 		
 		<div class="column width4"></div>
-		
-	</div> <!-- Demo 320 -->
-	
-	<div class="demo demo-480">
-		
+
+	</div> <!-- .demo-480 -->
+
+	<div class="demo demo-640">
+
 		<div class="column width1"></div>
 		<div class="column width1"></div>
 		<div class="column width1"></div>
@@ -99,11 +114,11 @@
 		<div class="column width1"></div>
 		
 		<div class="column width6"></div>
-		
-	</div> <!-- Demo 480 -->
-	
-	<div class="demo demo-640">
-		
+
+	</div> <!-- .demo-640 -->
+
+	<div class="demo demo-768">
+
 		<div class="column width1"></div>
 		<div class="column width1"></div>
 		<div class="column width1"></div>
@@ -135,11 +150,11 @@
 		<div class="column width1"></div>
 		
 		<div class="column width8"></div>
-		
-	</div> <!-- Demo 640 -->
-	
-	<div class="demo demo-768">
-		
+
+	</div> <!-- .demo-768 -->
+
+	<div class="demo demo-1024">
+
 		<div class="column width1"></div>
 		<div class="column width1"></div>
 		<div class="column width1"></div>
@@ -182,11 +197,11 @@
 		<div class="column width1"></div>
 		
 		<div class="column width10"></div>
-		
-	</div> <!-- Demo 768 -->
-	
-	<div class="demo demo-1024">
-		
+
+	</div> <!-- .demo-1024 -->
+
+	<div class="demo demo-1280">
+
 		<div class="column width1"></div>
 		<div class="column width1"></div>
 		<div class="column width1"></div>
@@ -251,11 +266,11 @@
 		<div class="column width1"></div>
 		
 		<div class="column width14"></div>
-		
-	</div> <!-- Demo 1024 -->
-	
-	<div class="demo demo-1280">
-		
+
+	</div> <!-- .demo-1280 -->
+
+	<div class="demo demo-1440">
+
 		<div class="column width1"></div>
 		<div class="column width1"></div>
 		<div class="column width1"></div>
@@ -339,11 +354,11 @@
 		<div class="column width1"></div>
 		
 		<div class="column width17"></div>
-		
-	</div> <!-- Demo 1280 -->
-		
-		<div class="demo demo-1440">
-		
+
+	</div> <!-- .demo-1440 -->
+
+		<div class="demo demo-1680">
+
 		<div class="column width1"></div>
 		<div class="column width1"></div>
 		<div class="column width1"></div>
@@ -439,9 +454,9 @@
 		<div class="column width1"></div>
 		
 		<div class="column width19"></div>
-		
-	</div><!-- Demo 1440 -->
-	
+
+	</div><!-- .demo-1680 -->
+
 </div><!-- #all -->
 
 <!-- JS -->
