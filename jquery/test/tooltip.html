@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pt-br">
 <head>
-	
+
 	<meta charset="utf-8">
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	<meta name="robots" content="index,follow">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<link rel="canonical" href="/">
-	
+
 	<title>Linha Framework - jQuery Tooltip</title>
-	
+
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="../../html/favicon.ico">
 
@@ -29,36 +29,36 @@
 		background: #FFF;
 	}
 	</style>
-	
+
 	<!-- JS -->
 	<script src="../../html/js/jquery.js"></script>
 	<script src="../src/tooltip.js"></script>
-	
+
 	<script>
 	$(document).ready(function(){
-		
+
 		$('.tooltip').tooltip();
-		
+
 		$('input').tooltip({
 			evento: 'focus',
 			eventoFim: 'blur',
 			posicao: 'esquerda'
 		});
-		
+
 		$('button').click(function(){
 			$(this).after('<p><a href="#" class="tooltip" rel="novo tooltip <b>via ajax</b>">novo tooltip</a></p>');
 		});
-		
+
 	});
 	</script>
-	
+
 </head>
 <body>
 
 <div id="all" class="grid-24 clearfix">
-	
+
 	<div id="content">
-	
+
 	<div class="column width6">
 		<h3>Elementos</h3>
 		<pre class="alert yellow">
@@ -68,44 +68,44 @@
 		<p>Este é uma <a href="#" class="tooltip imagem" rel="http://www.travelpod.com/cache/city_maps/thumb.asdas-canada.gif">imagem</a>.</p>
 		<p>Este é um <a href="#" class="tooltip ajax" rel="ajax/ajax.html">tooltip em ajax</a>.</p>
 		<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-		
+
 		<h3>H3 Título</h3>
-		<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+		<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam
 		suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis.</p>
-		<p><a href="#">Leia mais...</a></p>	
-		
+		<p><a href="#">Leia mais...</a></p>
+
 		<h3>H3 Título</h3>
-		<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+		<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam
 		suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis.</p>
-		<p><a href="#">Leia mais...</a></p>	
+		<p><a href="#">Leia mais...</a></p>
 	</div>
-	
+
 	<div class="column width14">
-		
+
 		<h2>H2 Título</h2>
 		<p><button>Adicionar tooltip (live)</button></p>
 		<p>Donec aliquam cursus tortor, <a href="#" class="tooltip" rel="Texto para a tooltip. Nulla laoreet sem" title="">lobortis convallis</a>. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec in lacus nec justo porta congue id vel magna.Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec in lacus nec justo porta congue id vel magna. Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec in lacus nec justo porta congue id vel magna.  </p>
-		<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-		suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+		<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam
+		suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis.
 		Pellentesque at nisl nibh. </p>
 		<pre class="alert yellow">
 		$('input').tooltip({
 			evento: 'focus',
-			eventoFim: 'blur',	
+			eventoFim: 'blur',
 			posicao: 'left'
 		});
 		</pre>
 		<p><input type="text" rel="Tooltip em um input"/></p>
-		
+
 		<div class="column width8 first">
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 		</div>
 		<div class="column width7 last">
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 		</div>
-		
+
 	</div>
-	
+
 	<div class="column width4">
 		<h3>Elementos</h3>
 		<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
@@ -113,17 +113,17 @@
 		<p>Este é uma <a href="#" class="tooltip imagem" rel="http://www.travelpod.com/cache/city_maps/thumb.asdas-canada.gif">imagem</a>.</p>
 		<p>Este é um <a href="#" class="tooltip ajax" rel="ajax/ajax.html">tooltip em ajax</a>.</p>
 		<h3>H3 Título</h3>
-		<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
+		<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam
 		suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis.</p>
 	</div>
-	
+
 	<div class="column width24">
 		<p class="left"><a href="#" class="tooltip imagem" rel="http://www.travelpod.com/cache/city_maps/thumb.asdas-canada.gif">lobortis convallis</a></p>
 		<p class="right"><a href="#" class="tooltip imagem" rel="http://www.travelpod.com/cache/city_maps/thumb.asdas-canada.gif">lobortis convallis</a></p>
 	</div>
-	
+
 	</div><!-- #content -->
-	
+
 </div><!-- #all -->
 
 </body>

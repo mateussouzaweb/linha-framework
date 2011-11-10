@@ -6,7 +6,7 @@
  */
 var Tuild = require('tuild').Tuild,
 	// Estende os plugins com os extends?
-	EXTEND = false; 
+	EXTEND = false;
 	// Ativa o modo watch?
 	watch = false;
 
@@ -14,15 +14,15 @@ var Tuild = require('tuild').Tuild,
  * Versão DEV
  */
 Tuild.command(
-'js -dev --no-hint ' + ( (watch) ? '--watch ': '' ) + 
-	'../src/acord.js+' + 
-	( EXTEND ? '../src/acord.slide.js+' : '' ) + 
+'js -dev --no-hint ' + ( (watch) ? '--watch ': '' ) +
+	'../src/acord.js+' +
+	( EXTEND ? '../src/acord.slide.js+' : '' ) +
 	'../src/modal.js+' +
-	'../src/nav.js+' + 
-	'../src/slidetabs.js+' + 
-	'../src/tooltip.js+' +  
-	'../src/valida.js' + 
-' > ' + 
+	'../src/nav.js+' +
+	'../src/slidetabs.js+' +
+	'../src/tooltip.js+' +
+	'../src/valida.js' +
+' > ' +
 	'../dist/jquery.linha.plugins.js'
 );
 
@@ -30,8 +30,8 @@ Tuild.command(
  * Versão MIN - adicionar manualmente no arquivo plugins.js
  */
 Tuild.command(
-'js -min --no-hint ' + ( (watch) ? '--watch ': '' ) + 
-	'../dist/jquery.linha.plugins.js' + 
-' > ' + 
+'js -min --no-hint ' + ( (watch) ? '--watch ': '' ) +
+	'../dist/jquery.linha.plugins.js' +
+' > ' +
 	'../dist/jquery.linha.plugins.min.js'
 );

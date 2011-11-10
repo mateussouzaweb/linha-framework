@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pt-br">
 <head>
-	
+
 	<meta charset="utf-8">
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	<meta name="robots" content="index,follow">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<link rel="canonical" href="/">
-	
+
 	<title>Linha Framework - jQuery Acord</title>
-	
+
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="../../html/favicon.ico">
 
@@ -30,25 +30,25 @@
 		padding: 50px;
 	}
 	</style>
-	
+
 	<!-- JS -->
 	<script src="../../html/js/jquery.js"></script>
 	<script src="../src/acord.js"></script>
 	<script src="../src/acord.slide.js"></script>
-	
+
 	<script>
 	$(document).ready(function(){
-		
+
 		$('#accordion1').acord({
 			tempoIn: 100,
 			tempoOut: 100,
 			autoHeight: true
 		});
-		
+
 		$('#accordion2').acord({
 			inicial: 2
 		});
-		
+
 		$('ul').acord({
 			evento: 'mouseover',
 			pai: 'li span',
@@ -57,14 +57,14 @@
 			tempoOut: 400,
 			autoHeight: true
 		});
-		
+
 		$('#accordion4').acord({
 			tempoIn: 100,
 			tempoOut: 100,
 			sempreUm: false,
 			inicial: 2
 		});
-		
+
 		/**
 		 * Live
 		 * Por enquando as opções deste accordion estão "guardadas"...
@@ -75,7 +75,7 @@
 			tempoOut: 0,
 			live: true
 		});
-		
+
 		$('button').click(function(){
 			$.ajax({
 				url: 'ajax/acord.html',
@@ -83,9 +83,9 @@
 					$('#live').html(data);
 				}
 			});
-			
+
 		});
-		
+
 		/**
 		 * Easing
 		 */
@@ -95,7 +95,7 @@
 			tempoIn: 1500,
 			tempoOut: 500
 		});
-		
+
 		/**
 		 * Hash
 		 */
@@ -103,20 +103,20 @@
 			pai: 'a',
 			hash: true
 		});
-		
+
 		/**
 		 * FX
 		 */
 		$('#accordion8').acord({
 			fx: 'slide'
 		});
-		
+
 	});
 	</script>
-	
+
 </head>
 <body>
-	
+
 	<h3>Accordion com autoHeight e Tempo Personalizado</h3>
 	<pre class="alert yellow">
 	$('#accordion1').acord({
@@ -128,13 +128,13 @@
 	<div class="acord" id="accordion1">
 		<h2>Parte 1</h2>
 		<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<h2>Parte 2</h2>
 		<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<h2>Parte 3</h2>
 		<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<h2>Parte 4</h2>
 		<div>
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
@@ -143,7 +143,7 @@
 	</div>
 	<br/>
 	<!-- #accordion1 -->
-	
+
 	<h3>Accordion com Valor Inicial Personalizado</h3>
 	<pre class="alert yellow">
 	$('#accordion2').acord({
@@ -151,25 +151,25 @@
 	});
 	</pre>
 	<div class="acord" id="accordion2">
-		
+
 		<h2>Parte 1</h2>
 		<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<h2>Parte 2</h2>
 		<div>
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 		</div>
-		
+
 		<h2>Parte 3</h2>
 		<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<h2>Parte 4</h2>
 		<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
 	</div>
 	<br/>
 	<!-- #accordion2 -->
-	
+
 	<h3>Accordion com Evento Mouseenter e Marcação HTML Diferenciada</h3>
 	<pre class="alert yellow">
 	$('ul').acord({
@@ -189,7 +189,7 @@
 				<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
 			</div>
 		</li>
-		
+
 		<li><span>Parte 2</span>
 			<div>
 				<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
@@ -197,7 +197,7 @@
 				<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
 			</div>
 		</li>
-		
+
 		<li><span>Parte 3</span>
 			<div>
 				<p>Donec aliquam cursus tortor, faucibus lobortis convallis.</p>
@@ -208,7 +208,7 @@
 	</ul>
 	<br/>
 	<!-- #accordion3 -->
-	
+
 	<h3>Accordion com Ajax e sempreUm = false</h3>
 	<pre class="alert yellow">
 	$('#accordion4').acord({
@@ -223,16 +223,16 @@
 		<div>
 			<p>Texto alternativo se não carregar o ajax...</p>
 		</div>
-		
+
 		<h2 class='ajax' url="ajax-que-nao-existe.html">Parte 2</h2>
 		<div>
 			<p>Esta url não existe, por isso está sendo exibido essa mensagem alternativa. Veja o código fonte para melhor compreensão.</p>
 			<p>Neste exemplo o único que tem uma url válida é o "Parte 1", os demais são conteúdo simples...</p>
 		</div>
-		
+
 		<h2>Parte 3</h2>
 		<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<h2>Parte 4</h2>
 		<div>
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
@@ -241,15 +241,15 @@
 	</div>
 	<br/>
 	<!-- #accordion4 -->
-	
+
 	<h1>Live Accordion</h1><hr/>
 	<button>Clique para carregar accordion</button>
 	<br/><br/>
 	<div id="live"></div>
 	<br/>
 	<!-- #accordion5 (LIVE) -->
-	
-	<h1>Usando Easing</h1><hr/> 
+
+	<h1>Usando Easing</h1><hr/>
 	<pre class="alert yellow">
 	$('#accordion6').acord({
 		easingIn: 'easeInOutCirc',
@@ -261,13 +261,13 @@
 	<div class="acord" id="accordion6">
 		<h2>Parte 1</h2>
 		<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<h2>Parte 2</h2>
 		<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<h2>Parte 3</h2>
 		<div><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<h2>Parte 4</h2>
 		<div>
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
@@ -276,10 +276,10 @@
 	</div>
 	<br/>
 	<!-- #accordion6 (EASING) -->
-	
+
 	<h1>Com Hash</h1>
-	<p>Altere o hash clicando em um elemento pai e depois atualize a página</p><hr/> 
-	
+	<p>Altere o hash clicando em um elemento pai e depois atualize a página</p><hr/>
+
 	<pre class="alert yellow">
 	$('#accordion7').acord({
 		pai: 'a',
@@ -289,13 +289,13 @@
 	<div class="acord" id="accordion7">
 		<a href="#hash1">Parte 1</a>
 		<div id="hash1"><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<a href="#hash2">Parte 2</a>
 		<div id="hash2"><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<a href="#hash3">Parte 3</a>
 		<div id="hash3"><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p></div>
-		
+
 		<a href="#hash4">Parte 4</a>
 		<div id="hash4">
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
@@ -304,7 +304,7 @@
 	</div>
 	<br/>
 	<!-- #accordion7 - HASH -->
-	
+
 	<h3>Accordion com FX Slide</h3>
 	<pre class="alert yellow">
 	$('#accordion8').acord({
@@ -315,33 +315,33 @@
 		<h2>Parte 1</h2>
 		<div>
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-			
+
 			<p class="descricao">Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 		</div>
-		
+
 		<h2>Parte 2</h2>
 		<div>
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-			
+
 			<p class="descricao">Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 		</div>
-		
+
 		<h2>Parte 3</h2>
 		<div>
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-			
+
 			<p class="descricao">Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 		</div>
-		
+
 		<h2>Parte 4</h2>
 		<div>
 			<p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-		
+
 			<p class="descricao">Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
 		</div>
 	</div>
 	<br/>
 	<!-- #accordion8 - FX -->
-	
+
 </body>
 </html>

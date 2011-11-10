@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pt-br">
 <head>
-	
+
 	<meta charset="utf-8">
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	<meta name="robots" content="index,follow">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<link rel="canonical" href="/">
-	
+
 	<title>Linha Framework - jQuery Nav</title>
-	
+
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="../../html/favicon.ico">
 
@@ -30,34 +30,34 @@
 		padding: 50px;
 	}
 	</style>
-	
+
 	<!-- JS -->
 	<script src="../../html/js/jquery.js"></script>
 	<script src="../src/nav.js"></script>
-	
+
 	<script>
 	$(document).ready(function(){
-		
+
 		$('ul#dropdown li').nav();
-		
+
 		$('ul#menu1 li').nav({
 			evento: 'click',
 			tempoIn: 0,
 			tempoOut: 0
 		});
-		
+
 		$('ul#menu2 li').nav({
 			easingIn: 'easeOutBounce',
 			easingOut: 'easeInBounce',
 			tempoIn: 1500,
 			tempoOut: 1000
 		});
-		
+
 		/**
 		 * Live
 		 */
 		$('ul.menu-ajax li').nav();
-		
+
 		$('button').click(function(){
 			$.ajax({
 				url: 'ajax/nav.html',
@@ -67,13 +67,13 @@
 			});
 		return false;
 		});
-		
+
 	});
 	</script>
-	
+
 </head>
 <body>
-	
+
 	<h3>Menu Simples</h3>
 	<pre class="alert yellow">
 	$('ul#dropdown li').nav();
@@ -122,8 +122,8 @@
 				</li>
 			</ul>
 		</li>
-	</ul>
-	
+	</ul><!-- #dropdown -->
+
 	<div class="clear"></div><br/>
 	<h3>Menu Com Evento Click E Sem Animação</h3>
 	<pre class="alert yellow">
@@ -161,8 +161,8 @@
 		</li>
 		<li><a href="#" title="link">Link</a></li>
 		<li><a href="#" title="link">Link</a></li>
-	</ul>
-	
+	</ul><!-- #menu1 -->
+
 	<h3>Menu Com Easing</h3>
 	<pre class="alert yellow">
 	$('ul#menu2 li').nav({
@@ -200,22 +200,22 @@
 		</li>
 		<li><a href="#" title="link">Link</a></li>
 		<li><a href="#" title="link">Link</a></li>
-	</ul>
-	
+	</ul><!-- #menu2 -->
+
 	<div class="clear"></div><br/>
 	<h3>Menu Via AJAX :)</h3>
 	<pre class="alert yellow">
 		$('ul.menu-ajax li').nav();
 	</pre>
 	<p><button>Clique para carregar menu</button></p>
-	
-	<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-	suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+
+	<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam
+	suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis.
 	Pellentesque at nisl nibh. </p><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-	
-	<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam 
-	suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis. 
+
+	<p><strong>Aliquam suscipit</strong> sodales sapien eu egestas. Nulla laoreet sem ac diam
+	suscipit condimentum. Vestibulum tempor odio iaculis enim cursus pharetra faucibus dui lobortis.
 	Pellentesque at nisl nibh. </p><p>Donec aliquam cursus tortor, faucibus lobortis convallis. Integer pharetra consequat felis, id malesuada metus vulputate a. Nunc ut magna massa. Donec commodo odio a ligula varius id vulputate nulla tristique. Suspendisse et egestas dolor. Aliquam hendrerit accumsan porta. Nam vehicula eleifend sem eu pellentesque.</p>
-	
+
 </body>
 </html>

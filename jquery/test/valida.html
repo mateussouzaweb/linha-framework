@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pt-br">
 <head>
-	
+
 	<meta charset="utf-8">
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	<meta name="robots" content="index,follow">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<link rel="canonical" href="/">
-	
+
 	<title>Linha Framework - jQuery Valida</title>
-	
+
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="../../html/favicon.ico">
 
@@ -30,28 +30,28 @@
 		padding: 50px;
 	}
 	</style>
-	
+
 	<!-- JS -->
 	<script src="../../html/js/jquery.js"></script>
 	<script src="../src/valida.js"></script>
-	
+
 	<script>
 	$(document).ready(function(){
-		
+
 		$("#formulario1").valida({
 			redireciona: false,
 			onPassa: function(){
 				alert($(this).serialize());
 			}
 		});
-		
+
 		/**
 		 * Live
 		 */
 		$('#formulario2').valida({
 			live: true
 		});
-		
+
 		$('button').click(function(){
 			$.ajax({
 				url: 'ajax/valida.html',
@@ -59,9 +59,9 @@
 					$('#live').prepend(data);
 				}
 			});
-			
+
 		});
-		
+
 		/**
 		 * Inline
 		 */
@@ -69,13 +69,13 @@
 			inline: true,
 			eventoInline: 'keyup'
 		});
-		
+
 	});
 	</script>
-	
+
 </head>
 <body>
-	
+
 	<h3>Validação Simples de Formulário</h3>
 	<pre class='alert yellow'>
 	$("#formulario1").valida({
@@ -118,7 +118,7 @@
 			<label>Mensagem</label>
 			<textarea rows="5" cols="42" class="valida">Eu vou escrever um texto aqui se quiser enviar esta mensagem</textarea>
 		</p>
-		
+
 		<p>
 			<select name="select" class="valida">
 				<option value="0">-- Selecione --</option>
@@ -126,7 +126,7 @@
 				<option value="2">Não quero saber</option>
 			</select>
 		</p>
-		
+
 		<p>
 			<input type="checkbox" name="checkbox-email" class="valida"/> <label>Enviar por e-mail?</label>
 		</p>
@@ -135,12 +135,12 @@
 			<input type="checkbox" name="checkbox[]" class="valida"/> <label>Checkbox 2</label>
 			<input type="checkbox" name="checkbox[]" class="valida"/> <label>Checkbox 3</label>
 		</p>
-		
+
 		<p><label>Sexo</label>
 			<input type="radio" name="sexo" value="homem" class="valida"/> Homem
 			<input type="radio" name="sexo" value="mulher" class="valida"/> Mulher
 		</p>
-		
+
 		<p><label>O que tem no seu jardim?</label>
 		<select name="garden" multiple="multiple" class="valida">
 			<option>Flowers</option>
@@ -154,10 +154,9 @@
 		<p>
 			<input type="submit" class="enviar" value="Enviar"/>
 		</p>
-		
-	</form>
-	<!-- Fim FORM 1 -->
-	
+
+	</form><!-- #formulario1 -->
+
 	<h3>Formulário via Ajax</h3>
 	<pre class='alert yellow'>
 	$('#formulario2').valida({
@@ -167,8 +166,8 @@
 	<p><button>Clique para carregar formulario</button></p>
 	<div id="live"></div>
 	<br>
-	<!-- Fim FORM 2 -->
-	
+	<!-- #live -->
+
 	<h3>Validação Inline</h3>
 	<pre class='alert yellow'>
 	$('#formulario3').valida({
@@ -185,9 +184,8 @@
 			<label>URL</label>
 			<input type="text" class='valida url'/>
 		</p>
-	</form>
-	<!-- Fim FORM 3 -->
-	
+	</form><!-- #formulario3 -->
+
 </div>
 
 </body>
