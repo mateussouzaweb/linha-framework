@@ -1,6 +1,6 @@
 /*!
  * Eventos jQuery
  */
-$(document).ready(function(){
+$(function(){
 
 });
