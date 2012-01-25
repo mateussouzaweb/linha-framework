@@ -1,7 +1,7 @@
-/**
- * PRINT - Estilo de mídia print
- * </> Print Reset
- */
+//
+// PRINT - Estilo de mídia print
+// </> Print Reset
+//
 
 /* PRINT RESET */
 /* ----------------------------------------- */
@@ -18,9 +18,10 @@
 	a, a:visited{
 		color: #444 !important;
 		text-decoration: underline;
-	}
-	a:after{
-		content: " (" attr(href) ")";
+
+		&:after{
+			content: " (" attr(href) ")";
+		}
 	}
 	abbr:after{
 		content: " (" attr(title) ")";

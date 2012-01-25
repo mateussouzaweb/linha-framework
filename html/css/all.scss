@@ -1,12 +1,12 @@
-/**
- * ALL - Estilo de mídia all, presente em todos os tipos de mídia:
- * </> Reset + HTML5 Reset
- * </> Tipografia
- * </> Formulários
- * </> Grid
- * </> Grid Responsive
- * </> Grid Helpers
- */
+//
+// ALL - Estilo de mídia all, presente em todos os tipos de mídia:
+// </> Reset + HTML5 Reset
+// </> Tipografia
+// </> Formulários
+// </> Grid
+// </> Grid Responsive
+// </> Grid Helpers
+//
 
 /* RESET + HTML5 Reset */
 /* ----------------------------------------- */
@@ -160,14 +160,17 @@ h1, h2, h3, h4, h5, h6{
 	display: block;
 	line-height: 100%;
 	margin-bottom: 10px;
+
+	a{
+		display: inline-block;
+	}
 }
+
 h1{ font-size: 250%; }
 h2{ font-size: 200%; }
 h3{ font-size: 150%; }
 h4{ font-size: 120%; }
 h5, h6{ font-size: 100%; }
-
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{ display: inline-block; }
 
 /* TEXTOS */
 p, ul, ol{ margin-bottom: 15px; }
@@ -191,16 +194,19 @@ dd{ margin-left: 1.5em; }
 /* TABELAS */
 table{
 	margin-bottom: 10px;
-}
-table tr th{
-	background: #EEE;
-	border: 1px solid #CCC;
-	padding: 5px 10px;
-	vertical-align: middle;
-}
-table tr td{
-	border: 1px solid #DDD;
-	padding: 5px 10px;
+
+	tr{
+		th{
+			background: #EEE;
+			border: 1px solid #CCC;
+			padding: 5px 10px;
+			vertical-align: middle;
+		}
+		td{
+			border: 1px solid #DDD;
+			padding: 5px 10px;
+		}
+	}
 }
 
 /* OUTROS */
@@ -226,46 +232,43 @@ mark{
 blockquote{
 	background: #F2F2F2;
 	border: 1px solid #CCC;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
 	margin-bottom: 10px;
 	padding: 10px 20px 0px;
+	@include border-radius(3px);
 }
 
 /* ALERTAS */
 .alert{
 	background: #EDEDED;
 	border: 1px solid #C0C0C0;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
 	color: #333;
 	display: block;
 	margin: 5px 0;
 	padding: 10px;
-}
-.green{
-	background-color: #E9F9E5;
-	border-color: #9BDEA8;
-	color: #1C8400;
-}
-.red{
-	background-color: #F9E5E6;
-	border-color: #DF8F8F;
-	color: #C32727;
-}
-.yellow{
-	background-color: #FFF6BF;
-	border-color: #EFC20E;
-}
-.blue{
-	background-color: #DDEEFF;
-	border-color: #85CAF3;
-	color: #0055B5;
-}
-.error{
-	border-color: #F00;
+	@include border-radius(3px);
+
+	&.green{
+		background-color: #E9F9E5;
+		border-color: #9BDEA8;
+		color: #1C8400;
+	}
+	&.red{
+		background-color: #F9E5E6;
+		border-color: #DF8F8F;
+		color: #C32727;
+	}
+	&.yellow{
+		background-color: #FFF6BF;
+		border-color: #EFC20E;
+	}
+	&.blue{
+		background-color: #DDEEFF;
+		border-color: #85CAF3;
+		color: #0055B5;
+	}
+	&.error{
+		border-color: #F00;
+	}
 }
 
 /* HELPERS */
@@ -302,38 +305,44 @@ input, textarea{
 	background: #FFF url(../img/input.png) repeat-x top;
 	border: 1px solid;
 	border-color: #BBB #DDD #DDD #BBB;
-	border-radius: 1px;
-	-moz-border-radius: 1px;
-	-webkit-border-radius: 1px;
 	padding: 8px;
 	width: 280px;
+	@include border-radius(1px);
+
+	&:focus{
+		background-color: #FCFCFC;
+		border-color: #AAA;
+	}
 }
+input{
+
+	&[type="radio"],
+	&[type="checkbox"]{
+		background: none;
+		border: none;
+		padding: 0;
+		width: auto;
+	}
+
+	&[type="submit"]{
+		background: #434343;
+		border: 1px solid #222;
+		color: #FFF;
+		cursor: pointer;
+		display: inline-block;
+		height: 30px;
+		overflow: visible;
+		padding: 6px 10px;
+		text-shadow: 1px 1px 1px #000;
+		width: auto;
+		@include border-radius(2px);
+	}
+}
+
 textarea{
 	min-height: 100px;
 	min-width: 200px;
 }
-input[type="radio"], input[type="checkbox"]{
-	background: none;
-	border: none;
-	padding: 0;
-	width: auto;
-}
-input[type="submit"]{
-	background: #434343;
-	border: 1px solid #222;
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	color: #FFF;
-	cursor: pointer;
-	display: inline-block;
-	height: 30px;
-	overflow: visible;
-	padding: 6px 10px;
-	text-shadow: 1px 1px 1px #000;
-	width: auto;
-}
-
 select{
 	line-height: 1em;
 	margin-top: 7px;
@@ -343,15 +352,11 @@ option{
 	padding: 2px 8px 0;
 }
 
-input:focus,
-textarea:focus{
-	background-color: #FCFCFC;
-	border-color: #AAA;
-}
-
 /* GRID */
 /* ----------------------------------------- */
-.grid-12, .grid-16, .grid-24{
+.grid-12,
+.grid-16,
+.grid-24{
 	margin-left: auto;
 	margin-right: auto;
 	width: 960px;
@@ -363,108 +368,120 @@ textarea:focus{
 	margin-right: 10px;
 }
 
-/* 12 COLUNAS */
-.grid-12 .width1{ width: 60px; }
-.grid-12 .width2{ width: 140px; }
-.grid-12 .width3{ width: 220px; }
-.grid-12 .width4{ width: 300px; }
-.grid-12 .width5{ width: 380px; }
-.grid-12 .width6{ width: 460px; }
-.grid-12 .width7{ width: 540px; }
-.grid-12 .width8{ width: 620px; }
-.grid-12 .width9{ width: 700px; }
-.grid-12 .width10{ width: 780px; }
-.grid-12 .width11{ width: 860px; }
-.grid-12 .width12{ width: 940px; }
+/* GRID 12 COLUNAS */
+.grid-12{
+	.width1{ width: 60px; }
+	.width2{ width: 140px; }
+	.width3{ width: 220px; }
+	.width4{ width: 300px; }
+	.width5{ width: 380px; }
+	.width6{ width: 460px; }
+	.width7{ width: 540px; }
+	.width8{ width: 620px; }
+	.width9{ width: 700px; }
+	.width10{ width: 780px; }
+	.width11{ width: 860px; }
+	.width12{ width: 940px; }
+}
 
-/* 16 COLUNAS */
-.grid-16 .width1{ width: 40px; }
-.grid-16 .width2{ width: 100px; }
-.grid-16 .width3{ width: 160px; }
-.grid-16 .width4{ width: 220px; }
-.grid-16 .width5{ width: 280px; }
-.grid-16 .width6{ width: 340px; }
-.grid-16 .width7{ width: 400px; }
-.grid-16 .width8{ width: 460px; }
-.grid-16 .width9{ width: 520px; }
-.grid-16 .width10{ width: 580px; }
-.grid-16 .width11{ width: 640px; }
-.grid-16 .width12{ width: 700px; }
-.grid-16 .width13{ width: 760px; }
-.grid-16 .width14{ width: 820px; }
-.grid-16 .width15{ width: 880px; }
-.grid-16 .width16{ width: 940px; }
+/* GRID 16 COLUNAS */
+.grid-16{
+	.width1{ width: 40px; }
+	.width2{ width: 100px; }
+	.width3{ width: 160px; }
+	.width4{ width: 220px; }
+	.width5{ width: 280px; }
+	.width6{ width: 340px; }
+	.width7{ width: 400px; }
+	.width8{ width: 460px; }
+	.width9{ width: 520px; }
+	.width10{ width: 580px; }
+	.width11{ width: 640px; }
+	.width12{ width: 700px; }
+	.width13{ width: 760px; }
+	.width14{ width: 820px; }
+	.width15{ width: 880px; }
+	.width16{ width: 940px; }
+}
 
-/* 24 COLUNAS */
-.grid-24 .column{ margin-left: 5px; margin-right: 5px; }
-.grid-24 .width1{ width: 30px; }
-.grid-24 .width2{ width: 70px; }
-.grid-24 .width3{ width: 110px; }
-.grid-24 .width4{ width: 150px; }
-.grid-24 .width5{ width: 190px; }
-.grid-24 .width6{ width: 230px; }
-.grid-24 .width7{ width: 270px; }
-.grid-24 .width8{ width: 310px; }
-.grid-24 .width9{ width: 350px; }
-.grid-24 .width10{ width: 390px; }
-.grid-24 .width11{ width: 430px; }
-.grid-24 .width12{ width: 470px; }
-.grid-24 .width13{ width: 510px; }
-.grid-24 .width14{ width: 550px; }
-.grid-24 .width15{ width: 590px; }
-.grid-24 .width16{ width: 630px; }
-.grid-24 .width17{ width: 670px; }
-.grid-24 .width18{ width: 710px; }
-.grid-24 .width19{ width: 750px; }
-.grid-24 .width20{ width: 790px; }
-.grid-24 .width21{ width: 830px; }
-.grid-24 .width22{ width: 870px; }
-.grid-24 .width23{ width: 910px; }
-.grid-24 .width24{ width: 950px; }
+/* GRID 24 COLUNAS */
+.grid-24{
+	.column{
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	.width1{ width: 30px; }
+	.width2{ width: 70px; }
+	.width3{ width: 110px; }
+	.width4{ width: 150px; }
+	.width5{ width: 190px; }
+	.width6{ width: 230px; }
+	.width7{ width: 270px; }
+	.width8{ width: 310px; }
+	.width9{ width: 350px; }
+	.width10{ width: 390px; }
+	.width11{ width: 430px; }
+	.width12{ width: 470px; }
+	.width13{ width: 510px; }
+	.width14{ width: 550px; }
+	.width15{ width: 590px; }
+	.width16{ width: 630px; }
+	.width17{ width: 670px; }
+	.width18{ width: 710px; }
+	.width19{ width: 750px; }
+	.width20{ width: 790px; }
+	.width21{ width: 830px; }
+	.width22{ width: 870px; }
+	.width23{ width: 910px; }
+	.width24{ width: 950px; }
+}
 
-/* GRID RESPONSIVE
-   Basicamente este grid se adpta a resolução do navegador, usando @media max-width - CSS3
-   Colunas de width maior do que o permitido, serão convertidas para o width máximo, se adptando a resolução
-
-   Você também pode usar classes hide de acordo com a resolução
-
-   SCREEN    AREA   "LIVRE"   COLUNAS
-   480       280    260       4
-   620       420    400       6
-   768       560    540       8
-   1024      700    680       10
-   1280      980    960       14
-   1440      1190   1170      17
-   1680      1330   1310      19
------------------------------------------ */
+/* GRID RESPONSIVE */
+//
+// Basicamente este grid se adpta a resolução do navegador,
+// Usa @media max-width - CSS3
+// Colunas de width maior do que o permitido, serão convertidas para o width máximo, se adptando a resolução
+//
+// Você também pode usar classes hide de acordo com a resolução
+//
+// SCREEN    AREA   "LIVRE"   COLUNAS
+// 480       280    260       4
+// 620       420    400       6
+// 768       560    540       8
+// 1024      700    680       10
+// 1280      980    960       14
+// 1440      1190   1170      17
+// 1680+      1330   1310      19
+//
 .grid-responsive{
 	display: block;
 	margin: 0 auto;
 	max-width: 1330px;
 	overflow: hidden;
+
+	.width1{ width: 50px; }
+	.width2{ width: 120px; }
+	.width3{ width: 190px; }
+	.width4{ width: 260px; }
+	.width5{ width: 330px; }
+	.width6{ width: 400px; }
+	.width7{ width: 470px; }
+	.width8{ width: 540px; }
+	.width9{ width: 610px; }
+	.width10{ width: 680px; }
+	.width11{ width: 750px; }
+	.width12{ width: 820px; }
+	.width13{ width: 890px; }
+	.width14{ width: 960px; }
+	.width15{ width: 1030px; }
+	.width16{ width: 1100px; }
+	.width17{ width: 1170px; }
+	.width18{ width: 1240px; }
+	.width19{ width: 1310px; }
+
 }
 
-.grid-responsive .width1{ width: 50px; }
-.grid-responsive .width2{ width: 120px; }
-.grid-responsive .width3{ width: 190px; }
-.grid-responsive .width4{ width: 260px; }
-.grid-responsive .width5{ width: 330px; }
-.grid-responsive .width6{ width: 400px; }
-.grid-responsive .width7{ width: 470px; }
-.grid-responsive .width8{ width: 540px; }
-.grid-responsive .width9{ width: 610px; }
-.grid-responsive .width10{ width: 680px; }
-.grid-responsive .width11{ width: 750px; }
-.grid-responsive .width12{ width: 820px; }
-.grid-responsive .width13{ width: 890px; }
-.grid-responsive .width14{ width: 960px; }
-.grid-responsive .width15{ width: 1030px; }
-.grid-responsive .width16{ width: 1100px; }
-.grid-responsive .width17{ width: 1170px; }
-.grid-responsive .width18{ width: 1240px; }
-.grid-responsive .width19{ width: 1310px; }
-
-/* MEDIA QUERIES */
+/* GRID RESPONSIVE - MEDIA QUERIES */
 @media screen and (max-width: 480px){
 	.grid-responsive{ width: 280px; }
 	.grid-responsive .column{ max-width: 260px; }
