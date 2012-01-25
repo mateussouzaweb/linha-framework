@@ -1,4 +1,4 @@
-# Força a última versão do IE
+# Força a última versão do IE & Chrome Frame
 <IfModule mod_headers.c>
 	Header set X-UA-Compatible "IE=Edge,chrome=1"
 	# Força mod_headers em tudo...
