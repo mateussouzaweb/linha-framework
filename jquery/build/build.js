@@ -21,7 +21,7 @@ Tuild.command(
 	'../src/nav.js+' +
 	'../src/slidetabs.js+' +
 	'../src/tooltip.js+' +
-	'../src/valida.js' +
+	'../src/validate.js' +
 ' > ' +
 	'../dist/jquery.linha.plugins.js'
 );

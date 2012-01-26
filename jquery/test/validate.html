@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-br">
+<head>
+
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0; maximum-scale=1.0">
+
+	<meta name="robots" content="index,follow">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="canonical" href="/">
+
+	<title>Linha Framework - jQuery Validate</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../html/favicon.ico">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="../../html/css/styles.css">
+
+	<!-- Modernizr -->
+	<script src="../../html/js/modernizr.min.js"></script>
+
+	<style>
+	body{
+		background: #FFF;
+		display: block;
+		padding: 50px;
+	}
+	</style>
+
+	<!-- JS -->
+	<script src="../../html/js/jquery.js"></script>
+	<script src="../src/validate.js"></script>
+
+	<script>
+	$(document).ready(function(){
+
+		$('#form1').validate({
+			redirect: false,
+			onValidate: function(){
+				alert( $(this).serialize() );
+			}
+		});
+
+		/**
+		 * Ajax
+		 */
+		$('button').click(function(){
+
+			$.ajax({
+				url: 'ajax/validate.html',
+				success: function(data){
+					$('#live').prepend(data);
+
+					// The trick
+					$('#form2').validate();
+
+				}
+			});
+
+		});
+
+		/**
+		 * Inline
+		 */
+		$('#form3').validate({
+			inline: true,
+			inlineEvent: 'keyup'
+		});
+
+	});
+	</script>
+
+</head>
+<body>
+
+	<h3>Validação Simples de Formulário</h3>
+
+<pre class='alert yellow'>
+<code>$("#form1").validate({
+	redirect: false,
+	onValidate: function(){
+		alert( $(this).serialize() );
+	}
+});</code></pre><br/>
+
+	<form action="#" method="GET" id="form1">
+		<p>
+			<label>Nome</label></br>
+			<input type="text" name="nome" required />
+		</p>
+		<p>
+			<label>E-mail</label></br>
+			<input type="email" name="email" required />
+		</p>
+		<p>
+			<label>URL</label></br>
+			<input type="url" name="url" required />
+		</p>
+		<p>
+			<label>Número</label></br>
+			<input type="text" name="numero" value="10" data-type="number" required />
+		</p>
+		<p>
+			<label>Assunto</label></br>
+			<input type="text" name="assunto" value="Pattern personalizado... somente números" pattern="(^-?\d\d*\.\d*$)|(^-?\d\d*$)|(^-?\.\d\d*$)|(^-?\d*$)" required />
+		</p>
+		<p>
+			<label>Mensagem</label></br>
+			<textarea rows="5" cols="42" required>Eu vou escrever um texto aqui se quiser enviar esta mensagem</textarea>
+		</p>
+
+		<p>
+			<select name="select" required>
+				<option value="0">-- Selecione --</option>
+				<option value="1">Não sei</option>
+				<option value="2">Não quero saber</option>
+			</select>
+		</p>
+
+		<p>
+			<input type="checkbox" name="checkbox-email" required /> <label>Enviar por e-mail?</label>
+		</p>
+		<p>
+			<input type="checkbox" name="checkbox[]" required /> <label>Checkbox 1</label>
+			<input type="checkbox" name="checkbox[]" required /> <label>Checkbox 2</label>
+			<input type="checkbox" name="checkbox[]" required /> <label>Checkbox 3</label>
+		</p>
+
+		<p><label>Sexo</label>
+			<input type="radio" name="sexo" value="homem" required /> Homem
+			<input type="radio" name="sexo" value="mulher" required /> Mulher
+		</p>
+
+		<p><label>O que tem no seu jardim?</label></br>
+		<select name="garden" multiple="multiple" required>
+			<option>Flowers</option>
+			<option>Shrubs</option>
+			<option>Trees</option>
+			<option>Bushes</option>
+			<option>Grass</option>
+			<option>Dirt</option>
+		</select>
+		</p>
+		<p>
+			<input type="submit" value="Enviar"/>
+		</p>
+
+	</form><!-- #form1 -->
+
+	<h3>Formulário via Ajax</h3>
+<pre class='alert yellow'>
+<code>$('button').click(function(){
+
+	$.ajax({
+		url: 'ajax/validate.html',
+		success: function(data){
+			$('#live').prepend(data);
+
+			// The trick
+			$('#form2').validate();
+		}
+	});
+});</code></pre><br/>
+
+	<p><button>Clique para carregar formulario</button></p>
+	<div id="live"></div><!-- #live -->
+
+	<br><h3>Validação Inline</h3>
+
+<pre class='alert yellow'>
+<code>$('#form3').validate({
+	inline: true,
+	inlineEvent: 'keyup'
+});</code></pre><br/>
+
+	<form id="form3">
+		<p>
+			<label>E-mail</label><br/>
+			<input type="email" required/>
+		</p>
+		<p>
+			<label>URL</label><br/>
+			<input type="url" required/>
+		</p>
+	</form><!-- #form3 -->
+
+</body>
+</html>

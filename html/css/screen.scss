@@ -453,8 +453,9 @@
 	}
 
 	/* VALIDA */
-	body{
-		.valida-erro{
+	input, textarea, select{
+
+		&.error{
 			background-color: #ffcfcf;
 			border: 1px solid #d7162b;
 
@@ -464,9 +465,14 @@
 			}
 		}
 
-		input[type="checkbox"].valida-erro + label,
-		input[type="radio"].valida-erro + label{
-			color: #B50012;
+	}
+
+	input.error{
+		&[type="checkbox"],
+		&[type="radio"]{
+			+ label{
+				color: #B50012;
+			}
 		}
 	}
 
