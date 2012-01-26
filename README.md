@@ -8,12 +8,13 @@ MIT and GPL License - <http://www.opensource.org/licenses/mit-license.php> || <h
 ### Documentação
 Para ver a documentação completa, visite <http://linhaframework.org/docs/>
 
-PLUGINS USADOS
-==============
+CORE OF THE SYSTEM
+==================
 Tudo isto não foi trabalho apenas do LF, devo dar os créditos a:
 
  * Modernizr - <http://www.modernizr.com/>
  * jQuery - <http://jquery.com/>
+ * Sass - <http://sass-lang.com/>
  * Tuild - <https://github.com/mateus007/tuild>
  * HTML5 Boilerplate (Fonte de inspiração para algumas partes do LF) - <https://github.com/paulirish/html5-boilerplate>
  * GitHub.com (vários projetos :P) - <https://github.com/mateus007/following>
@@ -23,8 +24,10 @@ RECOMENDAÇÕES & DICAS
 =====================
 Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo algumas dicas e recomendações:
 
+ * Compre um OSX ou use Linux - dê adeus ao Windows!
+ * Aprenda a usar o Sass & Tuild - ESSÊNCIAL
  * Aprenda a trabalhar com medidas padrões - Grids
- * Escolha um padrão de Grid e apague os demais (html/css/all.css)
+ * Delete o que você não usa...
  * Carregue JS dinamicamente, usando um plugin para lazy loading (YepNope)
  * Compile uma versão mais exclusiva do Modernizr pelo site do desenvolvedor
  * Use o build incluso no framework para criar versões minifield do seu código
@@ -35,22 +38,22 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
 
 CHANGELOG
 =====================
-#### 1.3 - XX de XXXXXXXX de 2011
+#### 1.3 - XX de XXXXXXXX de 2012
 
  * Código agora está no padrão internacional - INGLÊS (Código, não comentários e textos...)
  * HTML migrado para HTML5 (não vá confundir com as funcionalidades do HTML5)
  * Adicionado os arquivos example.htaccess (quando concluir renomei para .htaccess) e robots.txt
- * Atualização jQuery para V. 1.6.4
- * Movimentação para changelog
+ * Reestruturação dos arquivos
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
+ * Removido plugin Linha Focuss (o HTML5 oferece o atributo "placeholder" como alternativa)
  * Novo build para JS - Tuild, feito em NodeJS
  * Adicionado plugin Modernizr
+ * Atualização jQuery para V. 1.7.1
  * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
- * Reestruturação dos arquivos
- * Arquivos CSS simplificados em 3 arquivos (anteriormente eram 7)
- * Novo sistema de grid: responsive
- * Removido plugin Linha Focuss (o HTML5 oferece o atributo "placeholder" como alternativa)
+ * Arquivos CSS simplificados em 1 arquivo (anteriormente eram 7)
+ * Estilos CSS a lá OOCSS, gerenciados com Sass
+ * Novo sistema de grid: Responsive
 
 #### 1.2 - 23 de Setembro de 2010
 
@@ -209,6 +212,11 @@ CHANGELOG Plugins jQuery Linha Framework
  * Inicial
 
 ### Linha VALIDA:
+#### 1.2
+* Plugin renomeado de Valida para Validate
+* Validação agora usa atributos HTML5 para validar os campos, como o atributo required, pattern, types: email, url, number...
+* Elementos com o atributo "disabled" não devem ser validados.
+
 #### 1.1
 
  * Adicionado suporte a validação inline
