@@ -54,6 +54,7 @@ CHANGELOG
  * Arquivos CSS simplificados em 1 arquivo (anteriormente eram 7)
  * Estilos CSS a lá OOCSS, gerenciados com Sass
  * Novo sistema de grid: Responsive
+ * Makefile para executar tarefas comuns
 
 #### 1.2 - 23 de Setembro de 2010
 
