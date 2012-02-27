@@ -91,6 +91,8 @@ label, input[type="button"], input[type="submit"], button{ cursor: pointer; }
 
 textarea{ overflow: auto; }
 
+* { -moz-box-sizing: border-box; box-sizing: border-box; }
+
 :focus{ outline: 0; }
 
 ::-moz-selection{
