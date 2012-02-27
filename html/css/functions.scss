@@ -156,7 +156,7 @@
     $full: compact($shadow1, $shadow2, $shadow3, $shadow4,
                    $shadow5, $shadow6, $shadow7, $shadow8, $shadow9);
 
-	-webkit-box-shadow: $shadow1;
+	-webkit-box-shadow: $full;
     -moz-box-shadow: $full;
     -ms-box-shadow: $full;
     -o-box-shadow: $full;
