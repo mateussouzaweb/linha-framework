@@ -33,6 +33,56 @@
 	@return $compact;
 }
 
+// BACKGROUND-CLIP
+@mixin background-clip( $clip: border-box ){
+
+	$clip: unquote($clip);
+  	$deprecated: $clip;
+  	@if $clip == padding-box { $deprecated: padding; }
+  	@if $clip == border-box { $deprecated: border; }
+
+	-webkit-background-clip: $deprecated;
+	-moz-background-clip: $deprecated;
+	-ms-background-clip: $clip;
+	-o-background-clip: $clip;
+	background-clip: $clip;
+}
+
+// BACKGROUND-ORIGIN
+@mixin background-origin( $origin: padding-box ){
+
+	$origin: unquote($origin);
+	$deprecated: $origin;
+	@if $origin == padding-box { $deprecated: padding; }
+	@if $origin == border-box  { $deprecated: border;  }
+	@if $origin == content-box { $deprecated: content; }
+
+	-webkit-background-origin: $deprecated;
+	-moz-background-origin: $deprecated;
+	-ms-background-origin: $origin;
+	-o-background-origin: $origin;
+	background-origin: $origin;
+}
+
+// BACKGROUND-SIZE
+@mixin background-size(
+	$size1,
+	$size2: false, $size3: false,
+	$size4: false, $size5: false,
+	$size6: false, $size7: false,
+	$size8: false, $size9: false
+) {
+
+    $full: compact($size1, $size2, $size3, $size4,
+                   $size5, $size6, $size7, $size8, $size9);
+
+	-webkit-background-size: $full;
+    -moz-background-size: $full;
+    -ms-background-size: $full;
+    -o-background-size: $full;
+    background-size: $full;
+}
+
 // BORDER-RADIUS
 @mixin border-radius ($radius) {
   	-webkit-border-radius: $radius;
@@ -111,6 +161,38 @@
     -ms-box-shadow: $full;
     -o-box-shadow: $full;
     box-shadow: $full;
+}
+
+// BOX-SIZING
+@mixin box-sizing($value: border-box){
+	-webkit-box-sizing: $value;
+	-moz-box-sizing: $value;
+	-ms-box-sizing: $value;
+	-o-box-sizing: $value;
+	box-sizing: $value;
+}
+
+// FONT-FACE
+@mixin font-face($name, $url){
+	@font-face {
+		font-family: quote($name);
+		src: url($url + '.eot');
+		src: local(quote($name)),
+			 url($url + '.eot?#iefix') format('embedded-opentype'),
+			 url($url + 'e.woff') format('woff'),
+			 url($url + '.ttf') format('truetype'),
+			 url($url + '.svg#' + $name) format('svg');
+	}
+}
+
+// OPACITY
+@mixin opacity($value: 1){
+	-webkit-opacity: $value;
+	-moz-opacity: $value;
+	-ms-opacity: $value;
+	-o-opacity: $value;
+	opacity: $value;
+	filter: alpha(opacity=$value*100);
 }
 
 // TRANSFORM
