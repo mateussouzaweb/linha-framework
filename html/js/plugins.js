@@ -40,29 +40,1954 @@
 /*!
  * jQuery Acord 1.3
  */
-(function(a){a.acord={padrao:{fx:"default",extend:{},pai:"h2",filho:"div",classeAjax:"ajax",atributoUrl:"url",evento:"click",hash:!1,inicial:1,sempreUm:!0,autoHeight:!1,tempoIn:"fast",tempoOut:"fast",easingIn:"swing",easingOut:"swing",onAnima:null,live:!1,liveTempo:150},init:function(){var b=a(this).data("acord"),c=a(this).find(b.filho).addClass("acord-filho"),d=a(this).find(b.pai).addClass("acord-pai"),e=window.location.hash;c.each(function(){a(this).css("height",a(this).height()+"px")}),b.hash&&e!==""&&a(e).is(".acord-filho")&&(b.inicial=a(e).prevAll(".acord-filho").length+1),b.sempreUm&&c.eq(b.inicial-1).addClass("acord-filho-atual").show().prev(b.pai).addClass("acord-pai-atual");if(b.autoHeight){var f=0;c.each(function(){f=Math.max(f,a(this).outerHeight())}).height(f),a(this).height(a(this).height()).css({overflow:"hidden"})}b.extend[b.fx+"-init"]&&b.extend[b.fx+"-init"].apply(this),a(this).addClass("acord-"+b.fx),a.acord.bind.apply(this)},bind:function(){var b=a(this).data("acord"),c=a(this);a(".acord-pai",this).bind(b.evento,function(){if(a(this).hasClass("acord-pai-atual"))return!1;this.hash&&(window.location.hash=this.hash);return a(this).hasClass(b.classeAjax)?a.acord.ajax.apply(c,[a(this),a(this).next(".acord-filho")]):a.acord.anima.apply(c,[a(this),a(this).next(".acord-filho")])}),b.sempreUm&&a(".acord-pai-atual",this).hasClass(b.classeAjax)&&a(".acord-pai-atual",this).trigger(b.evento)},destroy:function(){var b=a(this).data("acord");a(".acord-pai",this).unbind(b.evento),a(this).removeData("acord")},fx:{"default":function(b,c){var d=a(this).data("acord");a(d.filho,this).not(c).slideUp(d.tempoIn,d.easingIn),d.sempreUm?c.slideDown(d.tempoOut,d.easingOut):c.slideToggle(d.tempoIn,d.easingIn)}},ajax:function(b,c){var d=a(this).data("acord"),e=this;a.ajax({url:b.attr(d.atributoUrl),success:function(a){c.html(a)},complete:function(){c.height("auto"),a(e).height("auto");return a.acord.anima.apply(e,[b,c])}})},anima:function(b,c){var d=a(this).data("acord");a(".acord-filho-atual",this).removeClass("acord-filho-atual"),a(".acord-pai-atual",this).removeClass("acord-pai-atual"),b.addClass("acord-pai-atual"),c.addClass("acord-filho-atual"),a.isFunction(d.onAnima)&&d.onAnima.apply(this,[b,c]),a.acord.fx[d.fx].apply(this,[b,c]);return!1}},a.fn.acord=function(b){if(a.acord[b])a.acord[b].apply(this,Array.prototype.slice.call(arguments,1));else if(typeof b=="object"||!b){var c=a.extend(!0,{},a.acord.padrao,b);if(c.live){var d=[],e=this.selector;setInterval(function(){var b=a(e).not(d);d=a(e),b.each(function(){a(this).data("acord",c),a.acord.init.apply(this,arguments)})},c.liveTempo)}else this.each(function(){a(this).data("acord",c),a.acord.init.apply(this,arguments)})}return this}})(jQuery);
+(function($){
+
+	$.acord = {
+
+		/**
+		 * Opções
+		 */
+		padrao: {
+
+			fx: 'default',										//Efeito padrão do acord
+			extend: {},											//Métodos extensíveis
+
+			pai: 'h2',											//Seletor pai, ou cabeçalho, header...
+			filho: 'div',										//Seletor filho, este é o que ficará escondido
+
+			classeAjax: 'ajax',									//Classe para accordions em ajax (classe presente no elemento pai)
+			atributoUrl: 'url',									//Atributo para url do accordion em ajax (atributo presente no elemento pai)
+
+			evento: 'click',									//Evento para disparar o efeito accordion
+
+			hash: false,										//Habilitar navegação via hash?
+			inicial: 1,											//Define o acordion que será exibido inicialmente ou default
+
+			sempreUm: true,										//Deixar sempre exibindo um seletor filho no accordion?
+			autoHeight: false,									//Ajustar automaticamente a altura dos elementos filho?
+
+			tempoIn: 'fast',									//Tempo para esconder o seletor filho (Entrada)
+			tempoOut: 'fast',									//Tempo para mostrar o seletor filho (Saída)
+			easingIn: 'swing',									//Animação com easing na entrada (IN)...
+			easingOut: 'swing',									//Animação com easing na saída (OUT)...
+
+			onAnima: null,										//Callback
+
+			live: false,										//Abilitar o monitoramento live
+			liveTempo: 150										//Tempo entra cada checagem, em milisegundos
+		},
+
+		/**
+		 * INIT
+		 */
+		init: function(){
+
+			var o = $(this).data('acord'),
+				f = $(this).find(o.filho).addClass('acord-filho'),
+				p = $(this).find(o.pai).addClass('acord-pai'),
+				hash = window.location.hash;
+
+			/**
+			 * Fix para erros de animação
+			 */
+			f.each(function(){
+				$(this).css('height', $(this).height() + 'px');
+			});
+
+			/**
+			 * Hash navigation
+			 * Usa o parâmetro o.inicial
+			 */
+			if(o.hash && hash !== '' && $(hash).is('.acord-filho')){
+				o.inicial = ($(hash).prevAll('.acord-filho').length) + 1;
+			}
+
+			/**
+			 * Se for sempreUm
+			 */
+			if(o.sempreUm) f.eq(o.inicial - 1).addClass('acord-filho-atual').show().prev(o.pai).addClass('acord-pai-atual');
+
+			/**
+			 * Altura automática
+			 */
+			if(o.autoHeight){
+
+				var h = 0;
+
+				f.each(function(){
+					h = Math.max(h, $(this).outerHeight());
+				}).height(h);
+
+
+				$(this).height( $(this).height() ).css({overflow: 'hidden'});
+			}
+
+			/**
+			 * Extend FX para init
+			 */
+			if(o.extend[o.fx + '-init']) o.extend[o.fx + '-init'].apply(this);
+
+			/**
+			 * Aplica a classe relativa ao FX
+			 */
+			$(this).addClass('acord-' + o.fx);
+
+			$.acord.bind.apply(this);
+		},
+
+		/**
+		 * BIND
+		 */
+		bind: function(){
+
+			var o = $(this).data('acord'),
+				self = $(this);
+
+			/**
+			 * Bind no evento e setagem de valores
+			 */
+			$('.acord-pai', this).bind(o.evento, function(){
+
+				/**
+				 * Previne a repetição do mesmo evento
+				 */
+				if($(this).hasClass('acord-pai-atual')) return false;
+
+				/**
+				 * Altera o hash, se tiver
+				 */
+				if(this.hash) window.location.hash = this.hash;
+
+				/**
+				 * Anima o acord
+				 */
+				if( $(this).hasClass(o.classeAjax) ){
+					return $.acord.ajax.apply( self, [$(this), $(this).next('.acord-filho')] );
+				}
+
+				return $.acord.anima.apply( self, [$(this), $(this).next('.acord-filho')] );
+			});
+
+			/**
+			 * Checa se o inicial é em ajax e já manda a requisição
+			 */
+			if(o.sempreUm && $('.acord-pai-atual', this).hasClass(o.classeAjax)){
+				$('.acord-pai-atual', this).trigger(o.evento);
+			}
+		},
+
+		/**
+		 * DESTROY
+		 */
+		destroy: function(){
+
+			var o = $(this).data('acord');
+
+			$('.acord-pai', this).unbind(o.evento);
+			$(this).removeData('acord');
+
+		},
+
+		/**
+		 * FX
+		 */
+		fx: {
+
+			/**
+			 * Efeito padrão
+			 */
+			'default': function(p, f){
+
+				var o = $(this).data('acord');
+
+				/**
+				 * Anima Slide
+				 */
+				$(o.filho, this).not(f).slideUp(o.tempoIn, o.easingIn);
+
+				if(o.sempreUm){
+					f.slideDown(o.tempoOut, o.easingOut);
+				}else{
+					f.slideToggle(o.tempoIn, o.easingIn);
+				}
+			}
+		},
+
+		/**
+		 * Requisição Ajax
+		 */
+		ajax: function(p, f){
+
+			var o = $(this).data('acord'),
+				self = this;
+
+			$.ajax({
+				url: p.attr(o.atributoUrl),
+				success: function(data){
+					f.html(data);
+				},
+				complete: function(){
+
+					/**
+					 * Ajuste de altura - height
+					 */
+					f.height('auto');
+					$(self).height('auto');
+
+					return $.acord.anima.apply(self, [p, f] );
+				}
+			});
+
+		},
+
+		/**
+		 * Animação
+		 */
+		anima: function(p, f){
+
+			var o = $(this).data('acord');
+
+			/**
+			 * Meche nas classes
+			 */
+			$('.acord-filho-atual', this).removeClass('acord-filho-atual');
+			$('.acord-pai-atual', this).removeClass('acord-pai-atual');
+
+			p.addClass('acord-pai-atual');
+			f.addClass('acord-filho-atual');
+
+			/**
+			* Callback
+			*/
+			if ($.isFunction(o.onAnima)) o.onAnima.apply(this, [p, f]);
+
+			/**
+			 * Faz a animação
+			 */
+			$.acord.fx[o.fx].apply(this, [p, f]);
+
+		return false;
+		}
+	};
+
+	$.fn.acord = function(method){
+
+		/**
+		 * Chama o evento se existir
+		 */
+		if($.acord[method]){
+			$.acord[method].apply(this, Array.prototype.slice.call(arguments, 1));
+
+		/**
+		 * Chama o evento inicial
+		 */
+		}else if(typeof method === 'object' || !method){
+
+			var options = $.extend(true, {}, $.acord.padrao, method);
+
+			/*
+			 * Live
+			 */
+			if(options.live){
+
+				var elems = [],
+					s = this.selector;
+
+				setInterval(function(){
+
+					var	n = $(s).not(elems);
+					elems = $(s);
+
+					n.each(function(){
+
+						$(this).data('acord', options);
+						$.acord.init.apply(this, arguments);
+
+					});
+
+
+				}, options.liveTempo);
+
+			/**
+			 * Normal
+			 */
+			}else{
+
+				this.each(function(){
+
+					$(this).data('acord', options);
+					$.acord.init.apply(this, arguments);
+
+				});
+			}
+		}
+
+	return this;
+	};
+
+})(jQuery);
 
 /*!
  * jQuery Modal 1.2
  */
-(function(a){a.fn.modal=function(b){function g(){i.fundo&&(k.fundo=a("<div/>").addClass(i.classeFundo).css({width:"100%",height:"100%",opacity:i.fundoOpacidade,position:"fixed",top:0,left:0,zIndex:i.zIndex-1,backgroundColor:"#000",display:"none"}).appendTo("body").fadeIn(i.tempoFundo)),k.load=a("<div/>").addClass(i.classeLoad).css({position:"fixed",top:"50%",left:"50%",zIndex:i.zIndex}),k.modal=a("<div/>").addClass(i.classeModal).css({width:l.largura,height:l.altura,position:"absolute",zIndex:i.zIndex,display:"none"}),i.autoPosiciona&&k.modal.css({position:"fixed",top:"50%",left:"50%"}),k.fecha=a("<span>x</span>").addClass(i.classeFecha),i.classeTitulo!=null&&i.classeTitulo&&(k.titulo=a("<div/>").addClass(i.classeTitulo)),k.conteudo=a("<div/>").addClass(i.classeConteudo),i.fecha&&k.fundo&&k.fundo[i.eventoFundo](function(){return c()}),a.isFunction(i.onCria)&&i.onCria.apply(k.modal,[k,l,n,i])}function f(){k.titulo&&k.titulo.html(i.titulo).append(l.titulo),(n.hasClass(i.seletorAjax)||n.hasClass(i.seletorImagem))&&k.load.appendTo("body").css({marginTop:-(k.load.outerHeight()/2),marginLeft:-(k.load.outerWidth()/2)});if(n.hasClass(i.seletorVideo)){l.link=l.link.replace(new RegExp("watch\\?v=","i"),"v/");var b='<object width="'+l.videoLargura+'" height="'+l.videoAltura+'" classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" style="display: block">';b+='<param name="movie" value="'+l.link+'"></param>',b+='<embed type="application/x-shockwave-flash" src="'+l.link+'" width="'+l.videoLargura+'" height="'+l.videoAltura+'"></embed>',b+="</object>",k.conteudo.append(b)}else if(n.hasClass(i.seletorIframe)){var b='<iframe src="'+l.link+'" height="'+l.iframeAltura+'" width="'+l.iframeLargura+'" style="border:0; display: block" frameBorder="0"></iframe>';k.conteudo.append(b)}else{if(n.hasClass(i.seletorAjax)){k.conteudo.load(l.link,function(b,c,e){if(e){c=="error"&&k.conteudo.append("Ocorreu algum erro ou esta url não existe..."),k.load.fadeOut(i.tempoFundo,function(){a(this).remove()});return d()}});return}if(n.hasClass(i.seletorImagem)){var c=new Image;a(c).load(function(){a(this).css({display:"none",height:this.height,width:this.width}),k.load.fadeOut(i.tempoFundo,function(){a(this).remove()}),k.conteudo.append(c),a(this).fadeIn();return e(this.width,this.height)}).attr("src",l.link);return}k.conteudo.append(l.conteudo)}return d()}function e(a,b){k.conteudo.css({height:b,width:a}),d()}function d(){i.conteudoAntes?k.conteudo.prepend(i.conteudo):k.conteudo.append(i.conteudo),k.titulo&&k.titulo.html()!==undefined&&k.modal.append(k.titulo),k.modal.append(k.conteudo).append(k.fecha).appendTo("body").hide(),i.autoPosiciona?k.modal.css({marginTop:-(k.modal.outerHeight()/2),marginLeft:-(k.modal.outerWidth()/2)}):(m.w=j.width(),m.h=j.height(),m.sl=j.scrollLeft(),m.st=j.scrollTop(),k.modal.css({top:m.h/2+m.st-k.modal.outerHeight()/2,left:m.w/2+m.sl-k.modal.outerWidth()/2})),k.modal.fadeIn(i.tempo),k.fecha[i.eventoFecha](function(){return c()}),a("."+i.seletorCancela)[i.eventoCancela](function(){a.isFunction(i.onCancela)&&i.onCancela.apply(this,[k,l,n,i]);return c()}),a("."+i.seletorConfirma)[i.eventoConfirma](function(){a.isFunction(i.onConfirma)&&i.onConfirma.apply(this,[k,l,n,i]);return c()}),a.isFunction(i.onExibe)&&i.onExibe.apply(k.modal,[k,l,n,i])}function c(){k.fundo&&k.fundo.fadeOut(i.tempo,function(){a(this).remove()}),k.load&&k.load.length&&k.load.remove(),k.modal&&k.modal.remove(),a.isFunction(i.onFecha)&&i.onFecha.apply(k.modal,[k,l,n,i]),k=[];return!1}var h={seletorImagem:"imagem",seletorAjax:"ajax",seletorIframe:"iframe",seletorVideo:"video",seletorCancela:"fecha",seletorConfirma:"confirma",classeModal:"modal-area",classeTitulo:"modal-titulo",classeConteudo:"modal-conteudo",classeFecha:"modal-fecha",classeLoad:"modal-load",classeFundo:"modal-fundo",fundoOpacidade:.7,zIndex:1e3,evento:"click",eventoFecha:"click",eventoFundo:"click",eventoConfirma:"click",eventoCancela:"click",tempo:"fast",tempoFundo:"fast",tempoLoad:"fast",fundo:!0,fecha:!0,titulo:null,conteudo:null,conteudoAntes:!1,autoPosiciona:!1,atributoLink:"href",atributoTitulo:"titulo",atributoConteudo:"conteudo",atributoAltura:"altura",atributoLargura:"largura",atributoIframeLargura:"iframelargura",atributoIframeAltura:"iframealtura",atributoVideoLargura:"videolargura",atributoVideoAltura:"videoaltura",onInicia:null,onCria:null,onExibe:null,onFecha:null,onConfirma:null,onCancela:null},i=a.extend(h,b),j=a(window),k=[],l=[],m=[],n;a(document).delegate(this.selector,i.evento,function(){if(a("."+i.classeModal).length)return!1;n=a(this),l.titulo=n.attr(i.atributoTitulo),l.conteudo=n.attr(i.atributoConteudo),l.altura=n.attr(i.atributoAltura),l.largura=n.attr(i.atributoLargura),l.link=n.attr(i.atributoLink),l.iframeLargura=n.attr(i.atributoIframeLargura),l.iframeAltura=n.attr(i.atributoIframeAltura),l.videoLargura=n.attr(i.atributoVideoLargura),l.videoAltura=n.attr(i.atributoVideoAltura),a.isFunction(i.onInicia)&&i.onInicia.apply(n,[l,n,i]),g(),f();return!1})}})(jQuery);
+(function($){
+
+	$.fn.modal = function(options){
+
+		var padrao = {
+			seletorImagem: 'imagem',						//Classe seletora para modals com imagem
+			seletorAjax: 'ajax',							//Classe seletora para modals em ajax ou load
+			seletorIframe: 'iframe',						//Classe seletora para modals com iframe
+			seletorVideo: 'video',							//Classe seletora para modals com video(youtube)
+			seletorCancela: 'fecha',						//Classe seletora que cancelar a requisição || o resultado é mesmo que fechar o dialogo
+			seletorConfirma: 'confirma',					//Classe seletora que confirma a ação
+
+			classeModal: 'modal-area',						//Classe para o modal
+			classeTitulo: 'modal-titulo',					//Classe para títulos na janela modal
+			classeConteudo: 'modal-conteudo',				//Classe para conteudo da janela modal
+			classeFecha: 'modal-fecha',						//Classe para fechar o modal
+			classeLoad: 'modal-load',						//Classe para load em requisições ajax
+			classeFundo: 'modal-fundo',						//Classe para fundo modal
+			fundoOpacidade: 0.7,							//Nível de transparência/opaticidade do fundo modal
+			zIndex: 1000,									//Z-index modal
+
+			evento: 'click',								//Evento que iniciará o Modal
+			eventoFecha: 'click',							//Evento para fechar o Modal (Botão Fechar)
+			eventoFundo: 'click',							//Evento para fechar o Modal (Fundo Modal)
+			eventoConfirma: 'click',						//Evento que confirma a ação do botão de confirmar(callback) do Modal
+			eventoCancela: 'click',							//Evento que fechará o Modal caso a confirmação seja cancela ou não aceita
+
+			tempo: 'fast',									//Tempo para fade Modal
+			tempoFundo: 'fast',								//Tempo para exibir e fecha o Fundo
+			tempoLoad: 'fast',								//Tempo para sumir/fecha o Loading
+
+			fundo: true,									//True para criar o fundo semitransparente para foco em modal
+			fecha: true,									//Ao clicar no fundo fecha o modal?
+			titulo: null,									//Criar um titulo comum para todos os modals
+			conteudo: null,									//Criar um conteudo comum para todos os modals
+			conteudoAntes: false,							//Inserir conteúdo antes | True ou False
+			autoPosiciona: false,							//Posicionar automaticamente o modal? é o mesmo q setar position fixed
+
+			atributoLink: 'href',							//Atributo fonte modal externas (Ajax e Imagem)
+			atributoTitulo: 'titulo',						//Atributo para título modal
+			atributoConteudo: 'conteudo',					//Atributo para conteudo modal
+			atributoAltura: 'altura',						//Atributo para altura modal
+			atributoLargura: 'largura',						//Atributo para largura modal
+			atributoIframeLargura: 'iframelargura',			//Atributo para largura do iframe no modal
+			atributoIframeAltura: 'iframealtura',			//Atributo para altura do iframe no modal
+			atributoVideoLargura: 'videolargura',			//Atributo para largura do video no modal
+			atributoVideoAltura: 'videoaltura',				//Atributo para altura do video no modal
+
+			onInicia: null,									//Callback
+			onCria: null,									//Callback
+			onExibe: null,									//Callback
+			onFecha: null, 									//Callback
+			onConfirma: null,								//Callback
+			onCancela: null									//Callback
+		};
+
+		var o = $.extend(padrao, options),
+			$w = $(window),
+			m = [], //modal
+			el = [],//elemento
+			w = [], //window
+			$t;
+
+		/**
+		 * Delegando evento
+		 */
+		$(document).delegate(this.selector, o.evento, function(){
+
+			/**
+			 * Checa se ja exite uma modal por ai...
+			 */
+			if($('.'+ o.classeModal).length) return false;
+
+			$t = $(this);
+
+			/**
+			 * Registro de valores
+			 */
+			el.titulo = $t.attr(o.atributoTitulo);
+			el.conteudo = $t.attr(o.atributoConteudo);
+			el.altura = $t.attr(o.atributoAltura);
+			el.largura = $t.attr(o.atributoLargura);
+			el.link = $t.attr(o.atributoLink);
+
+			el.iframeLargura = $t.attr(o.atributoIframeLargura);
+			el.iframeAltura = $t.attr(o.atributoIframeAltura);
+			el.videoLargura = $t.attr(o.atributoVideoLargura);
+			el.videoAltura = $t.attr(o.atributoVideoAltura);
+
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onInicia)) {
+				o.onInicia.apply($t, new Array(el, $t, o));
+			}
+
+			/**
+			 * Cria a modal
+			 */
+			criaModal();
+
+			/**
+			 * Insere conteúdo na modal e exibe
+			 */
+			dataModal();
+
+			return false;
+		});
+
+		/**
+		 * Cria a modal que vai ser exibida
+		 */
+		function criaModal(){
+
+			/**
+			 * Fundo
+			 */
+			if (o.fundo) {
+				m.fundo = $('<div/>')
+					.addClass(o.classeFundo)
+					.css({
+						width: '100%',
+						height: '100%',
+						opacity: o.fundoOpacidade,
+						position: 'fixed',
+						top: 0,
+						left: 0,
+						zIndex: o.zIndex - 1,
+						backgroundColor: '#000',
+						display: 'none'
+					}).appendTo('body')
+					.fadeIn(o.tempoFundo);
+			}
+
+			/**
+			 * Loading
+			 */
+			m.load = $('<div/>')
+				.addClass(o.classeLoad)
+				.css({
+					position: 'fixed',
+					top: '50%',
+					left: '50%',
+					zIndex: o.zIndex
+				});
+
+			/**
+			 * Modal
+			 */
+			m.modal = $('<div/>')
+				.addClass(o.classeModal)
+				.css({
+					width: el.largura,
+					height: el.altura,
+					position: 'absolute',
+					zIndex: o.zIndex,
+					display: 'none'
+				});
+
+			/**
+			 * Define se vai ser fixed ou absolute a posição
+			 * por padrão é absolute (veja acima)
+			 */
+			if(o.autoPosiciona){
+				m.modal.css({
+					position: 'fixed',
+					top: "50%",
+					left: "50%"
+				});
+			}
+
+			m.fecha = $('<span>x</span>').addClass(o.classeFecha);
+
+			if(o.classeTitulo != null && o.classeTitulo){
+				m.titulo = $('<div/>').addClass(o.classeTitulo);
+			}
+
+			m.conteudo = $('<div/>').addClass(o.classeConteudo);
+
+			/**
+			 * Eventos Fecha (Fundo), adicionado agora pq é melhor
+			 */
+			if (o.fecha && m.fundo){
+				m.fundo[o.eventoFundo](function(){
+					return deletaModal();
+				});
+			}
+
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onCria)) {
+				o.onCria.apply(m.modal, new Array(m, el, $t, o));
+			}
+
+		}
+
+		/**
+		 * Insere conteúdo na modal
+		 */
+		function dataModal(){
+
+			/**
+			 * Adiciona o título
+			 */
+			if(m.titulo) m.titulo.html(o.titulo).append(el.titulo);
+
+			/**
+			 * Checa o loading
+			 */
+			if($t.hasClass(o.seletorAjax) || $t.hasClass(o.seletorImagem)){
+				m.load.appendTo('body').css({
+					marginTop: -(m.load.outerHeight()/2),
+					marginLeft: -(m.load.outerWidth()/2)
+				});
+			 }
+
+			/**
+			 * Processa se for Video/Youtube
+			 */
+			if ($t.hasClass(o.seletorVideo)) {
+
+				/**
+				 * Trata a url do youtube
+				 */
+				el.link = el.link.replace(new RegExp("watch\\?v=", "i"), 'v/');
+
+				/**
+				 * Cria objeto de video
+				 * tem que ser assim pra num da erro no ie < 8
+				 */
+				var data = '<object width="'+ el.videoLargura +'" height="'+ el.videoAltura +'" classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" style="display: block">';
+				data    += '<param name="movie" value="'+ el.link +'"></param>';
+				data    += '<embed type="application/x-shockwave-flash" src="'+ el.link +'" width="'+ el.videoLargura +'" height="'+ el.videoAltura +'"></embed>';
+				data    += '</object>';
+
+				m.conteudo.append(data);
+			}
+
+			/**
+			 * Iframe
+			 */
+			else if($t.hasClass(o.seletorIframe)){
+				var data = '<iframe src="'+ el.link +'" height="'+ el.iframeAltura +'" width="'+ el.iframeLargura +'" style="border:0; display: block" frameBorder="0"></iframe>';
+				m.conteudo.append(data);
+			}
+
+			/**
+			 * Load/Ajax
+			 */
+			else if($t.hasClass(o.seletorAjax)){
+
+				m.conteudo.load(el.link, function(rt, ts, xhr){
+					if(xhr){
+						if(ts == 'error'){
+							m.conteudo.append("Ocorreu algum erro ou esta url não existe...");
+						}
+
+						m.load.fadeOut(o.tempoFundo, function(){$(this).remove();});
+						return mostraModal();
+					}
+				});
+			return;
+			}
+
+			/**
+			 * Imagem
+			 */
+			else if($t.hasClass(o.seletorImagem)) {
+
+				var img = new Image();
+				$(img).load(function(){
+
+					$(this).css({
+						display: 'none',
+						height: this.height,
+						width: this.width
+					});
+
+					m.load.fadeOut(o.tempoFundo, function(){$(this).remove();});
+					m.conteudo.append(img);
+					$(this).fadeIn();
+
+					return redimensionaModal(this.width,this.height);
+
+				}).attr('src', el.link);
+
+			return;
+			}
+
+			/**
+			 * Conteúdo Normal
+			 */
+			else{
+				m.conteudo.append(el.conteudo);
+			}
+
+			return mostraModal();
+		}
+
+		/**
+		 * Redimensinar Modal
+		 * @param {Object} w
+		 * @param {Object} h
+		 */
+		function redimensionaModal(w, h){
+			m.conteudo.css({height: h, width: w});
+			mostraModal();
+		}
+
+		/**
+		 * Mostrar Modal na página
+		 */
+		function mostraModal(){
+
+			/**
+			 * Concluindo adição de conteúdo
+			 */
+			if(!o.conteudoAntes){
+				m.conteudo.append(o.conteudo);
+			}else{
+				m.conteudo.prepend(o.conteudo);
+			}
+
+			/**
+			 * Aqui se sabe se terá titulo ou não a modal...
+			 */
+			if(m.titulo && m.titulo.html() !== undefined){
+				m.modal.append(m.titulo);
+			}
+
+			m.modal.append(m.conteudo).append(m.fecha).appendTo('body').hide();
+
+			/**
+			 * Mais um ajuste de posição
+			 * Se for fixed define margin, se não define top e left
+			 */
+			if(o.autoPosiciona){
+
+				m.modal.css({
+					marginTop: -(m.modal.outerHeight()/2),
+					marginLeft: -(m.modal.outerWidth()/2)
+				});
+
+			}else{
+
+				/**
+				 * Registra os valores de $(window)
+				 */
+				w.w = $w.width();
+				w.h = $w.height();
+				w.sl = $w.scrollLeft();
+				w.st = $w.scrollTop();
+
+				m.modal.css({
+					top: (w.h/2 + (w.st) - (m.modal.outerHeight()/2)),
+					left: ((w.w/2) + w.sl - (m.modal.outerWidth()/2))
+				});
+			}
+
+			m.modal.fadeIn(o.tempo);
+
+			/**
+			 * Evento Fecha (X)
+			 */
+			m.fecha[o.eventoFecha](function(){
+				return deletaModal();
+			});
+
+			/**
+			 * Botões de confirmação
+			 */
+			$('.'+o.seletorCancela)[o.eventoCancela](function(){
+				/**
+				 * Callback
+				 */
+				if ($.isFunction(o.onCancela)) {
+					o.onCancela.apply(this, new Array(m, el, $t, o));
+				}
+				return deletaModal();
+			});
+
+			$('.'+o.seletorConfirma)[o.eventoConfirma](function(){
+				/**
+				 * Callback
+				 */
+				if ($.isFunction(o.onConfirma)) {
+					o.onConfirma.apply(this, new Array(m, el, $t, o));
+				}
+				return deletaModal();
+			});
+
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onExibe)) {
+				o.onExibe.apply(m.modal, new Array(m, el, $t, o));
+			}
+		}
+
+		/**
+		 * Deleta Modal
+		 */
+		function deletaModal(){
+
+			if(m.fundo){
+				m.fundo.fadeOut(o.tempo, function(){$(this).remove();});
+			}
+
+			if(m.load && m.load.length) m.load.remove();
+			if(m.modal) m.modal.remove();
+
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onFecha)) {
+				o.onFecha.apply(m.modal, new Array(m, el, $t, o));
+			}
+
+			m = [];
+
+			return false;
+		}
+
+	};
+
+})(jQuery);
 
 /*!
  * jQuery Nav 1.2
  */
-(function(a){a.fn.nav=function(b){function d(b,c){if(c.is(":animated"))return!1;b.addClass(g),a.isFunction(f.onExibe)&&f.onExibe.apply(b,[b,c,f]),c.stop(f.stopClearQueue,f.stopJumpToEnd).addClass(h)[f.efeitoIn](f.tempoIn,f.easingIn)}function c(b,c){b.removeClass(g),c.stop(f.stopClearQueue,f.stopJumpToEnd).delay(f.tempoDelay).removeClass(h)[f.efeitoOut](f.tempoOut,f.easingOut),a.isFunction(f.onEsconde)&&f.onEsconde.apply(b,[b,c,f])}var e={seletorFilho:"ul:first",classePaiAtual:"nav-pai-atual",classeFilhoAtual:"nav-filho-atual",evento:"mouseenter",eventoFim:"mouseleave",efeitoIn:"slideDown",efeitoOut:"slideUp",tempoIn:"fast",tempoOut:"fast",tempoDelay:100,easingIn:"swing",easingOut:"swing",stopClearQueue:!0,stopJumpToEnd:!0,onExibe:null,onEsconde:null},f=a.extend(e,b),g=f.classePaiAtual,h=f.classeFilhoAtual;a(document).delegate(this.selector,f.evento,function(){var b=a(this).children(f.seletorFilho);if(!b.length)return!1;d(a(this),b),a(this).unbind(f.eventoFim).bind(f.eventoFim,function(){return c(a(this),b)})})}})(jQuery);
+(function($){
+
+	$.fn.nav = function(options){
+
+		var padrao = {
+			seletorFilho: 'ul:first', 				//Seletor filho, o que será exibido
+
+			classePaiAtual: 'nav-pai-atual', 		//Classe para pai que está em foque | Adicionado pelo plugin
+			classeFilhoAtual: 'nav-filho-atual',	//Classe para o filho que esta visível | Adicionado pelo plugin
+
+			evento : 'mouseenter', 					//Evento para disparar o plugin
+			eventoFim : 'mouseleave', 				//Evento para terminar o plugin
+
+			efeitoIn: 'slideDown',					//Efeito inicial
+			efeitoOut: 'slideUp',					//Efeito Final
+			tempoIn: 'fast',						//Tempo para mostrar o seletor filho (Entrada)
+			tempoOut: 'fast',						//Tempo para esconder o seletor filho (Saída)
+			tempoDelay: 100, 						//Tempo de espera para esconder o seletor filho(Saida)
+			easingIn: 'swing',						//Animação com easing na entrada (IN)...
+			easingOut: 'swing',						//Animação com easing na saída (OUT)...
+			stopClearQueue: true, 					//(Veja API Stop - clearQueue) e não mexa sem conhecimento
+			stopJumpToEnd: true,					//(Veja API Stop - jumpToEnd) e não mexa sem conhecimento
+
+			onExibe : null,							//Callback
+			onEsconde: null							//Callback
+		};
+		var o = $.extend(padrao, options),
+			np = o.classePaiAtual,
+			nf = o.classeFilhoAtual;
+
+		/**
+		 * Delegando evento
+		 */
+		$(document).delegate(this.selector, o.evento, function(){
+
+			var $f = $(this).children(o.seletorFilho);
+
+			/**
+			 * Checa o seletor filho
+			 */
+			if(!$f.length) return false;
+
+			exibeNav($(this), $f);
+
+			/**
+			 * Da o bind no evento final
+			 * Não pode ser delegate porque ele tem bug no evento mouseleave...aff
+			 */
+			$(this).unbind(o.eventoFim).bind(o.eventoFim, function(){
+				return escondeNav($(this), $f);
+			});
+		});
+
+		/**
+		 * Exibir o seletor filho
+		 * @param {Object} $t - elemento this
+		 * @param {Object} $f - elemento filho
+		 */
+		function exibeNav($t, $f){
+
+			if($f.is(':animated')) return false;
+
+			/**
+			 * Adiciona a classe
+			 */
+			$t.addClass(np);
+
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onExibe)) o.onExibe.apply($t, new Array($t, $f, o));
+
+			/**
+			 * Animação
+			 */
+			$f.stop(o.stopClearQueue, o.stopJumpToEnd).addClass(nf)[o.efeitoIn](o.tempoIn, o.easingIn);
+
+		};
+
+		/**
+		 * Esconder o seletor filho
+		 * @param {Object} $t - elemento this
+		 * @param {Object} $f - elemento filho
+		 */
+		function escondeNav($t, $f){
+
+			/**
+			 * Remove a classe
+			 */
+			$t.removeClass(np);
+
+			/**
+			 * Animação
+			 */
+			$f.stop(o.stopClearQueue, o.stopJumpToEnd).delay(o.tempoDelay).removeClass(nf)[o.efeitoOut](o.tempoOut, o.easingOut);
+
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onEsconde)) o.onEsconde.apply($t, new Array($t, $f, o));
+
+		};
+	};
+})(jQuery);
 
 /*!
  * jQuery Slidetabs 1.3
  */
-(function(a){a.slideTabs={options:{seletorPainel:".painel",seletorMiniatura:".miniatura",seletorAnterior:".anterior",seletorProximo:".proximo",eventoMiniatura:"click",eventoSeta:"click",inicial:1,continuo:!0,auto:!1,pausarAuto:!0,pausa:4e3,tempo:"fast",easing:"swing",scroll:1,direcao:"x",onSlide:null,live:!1,liveTempo:100},init:function(){var b=this,c=a(b),d=c.data("slidetabs"),e=c.find(".slidetabs-scroll"),f=c.find(d.seletorPainel),g=c.find(d.seletorMiniatura),h=d.direcao=="x"?f.outerWidth(!0):f.outerHeight(!0);position=d.direcao=="x"?"left":"top",i=d.inicial-1,f.filter(":first").addClass("slidetabs-painel-primeiro"),f.eq(i).addClass("slidetabs-painel-atual"),h=i*h,position=="top"&&f.css("float","none"),e.css(position,-h+"px"),g.eq(i).addClass("slidetabs-miniatura-atual");return a.slideTabs.bind.apply(this)},bind:function(){var b=this,c=a(b),d=c.data("slidetabs");a(d.seletorAnterior,b).bind(d.eventoSeta,function(){return a.slideTabs.animate.apply(b,[-1])}),a(d.seletorMiniatura,b).bind(d.eventoMiniatura,function(){if(a(this).hasClass("slidetabs-miniatura-atual"))return!1;var d=c.find(".slidetabs-miniatura-atual").prevAll().length,e=a(this).prevAll().length-d;return a.slideTabs.animate.apply(b,[e])}),a(d.seletorProximo,b).bind(d.eventoSeta,function(){return a.slideTabs.animate.apply(b,[1])}),d.auto&&(d.pausarAuto&&c.hover(function(){a.slideTabs.stop.apply(b),a(this).data("slideHover","1")},function(){a(this).removeData("slideHover"),a.slideTabs.start.apply(b)}),a.slideTabs.start.apply(b))},unbind:function(){var b=this,c=a(b),d=c.data("slidetabs");a(d.seletorAnterior,b).unbind(d.eventoSeta),a(d.seletorProximo,b).unbind(d.eventoSeta),a(d.seletorMiniatura,b).unbind(d.eventoMiniatura),a.slideTabs.stop.apply(b),d.pausarAuto&&(c.unbind("hover"),c.removeData("slideHover"))},stop:function(){var a=this;return clearInterval(a.timeout)},start:function(){var b=this,c=a(b),d=c.data("slidetabs");a.slideTabs.stop.apply(b),b.timeout=setTimeout(function(){return d.pausarAuto&&c.data("slideHover")?!1:a.slideTabs.animate.apply(b,[1])},d.pausa)},adjustPosition:function(b){var c=this,d=a(c),e=d.data("slidetabs"),f=d.find(".slidetabs-scroll"),g=d.find(e.seletorPainel),h=d.find(".slidetabs-painel-atual"),i=e.direcao=="x"?g.outerWidth(!0):g.outerHeight(!0),j=e.direcao=="x"?"left":"top",k=h.prevAll().length+1,b=k+b;if(!e.continuo)return k;if(b>g.length){var l=b-g.length;e.scroll>1&&(l+=e.scroll-1);var m=g.slice(0,l);m.insertAfter(g.filter(":last")),k-=l,f.css(j,"-"+(k-1)*i+"px")}else if(k>b){var l=k-b;l>0&&!h.prevAll().eq(l-1).length&&($gt=g.slice(g.length-l),$gt.insertBefore(g.filter(":first")),k+=l,f.css(j,"-"+(k-1)*i+"px"))}return k},animate:function(b){if(b==undefined)return!1;var c=this,d=a(c),e=d.data("slidetabs"),f=d.find(".slidetabs-scroll"),g=d.find(e.seletorPainel),h=d.find(".slidetabs-painel-atual"),i=d.find(e.seletorMiniatura),j=h.prevAll().length+1,k=e.direcao=="x"?g.outerWidth(!0):g.outerHeight(!0),l=e.direcao=="x"?"left":"top",m={};e.scroll>1&&(b=b>0?b+e.scroll-1:b-e.scroll+1);if(!e.continuo)if(b<0&&j+b<=0||b>0&&j+b>g.length)return!1;j=a.slideTabs.adjustPosition.apply(this,[b]),m[l]="-="+b*k,f.is(":animated")||f.animate(m,{queue:!1,duration:e.tempo,easing:e.easing,complete:function(){h.removeClass("slidetabs-painel-atual"),h=d.find(e.seletorPainel).eq(j-1+b),h.addClass("slidetabs-painel-atual");var f=d.find(".slidetabs-miniatura-atual").removeClass("slidetabs-miniatura-atual"),g=f.prevAll().length+b;g>=i.length&&(g=0),i.eq(g).addClass("slidetabs-miniatura-atual"),a.isFunction(e.onSlide)&&e.onSlide.apply(c,[d]),e.auto&&a.slideTabs.start.apply(c)}});return!1}},a.fn.slideTabs=function(b){if(a.slideTabs[b])a.slideTabs[b].apply(this,Array.prototype.slice.call(arguments,1));else if(typeof b=="object"||!b){var c=a.extend(!0,{},a.slideTabs.options,b);if(c.live){var d=[],e=this.selector;setInterval(function(){var b=a(e).not(d);d=a(e),b.each(function(){a(this).data("slidetabs",c),a.slideTabs.init.apply(this,arguments)})},c.liveTempo)}else this.each(function(){a(this).data("slidetabs",c),a.slideTabs.init.apply(this,arguments)})}return this}})(jQuery);
+(function($){
+
+	$.slideTabs = {
+
+		/**
+		 * Opções do plugin
+		 * @var {object}
+		 */
+		options: {
+
+			seletorPainel: '.painel',							// Seletor para o painel ou os slides
+			seletorMiniatura: '.miniatura',						// Seletor de miniaturas
+			seletorAnterior: '.anterior',						// Seletor seta anterior
+			seletorProximo: '.proximo',							// Seletor seta próximo
+
+			eventoMiniatura: 'click',							// Evento para disparar o plugin nas miniaturas
+			eventoSeta: 'click',								// Evento para disparar o plugin nos botões/setas próximo e anterior
+
+			inicial: 1,											// Slide inicial | Se hash = true haverá alteração automática
+			continuo: true, 									// Deixar o slide rolar de forma contínua?
+
+			auto: false, 										// Executar a troca de slide automaticamente?
+			pausarAuto: true,									// Pausa a troca de slides automática quando o slide está no estado hover
+			pausa: 4000, 										// Tempo entre cada pausa para o slide automático
+
+			tempo: 'fast',										// Tempo para cada transição / 0 (zero) para sem animação
+			easing: 'swing',									// Animação com easing na entrada (IN)...
+
+			scroll: 1,											// Nº de elementos que serão arrastados
+			direcao: 'x',										// Direção para o slide, X (horizontal) ou Y (vertical)
+
+			onSlide: null,										// Callback
+
+			live: false,										// Habilitar o monitoramento live
+			liveTempo: 100										// Tempo entra cada checagem, em milisegundos
+
+		},
+
+		/**
+		 * Inicia o plugin
+		 * @return this.bind();
+		 */
+		init: function(){
+
+			var t = this,
+				$t = $(t),
+				o = $t.data('slidetabs');
+
+			/**
+			 * Ajusta o slide
+			 */
+			var $s = $t.find('.slidetabs-scroll'),
+				$p = $t.find(o.seletorPainel),
+				$m = $t.find(o.seletorMiniatura),
+
+				increase = (o.direcao == 'x') ? $p.outerWidth(true) : $p.outerHeight(true);
+				position = (o.direcao == 'x') ? 'left' : 'top',
+				i = o.inicial - 1;
+
+			$p.filter(':first').addClass('slidetabs-painel-primeiro')
+			$p.eq(i).addClass('slidetabs-painel-atual');
+
+			increase = i * increase;
+
+			/**
+			 * Força remover CSS Float quando é para animar na direção y
+			 */
+			if(position == 'top')
+				$p.css('float', 'none');
+
+			$s.css(position, -increase + 'px');
+
+			/**
+			 * Ajusta as miniaturas
+			 */
+			$m.eq(i).addClass('slidetabs-miniatura-atual');
+
+			return $.slideTabs.bind.apply(this);
+		},
+
+		/**
+		 * Bind para os elementos
+		 */
+		bind: function(){
+
+			var t = this,
+				$t = $(t),
+				o = $t.data('slidetabs');
+
+			/**
+			 * Seta anterior
+			 */
+			$(o.seletorAnterior, t).bind(o.eventoSeta, function(){
+				return $.slideTabs.animate.apply(t, [-1]);
+			});
+
+			/**
+			 * Miniaturas
+			 */
+			$(o.seletorMiniatura, t).bind(o.eventoMiniatura, function(){
+
+				if( $(this).hasClass('slidetabs-miniatura-atual') )
+					return false;
+
+				var m = $t.find('.slidetabs-miniatura-atual').prevAll().length,
+					l = $(this).prevAll().length - m;
+
+				return $.slideTabs.animate.apply(t, [l]);
+			});
+
+			/**
+			 * Seta próximo
+			 */
+			$(o.seletorProximo, t).bind(o.eventoSeta, function(){
+				return $.slideTabs.animate.apply(t, [1]);
+			});
+
+			/**
+			 * Automático
+			 */
+			if(o.auto){
+
+				/**
+				 * Faz a checagem para pausar a troca automática de slides
+				 */
+				if(o.pausarAuto){
+					$t.hover(function(){
+
+						$.slideTabs.stop.apply(t);
+						$(this).data('slideHover', '1');
+
+					}, function(){
+
+						$(this).removeData('slideHover');
+						$.slideTabs.start.apply(t);
+
+					});
+				}
+
+				$.slideTabs.start.apply(t);
+			}
+		},
+
+		/**
+		 * Unbind para os eventos
+		 */
+		unbind: function(){
+
+			var t = this,
+				$t = $(t),
+				o = $t.data('slidetabs');
+
+			/**
+			 * Setas
+			 */
+			$(o.seletorAnterior, t).unbind(o.eventoSeta);
+			$(o.seletorProximo, t).unbind(o.eventoSeta);
+
+			/**
+			 * Miniaturas
+			 */
+			$(o.seletorMiniatura, t).unbind(o.eventoMiniatura);
+
+			/**
+			 * Automático
+			 */
+			$.slideTabs.stop.apply(t);
+
+			if(o.pausarAuto){
+				$t.unbind('hover');
+				$t.removeData('slideHover');
+			}
+
+		},
+
+		/**
+		 * Para o slide automático
+		 * @return clearInterval();
+		 */
+		stop: function(){
+
+			var t = this;
+
+			return clearInterval(t.timeout);
+		},
+
+		/**
+		 * Inicia o slide automático
+		 */
+		start: function(){
+
+			var t = this,
+				$t = $(t),
+				o = $t.data('slidetabs');
+
+			$.slideTabs.stop.apply(t);
+
+			t.timeout = setTimeout(function(){
+
+				if(o.pausarAuto && $t.data('slideHover'))
+					return false;
+
+				return $.slideTabs.animate.apply(t, [1]);
+			}, o.pausa);
+
+		},
+
+		/**
+		 * Ajusta a posição do slide, para a animação
+		 * @param {int} next
+		 * @return {int}
+		 */
+		adjustPosition: function(next){
+
+			var t = this,
+				$t = $(t),
+				o = $t.data('slidetabs'),
+				$s = $t.find('.slidetabs-scroll'),
+				$p = $t.find(o.seletorPainel),
+				$pa = $t.find('.slidetabs-painel-atual'),
+
+				increase = (o.direcao == 'x') ? $p.outerWidth(true) : $p.outerHeight(true),
+				position = (o.direcao == 'x') ? 'left' : 'top',
+
+				now = $pa.prevAll().length + 1,
+				next = now + next;
+
+			if(!o.continuo)
+				return now;
+
+			// Próximo
+			if(next > $p.length){
+
+				/**
+				 * Ajusta a ordem dos elementos
+				 */
+				var remain = next - $p.length;
+				if(o.scroll > 1) remain += o.scroll - 1;
+
+				var $lt = $p.slice(0, remain);
+					$lt.insertAfter( $p.filter(':last') );
+
+				now -= remain;
+
+				/**
+				 * Ajusta a posição do scroll
+				 */
+				$s.css(position, '-' + ( (now - 1) * increase ) + 'px');
+
+			// Anterior
+			}else if(now > next){
+
+				/**
+				 * Ajusta a ordem dos elementos
+				 */
+				var remain = now - next;
+
+				if( remain > 0 && !$pa.prevAll().eq(remain - 1).length ){
+
+					$gt = $p.slice( $p.length - remain);
+					$gt.insertBefore( $p.filter(':first') );
+
+					now += remain;
+
+					/**
+					 * Ajusta a posição do scroll
+					 */
+					$s.css(position, '-' + ((now - 1) * increase) + 'px');
+
+				}
+
+			}
+
+			return now;
+		},
+
+		/**
+		 * Anima o slide
+		 * @param {int} next
+		 * @return false
+		 */
+		animate: function(next){
+
+			/**
+			 * Ajusta os parâmetros
+			 */
+			if(next == undefined)
+				return false;
+
+			/**
+			 * Opções
+			 */
+			var t = this,
+				$t = $(t),
+				o = $t.data('slidetabs'),
+
+				$s = $t.find('.slidetabs-scroll'),
+				$p = $t.find(o.seletorPainel),
+				$pa = $t.find('.slidetabs-painel-atual'),
+				$m = $t.find(o.seletorMiniatura),
+
+				now = $pa.prevAll().length + 1,
+				increase = (o.direcao == 'x') ? $p.outerWidth(true) : $p.outerHeight(true),
+				position = (o.direcao == 'x') ? 'left' : 'top',
+				ani = {};
+
+			if(o.scroll > 1){
+				next = (next > 0) ? next + o.scroll - 1 : next - o.scroll + 1;
+			}
+
+			/**
+			 * Checa se é contínuo
+			 */
+			if(!o.continuo){
+
+				if( (next < 0 && now + next <= 0) || (next > 0 && now + next > $p.length) )
+					return false;
+
+			}
+
+			/**
+			 * Ajusta o slide e recalcula o valor de now
+			 */
+			now = $.slideTabs.adjustPosition.apply(this, [next]);
+
+			/**
+			 * Ajusta a posição da animação, para permitir ir a ambas as direções
+			 */
+			ani[position] = '-=' + (next * increase);
+
+			/**
+			 * Anima o slide
+			 */
+			if(!$s.is(':animated')){
+
+				$s.animate( ani, {
+					queue: false,
+					duration: o.tempo,
+					easing: o.easing,
+					complete: function(){
+
+						/**
+						 * Ajusta o painel atual
+						 */
+						$pa.removeClass('slidetabs-painel-atual');
+
+						$pa = $t.find(o.seletorPainel).eq( (now - 1) + next );
+						$pa.addClass('slidetabs-painel-atual');
+
+						/**
+						 * Ajusta a miniatura atual
+						 */
+						var $ma = $t.find('.slidetabs-miniatura-atual').removeClass('slidetabs-miniatura-atual');
+						var l = $ma.prevAll().length + next;
+
+						if( l >= $m.length) l = 0;
+
+						$m.eq( l ).addClass('slidetabs-miniatura-atual');
+
+						/**
+						 * Callback
+						 */
+						if( $.isFunction(o.onSlide) ){
+							o.onSlide.apply(t, [$t]);
+						}
+
+						/**
+						 * Automático
+						 */
+						if(o.auto) $.slideTabs.start.apply(t);
+
+					}
+				});
+
+			}
+
+			return false;
+		}
+	}
+
+	/**
+	 * Slidetabs
+	 * @param {mixed} method
+	 * @param {mixed} argument, ...
+	 * @return {object}
+	 */
+	$.fn.slideTabs = function(method){
+
+		/**
+		 * Chama o evento se existir
+		 */
+		if($.slideTabs[method]){
+			$.slideTabs[method].apply(this, Array.prototype.slice.call(arguments, 1));
+
+		/**
+		 * Chama o evento inicial
+		 */
+		}else if(typeof method === 'object' || !method){
+
+			var options = $.extend(true, {}, $.slideTabs.options, method);
+
+			/*
+			 * Live
+			 */
+			if(options.live){
+
+				var elems = [],
+					s = this.selector;
+
+				setInterval(function(){
+
+					var n = $(s).not(elems);
+					elems = $(s);
+
+					n.each(function(){
+
+						$(this).data('slidetabs', options);
+						$.slideTabs.init.apply(this, arguments);
+
+					});
+
+				}, options.liveTempo);
+
+			/**
+			 * Normal
+			 */
+			}else{
+
+				this.each(function(){
+
+					$(this).data('slidetabs', options);
+					$.slideTabs.init.apply(this, arguments);
+
+				});
+
+			}
+
+		}
+
+		return this;
+	};
+
+})(jQuery);
+
 
 /*!
  * jQuery Tooltip 1.3
  */
-(function(a){a.fn.tooltip=function(b){function f(b,c){a("."+h.classeArea).remove(),a.isFunction(h.onInicia)&&h.onInicia.apply(b,[b,c,h]),j=b,i.conteudo=i.data=b.attr(h.atributo),i.largura=b.attr(h.atributoLargura),i.altura=b.attr(h.atributoAltura);if(i.conteudo!=undefined){h.atributo=="title"&&b.attr("title",""),i.area=a("<div/>").addClass(h.classeArea).css({display:"none",position:"absolute",width:i.largura,height:i.altura}),i.tip=a("<div/>").addClass(h.classeConteudo).appendTo(i.area),i.load=a("<div/>").addClass(h.classeLoad).css({display:"none",position:"fixed",left:0});if(b.hasClass(h.seletorImagem)||b.hasClass(h.seletorAjax))i.load.appendTo("body").fadeIn(h.tempo),i.load.css("top",l.height()-i.load.outerHeight());if(b.hasClass(h.seletorImagem)){var d=new Image;a(d).load(function(){a(this).css({display:"none",height:this.height,width:this.width}),i.data=this,a(this).fadeIn(h.tempo);return e(b,c)}).attr("src",i.conteudo);return}if(b.hasClass(h.seletorAjax)){a.ajax({type:"POST",url:i.conteudo,success:function(a){i.data=a;return e(b,c)},error:function(){i.data=h.mensagemErro;return e(b,c)}});return}return e(b,c)}}function e(b,d){i.tip.html(i.data).wrapInner(h.wrapperTooltip),a.isFunction(h.onCria)&&h.onCria.apply(b,[b,i,d,h]),i.load.length&&i.load.fadeOut("fast",function(){a(this).remove()});if(!i.area)return!1;i.area.appendTo("body").fadeIn(h.tempo);return c(b,d)}function d(b){a.isFunction(h.onTermina)&&h.onTermina.apply(b,[b,h]),h.atributo=="title"&&b&&b.attr("title",i.conteudo),i.area.remove(),i.load.remove(),j=null,i={}}function c(b,c){if(!i.area)return!1;var d=l.width(),e=l.height(),f=l.scrollLeft(),g=l.scrollTop(),j=b.outerWidth(),k=b.outerHeight(),m=b.offset(),n=m.left+h.paddingLeft,o=m.top+h.paddingTop,p=i.area.outerWidth(),q=i.area.outerHeight(),r=h.posicao,s=o,t=n,u=h.autoFix,v=h.classePrefixoPosicao;if(h.fixado){switch(r){case"esquerda":case"direita":u&&g+e<=o+q/2+15?(s+=-q-10,v+="-rodape"):u&&o-g<q/2+15?(s+=k+10,v+="-topo"):(s+=-(q/2)+k/2,v+="-centro");break;case"top1":case"top2":case"top3":case"top4":case"top5":u&&o-g<q+15?(s+=k+10,v+="-topo"):(s+=-q-10,v+="-rodape");break;case"rod1":case"rod2":case"rod3":case"rod4":case"rod5":u&&g+e<=o+q+15?(s+=-q-10,v+="-rodape"):(s+=k+10,v+="-topo")}switch(r){case"esquerda":u&&n<=p+35?(t+=j+10,v+="-direita"):(t+=-p-10,v+="-esquerda");break;case"direita":u&&d<=n+p+35?(t+=-p-10,v+="-esquerda"):(t+=j+10,v+="-direita");break;case"top1":case"rod1":u&&n<=p+30?v+="-lateral-esquerda":(t+=-p,v+="-esquerda");break;case"top2":case"rod2":u&&n<=p/2+30?v+="-lateral-esquerda":u&&d<=n+p/2+30?(t+=-p+j,v+="-lateral-direita"):(t+=j/2-p/2,v+="-centro");break;case"top3":case"rod3":u&&d<=n+p+30?(t+=-p+j,v+="-lateral-direita"):(t+=j,v+="-direita");break;case"top4":case"rod4":u&&d<=n+p+30?(t+=-p+j,v+="-lateral-direita"):v+="-lateral-esquerda";break;case"top5":case"rod5":u&&n<=p+30?v+="-lateral-esquerda":(t+=-p+j,v+="-lateral-direita");break;default:s+=-q-5,t+=j/2-p/2}}else c.pageY-q-g-15<=0?(s=c.pageY+15,v+="-rodape"):(s=c.pageY-q-15,v+="-topo"),d+f-c.pageX<=p?(t=c.pageX-p-15,v+="-lateral-esquerda"):(t=c.pageX+15,v+="-lateral-direita");i.area.css({top:s,left:t}),a("."+h.classeSeta,i.area).remove(),i.area.append('<div class="'+h.classeSeta+'"><div class="'+v+'"></div></div>'),a.isFunction(h.onPosiciona)&&h.onPosiciona.apply(i.area,[b,c,h]),c.preventDefault()}var g={seletorImagem:"imagem",seletorAjax:"ajax",classeArea:"tooltip-area",classeConteudo:"tooltip-conteudo",classeLoad:"tooltip-load",classeSeta:"tooltip-seta",classePrefixoPosicao:"tooltip-posicao",paddingTop:0,paddingLeft:0,posicao:"top2",fixado:!0,autoFix:!0,tempo:"fast",evento:"mouseover",eventoFim:"mouseout",atributo:"rel",atributoAltura:"altura",atributoLargura:"largura",wrapperTooltip:null,mensagemErro:"Erro no tooltip",onInicia:null,onCria:null,onPosiciona:null,onTermina:null},h=a.extend(g,b),i={},j,k=a(document),l=a(window);k.delegate(this.selector,h.evento,function(b){return f(a(this),b)}),k.delegate(this.selector,h.eventoFim,function(){return d(a(this))}),h.fixado||k.delegate(this.selector,"mousemove",function(b){return c(a(this),b)}),l.resize(function(a){if(j)return c(j,a)}).scroll(function(a){if(j)return c(j,a)})}})(jQuery);
+(function($){
+
+	$.fn.tooltip = function(options){
+
+		var padrao = {
+			seletorImagem: 'imagem',					//Seletor para modo imagem
+			seletorAjax: 'ajax',						//Seletor para modo Ajax
+
+			classeArea: 'tooltip-area',					//Classe área para o tooltip
+			classeConteudo: 'tooltip-conteudo',			//Classe base para o tooltip
+			classeLoad: 'tooltip-load',					//Classe para animação de carregamento em Ajax
+			classeSeta: 'tooltip-seta',					//Classe para a seta do tooltip
+			classePrefixoPosicao: 'tooltip-posicao',	//Prefixo para a Classe da Posição
+
+			paddingTop: 0,								//Valor de padding(Top) para melhor manipulação (Afeta na posição do tooltip)
+			paddingLeft: 0,								//Valor de padding(Left) para melhor manipulação (Afeta na posição do tooltip)
+			posicao: 'top2',							//Posição para o tooltip || caso não tenha o padrão é top2
+			fixado: true,								//Tooltip fixa(ou relativa) ao elemento?
+			autoFix: true,								//Auto-fixação de posição
+			tempo: 'fast',								//Tempo para exibir o tooltip, "slow", "normal", "fast" ou em milesegundos
+
+			evento: 'mouseover', 						//Evento para disparar a exibição do tooltip
+			eventoFim: 'mouseout', 						//Evento para terminar a exibição do tooltip
+
+			atributo: 'rel',							//Atributo como base de conteúdo
+			atributoAltura: 'altura',					//Atributo para definir altura personalizada ao tooltip
+			atributoLargura: 'largura',					//Atributo para definir largura personalizada ao tooltip
+
+			wrapperTooltip: null,						//Estrutura HTML para ser inserida ao redor(dentro) do tooltip
+
+			mensagemErro: 'Erro no tooltip',			//Mensagem alternativa para erro de carregamento (em ajax e imagens)
+
+			onInicia: null,								//Callback
+			onCria: null,	 							//Callback
+			onPosiciona: null, 							//Callback
+			onTermina: null								//Callback
+		};
+		var o = $.extend(padrao, options),
+			tip = {},
+			atual,
+			$d = $(document),
+			$w = $(window);
+
+		/**
+		 * Delegando eventos
+		 * EVENTO INICIAL
+		 */
+		$d.delegate(this.selector, o.evento , function(e){
+			return iniciaTooltip($(this), e);
+		});
+
+		/**
+		 * EVENTO FINAL
+		 */
+		$d.delegate(this.selector, o.eventoFim , function(){
+			return removeTooltip($(this));
+		});
+
+		/**
+		 * Evento para fixado
+		 * No caso MOUSEMOVE
+		 */
+		if (!o.fixado) {
+			$d.delegate(this.selector, 'mousemove', function(e){
+				return posicionaTooltip($(this), e);
+			});
+		}
+
+		/**
+		 * Fix de posição para window resize e scroll
+		 */
+		$w.resize(function(e){
+			if(atual) return posicionaTooltip(atual, e);
+		}).scroll(function(e){
+			if(atual) return posicionaTooltip(atual, e);
+		});
+
+		/**
+		 * Cria o tooltip de acordo com os dados passado no elemento que dispara o evento
+		 * @param {Object} $t - elemento
+		 * @param {Object} e - evento
+		 */
+		function iniciaTooltip($t, e){
+
+			$('.' + o.classeArea).remove();
+
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onInicia)){
+				o.onInicia.apply($t, new Array($t, e, o));
+			}
+
+			atual = $t;
+			tip.conteudo = tip.data = $t.attr(o.atributo),
+			tip.largura = $t.attr(o.atributoLargura),
+			tip.altura = $t.attr(o.atributoAltura);
+
+			/**
+			 * Checa se há conteúdo para a tooltip
+			 */
+			if(tip.conteudo == undefined) return;
+
+			/**
+			 * Se for title, exibe somente o tootip
+			 */
+			if(o.atributo == 'title'){
+				$t.attr('title', '');
+			}
+
+			/**
+			 * Cria o tooltip
+			 */
+			tip.area = $('<div/>')
+				.addClass(o.classeArea)
+				.css({
+					display: 'none',
+					position: 'absolute',
+					width: tip.largura,
+					height: tip.altura
+				});
+
+			tip.tip = $('<div/>')
+				.addClass(o.classeConteudo)
+				.appendTo(tip.area);
+
+			/**
+			 * Cria o loading
+			 */
+			tip.load = $('<div/>')
+				.addClass(o.classeLoad)
+				.css({
+					display: 'none',
+					position: 'fixed',
+					left: 0
+				});
+
+			/**
+			 * Checa o loading
+			 */
+			if($t.hasClass(o.seletorImagem) || $t.hasClass(o.seletorAjax)){
+				tip.load.appendTo('body').fadeIn(o.tempo);
+				tip.load.css('top', $w.height() - tip.load.outerHeight());
+			}
+
+			/**
+			 * Imagem
+			 */
+			if ($t.hasClass(o.seletorImagem)) {
+
+				var img = new Image();
+				$(img).load(function(){
+
+					$(this).css({
+						display: 'none',
+						height: this.height,
+						width: this.width
+					});
+
+					tip.data = this;
+					$(this).fadeIn(o.tempo);
+
+					return criaTooltip($t, e);
+
+				}).attr('src', tip.conteudo);
+
+				return;
+			}
+
+			/**
+			 * Ajax
+			 */
+			else if ($t.hasClass(o.seletorAjax)) {
+
+				$.ajax({
+					type: "POST",
+					url: tip.conteudo,
+					success: function(data){
+						tip.data = data;
+						return criaTooltip($t, e);
+					},
+					error: function() {
+						tip.data = o.mensagemErro;
+						return criaTooltip($t, e);
+		   			}
+
+				});
+
+				return;
+			}
+
+			/**
+			 * Normal
+			 */
+			else {
+				return criaTooltip($t, e);
+			}
+		}
+
+		/**
+		 * "Cria" o tooltip, data o mesmo e exibe na tela
+		 * @param {Object} $t - elemento
+		 * @param {Object} e - evento
+		 */
+		function criaTooltip($t, e){
+
+			tip.tip.html(tip.data).wrapInner(o.wrapperTooltip);
+
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onCria)){
+				o.onCria.apply($t, new Array($t, tip, e, o));
+			}
+
+			if(tip.load.length){
+				tip.load.fadeOut('fast', function(){
+					$(this).remove();
+				});
+			}
+
+			if(!tip.area) return false;
+			tip.area.appendTo('body').fadeIn(o.tempo);
+
+			return posicionaTooltip($t, e);
+		}
+
+		/**
+		 * Remove o tooltip que está sendo exibido
+		 * @param {Object} $t - elemento a ser removido
+		 */
+		function removeTooltip($t){
+
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onTermina)){
+				o.onTermina.apply($t, new Array($t, o));
+			}
+
+			if(o.atributo == 'title' && $t){
+				$t.attr('title', tip.conteudo);
+			}
+
+			tip.area.remove();
+			tip.load.remove();
+
+			atual = null;
+			tip = {};
+		}
+
+		/**
+		 * Posiciona o tooltip de acordo com o mouse ou com o elemento
+		 * @param {Object} $t - elemento
+		 * @param {Object} e - evento
+		 */
+		function posicionaTooltip($t ,e){
+
+			if(!tip.area) return false;
+
+			/**
+			 * Window
+			 */
+			var	ww = $w.width(),
+			wh = $w.height(),
+			wsl = $w.scrollLeft(),
+			wst = $w.scrollTop(),
+
+			/**
+			 * Elemento
+			 */
+			w = $t.outerWidth(),
+			h = $t.outerHeight(),
+			tpos = $t.offset(),
+			left = tpos.left + o.paddingLeft,
+			topo = tpos.top + o.paddingTop,
+
+			/**
+			 * Tooltip
+			 */
+			tipw = tip.area.outerWidth(),
+			tiph = tip.area.outerHeight(),
+
+			/**
+			 * Posições
+			 */
+			pos = o.posicao,
+			y = topo,
+			x = left,
+			a = o.autoFix,
+			c = o.classePrefixoPosicao;
+
+			/**
+			 * Forma a posição
+			 * Define as posições e classe
+			 * 1º define topo e depois left
+			 * se tiver abilitado o autofix já faz na hora
+			 */
+			if(o.fixado){
+				/**
+				 * TOP
+				 */
+				switch(pos){
+					case 'esquerda': case 'direita':
+						if(a && (wst + wh) <= (topo + tiph/2 + 15)){
+							y += -tiph - 10;
+							c +='-rodape';
+						}else if(a && (topo - wst) < (tiph/2 + 15)){
+							y += h + 10;
+							c +='-topo';
+						}else{
+							y += -(tiph/2) + (h/2);
+							c +='-centro';
+						}
+					break;
+					case 'top1': case 'top2': case 'top3': case 'top4': case 'top5':
+						if(a && (topo - wst) < (tiph + 15)){
+							y += h + 10;
+							c +='-topo';
+						}else{
+							y += -tiph - 10;
+							c +='-rodape';
+						}
+					break;
+					case 'rod1': case 'rod2': case 'rod3': case 'rod4': case 'rod5':
+						if(a && (wst + wh) <= (topo + tiph + 15)){
+							y += -tiph - 10;
+							c +='-rodape';
+						}else{
+							y += h + 10;
+							c +='-topo';
+						}
+					break;
+				}
+
+				/**
+				 * LEFT
+				 */
+				switch(pos){
+					case 'esquerda':
+						if(a && left <= (tipw + 35)){
+							x += w + 10;
+							c +='-direita';
+						}else{
+							x += -tipw - 10;
+							c +='-esquerda';
+						}
+					break;
+					case 'direita':
+						if(a && ww <= ( left + tipw + 35)){
+							x += -tipw - 10;
+							c +='-esquerda';
+						}else{
+							x += w + 10;
+							c +='-direita';
+						}
+					break;
+					case 'top1': case 'rod1':
+						if(a && left <= (tipw + 30)){
+							c +='-lateral-esquerda';
+						}else{
+							x += -tipw;
+							c +='-esquerda';
+						}
+					break;
+					case 'top2': case 'rod2':
+						if(a && left <= (tipw / 2 + 30)){
+							c +='-lateral-esquerda';
+						}else if(a && ww <= ( left + tipw/2 + 30)){
+							x += -tipw + w;
+							c +='-lateral-direita';
+						}else{
+							x += (w/2) - (tipw/2);
+							c +='-centro';
+						}
+					break;
+					case 'top3': case 'rod3':
+						if(a && ww <= ( left + tipw + 30)){
+							x += -tipw + w;
+							c +='-lateral-direita';
+						}else{
+							x += w;
+							c +='-direita';
+						}
+					break;
+					case 'top4': case 'rod4':
+						if(a && ww <= ( left + tipw + 30)){
+							x += -tipw + w;
+							c +='-lateral-direita';
+						}else{
+							c +='-lateral-esquerda';
+						}
+					break;
+					case 'top5': case 'rod5':
+						if(a && left <= (tipw + 30)){
+							c +='-lateral-esquerda';
+						}else{
+							x += -tipw + w;
+							c +='-lateral-direita';
+						}
+					break;
+					default:
+						y += - tiph - 5 ,
+						x += (w/2) - (tipw/2);
+					break;
+				}
+
+			}
+			else{
+				/**
+				 * TOP
+				 */
+				if((e.pageY - tiph - wst - 15) <=0){
+					y = e.pageY + 15;
+					c +='-rodape';
+				}else{
+					y = e.pageY - tiph - 15;
+					c +='-topo';
+				}
+				/**
+				 * LEFT
+				 */
+				if ((ww + wsl - e.pageX) <= tipw) {
+					x = e.pageX - tipw - 15;
+					c +='-lateral-esquerda';
+				}else{
+					x = e.pageX + 15;
+					c +='-lateral-direita';
+				}
+			}
+
+			/**
+			 * Ajusta a posição
+			 */
+			tip.area.css({
+				'top': y,
+				'left': x
+			});
+
+			/**
+			 * Add a div da posição(seta)
+			 * Preste atenção pois a classe é referente a seta, se a seta ta no rodape é classe é rodape...
+			 */
+			$('.'+o.classeSeta, tip.area).remove();
+			tip.area.append('<div class="'+ o.classeSeta +'"><div class="'+c+'"></div></div>');
+
+			/**
+			 * Callback
+			 */
+			if ($.isFunction(o.onPosiciona)){
+				o.onPosiciona.apply(tip.area, new Array($t, e, o));
+			}
+
+			e.preventDefault();
+		}
+
+	};
+
+})(jQuery);
 
 /*!
  * jQuery Validate 1.2
  */
-(function(a){a.validate=[],a.validate.defaults={classError:"error",selectDefaultValue:0,redirect:!0,inline:!1,inlineEvent:"focusout",onItemValidate:null,onItemError:null,onValidate:null,onError:null},a.validate.form=function(b,c){var d=!0;return c||(c=b.data("validate")),b.find("[required]").each(function(){var b=a.validate.item(a(this),c);d=d&&b}),d},a.validate.item=function(b,c){var d=!0;b.removeClass(c.classError);if(b.is(":disabled"))return!0;a.isFunction(c.onItemValidate)&&c.onItemValidate.apply(b,new Array(b,c));if(b.is("select"))d=b.val()&&b.val()!=c.selectDefaultValue?!0:!1;else if(b.is(":checkbox")||b.is(":radio")){var e=b.attr("name"),f=a('input[name="'+e+'"]:checked').length;d=f==0?!1:!0}else{var g,h=b.data("type")||b.attr("type");h&&(h=="email"?g=new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/):h=="url"?g=new RegExp(/^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/):h=="number"?g=new RegExp(/(^-?\d\d*\.\d*$)|(^-?\d\d*$)|(^-?\.\d\d*$)|(^-?\d*$)/):b.attr("pattern")&&(g=new RegExp(b.attr("pattern")))),g?d=g.test(b.val()):d=a.trim(b.val())!=""}return d==0&&(b.addClass(c.classError),a.isFunction(c.onItemError)&&c.onItemError.apply(b,new Array(b,c))),d},a.fn.validate=function(b){if(!a(this).is("form"))return!1;var b=a.extend(a.validate.defaults,b);a(this).attr("novalidate","novalidate"),a(this).data("validate",b),a(this).on("submit",function(){return a.validate.form(a(this),b)?(a.isFunction(b.onValidate)&&b.onValidate.apply(this,new Array(this,b)),b.redirect?!0:!1):(a.isFunction(b.onError)&&b.onError.apply(this,new Array(this,b)),!1)}),b.inline&&a(this).find("[required]").on(b.inlineEvent,function(){a.validate.item(a(this),b)})}})(jQuery);
+(function($){
+
+	$.validate = [];
+
+	/**
+	 * Opções Padrões
+	 * @type {Object}
+	 */
+	$.validate.defaults = {
+
+		classError: 'error',
+		selectDefaultValue: 0,
+
+		redirect: true,
+
+		inline: false,
+		inlineEvent: 'focusout',
+
+		onItemValidate: null,
+		onItemError: null,
+
+		onValidate: null,
+		onError: null
+	};
+
+	/**
+	 * Valida o formulário por completo
+	 * @param {Object} $form
+	 * @param {Object} options
+	 * @return {boolean}
+	 */
+	$.validate.form = function($form, options){
+
+		var result = true;
+
+		if(!options)
+			options = $form.data('validate');
+
+		$form.find('[required]').each(function(){
+
+			var itemResult = $.validate.item( $(this), options );
+			result = result && itemResult;
+
+		});
+
+		return result;
+	};
+
+	/**
+	 * Valida um item do formulário
+	 * @param {Object} $item
+	 * @param {Object} options
+	 * @return {boolean}
+	 */
+	$.validate.item = function($item, options){
+
+		var result = true;
+
+		$item.removeClass(options.classError);
+
+		/**
+		 * Caso o item esteja desabilitado
+		 * A validação retorn true, ou melhor dizendo, não valida
+		 */
+		if($item.is(':disabled'))
+			return true;
+
+		/**
+		 * Callback Valida
+		 */
+		if( $.isFunction( options.onItemValidate ) ) {
+			options.onItemValidate.apply( $item, new Array($item, options) );
+		}
+
+		/**
+		 * Select
+		 */
+		if( $item.is('select') ){
+			result = ( $item.val() && $item.val() != options.selectDefaultValue ) ? true : false;
+
+		/**
+		 * CheckBox/Radio
+		 */
+		}else if( $item.is(':checkbox') || $item.is(':radio') ){
+
+			var inputName = $item.attr('name'),
+				checked = $('input[name="' + inputName + '"]:checked').length;
+
+			result = (checked == 0) ? false : true;
+
+		/**
+		 * Input
+		 */
+		}else{
+
+			var regex,
+				type = $item.data('type') || $item.attr('type');
+
+			if(type){
+
+				// E-mail
+				if( type == 'email' ){
+					regex = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/);
+
+				// Url
+				}else if( type == 'url' ){
+					regex = new RegExp(/^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/);
+
+				// Números
+				}else if( type == 'number' ){
+					regex = new RegExp(/(^-?\d\d*\.\d*$)|(^-?\d\d*$)|(^-?\.\d\d*$)|(^-?\d*$)/);
+
+				// Regex Personalizado
+				}else if( $item.attr('pattern') ){
+					regex = new RegExp( $item.attr('pattern') );
+				}
+
+			}
+
+			/**
+			 * Valida o campo
+			 */
+			if(regex)
+				result = regex.test( $item.val() );
+			else
+				result = $.trim( $item.val() ) != '';
+
+		}
+
+		/**
+		 * Se NÃO passar
+		 */
+		if( result == false ){
+
+			$item.addClass( options.classError );
+
+			/**
+			 * Callback Erro
+			 */
+			if($.isFunction( options.onItemError )){
+				options.onItemError.apply($item, new Array($item, options));
+			}
+
+		}
+
+		return result;
+	};
+
+	/**
+	 * Valida um formulário e retorna o resultado da validação
+	 * @param {Object} options
+	 */
+	$.fn.validate = function(options){
+
+		if( ! $(this).is('form') )
+			return false;
+
+		var options = $.extend( $.validate.defaults, options );
+
+		/**
+		 * Força novalidate e acrescenta as opções ao formulário
+		 */
+		$(this).attr('novalidate', 'novalidate');
+		$(this).data('validate', options);
+
+		/**
+		 * Submit
+		 * > callbacks
+		 */
+		$(this).on('submit', function(){
+
+			/**
+			 * Validou
+			 */
+			if( $.validate.form( $(this), options ) ){
+
+				if($.isFunction( options.onValidate )){
+					options.onValidate.apply( this, new Array(this, options) );
+				}
+
+				return (options.redirect) ? true : false;
+
+			/**
+			 * Erro!
+			 */
+			}else{
+
+				if($.isFunction( options.onError )){
+					options.onError.apply( this, new Array(this, options) );
+				}
+
+				return false;
+			}
+
+		});
+
+		/**
+		 * Inline
+		 */
+		if(options.inline){
+
+			$(this).find('[required]')
+			.on( options.inlineEvent, function(){
+ 				$.validate.item( $(this), options );
+			});
+
+		}
+
+	};
+
+})(jQuery);
