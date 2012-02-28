@@ -1,5 +1,3 @@
-DESIGN = photoshop
-
 build:
 
 	# CSS - Sass
