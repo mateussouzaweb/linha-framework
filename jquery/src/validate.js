@@ -158,7 +158,7 @@
 		if( ! $(this).is('form') )
 			return false;
 
-		var options = $.extend( $.validate.defaults, options );
+		var options = $.extend( {}, $.validate.defaults, options );
 
 		/**
 		 * Força novalidate e acrescenta as opções ao formulário
