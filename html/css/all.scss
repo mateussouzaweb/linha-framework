@@ -122,9 +122,9 @@ img{ -ms-interpolation-mode: bicubic; }
 .clearfix:after{ clear: both; }
 .clearfix{ zoom: 1; }
 
-.left{ float: left; }
-.right{ float: right; }
-.hide{ display: none; }
+.left{ float: left !important; }
+.right{ float: right !important; }
+.hide{ display: none !important; }
 
 .first{ margin-left: 0 !important; }
 .last{ margin-right: 0 !important; }

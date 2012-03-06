@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* RESET + HTML5 Reset */
 /* ----------------------------------------- */
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -170,15 +169,15 @@ img {
 }
 
 .left {
-  float: left;
+  float: left !important;
 }
 
 .right {
-  float: right;
+  float: right !important;
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .first {
