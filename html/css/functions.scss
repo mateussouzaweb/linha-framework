@@ -179,7 +179,7 @@
 		src: url($url + '.eot');
 		src: local(quote($name)),
 			 url($url + '.eot?#iefix') format('embedded-opentype'),
-			 url($url + 'e.woff') format('woff'),
+			 url($url + '.woff') format('woff'),
 			 url($url + '.ttf') format('truetype'),
 			 url($url + '.svg#' + $name) format('svg');
 	}
