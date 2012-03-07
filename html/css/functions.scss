@@ -175,13 +175,15 @@
 // FONT-FACE
 @mixin font-face($name, $url){
 	@font-face {
-		font-family: quote($name);
+		font-family: unquote($name);
 		src: url($url + '.eot');
 		src: local(quote($name)),
 			 url($url + '.eot?#iefix') format('embedded-opentype'),
 			 url($url + '.woff') format('woff'),
 			 url($url + '.ttf') format('truetype'),
 			 url($url + '.svg#' + $name) format('svg');
+		font-weight: normal;
+		font-style: normal;
 	}
 }
 
