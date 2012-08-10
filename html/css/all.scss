@@ -340,6 +340,7 @@ input{
 		padding: 6px 10px;
 		text-shadow: 1px 1px 1px #000;
 		width: auto;
+		-webkit-appearance: none;
 		@include border-radius(2px);
 	}
 }
