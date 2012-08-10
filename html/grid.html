@@ -107,17 +107,16 @@ $(function(){
 		while(i != total){
 			i += 1;
 
-			/**
-			 * Forma a lista de colunas
-			 */
+			// Forma a lista de colunas
 			var columns = total;
 
 			while(columns > 0){
 
 				var column = i;
 
-				if(columns < column)
+				if(columns < column){
 					column = columns;
+				}
 
 				columns = columns - column;
 
@@ -138,17 +137,13 @@ $(function(){
 
 		$('#all')[0].className = 'clearfix grid-' + value;
 
-		/**
-		 * Grid Normal
-		 */
+		// Grid Normal
 		if(value != 'responsive'){
 
 			$('header').addClass('width' + value);
 			$('#content').html( createHtmlGrid(value) );
 
-		/**
-		 * Grid Responsive
-		 */
+		// Grid Responsive
 		}else{
 
 			var itens = [480, 640, 768, 1024, 1280, 1440, 1680];
