@@ -1288,7 +1288,7 @@ option {
   /* VALIDA */
   input.error, textarea.error, select.error {
     background-color: #ffcfcf;
-    border: 1px solid #d7162b;
+    border-color: #d7162b;
   }
   input.error:focus, textarea.error:focus, select.error:focus {
     background-color: #fdeaed;
