@@ -1,7 +1,7 @@
 build:
 
 	# CSS - Sass
-	cd html/css/ &&	sass styles.scss:styles.css --style expanded --no-cache
+	cd html/scss/ && sass styles.scss:../css/styles.css --style expanded --no-cache
 
 dev:
 
@@ -14,7 +14,7 @@ dev:
 min:
 
 	# CSS - Sass
-	cd html/css/ && sass styles.scss:styles.css --style compressed --no-cache
+	cd html/scss/ && sass styles.scss:../css/styles.css --style compressed --no-cache
 
 	# Javascript - Tuild
 	cd html/js/ && tuild js -min plugins.js+events.js > plugins.events.min.js
@@ -33,10 +33,10 @@ clean: min
 	rm -f -r fireworks/
 	rm -f -r photoshop/
 	rm -f -r jquery/
-	rm -f html/css/*.scss
 	rm -f html/js/jquery.js
 	rm -f html/js/events.js
 	rm -f html/js/plugins.js
+	rm -f html/scss/
 	rm -f html/elements.html
 	rm -f html/grid.html
 
