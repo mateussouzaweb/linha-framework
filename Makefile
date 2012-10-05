@@ -33,7 +33,6 @@ clean: min
 	rm -f -r fireworks/
 	rm -f -r photoshop/
 	rm -f -r jquery/
-	rm -f html/js/jquery.js
 	rm -f html/js/events.js
 	rm -f html/js/plugins.js
 	rm -f html/scss/

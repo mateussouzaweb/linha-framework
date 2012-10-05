@@ -49,7 +49,7 @@ CHANGELOG
  * Removido plugin Linha Focuss (o HTML5 oferece o atributo "placeholder" como alternativa)
  * Novo build para JS - Tuild, feito em NodeJS
  * Adicionado plugin Modernizr
- * Atualização jQuery para V. 1.8.0
+ * Atualização jQuery para V. 1.8.2
  * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
  * Arquivos CSS simplificados em 1 arquivo (anteriormente eram 7)
  * Estilos CSS a lá OOCSS, gerenciados com Sass
