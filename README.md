@@ -47,6 +47,7 @@ CHANGELOG
  * Otimização CSS e JS - Veja log plugins
  * Remoção do $.pluginX, em apoio a $.fn.pluginX
  * Removido plugin Linha Focuss (o HTML5 oferece o atributo "placeholder" como alternativa)
+ * Removido plugin Linha Nav (Fazer o mesmo com CSS é muito simples)
  * Novo build para JS - Tuild, feito em NodeJS
  * Adicionado plugin Modernizr
  * Atualização jQuery para V. 1.8.2

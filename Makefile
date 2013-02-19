@@ -6,7 +6,7 @@ build:
 dev:
 
 	# Dev
-	cd jquery/src/ && tuild js -dev --no-hint acord.js+modal.js+nav.js+slidetabs.js+tooltip.js+validate.js > ../dist/jquery.linha.plugins.js
+	cd jquery/src/ && tuild js -dev --no-hint acord.js+modal.js+slidetabs.js+tooltip.js+validate.js > ../dist/jquery.linha.plugins.js
 
 	# Min
 	cd jquery/dist/ && tuild js -min --no-hint jquery.linha.plugins.js > jquery.linha.plugins.min.js
