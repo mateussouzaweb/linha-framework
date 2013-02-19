@@ -3,12 +3,10 @@
 // Aqui na verdade só junta todos os CSS em um arquivo só
 // Sass faz o resto
 // </> All
-// </> Mobile
 // </> Screen
 // </> Print
 //
 @import 'functions';
 @import 'all';
-@import 'mobile';
 @import 'screen';
 @import 'print';
