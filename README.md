@@ -31,7 +31,7 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
  * Carregue JS dinamicamente, usando um plugin para lazy loading (YepNope)
  * Compile uma versão mais exclusiva do Modernizr pelo site do desenvolvedor
  * Use o build incluso no framework para criar versões minifield do seu código
- * Se o site não tiver suporte nativo para o IE6, avise os usuários usando Adeus IE6 - <https://github.com/mateus007/adeus-ie6>
+ * Se o site não tiver suporte nativo para o IE6 / IE7, avise os usuários usando Adeus IE6 - <https://github.com/mateus007/adeus-ie6>
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
  * Alterar o código fonte não é proibido :P
  * Contribua!

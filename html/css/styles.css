@@ -95,10 +95,6 @@ input[type="checkbox"] {
   vertical-align: baseline;
 }
 
-.ie-6 input {
-  vertical-align: text-bottom;
-}
-
 button, input, select, textarea {
   margin: 0;
 }
