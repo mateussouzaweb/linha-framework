@@ -38,7 +38,7 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
 
 CHANGELOG
 =====================
-#### 1.3 - XX de XXXXXXXX de 2012
+#### 1.3 - XX de XXXXXXXX de 2013
 
  * Código agora está no padrão internacional - INGLÊS (Código, não comentários e textos...)
  * HTML migrado para HTML5 (não vá confundir com as funcionalidades do HTML5)
