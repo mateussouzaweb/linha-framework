@@ -1,13 +1,37 @@
-//
-// SCREEN - Estilo de mídia screen:
-// </> Estilos
-// </> Media-Queries
-// </> Plugins
-//
+@import 'functions';
+@import 'all';
 
 /* ESTILOS */
 /* ----------------------------------------- */
 @media screen{
+
+	.center{
+		max-width: 1400px;
+		margin: 0 auto;
+		display: block;
+		padding: 0 20px;
+	}
+
+	#top{
+		background: #FFF;
+		border-bottom: 1px solid #EEE;
+		display: block;
+		position: fixed;
+		width: 100%;
+		z-index: 10;
+
+		.brand{
+			float: left;
+			margin-right: 20px;
+		}
+		nav{
+			float: left;
+		}
+	}
+
+	#content{
+		margin-top: 80px;
+	}
 
 }
 

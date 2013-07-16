@@ -1,7 +1,7 @@
 build:
 
 	# CSS - Sass
-	cd html/scss/ && sass styles.scss:../css/styles.css --style expanded --no-cache
+	cd scss/ && sass styles.scss:../css/styles.css --style expanded --no-cache
 
 dev:
 
@@ -14,31 +14,9 @@ dev:
 min:
 
 	# CSS - Sass
-	cd html/scss/ && sass styles.scss:../css/styles.css --style compressed --no-cache
+	cd scss/ && sass styles.scss:../css/styles.css --style compressed --no-cache
 
 	# Javascript - Tuild
-	cd html/js/ && tuild js -min plugins.js+events.js > plugins.events.min.js
+	cd js/ && tuild js -min plugins.js+events.js > plugins.events.min.js
 
-clean: min
-
-	echo "Você tem certeza de que deseja executar esta ação? Tudo será deletado, ficando apenas os arquivos para produção..."
-	echo "Para confirmar, digite: SIM"
-
-	read confirm
-
-	if[ "$confirm" != 'SIM'] then exit 0 fi
-
-	# Remove os arquivos
-	rm -f README.md
-	rm -f -r fireworks/
-	rm -f -r photoshop/
-	rm -f -r jquery/
-	rm -f html/scss/
-	rm -f html/elements.html
-	rm -f html/grid.html
-
-	# Movimenta os arquivo
-	mv html/example.htaccess html/.htaccess
-	mv html/ /
-
-PHONY: build dev min clean
+PHONY: build dev min
