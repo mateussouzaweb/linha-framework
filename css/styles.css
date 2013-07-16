@@ -174,9 +174,9 @@ table th { background: #EEE; }
 /* ESTILOS */
 /* ----------------------------------------- */
 @media screen { .center { max-width: 1400px; margin: 0 auto; display: block; padding: 0 20px; }
-  #top { background: #FFF; border-bottom: 1px solid #EEE; display: block; position: fixed; width: 100%; z-index: 10; }
+  #top { background: #FFF; border-bottom: 1px solid #EEE; display: block; position: fixed; top: 0; width: 100%; z-index: 10; }
   #top .brand { float: left; margin-right: 20px; }
-  #top nav { float: left; }
+  #top .nav { float: left; }
   #content { margin-top: 80px; } }
 /* MEDIA-QUERIES */
 /* ----------------------------------------- */
