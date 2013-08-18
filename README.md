@@ -25,9 +25,9 @@ RECOMENDAÇÕES & DICAS
 Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo algumas dicas e recomendações:
 
  * Compre um OSX ou use Linux - dê adeus ao Windows!
- * Aprenda a usar o Sass & Tuild - ESSÊNCIAL
+ * Aprenda a usar o Sass & Tuild - ESSENCIAL
  * Delete o que você não usa...
- * Use o build incluso no framework para criar versões minifield do seu código
+ * Use o build incluso no framework para criar versões minified do seu código
  * Avise os usuários usando Adeus IE - <https://github.com/mateus007/adeus-ie6>
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
  * Alterar o código fonte não é proibido :P
