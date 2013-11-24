@@ -4,7 +4,7 @@
 
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0; maximum-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0;">
 
 	<!-- SEO -->
 	<meta name="robots" content="index,follow">
@@ -19,10 +19,6 @@
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="css/styles.css">
-
-	<!--[if lt IE 9]>
-	<script src="js/modernizr.min.js"></script>
-	<![endif]-->
 
 </head>
 <body>
@@ -112,11 +108,13 @@
 			</p>
 			<p>
 				<label>Selecione uma opção</label><br/>
-				<select name="select">
-					<option value="0">Selecione</option>
-					<option value="1">Opção 1</option>
-					<option value="2">Opção 2</option>
-				</select>
+				<span class="select">
+					<select name="select">
+						<option value="0">Selecione</option>
+						<option value="1">Opção 1</option>
+						<option value="2">Opção 2</option>
+					</select>
+				</span>
 			</p>
 			<p>
 				<label>Eu tenho uma bike <input type="checkbox" value="sim"/> </label>
@@ -147,7 +145,7 @@
 
 
 		<br>
-		<table>
+		<table class="bordered stripped">
 			<tr>
 				<th>Titulo 1</th>
 				<th>Titulo 2</th>
