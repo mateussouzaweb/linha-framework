@@ -123,7 +123,7 @@
   table.hover tr:hover { background-color: #F5F5F5; }
   table.padded td, table.padded th { padding-top: 10px; padding-bottom: 10px; }
   /* Alertas */
-  .alert { background: #EDEDED; border-bottom: 1px solid #C0C0C0; color: #333; display: block; margin: 5px 0; padding: 10px 15px; position: relative; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; }
+  .alert { background: #EDEDED; border: 1px solid #C0C0C0; color: #333; display: block; margin: 5px 0; padding: 10px 15px; position: relative; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; -o-border-radius: 2px; border-radius: 2px; }
   .alert .close { position: absolute; right: 7px; top: 8px; cursor: pointer; }
   .alert.green, .alert.success { background-color: #E9F9E5; border-color: #9BDEA8; color: #1C8400; }
   .alert.red, .alert.error { background-color: #F9E5E6; border-color: #DF8F8F; color: #C32727; }
