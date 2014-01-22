@@ -213,6 +213,7 @@
 		&.radio, &.checkbox{
 			display: inline-block;
 			margin-right: 10px;
+			cursor: pointer;
 		}
 	}
 
@@ -253,6 +254,7 @@
 		display: inline-block;
 		overflow: visible;
 		padding: 8px 15px 8px;
+		font-weight: normal;
 		width: auto;
 		vertical-align: top;
 		-webkit-appearance: none;
@@ -361,7 +363,7 @@
 	.button, a.button{
 		display: inline-block;
 		margin: 0 2px 0 0;
-		line-height: 38px;
+		line-height: 32px;
 		padding: 0 15px;
 	}
 
