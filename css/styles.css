@@ -160,7 +160,7 @@
   tr, img { page-break-inside: avoid; }
   h2, h3 { page-break-after: avoid; } }
 /* Styles */
-@media screen { .center { max-width: 1400px; margin: 0 auto; display: block; padding: 0 20px; }
+@media screen { .centered { max-width: 1400px; margin: 0 auto; display: block; padding: 0 20px; }
   #top { background: #FFF; border-bottom: 1px solid #EEE; display: block; position: fixed; top: 0; width: 100%; z-index: 10; }
   #top .brand { float: left; margin-right: 20px; }
   #top .nav { float: left; }
