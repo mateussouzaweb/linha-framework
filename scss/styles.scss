@@ -34,6 +34,21 @@
 		margin-top: 80px;
 	}
 
+	/* Validate */
+	input, textarea, select{
+
+		&.error{
+			background-color: #ffcfcf;
+			border-color: #d7162b;
+
+			&:focus{
+				background-color: #fdeaed;
+				border-color: #d7162b;
+			}
+		}
+
+	}
+
 }
 
 /* Media-queries */

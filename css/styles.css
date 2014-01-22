@@ -166,5 +166,8 @@
   #top { background: #FFF; border-bottom: 1px solid #EEE; display: block; position: fixed; top: 0; width: 100%; z-index: 10; }
   #top .brand { float: left; margin-right: 20px; }
   #top .nav { float: left; }
-  #content { margin-top: 80px; } }
+  #content { margin-top: 80px; }
+  /* Validate */
+  input.error, textarea.error, select.error { background-color: #ffcfcf; border-color: #d7162b; }
+  input.error:focus, textarea.error:focus, select.error:focus { background-color: #fdeaed; border-color: #d7162b; } }
 /* Media-queries */
