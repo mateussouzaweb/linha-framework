@@ -144,7 +144,7 @@
   .nav { list-style: none; margin: 0; padding: 0; }
   .nav ul { margin: 0; padding: 0; }
   .nav li { display: block; float: left; }
-  .nav li a { display: block; line-height: 65px; padding: 0 15px; outline: 0; }
+  .nav li a { display: block; line-height: 58px; padding: 0 15px; outline: 0; }
   /* Tabs */
   .tabs { background: #F5F5F5; border-bottom: 1px solid rgba(0, 0, 0, 0.1); margin-top: -1px; margin-bottom: 0; padding: 0 20px; }
   .tabs ul { margin: 0; padding: 0; }
