@@ -108,7 +108,7 @@
 		word-wrap: break-word;
 	}
 
-	img, table{ max-width: 100%; }
+	img, table{ max-width: 100%; height: auto; }
 	img{ -ms-interpolation-mode: bicubic; }
 
 	*, *:before, *:after {
