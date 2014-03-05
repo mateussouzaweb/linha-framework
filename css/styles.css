@@ -38,6 +38,7 @@
   pre, blockquote, textarea { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
   img, table { max-width: 100%; }
   img { -ms-interpolation-mode: bicubic; }
+  *, *:before, *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
   /* Helpers */
   .clear { clear: both; display: block; height: 0px; overflow: hidden; }
   .clearfix:before, .clearfix:after { content: ""; display: table; }
