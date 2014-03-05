@@ -150,23 +150,21 @@
 		&.center{ text-align: center; }
 		&.justify{ text-align: justify; }
 	}
-	img.align{
-		&.left{
-			display: inline;
-			float: left;
-			margin-right: 15px;
-		}
-		&.right{
-			display: inline;
-			float: right;
-			margin-left: 15px;
-		}
-		&.center{
-			clear: both;
-			display: block;
-			margin-right: auto;
-			margin-left: auto;
-		}
+	img.align.left, img.align-left, img.alignleft, img[align="left"]{
+		display: inline;
+		float: left;
+		margin-right: 15px;
+	}
+	img.align.right, img.align-right, img.alignright, img[align="right"]{
+		display: inline;
+		float: right;
+		margin-left: 15px;
+	}
+	img.align.center, img.align-center, img.aligncenter, img[align="center"]{
+		clear: both;
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
 	}
 
 	/* Tipografia */
