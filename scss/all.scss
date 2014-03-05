@@ -359,17 +359,30 @@
 
 		select{
 			background: transparent;
-			position: relative;
 			border: 0 !important;
 			height: 30px;
-			line-height: 15px;
-			padding: 0 40px 0 10px;
+			margin: 0 auto;
+			outline: none;
+			padding: 7px 10px;
+			position: relative;
+			text-indent: 0.01px;
+			text-overflow: "";
+			vertical-align: middle;
 			width: 100%;
 			z-index: 3;
 			appearance: none;
 			-webkit-appearance: none;
+			-moz-appearance: none;
 			@include border-radius(0);
 			@include box-sizing(border-box);
+
+			&:focus {
+				outline: none;
+			}
+
+			&::-ms-expand {
+				display: none;
+			}
 		}
 	}
 
