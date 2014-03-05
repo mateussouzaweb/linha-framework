@@ -64,6 +64,7 @@
 	button,input,select,textarea {
 		font-family: inherit;
 		font-size: 100%;
+		line-height: normal;
 		margin: 0;
 	}
 	button,input { line-height: normal; }
@@ -134,7 +135,7 @@
 	.left{ float: left; }
 	.right{ float: right; }
 	.hide{ display: none }
-	.inline{ display: inline-block; }
+	.inline{ display: inline-block; vertical-align: top; }
 	.overflow{ overflow: auto; }
 	.fluid{ width: 100%; @include box-sizing(border-box); }
 
@@ -213,6 +214,7 @@
 	label{
 		display: inline-block;
 		padding-bottom: 5px;
+		vertical-align: top;
 
 		&.radio, &.checkbox{
 			display: inline-block;
@@ -244,11 +246,17 @@
 
 		}
 	}
+
+	input{
+		height: 33px;
+	}
+
 	input{
 		&[type="radio"],
 		&[type="checkbox"]{
 			background: none;
 			border: none;
+			height: auto;
 			padding: 0;
 			width: auto;
 		}
@@ -259,13 +267,12 @@
 		border: none;
 		cursor: pointer;
 		display: inline-block;
-		overflow: visible;
-		padding: 8px 15px 8px;
 		font-weight: normal;
-		width: auto;
+		overflow: visible;
+		padding: 8px 15px;
 		vertical-align: top;
+		width: auto;
 		-webkit-appearance: none;
-
 	}
 	textarea{
 		min-height: 100px;
@@ -369,9 +376,10 @@
 	/* Botões */
 	.button, a.button{
 		display: inline-block;
+		line-height: 33px;
 		margin: 0 2px 0 0;
-		line-height: 32px;
 		padding: 0 15px;
+		vertical-align: top;
 	}
 
 	.button, a.button,
@@ -380,9 +388,15 @@
 		border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 		cursor: pointer;
 		color: #FFF;
+		height: 33px;
 		font-weight: normal;
 		text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 		@include border-radius(2px);
+
+		&::-moz-focus-inner{
+			border: 0;
+			padding: 0;
+		}
 
 		&:hover, &:focus{
 			@include transition(all);
@@ -391,10 +405,12 @@
 		&.small{
 			padding: 0 8px !important;
 			line-height: 28px !important;
+			height: 28px !important;
 		}
 		&.ssmall{
 			padding: 0 5px !important;
 			line-height: 25px !important;
+			height: 25px !important;
 		}
 
 		&.green{
@@ -534,6 +550,7 @@
 		margin-right: 2px;
 		margin-bottom: 2px;
 		padding: 0 4px;
+		vertical-align: top;
 		@include border-radius(3px);
 
 		&.green{
