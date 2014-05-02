@@ -23,7 +23,7 @@ RECOMENDAÇÕES & DICAS
 Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo algumas dicas e recomendações:
 
  * Compre um OSX ou use Linux - dê adeus ao Windows!
- * Aprenda a usar o Sass - ESSENCIAL
+ * Aprenda a usar o Sass - ESSÊNCIAL
  * Delete o que você não usa...
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
  * Alterar o código fonte não é proibido :P
