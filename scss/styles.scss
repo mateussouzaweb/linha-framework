@@ -1,53 +1,10 @@
 @charset "UTF-8";
 @import 'functions';
 @import 'all';
+@import 'framework';
 
 /* Styles */
 @media screen{
-
-	.centered{
-		max-width: 1400px;
-		margin: 0 auto;
-		display: block;
-		padding: 0 20px;
-	}
-
-	#top{
-		background: #FFF;
-		border-bottom: 1px solid #EEE;
-		display: block;
-		position: fixed;
-		top: 0;
-		width: 100%;
-		z-index: 10;
-
-		.brand{
-			float: left;
-			margin-right: 20px;
-		}
-		.nav{
-			float: left;
-		}
-	}
-
-	#content{
-		margin-top: 80px;
-	}
-
-	/* Validate */
-	input, textarea, select{
-
-		&.error{
-			background-color: #ffcfcf;
-			border-color: #d7162b;
-
-			&:focus{
-				background-color: #fdeaed;
-				border-color: #d7162b;
-			}
-		}
-
-	}
 
 }
 

@@ -1,0 +1,438 @@
+/* Framework */
+@media screen{
+
+	$headerLineHeight: 55px;
+
+	/* Grid */
+	.centered{
+		max-width: 1400px;
+		margin: 0 auto;
+		display: block;
+		padding: 0 20px;
+	}
+
+	.col2{
+		display: inline-block;
+		float: left;
+		vertical-align: top;
+		width: 50%;
+	}
+	.col3{
+		display: inline-block;
+		float: left;
+		vertical-align: top;
+		width: 33.33%;
+	}
+	.col4{
+		display: inline-block;
+		float: left;
+		vertical-align: top;
+		width: 25%;
+	}
+
+	/* Toolbar */
+	.toolbar{
+		background: #FFF;
+		border-bottom: 2px solid transparent;
+		display: block;
+		left: 0;
+		min-height: 33px;
+		padding: 5px 20px;
+		position: fixed;
+		right: 0;
+		text-align: center;
+		top: 0;
+		width: 100%;
+		z-index: 100;
+
+		&.toolbar-close{
+			padding-right: 45px;
+		}
+
+		.toolbar-text{
+			display: inline-block;
+			font-size: 125%;
+			line-height: 33px;
+			margin-right: 20px;
+		}
+
+		.button-close{
+			background: #000;
+			border-radius: 3px;
+			color: #FFF;
+			cursor: pointer;
+			display: block;
+			font-size: 14px;
+			font-weight: bold;
+			line-height: 20px;
+			height: 20px;
+			position: absolute;
+			right: 12px;
+			text-align: center;
+			top: 12px;
+			width: 20px;
+		}
+
+		p{
+			margin: 0;
+			padding: 0;
+		}
+
+	}
+
+	/* Logo */
+	.logo{
+		float: left;
+		line-height: $headerLineHeight;
+		margin: 0 20px 0 0;
+		padding: 0;
+	}
+
+	/* Navigation */
+	.navigation{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		position: relative;
+
+		ul{
+			margin: 0;
+			padding: 0;
+		}
+
+		li{
+			display: block;
+			float: left;
+
+			a{
+				display: block;
+				line-height: $headerLineHeight;
+				padding: 0 15px;
+				outline: 0;
+			}
+		}
+
+		.navigation-icon{
+			background: #000;
+			border-radius: 1px;
+			color: #FFF;
+			display: none;
+			cursor: pointer;
+			padding: 0 5px;
+			position: absolute;
+			right: 0px;
+			top: 10px;
+			z-index: 2;
+			outline: none;
+
+			&:active, &:focus{
+				outline: none;
+			}
+
+			span{
+				display: block;
+				margin: 5px 0px 5px 0px;
+				height: 3px;
+				background: #FFF;
+				width: 20px;
+			}
+		}
+	}
+
+	/* Heading */
+	.heading{
+		font-size: 22px;
+		line-height: 130%;
+		padding: 20px 0;
+
+		h2, h3, p{
+			margin-top: 0;
+		}
+
+		h2{
+			font-size: 200%;
+			font-weight: normal;
+			line-height: 130%;
+		}
+
+	}
+
+	/* Listas */
+	.list{
+		list-style: none;
+		margin: 30px 0;
+		padding: 0;
+	}
+
+	.list-blocks{
+
+		li{
+			margin-bottom: 20px;
+		}
+
+		img{
+			float: left;
+			overflow: hidden;
+			margin-right: 20px;
+		}
+
+		h3{
+			padding-top: 0;
+			margin-top: 0;
+		}
+
+	}
+
+	/* Tabs */
+	.tabs{
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		margin-top: -1px;
+		margin-bottom: 0;
+		padding: 0 20px;
+
+		ul{
+			margin: 0;
+			padding: 0;
+		}
+
+		li{
+			border: 1px solid transparent;
+			border-bottom: 0;
+			display: block;
+			float: left;
+
+			&.active{
+				background: #FFF;
+				border-color: rgba(0, 0, 0, 0.1);
+				margin-top: 1px;
+				margin-bottom: -1px;
+				a{
+					color: #343434;
+				}
+			}
+		}
+
+		a{
+			color: #343434;
+			margin-right: 2px;
+			line-height: 45px;
+			display: block;
+			padding: 0 10px;
+			outline: 0;
+
+			&:hover{
+				color: #000;
+			}
+		}
+
+	}
+
+	/* Alertas */
+	.alert{
+		background: #EDEDED;
+		border: 1px solid #C0C0C0;
+		color: #333;
+		display: block;
+		margin: 5px 0;
+		padding: 10px 15px;
+		position: relative;
+		@include border-radius(2px);
+
+		.close{
+			position: absolute;
+			right: 7px;
+			top: 8px;
+			cursor: pointer;
+		}
+
+		&.green, &.success{
+			background-color: #E9F9E5;
+			border-color: #9BDEA8;
+			color: #1C8400;
+		}
+		&.red, &.error{
+			background-color: #F9E5E6;
+			border-color: #DF8F8F;
+			color: #C32727;
+		}
+		&.yellow, &.info{
+			background-color: #FFF6BF;
+			border-color: #EFC20E;
+		}
+		&.blue, &.notice{
+			background-color: #DDEEFF;
+			border-color: #85CAF3;
+			color: #0055B5;
+		}
+
+	}
+
+	/* Labels */
+	.label{
+		background: #DDD;
+		color: #444;
+		display: inline-block;
+		line-height: 22px !important;
+		margin-right: 2px;
+		margin-bottom: 2px;
+		padding: 0 4px;
+		vertical-align: top;
+		@include border-radius(3px);
+
+		&.green{
+			background-color: #1e8512;
+			color: #FFF;
+		}
+		&.red{
+			background-color: #C32727;
+			color: #FFF;
+		}
+		&.yellow{
+			background-color: #FFF6BF;
+			border-color: #EFC20E;
+		}
+		&.orange{
+			background-color: #f79306;
+			color: #FFF;
+		}
+		&.blue{
+			background-color: #1478e7;
+			color: #FFF;
+		}
+		&.bordered{
+			background: #FFF;
+			border: 1px solid #CCC;
+			color: #444;
+		}
+
+	}
+	label .label{
+		cursor: pointer;
+	}
+
+	/* Bounce */
+	.bounce-background{
+		background: rgba(0, 0, 0, 0.80);
+		bottom: 0;
+		display: none;
+		height: 100%;
+		left: 0;
+		top: 0;
+		position: fixed;
+		right: 0;
+		width: 100%;
+		z-index: 1000;
+	}
+
+	.bounce{
+		background: #FFF;
+		display: none;
+		font-size: 18px;
+		line-height: 160%;
+		max-width: 600px;
+		top: 50px;
+		position: fixed;
+		z-index: 1100;
+		right: 0;
+		left: 0;
+		padding: 30px;
+		margin: 0 auto;
+
+		h2{
+			margin-top: 0;
+		}
+
+		.button-close{
+			background: #000;
+			color: #FFF;
+			cursor: pointer;
+			display: block;
+			font-size: 14px;
+			font-weight: bold;
+			line-height: 20px;
+			height: 20px;
+			position: absolute;
+			right: 0px;
+			text-align: center;
+			top: -20px;
+			width: 20px;
+		}
+
+		.button{
+			margin-bottom: 10px;
+		}
+		.button small{
+			font-size: 70%;
+		}
+	}
+
+}
+
+/* Framework - Media-queries */
+@media screen and (min-width: 841px){
+
+	/* Navigation */
+	.navigation-responsive ul{
+		display: block !important;
+	}
+
+}
+
+@media screen and (max-width: 840px){
+
+	.hide-tablet{
+		display: none;
+	}
+
+	/* Navigation */
+	.navigation-responsive{
+
+		.navigation-icon{
+			display: block;
+		}
+
+		ul{
+			display: none;
+			float: none;
+			margin-bottom: 20px;
+		}
+
+		li{
+			border-top: 1px solid rgba(0, 0, 0, 0.1);
+			float: none;
+			position: relative;
+			width: 100%;
+		}
+
+	}
+
+}
+
+@media screen and (max-width: 540px){
+
+	.hide-phone{
+		display: none;
+	}
+
+	.centered{
+		padding: 0 15px;
+	}
+
+	// Logo
+	.logo{
+		font-size: 1.4em;
+	}
+
+	/* Heading */
+	.heading{
+		font-size: 16px;
+		line-height: 130%;
+
+		h2{
+			font-size: 170%;
+			font-weight: normal;
+		}
+
+	}
+
+}
