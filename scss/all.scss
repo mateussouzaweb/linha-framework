@@ -320,6 +320,7 @@
 	.select{
 		background: #FFF;
 		border: 1px solid #bbb;
+		cursor: pointer;
 		display: block;
 		overflow: hidden;
 		max-width: 300px;
@@ -358,9 +359,31 @@
 			z-index: 2;
 		}
 
+		&.nostyle{
+			border: 0;
+			box-shadow: none;
+			display: inline-block;
+			font-weight: bold;
+			vertical-align: middle;
+			min-width: 5px;
+			width: auto;
+
+			&:before, &:after{
+				display: none !important;
+			}
+
+			select{
+				height: 25px;
+				padding: 0 2px;
+				min-width: 5px;
+				width: auto;
+			}
+		}
+
 		select{
 			background: transparent;
 			border: 0 !important;
+			cursor: pointer;
 			height: 30px;
 			margin: 0 auto;
 			min-width: 50px;

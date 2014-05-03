@@ -95,7 +95,11 @@
 		<form method="POST" action="#">
 			<p>
 				<label>Uma label</label><br/>
-				<input type="text" name="input" value="Este é um input"/>
+				<input type="text" name="input" placeholder="Este é um input" required />
+			</p>
+			<p>
+				<label>Input e-mail</label><br/>
+				<input type="email" name="input" placeholder="Insira seu e-mail" required />
 			</p>
 			<p>
 				<label>Input password</label><br/>
@@ -124,7 +128,7 @@
 			</p>
 			<p>
 				<input type="submit" value="Input submit"/>
-				<button>Button</button>
+				<button class="button" type="submit">Button</button>
 			</p>
 
 			<p>
@@ -142,11 +146,11 @@
 			<a href="#" class="button red">Button Red</a>
 		</p>
 
-		<div class="alert">Este é um alert simples na cor cinza</div>
-		<div class="alert green">Este é um alert simples na cor green</div>
-		<div class="alert blue">Este é um alert simples na cor blue</div>
-		<div class="alert yellow">Este é um alert simples na cor yellow</div>
-		<div class="alert red">Este é um alert simples na cor vermelha</div>
+		<div class="alert">Este é um alert simples na cor cinza <div class="close">x</div></div>
+		<div class="alert green">Este é um alert simples na cor green <div class="close">x</div></div>
+		<div class="alert blue">Este é um alert simples na cor blue <div class="close">x</div></div>
+		<div class="alert yellow">Este é um alert simples na cor yellow <div class="close">x</div></div>
+		<div class="alert red">Este é um alert simples na cor vermelha <div class="close">x</div></div>
 
 
 		<br>
