@@ -234,7 +234,7 @@
 		color: #333;
 		display: block;
 		margin: 5px 0;
-		padding: 10px 15px;
+		padding: 10px 20px 10px 15px;
 		position: relative;
 		@include border-radius(2px);
 
@@ -418,7 +418,7 @@
 		padding: 0 15px;
 	}
 
-	// Logo
+	/* Logo */
 	.logo{
 		font-size: 1.4em;
 	}
