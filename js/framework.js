@@ -224,6 +224,12 @@ $(function(){
 		classError: 'error'
 	});
 
+	// Alerta
+	$('.alert .close').on('click', function(e){
+		$(this).parent('.alert').remove();
+		e.preventDefault();
+	});
+
 	// Toolbar
 	$('.toolbar .close').on('click', function(e){
 		$(this).parent('.toolbar').remove();
