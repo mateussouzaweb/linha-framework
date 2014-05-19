@@ -164,8 +164,9 @@
   /* Navigation */
   .navigation { list-style: none; margin: 0; padding: 0; position: relative; }
   .navigation ul { margin: 0; padding: 0; }
-  .navigation li { display: block; float: left; }
-  .navigation li a { display: block; line-height: 55px; padding: 0 15px; outline: 0; }
+  .navigation li { display: block; float: left; line-height: 55px; }
+  .navigation li a { display: block; padding: 0 15px; outline: 0; }
+  .navigation li a.button { display: inline-block; vertical-align: middle; }
   .navigation .navigation-icon { background: #000; border-radius: 1px; color: #FFF; display: none; cursor: pointer; padding: 0 5px; position: absolute; right: 0px; top: 10px; z-index: 2; outline: none; }
   .navigation .navigation-icon:active, .navigation .navigation-icon:focus { outline: none; }
   .navigation .navigation-icon span { display: block; margin: 5px 0px 5px 0px; height: 3px; background: #FFF; width: 20px; }
@@ -204,11 +205,10 @@
   label .label { cursor: pointer; }
   /* Bounce */
   .bounce-background { background: rgba(0, 0, 0, 0.8); bottom: 0; display: none; height: 100%; left: 0; top: 0; position: fixed; right: 0; width: 100%; z-index: 1000; }
-  .bounce { background: #FFF; display: none; font-size: 18px; line-height: 160%; max-width: 600px; top: 50px; position: fixed; z-index: 1100; right: 0; left: 0; padding: 30px; margin: 0 auto; }
+  .bounce { background: #FFF; display: none; font-size: 18px; line-height: 160%; max-width: 600px; top: 50px; position: fixed; z-index: 1100; right: 10px; left: 10px; padding: 30px; margin: 0 auto; }
   .bounce h2 { margin-top: 0; }
   .bounce .button-close { background: #000; color: #FFF; cursor: pointer; display: block; font-size: 14px; font-weight: bold; line-height: 20px; height: 20px; position: absolute; right: 0px; text-align: center; top: -20px; width: 20px; }
-  .bounce .button { margin-bottom: 10px; }
-  .bounce .button small { font-size: 70%; } }
+  .bounce .button { margin-bottom: 10px; } }
 /* Framework - Media-queries */
 @media screen and (min-width: 841px) { /* Navigation */
   .navigation-responsive ul { display: block !important; } }
@@ -223,6 +223,8 @@
   .logo { font-size: 1.4em; }
   /* Heading */
   .heading { font-size: 16px; line-height: 130%; }
-  .heading h2 { font-size: 170%; font-weight: normal; } }
+  .heading h2 { font-size: 170%; font-weight: normal; }
+  /* Bounce */
+  .bounce { font-size: 16px; } }
 /* Styles */
 /* Media-queries */
