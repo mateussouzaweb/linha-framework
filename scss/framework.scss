@@ -333,8 +333,8 @@
 		top: 50px;
 		position: fixed;
 		z-index: 1100;
-		right: 0;
-		left: 0;
+		right: 10px;
+		left: 10px;
 		padding: 30px;
 		margin: 0 auto;
 
@@ -360,9 +360,6 @@
 
 		.button{
 			margin-bottom: 10px;
-		}
-		.button small{
-			font-size: 70%;
 		}
 	}
 
@@ -433,6 +430,11 @@
 			font-weight: normal;
 		}
 
+	}
+
+	/* Bounce */
+	.bounce{
+		font-size: 16px;
 	}
 
 }
