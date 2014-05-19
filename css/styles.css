@@ -164,8 +164,9 @@
   /* Navigation */
   .navigation { list-style: none; margin: 0; padding: 0; position: relative; }
   .navigation ul { margin: 0; padding: 0; }
-  .navigation li { display: block; float: left; }
-  .navigation li a { display: block; line-height: 55px; padding: 0 15px; outline: 0; }
+  .navigation li { display: block; float: left; line-height: 55px; }
+  .navigation li a { display: block; padding: 0 15px; outline: 0; }
+  .navigation li a.button { display: inline-block; vertical-align: middle; }
   .navigation .navigation-icon { background: #000; border-radius: 1px; color: #FFF; display: none; cursor: pointer; padding: 0 5px; position: absolute; right: 0px; top: 10px; z-index: 2; outline: none; }
   .navigation .navigation-icon:active, .navigation .navigation-icon:focus { outline: none; }
   .navigation .navigation-icon span { display: block; margin: 5px 0px 5px 0px; height: 3px; background: #FFF; width: 20px; }
