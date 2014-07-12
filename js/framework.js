@@ -355,16 +355,29 @@ $(function(){
 	});
 
 	// Navegação
-	$('.navigation-icon').on('click', function(e){
+	$('.navigation').on('click', '.navigation-icon', function(e){
 
-		var UL = $(this).parent().find('ul');
-		if( UL.is(':visible') ){
-			UL.hide();
+		var NAV = $(this).parents('.navigation');
+		var CLASS = 'navigation-responsive-active';
+
+		if( NAV.hasClass(CLASS) ){
+			NAV.removeClass(CLASS)
 		}else{
-			UL.show();
+			NAV.addClass(CLASS);
 		}
 
 		e.preventDefault();
+	});
+
+	$('.navigation').on('click', 'a', function(){
+
+		var NAV = $(this).parents('.navigation');
+		var CLASS = 'navigation-responsive-active';
+
+		if( NAV.hasClass(CLASS) ){
+			NAV.removeClass(CLASS)
+		}
+
 	});
 
 	// Bounce

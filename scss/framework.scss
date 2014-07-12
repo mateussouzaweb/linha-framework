@@ -104,6 +104,7 @@
 			display: block;
 			float: left;
 			line-height: $headerLineHeight;
+			position: relative;
 
 			a{
 				display: block;
@@ -114,6 +115,24 @@
 				display: inline-block;
 				vertical-align: middle;
 			}
+
+			> ul{
+				display: none;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				z-index: 10;
+
+				li{
+					float: none;
+					line-height: $headerLineHeight - 15;
+				}
+			}
+
+			&:hover > ul{
+				display: block;
+			}
+
 		}
 
 		.navigation-icon{
@@ -122,7 +141,7 @@
 			color: #FFF;
 			display: none;
 			cursor: pointer;
-			padding: 0 5px;
+			padding: 2px 7px;
 			position: absolute;
 			right: 0px;
 			top: 10px;
@@ -372,9 +391,17 @@
 /* Framework - Media-queries */
 @media screen and (min-width: 841px){
 
+	.hide-desktop{
+		display: none;
+	}
+
 	/* Navigation */
-	.navigation-responsive ul{
-		display: block !important;
+	.navigation-responsive-active ul{
+		display: block;
+
+		ul{
+			display: none;
+		}
 	}
 
 }
@@ -393,16 +420,27 @@
 		}
 
 		ul{
+			clear: both;
 			display: none;
 			float: none;
-			margin-bottom: 20px;
+
+			li > ul{
+				border-top: 1px solid rgba(0, 0, 0, 0.15);
+				display: block;
+				margin-bottom: -1px;
+				position: relative;
+			}
 		}
 
 		li{
-			border-top: 1px solid rgba(0, 0, 0, 0.1);
+			border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 			float: none;
 			position: relative;
 			width: 100%;
+		}
+
+		&.navigation-responsive-active ul{
+			display: block;
 		}
 
 	}

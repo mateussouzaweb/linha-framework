@@ -97,7 +97,7 @@
   .select { background: #FFF; border: 1px solid #bbb; cursor: pointer; display: block; overflow: hidden; max-width: 300px; position: relative; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) , inset 0 1px 0 white; -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) , inset 0 1px 0 white; -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) , inset 0 1px 0 white; -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) , inset 0 1px 0 white; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) , inset 0 1px 0 white; }
   .select:before { background: #fcfcfc; border-left: 1px solid #bbb; content: ''; display: block; height: 30px; position: absolute; right: 0; z-index: 1; width: 28px; }
   .select:hover:before { background: #EEE; }
-  .select:after { border-bottom: none; border-left: 4px solid rgba(0, 0, 0, 0); border-right: 4px solid rgba(0, 0, 0, 0); border-top: 4px solid #333; content: ''; display: block; height: 0; position: absolute; right: 10px; top: 13px; width: 0; z-index: 2; }
+  .select:after { border-bottom: none; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid #333; content: ''; display: block; height: 0; position: absolute; right: 10px; top: 13px; width: 0; z-index: 2; }
   .select.nostyle { border: 0; box-shadow: none; display: inline-block; font-weight: bold; vertical-align: middle; min-width: 5px; width: auto; }
   .select.nostyle:before, .select.nostyle:after { display: none !important; }
   .select.nostyle select { height: 25px; padding: 0 2px; min-width: 5px; width: auto; }
@@ -164,10 +164,13 @@
   /* Navigation */
   .navigation { list-style: none; margin: 0; padding: 0; position: relative; }
   .navigation ul { margin: 0; padding: 0; }
-  .navigation li { display: block; float: left; line-height: 55px; }
+  .navigation li { display: block; float: left; line-height: 55px; position: relative; }
   .navigation li a { display: block; padding: 0 15px; outline: 0; }
   .navigation li a.button { display: inline-block; vertical-align: middle; }
-  .navigation .navigation-icon { background: #000; border-radius: 1px; color: #FFF; display: none; cursor: pointer; padding: 0 5px; position: absolute; right: 0px; top: 10px; z-index: 2; outline: none; }
+  .navigation li > ul { display: none; position: absolute; top: 100%; left: 0; z-index: 10; }
+  .navigation li > ul li { float: none; line-height: 40px; }
+  .navigation li:hover > ul { display: block; }
+  .navigation .navigation-icon { background: #000; border-radius: 1px; color: #FFF; display: none; cursor: pointer; padding: 2px 7px; position: absolute; right: 0px; top: 10px; z-index: 2; outline: none; }
   .navigation .navigation-icon:active, .navigation .navigation-icon:focus { outline: none; }
   .navigation .navigation-icon span { display: block; margin: 5px 0px 5px 0px; height: 3px; background: #FFF; width: 20px; }
   /* Heading */
@@ -210,13 +213,17 @@
   .bounce .button-close { background: #000; color: #FFF; cursor: pointer; display: block; font-size: 14px; font-weight: bold; line-height: 20px; height: 20px; position: absolute; right: 0px; text-align: center; top: -20px; width: 20px; }
   .bounce .button { margin-bottom: 10px; } }
 /* Framework - Media-queries */
-@media screen and (min-width: 841px) { /* Navigation */
-  .navigation-responsive ul { display: block !important; } }
+@media screen and (min-width: 841px) { .hide-desktop { display: none; }
+  /* Navigation */
+  .navigation-responsive-active ul { display: block; }
+  .navigation-responsive-active ul ul { display: none; } }
 @media screen and (max-width: 840px) { .hide-tablet { display: none; }
   /* Navigation */
   .navigation-responsive .navigation-icon { display: block; }
-  .navigation-responsive ul { display: none; float: none; margin-bottom: 20px; }
-  .navigation-responsive li { border-top: 1px solid rgba(0, 0, 0, 0.1); float: none; position: relative; width: 100%; } }
+  .navigation-responsive ul { clear: both; display: none; float: none; }
+  .navigation-responsive ul li > ul { border-top: 1px solid rgba(0, 0, 0, 0.15); display: block; margin-bottom: -1px; position: relative; }
+  .navigation-responsive li { border-bottom: 1px solid rgba(0, 0, 0, 0.15); float: none; position: relative; width: 100%; }
+  .navigation-responsive.navigation-responsive-active ul { display: block; } }
 @media screen and (max-width: 540px) { .hide-phone { display: none; }
   .centered { padding: 0 15px; }
   /* Logo */
