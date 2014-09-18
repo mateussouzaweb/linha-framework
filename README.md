@@ -31,16 +31,15 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
 
 CHANGELOG
 =====================
-#### 1.3 - XX de XXXXXXXX de 2014
+#### 1.3 - 18 de Setembro de 2014
 
  * Código agora está no padrão internacional - INGLÊS (Código, não comentários e textos...)
  * HTML migrado para HTML5 (não vá confundir com as funcionalidades do HTML5)
- * Adicionado os arquivos example.htaccess (quando concluir renomei para .htaccess) e robots.txt
+ * Adicionado os arquivos .htaccess.txt (quando concluir renomei para .htaccess) e robots.txt
  * Reestruturação dos arquivos
- * Otimização CSS e JS - Veja log plugins
- * Remoção do $.pluginX, em apoio a $.fn.pluginX
- * Removido plugin Linha Focuss (o HTML5 oferece o atributo "placeholder" como alternativa)
- * Removido plugin Linha Nav (Fazer o mesmo com CSS é muito simples)
+ * Versão do framework mais clean, apenas com o necessário
+ * Otimização CSS e JS - Agora o framework tem arquivos separados para Scripts e CSS
+ * Remoção de tudos os plugins jQuery Linha em favor do framework.js e interações via CSS
  * Atualização jQuery para V. 2.1.1
  * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
  * Arquivos CSS simplificados em 1 arquivo (anteriormente eram 7)
