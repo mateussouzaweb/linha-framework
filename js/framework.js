@@ -262,4 +262,17 @@ $(function(){
 
 	});
 
+	// Modal
+	$('.modal .close').on('click', function(e){
+
+		var modal = $(this).parents('.modal');
+		var modalBackdrop = $('.modal-backdrop');
+
+		modal.removeClass('in');
+		modalBackdrop.removeClass('in');
+
+		e.preventDefault();
+
+	});
+
 });
