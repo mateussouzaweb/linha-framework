@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* Framework */
 @media screen{
 
@@ -254,12 +256,12 @@
 	.alert{
 		background: #EDEDED;
 		border: 1px solid #C0C0C0;
+		border-radius: 2px;
 		color: #333;
 		display: block;
 		margin: 5px 0;
 		padding: 10px 20px 10px 15px;
 		position: relative;
-		@include border-radius(2px);
 
 		.close{
 			position: absolute;
@@ -293,6 +295,7 @@
 	/* Labels */
 	.label{
 		background: #DDD;
+		border-radius: 3px;
 		color: #444;
 		display: inline-block;
 		line-height: 22px !important;
@@ -300,7 +303,6 @@
 		margin-bottom: 2px;
 		padding: 0 4px;
 		vertical-align: top;
-		@include border-radius(3px);
 
 		&.green{
 			background-color: #1e8512;
