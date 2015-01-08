@@ -75,6 +75,7 @@
   .text.blue, .text.blue a { color: #005ABB; }
   .text.alt, .text.alt a { color: #AAA; }
   .text.gray, .text.gray a { color: #777; }
+  .text.black, .text.black a { color: #333; }
   .text.small { font-size: 80%; }
   .text.big { font-size: 120%; }
   /* Formulários */
@@ -114,12 +115,15 @@
   .button.ssmall, a.button.ssmall, button.ssmall, [type="submit"].ssmall { padding: 0 5px !important; line-height: 25px !important; height: 25px !important; }
   .button.big, a.button.big, button.big, [type="submit"].big { padding: 0 15px !important; line-height: 45px !important; height: 45px !important; font-size: 120%; }
   .button.sbig, a.button.sbig, button.sbig, [type="submit"].sbig { padding: 0 25px !important; line-height: 60px !important; height: 60px !important; font-size: 160%; }
+  .button.no-border, a.button.no-border, button.no-border, [type="submit"].no-border { border: 0 !important; }
   .button.green, a.button.green, button.green, [type="submit"].green { background-color: #1e8512; }
   .button.red, a.button.red, button.red, [type="submit"].red { background-color: #C32727; }
   .button.orange, a.button.orange, button.orange, [type="submit"].orange { background-color: #FF7034; }
   .button.yellow, a.button.yellow, button.yellow, [type="submit"].yellow { background-color: #EFC20E; }
   .button.blue, a.button.blue, button.blue, [type="submit"].blue { background-color: #1478e7; }
   .button.black, a.button.black, button.black, [type="submit"].black { background-color: #000; }
+  .button.white, a.button.white, button.white, [type="submit"].white { border: 1px solid rgba(0, 0, 0, 0.2); background-color: #FAFAFA; color: #777; text-shadow: none; }
+  .button.white:hover, a.button.white:hover, button.white:hover, [type="submit"].white:hover { border-bottom-width: 1px; }
   .button:hover, a.button:hover, button:hover, [type="submit"]:hover { border-bottom: 2px solid rgba(0, 0, 0, 0.4); }
   .button:focus, .button:active, a.button:focus, a.button:active, button:focus, button:active, [type="submit"]:focus, [type="submit"]:active { box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.25); }
   .buttons button, .buttons .button { border-radius: 0; margin: 0; float: left; }
@@ -178,7 +182,7 @@
   .heading { font-size: 22px; line-height: 130%; padding: 20px 0; }
   .heading h2, .heading h3, .heading p { margin-top: 0; }
   .heading h2 { font-size: 200%; font-weight: normal; line-height: 130%; }
-  /* Listas */
+  /* Lists */
   .list { list-style: none; margin: 30px 0; padding: 0; }
   .list-blocks li { margin-bottom: 20px; }
   .list-blocks img { float: left; overflow: hidden; margin-right: 20px; }
@@ -191,13 +195,16 @@
   .tabs li.active a { color: #343434; }
   .tabs a { color: #343434; margin-right: 2px; line-height: 45px; display: block; padding: 0 10px; outline: 0; }
   .tabs a:hover { color: #000; }
-  /* Alertas */
+  /* Alerts */
   .alert { background: #EDEDED; border: 1px solid #C0C0C0; border-radius: 2px; color: #333; display: block; margin: 5px 0; padding: 10px 20px 10px 15px; position: relative; }
   .alert .close { position: absolute; right: 7px; top: 8px; cursor: pointer; }
   .alert.green, .alert.success { background-color: #E9F9E5; border-color: #9BDEA8; color: #1C8400; }
   .alert.red, .alert.error { background-color: #F9E5E6; border-color: #DF8F8F; color: #C32727; }
   .alert.yellow, .alert.info { background-color: #FFF6BF; border-color: #EFC20E; }
   .alert.blue, .alert.notice { background-color: #DDEEFF; border-color: #85CAF3; color: #0055B5; }
+  /* Alerts Fixed */
+  .alerts.fixed { bottom: 0; display: block; max-width: 500px; position: fixed; right: 0; z-index: 9999; }
+  .alerts.fixed .alert { cursor: pointer; }
   /* Labels */
   .label { background: #DDD; border-radius: 3px; color: #444; display: inline-block; line-height: 22px !important; margin-right: 2px; margin-bottom: 2px; padding: 0 4px; vertical-align: top; }
   .label.green { background-color: #1e8512; color: #FFF; }
@@ -230,12 +237,18 @@
   .modal .footer:before, .modal .footer:after { display: table; content: ""; line-height: 0; }
   .modal .footer:after { clear: both; }
   /* Upload */
-  .upload { border: 1px dotted #CCC; background: #FAFAFA; border-radius: 5px; cursor: pointer; display: block; min-height: 100px; position: relative; text-align: center; width: 100%; }
-  .upload.upload-drag-hover { background-color: #fdf5db; }
+  .upload { cursor: pointer; display: inline-block; position: relative; }
   .upload input { bottom: 0; cursor: pointer; display: block; height: 100%; left: 0; opacity: 0; position: absolute; right: 0; top: 0; visibility: visible; width: 100%; }
-  .upload .upload-text { color: #555; display: inline-block; font-size: 13px; padding: 10px; margin: 0 auto; text-align: center; vertical-align: middle; }
-  .upload .upload-text p { margin-top: 0; }
-  .upload .upload-text strong { text-decoration: underline; } }
+  .upload-area { border: 1px dotted #CCC; border-radius: 5px; background: #FAFAFA; display: block; min-height: 100px; text-align: center; width: 100%; }
+  .upload-area.upload-drag-hover { background-color: #fdf5db; }
+  .upload-area .upload-text { color: #555; display: inline-block; font-size: 13px; padding: 10px; margin: 0 auto; text-align: center; vertical-align: middle; }
+  .upload-area .upload-text p { margin-top: 0; }
+  .upload-area .upload-text strong { text-decoration: underline; }
+  /* Boxes */
+  .box { border: 1px solid #EEE; border-bottom-width: 3px; border-radius: 5px; display: inline-block; padding: 10px; margin: 0 15px 15px 0; vertical-align: top; width: 200px; }
+  .box h3 { margin-bottom: 5px; }
+  .box p { margin-top: 0; }
+  .box .button { text-align: center; font-weight: bold; } }
 /* Framework - Media-queries */
 @media screen and (min-width: 841px) { .hide-desktop { display: none; }
   /* Navigation */
@@ -253,7 +266,7 @@
   /* Logo */
   .logo { font-size: 1.4em; }
   /* Heading */
-  .heading { font-size: 16px; line-height: 130%; }
+  .heading { font-size: 16px; }
   .heading h2 { font-size: 170%; font-weight: normal; } }
 /* Styles */
 /* Media-queries */

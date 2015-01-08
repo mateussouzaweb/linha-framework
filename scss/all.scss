@@ -209,6 +209,7 @@
 		&.blue, &.blue a{ color: #005ABB; }
 		&.alt, &.alt a{ color: #AAA; }
 		&.gray, &.gray a{ color: #777; }
+		&.black, &.black a{color: #333; }
 
 		&.small{
 			font-size: 80%;
@@ -471,6 +472,9 @@
 			height: 60px !important;
 			font-size: 160%;
 		}
+		&.no-border{
+			border: 0 !important;
+		}
 
 		&.green{
 			background-color: #1e8512;
@@ -489,6 +493,16 @@
 		}
 		&.black{
 			background-color: #000;
+		}
+		&.white{
+			border: 1px solid rgba(0, 0, 0, 0.2);
+			background-color: #FAFAFA;
+			color: #777;
+			text-shadow: none;
+
+			&:hover{
+				border-bottom-width: 1px;
+			}
 		}
 
 		&:hover{

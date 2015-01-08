@@ -182,7 +182,7 @@
 
 	}
 
-	/* Listas */
+	/* Lists */
 	.list{
 		list-style: none;
 		margin: 30px 0;
@@ -252,7 +252,7 @@
 
 	}
 
-	/* Alertas */
+	/* Alerts */
 	.alert{
 		background: #EDEDED;
 		border: 1px solid #C0C0C0;
@@ -290,6 +290,20 @@
 			color: #0055B5;
 		}
 
+	}
+
+	/* Alerts Fixed */
+	.alerts.fixed{
+		bottom: 0;
+		display: block;
+		max-width: 500px;
+		position: fixed;
+		right: 0;
+		z-index: 9999;
+
+		.alert{
+			cursor: pointer;
+		}
 	}
 
 	/* Labels */
@@ -467,20 +481,10 @@
 	}
 
 	/* Upload */
-	.upload {
-		border: 1px dotted #CCC;
-		background: #FAFAFA;
-		border-radius: 5px;
+	.upload{
 		cursor: pointer;
-		display: block;
-		min-height: 100px;
+		display: inline-block;
 		position: relative;
-		text-align: center;
-		width: 100%;
-
-		&.upload-drag-hover {
-			background-color: #fdf5db;
-		}
 
 		input {
 			bottom: 0;
@@ -494,6 +498,20 @@
 			top: 0;
 			visibility: visible;
 			width: 100%;
+		}
+	}
+
+	.upload-area {
+		border: 1px dotted #CCC;
+		border-radius: 5px;
+		background: #FAFAFA;
+		display: block;
+		min-height: 100px;
+		text-align: center;
+		width: 100%;
+
+		&.upload-drag-hover {
+			background-color: #fdf5db;
 		}
 
 		.upload-text {
@@ -513,6 +531,29 @@
 			}
 		}
 
+	}
+
+	/* Boxes */
+	.box{
+		border: 1px solid #EEE;
+		border-bottom-width: 3px;
+		border-radius: 5px;
+		display: inline-block;
+		padding: 10px;
+		margin: 0 15px 15px 0;
+		vertical-align: top;
+		width: 200px;
+
+		h3{
+			margin-bottom: 5px;
+		}
+		p{
+			margin-top: 0;
+		}
+		.button{
+			text-align: center;
+			font-weight: bold;
+		}
 	}
 
 }
@@ -594,7 +635,6 @@
 	/* Heading */
 	.heading{
 		font-size: 16px;
-		line-height: 130%;
 
 		h2{
 			font-size: 170%;
