@@ -109,6 +109,7 @@
   /* Botões */
   .button, a.button { display: inline-block; line-height: 33px; margin: 0 2px 0 0; padding: 0 15px; vertical-align: top; }
   .button, a.button, button, [type="submit"] { background: #888; border-bottom: 2px solid rgba(0, 0, 0, 0.2); cursor: pointer; color: #FFF; height: 33px; font-weight: normal; text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1); border-radius: 2px; }
+  .button:hover, .button:visited, .button:link, a.button:hover, a.button:visited, a.button:link, button:hover, button:visited, button:link, [type="submit"]:hover, [type="submit"]:visited, [type="submit"]:link { color: #FFF; }
   .button::-moz-focus-inner, a.button::-moz-focus-inner, button::-moz-focus-inner, [type="submit"]::-moz-focus-inner { border: 0; padding: 0; }
   .button:hover, .button:focus, a.button:hover, a.button:focus, button:hover, button:focus, [type="submit"]:hover, [type="submit"]:focus { transition: all 0.15s ease-out 0; }
   .button.small, a.button.small, button.small, [type="submit"].small { padding: 0 8px !important; line-height: 28px !important; height: 28px !important; }
@@ -124,6 +125,7 @@
   .button.black, a.button.black, button.black, [type="submit"].black { background-color: #000; }
   .button.white, a.button.white, button.white, [type="submit"].white { border: 1px solid rgba(0, 0, 0, 0.2); background-color: #FAFAFA; color: #777; text-shadow: none; }
   .button.white:hover, a.button.white:hover, button.white:hover, [type="submit"].white:hover { border-bottom-width: 1px; }
+  .button.white:hover, .button.white:visited, .button.white:link, a.button.white:hover, a.button.white:visited, a.button.white:link, button.white:hover, button.white:visited, button.white:link, [type="submit"].white:hover, [type="submit"].white:visited, [type="submit"].white:link { color: #777; }
   .button:hover, a.button:hover, button:hover, [type="submit"]:hover { border-bottom: 2px solid rgba(0, 0, 0, 0.4); }
   .button:focus, .button:active, a.button:focus, a.button:active, button:focus, button:active, [type="submit"]:focus, [type="submit"]:active { box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.25); }
   .buttons button, .buttons .button { border-radius: 0; margin: 0; float: left; }
@@ -217,7 +219,8 @@
   /* Pagination */
   .pagination { margin-top: 40px; margin-bottom: 40px; text-align: center; }
   .pagination a { background: #FAFAFA; border: 1px solid #DFDFDF; display: inline-block; line-height: 36px; margin-bottom: 5px; margin-right: -1px; padding: 0 20px; }
-  .pagination a.disabled { background: #FFF; color: #AAA; }
+  .pagination a.disabled { background: #FFF; color: #AAA; cursor: default; }
+  .pagination a.dots { padding: 0 10px; }
   .pagination a:first-child { border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
   .pagination a:last-child { border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
   /* Modal */
@@ -239,9 +242,9 @@
   /* Upload */
   .upload { cursor: pointer; display: inline-block; position: relative; }
   .upload input { bottom: 0; cursor: pointer; display: block; height: 100%; left: 0; opacity: 0; position: absolute; right: 0; top: 0; visibility: visible; width: 100%; }
-  .upload-area { border: 1px dotted #CCC; border-radius: 5px; background: #FAFAFA; display: block; min-height: 100px; text-align: center; width: 100%; }
+  .upload-area { border: 1px dotted #CCC; border-radius: 5px; background: #FAFAFA; display: block; text-align: center; width: 100%; }
   .upload-area.upload-drag-hover { background-color: #fdf5db; }
-  .upload-area .upload-text { color: #555; display: inline-block; font-size: 13px; padding: 10px; margin: 0 auto; text-align: center; vertical-align: middle; }
+  .upload-area .upload-text { color: #555; display: inline-block; font-size: 13px; padding: 6px; margin: 0 auto; text-align: center; vertical-align: middle; }
   .upload-area .upload-text p { margin-top: 0; }
   .upload-area .upload-text strong { text-decoration: underline; }
   /* Boxes */
@@ -268,5 +271,7 @@
   /* Heading */
   .heading { font-size: 16px; }
   .heading h2 { font-size: 170%; font-weight: normal; } }
+/* Print */
+@media print { .hide-print { display: none !important; } }
 /* Styles */
 /* Media-queries */

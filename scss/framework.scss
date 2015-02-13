@@ -367,6 +367,10 @@
 		a.disabled{
 			background: #FFF;
 			color: #AAA;
+			cursor: default;
+		}
+		a.dots{
+			padding: 0 10px;
 		}
 		a:first-child{
 			border-top-left-radius: 3px;
@@ -506,7 +510,7 @@
 		border-radius: 5px;
 		background: #FAFAFA;
 		display: block;
-		min-height: 100px;
+		// min-height: 100px;
 		text-align: center;
 		width: 100%;
 
@@ -518,7 +522,7 @@
 			color: #555;
 			display: inline-block;
 			font-size: 13px;
-			padding: 10px;
+			padding: 6px;
 			margin: 0 auto;
 			text-align: center;
 			vertical-align: middle;
@@ -641,6 +645,15 @@
 			font-weight: normal;
 		}
 
+	}
+
+}
+
+/* Print */
+@media print{
+
+	.hide-print{
+		display: none !important;
 	}
 
 }

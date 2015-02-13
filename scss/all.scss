@@ -441,6 +441,10 @@
 		text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 		border-radius: 2px;
 
+		&:hover, &:visited, &:link{
+			color: #FFF;
+		}
+
 		&::-moz-focus-inner{
 			border: 0;
 			padding: 0;
@@ -502,6 +506,9 @@
 
 			&:hover{
 				border-bottom-width: 1px;
+			}
+			&:hover, &:visited, &:link{
+				color: #777;
 			}
 		}
 
