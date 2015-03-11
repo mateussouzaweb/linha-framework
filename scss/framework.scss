@@ -260,14 +260,20 @@
 		color: #333;
 		display: block;
 		margin: 5px 0;
-		padding: 10px 20px 10px 15px;
+		padding: 10px 15px 10px 15px;
 		position: relative;
 
+		&.close{
+			padding-right: 25px;
+		}
+
 		.close{
+			cursor: pointer;
+			font-size: 110%;
+			font-weight: bold;
 			position: absolute;
 			right: 7px;
 			top: 8px;
-			cursor: pointer;
 		}
 
 		&.green, &.success{
@@ -290,6 +296,11 @@
 			color: #0055B5;
 		}
 
+		h3, h4{
+			font-weight: bold;
+			margin: 0;
+			padding: 0;
+		}
 	}
 
 	/* Alerts Fixed */
@@ -298,7 +309,7 @@
 		display: block;
 		max-width: 500px;
 		position: fixed;
-		right: 0;
+		right: 5px;
 		z-index: 9999;
 
 		.alert{

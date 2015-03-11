@@ -198,14 +198,16 @@
   .tabs a { color: #343434; margin-right: 2px; line-height: 45px; display: block; padding: 0 10px; outline: 0; }
   .tabs a:hover { color: #000; }
   /* Alerts */
-  .alert { background: #EDEDED; border: 1px solid #C0C0C0; border-radius: 2px; color: #333; display: block; margin: 5px 0; padding: 10px 20px 10px 15px; position: relative; }
-  .alert .close { position: absolute; right: 7px; top: 8px; cursor: pointer; }
+  .alert { background: #EDEDED; border: 1px solid #C0C0C0; border-radius: 2px; color: #333; display: block; margin: 5px 0; padding: 10px 15px 10px 15px; position: relative; }
+  .alert.close { padding-right: 25px; }
+  .alert .close { cursor: pointer; font-size: 110%; font-weight: bold; position: absolute; right: 7px; top: 8px; }
   .alert.green, .alert.success { background-color: #E9F9E5; border-color: #9BDEA8; color: #1C8400; }
   .alert.red, .alert.error { background-color: #F9E5E6; border-color: #DF8F8F; color: #C32727; }
   .alert.yellow, .alert.info { background-color: #FFF6BF; border-color: #EFC20E; }
   .alert.blue, .alert.notice { background-color: #DDEEFF; border-color: #85CAF3; color: #0055B5; }
+  .alert h3, .alert h4 { font-weight: bold; margin: 0; padding: 0; }
   /* Alerts Fixed */
-  .alerts.fixed { bottom: 0; display: block; max-width: 500px; position: fixed; right: 0; z-index: 9999; }
+  .alerts.fixed { bottom: 0; display: block; max-width: 500px; position: fixed; right: 5px; z-index: 9999; }
   .alerts.fixed .alert { cursor: pointer; }
   /* Labels */
   .label { background: #DDD; border-radius: 3px; color: #444; display: inline-block; line-height: 22px !important; margin-right: 2px; margin-bottom: 2px; padding: 0 4px; vertical-align: top; }
