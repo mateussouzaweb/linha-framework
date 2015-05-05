@@ -216,6 +216,7 @@
   .label.yellow { background-color: #FFF6BF; border-color: #EFC20E; }
   .label.orange { background-color: #f79306; color: #FFF; }
   .label.blue { background-color: #1478e7; color: #FFF; }
+  .label.black { background-color: #000; color: #FFF; }
   .label.bordered { background: #FFF; border: 1px solid #CCC; color: #444; }
   label .label { cursor: pointer; }
   /* Pagination */
