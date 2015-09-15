@@ -227,11 +227,12 @@
   .pagination a:first-child { border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
   .pagination a:last-child { border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
   /* Modal */
+  body.modal-open { overflow: hidden; }
   .modal-backdrop { background-color: #000000; bottom: 0; left: 0; position: fixed; right: 0; top: 0; z-index: 1040; }
   .modal-backdrop.fade { opacity: 0; -webkit-transition: opacity 0.15s linear; -moz-transition: opacity 0.15s linear; -o-transition: opacity 0.15s linear; transition: opacity 0.15s linear; }
   .modal-backdrop, .modal-backdrop.fade.in { opacity: 0.3; filter: alpha(opacity=30); }
-  .modal { bottom: 0; left: 0; position: fixed; right: 0; top: 0; outline: none; overflow-y: scroll; z-index: 1050; }
-  .modal.fade { -webkit-transition: opacity .15s linear, top .15s ease-out; -moz-transition: opacity .15s linear, top .15s ease-out; -o-transition: opacity .15s linear, top .15s ease-out; transition: opacity .15s linear, top .15s ease-out; top: -50%; }
+  .modal { bottom: 0; left: 0; position: fixed; right: 0; top: 0; outline: none; overflow-y: scroll; overflow-x: hidden; z-index: 1050; }
+  .modal.fade { -webkit-transition: opacity .15s linear, top .15s ease-out; -moz-transition: opacity .15s linear, top .15s ease-out; -o-transition: opacity .15s linear, top .15s ease-out; transition: opacity .15s linear, top .15s ease-out; top: -100%; }
   .modal.fade.in { top: 0px; }
   .modal .container { background-color: #ffffff; border-radius: 3px; box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2); margin: 20px auto; max-width: 560px; outline: none; position: relative; }
   .modal.small .container { max-width: 335px; }

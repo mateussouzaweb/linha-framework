@@ -398,6 +398,10 @@
 	}
 
 	/* Modal */
+	body.modal-open{
+		overflow: hidden;
+	}
+
 	.modal-backdrop{
 		background-color: #000000;
 		bottom: 0;
@@ -429,6 +433,7 @@
 		top: 0;
 		outline: none;
 		overflow-y: scroll;
+		overflow-x: hidden;
 		z-index: 1050;
 
 		&.fade{
@@ -436,7 +441,7 @@
 			-moz-transition: opacity .15s linear, top .15s ease-out;
 			-o-transition: opacity .15s linear, top .15s ease-out;
 			transition: opacity .15s linear, top .15s ease-out;
-			top: -50%;
+			top: -100%;
 		}
 		&.fade.in{
 			top: 0px;

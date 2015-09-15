@@ -1,6 +1,5 @@
 /*!
- * Extra Selectors - Script fork do jQuery Browser Selector
- * Não depende do jQuery e é mais rápido!
+ * Extra Selectors
  */
 (function(){
 
@@ -41,7 +40,7 @@
 })();
 
 /*!
- * jQuery Validate 1.2
+ * Validate
  */
 (function($){
 
@@ -189,6 +188,70 @@
 })(jQuery);
 
 /*!
+ * Modal
+ */
+(function($){
+
+	/**
+	 * Modal Constructor
+	 * @param {Object} element
+	 * @param {String} action
+	 * @return {void}
+	 */
+	var Modal = function(element, action){
+
+		this.BODY = $(document.body);
+		this.BACKDROP = $('.modal-backdrop');
+		this.MODAL = $(element);
+
+		return this[action]();
+	}
+
+	/**
+	 * Show modal
+	 * @return {void}
+	 */
+	Modal.prototype.show = function(){
+
+		var self = this;
+
+		self.BODY.addClass('modal-open');
+		self.BACKDROP.removeClass('hide').show();
+		self.MODAL.removeClass('hide').show();
+
+		window.setTimeout(function(){
+			self.BACKDROP.addClass('in');
+			self.MODAL.addClass('in');
+		}, 150);
+
+	}
+
+	/**
+	 * Hide modal
+	 * @return {void}
+	 */
+	Modal.prototype.hide = function(){
+
+		var self = this;
+
+		self.BODY.removeClass('modal-open');
+		self.MODAL.removeClass('in');
+		self.BACKDROP.removeClass('in');
+
+		window.setTimeout(function(){
+			self.MODAL.hide();
+			self.BACKDROP.hide();
+		}, 150);
+
+	}
+
+	$.fn.modal = function(action){
+		return new Modal(this, action);
+	};
+
+})(jQuery);
+
+/*!
  * Events
  */
 $(function(){
@@ -265,16 +328,14 @@ $(function(){
 	});
 
 	// Modal
-	$('.modal .close').on('click', function(e){
+	$('[data-modal]').on('click', function(event){
+		$( $(this).data('modal') ).modal('show');
+		event.preventDefault();
+	});
 
-		var modal = $(this).parents('.modal');
-		var modalBackdrop = $('.modal-backdrop');
-
-		modal.removeClass('in');
-		modalBackdrop.removeClass('in');
-
-		e.preventDefault();
-
+	$('.modal .close').on('click', function(event){
+		$(this).parents('.modal').modal('hide');
+		event.preventDefault();
 	});
 
 });
