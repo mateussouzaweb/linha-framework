@@ -190,6 +190,51 @@
 })(jQuery);
 
 /*!
+ * Navigation
+ */
+(function($){
+
+	/**
+	 * Navigation Constructor
+	 * @param {Object} element
+	 * @param {String} action
+	 * @return {void}
+	 */
+	var Navigation = function(element, action){
+
+		this.NAV = $(element);
+		this.CLASS = 'navigation-responsive-active';
+
+		return this[action]();
+	}
+
+	/**
+	 * Show navigation
+	 * @return {void}
+	 */
+	Navigation.prototype.show = function(){
+		this.NAV.addClass(this.CLASS);
+	}
+
+	/**
+	 * Hide navigation
+	 * @return {void}
+	 */
+	Navigation.prototype.hide = function(){
+
+		if( this.NAV.hasClass(this.CLASS) ){
+			this.NAV.removeClass(this.CLASS);
+		}
+
+	}
+
+	$.fn.navigation = function(action){
+		return new Navigation(this, action);
+	};
+
+})(jQuery);
+
+/*!
  * Modal
  */
 (function($){
@@ -302,41 +347,25 @@ jQuery(function($){
 		e.preventDefault();
 	});
 
-	// Navegação
+	// Navigation
 	$('.navigation').on('click', '.navigation-icon', function(e){
-
-		var NAV = $(this).parents('.navigation');
-		var CLASS = 'navigation-responsive-active';
-
-		if( NAV.hasClass(CLASS) ){
-			NAV.removeClass(CLASS)
-		}else{
-			NAV.addClass(CLASS);
-		}
-
+		$(this).parents('.navigation').navigation('show');
 		e.preventDefault();
 	});
 
 	$('.navigation').on('click', 'a', function(){
-
-		var NAV = $(this).parents('.navigation');
-		var CLASS = 'navigation-responsive-active';
-
-		if( NAV.hasClass(CLASS) ){
-			NAV.removeClass(CLASS)
-		}
-
+		$(this).parents('.navigation').navigation('hide');
 	});
 
 	// Modal
-	$('[data-modal]').on('click', function(event){
+	$('[data-modal]').on('click', function(e){
 		$( $(this).data('modal') ).modal('show');
-		event.preventDefault();
+		e.preventDefault();
 	});
 
-	$('.modal .close').on('click', function(event){
+	$('.modal .close').on('click', function(e){
 		$(this).parents('.modal').modal('hide');
-		event.preventDefault();
+		e.preventDefault();
 	});
 
 });
