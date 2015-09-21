@@ -228,6 +228,20 @@
 
 	}
 
+	/**
+	 * Toggle navigation
+	 * @return {void}
+	 */
+	Navigation.prototype.toggle = function(){
+
+		if( this.NAV.hasClass(this.CLASS) ){
+			this.hide();
+		}else{
+			this.show();
+		}
+
+	}
+
 	$.fn.navigation = function(action){
 		return new Navigation(this, action);
 	};
@@ -349,7 +363,7 @@ jQuery(function($){
 
 	// Navigation
 	$('.navigation').on('click', '.navigation-icon', function(e){
-		$(this).parents('.navigation').navigation('show');
+		$(this).parents('.navigation').navigation('toggle');
 		e.preventDefault();
 	});
 
