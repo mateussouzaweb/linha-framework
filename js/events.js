@@ -1,6 +1,6 @@
 /*!
- * Eventos jQuery
+ * Events
  */
-$(function(){
+jQuery(function($){
 
 });

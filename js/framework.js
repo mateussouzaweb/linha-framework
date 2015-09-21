@@ -58,7 +58,7 @@
 	};
 
 	/**
-	 * Valida o formulário por completo
+	 * Validate the form
 	 * @param {Object} $form
 	 * @param {Object} options
 	 * @return {boolean}
@@ -254,7 +254,7 @@
 /*!
  * Events
  */
-$(function(){
+jQuery(function($){
 
 	// Click scroll
 	$('a')
@@ -271,7 +271,6 @@ $(function(){
 			return false;
 		}
 
-		// Faz a animação
 		$('html, body').animate({
 			scrollTop: $('#' + target).offset().top
 		}, 600, function(){
@@ -284,12 +283,12 @@ $(function(){
 		return false;
 	});
 
-	// Formulários
+	// Forms
 	$('form').validate({
 		classError: 'error'
 	});
 
-	// Alerta
+	// Alerts
 	$('.alert .close').on('click', function(e){
 		$(this).parent('.alert').remove();
 		e.preventDefault();

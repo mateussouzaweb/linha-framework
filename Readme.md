@@ -40,7 +40,7 @@ CHANGELOG
 
  * Framework agora é focado apenas em HTML, CSS e JS em um único branch - master
  * Arquivo .htaccess removido
- * jQuery atualizado para V. 2.1.3
+ * jQuery atualizado para V. 2.1.4
  * Novos componentes: Paginação, Modal, Upload
  * Componente removido: Bounce
 

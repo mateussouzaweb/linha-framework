@@ -3,11 +3,12 @@
 /* Framework */
 @media screen{
 
-	$headerLineHeight: 55px;
+	$centeredMaxWidth: 1400px !default;
+	$headerLineHeight: 55px !default;
 
 	/* Grid */
 	.centered{
-		max-width: 1400px;
+		max-width: $centeredMaxWidth;
 		margin: 0 auto;
 		display: block;
 		padding: 0 20px;
@@ -166,7 +167,7 @@
 
 	/* Heading */
 	.heading{
-		font-size: 22px;
+		font-size: 20px;
 		line-height: 130%;
 		padding: 20px 0;
 
@@ -178,6 +179,10 @@
 			font-size: 200%;
 			font-weight: normal;
 			line-height: 130%;
+		}
+
+		.button{
+			font-size: 100%;
 		}
 
 	}
