@@ -339,18 +339,22 @@
 
 		&:before{
 			background: #fcfcfc;
-			border-left: 1px solid #bbb;
+			border-left: 1px solid rgba(0, 0, 0, 0.1);
 			content: '';
 			display: block;
 			height: 30px;
 			position: absolute;
 			right: 0;
-			z-index: 1;
+			z-index: 10;
 			width: 28px;
 		}
 
 		&:hover:before{
 			background: #EEE;
+		}
+
+		&.error:before{
+			background: transparent;
 		}
 
 		&:after{
@@ -365,7 +369,7 @@
 			right: 10px;
 			top: 13px;
 			width: 0;
-			z-index: 2;
+			z-index: 12;
 		}
 
 		&.nostyle{
@@ -537,7 +541,7 @@
 	}
 
 	/* Validação */
-	input, textarea, select{
+	input, textarea, select, .select{
 
 		&.error{
 			background-color: #ffcfcf;

@@ -92,6 +92,7 @@
 		var result = true;
 
 		item.removeClass(options.classError);
+		item.parent('.select').removeClass(options.classError);
 
 		if( item.is(':disabled') ){
 			return true;
@@ -122,6 +123,7 @@
 		if( result == false ){
 
 			item.addClass( options.classError );
+			item.parent('.select').addClass( options.classError );
 
 			// Callback Erro
 			if( $.isFunction( options.onItemError ) ){

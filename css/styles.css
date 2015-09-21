@@ -97,9 +97,10 @@
   form.inline .group label { width: 140px; line-height: 35px; float: left; margin-right: 20px; text-align: right; }
   /* Wrappers */
   .select { background: #FFF; border: 1px solid #bbb; border-radius: 5px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), inset 0 1px 0 white; cursor: pointer; display: block; overflow: hidden; max-width: 300px; position: relative; }
-  .select:before { background: #fcfcfc; border-left: 1px solid #bbb; content: ''; display: block; height: 30px; position: absolute; right: 0; z-index: 1; width: 28px; }
+  .select:before { background: #fcfcfc; border-left: 1px solid rgba(0, 0, 0, 0.1); content: ''; display: block; height: 30px; position: absolute; right: 0; z-index: 10; width: 28px; }
   .select:hover:before { background: #EEE; }
-  .select:after { border-bottom: none; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid #333; content: ''; display: block; height: 0; position: absolute; right: 10px; top: 13px; width: 0; z-index: 2; }
+  .select.error:before { background: transparent; }
+  .select:after { border-bottom: none; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid #333; content: ''; display: block; height: 0; position: absolute; right: 10px; top: 13px; width: 0; z-index: 12; }
   .select.nostyle { border: 0; box-shadow: none; display: inline-block; font-weight: bold; vertical-align: middle; min-width: 5px; width: auto; }
   .select.nostyle:before, .select.nostyle:after { display: none !important; }
   .select.nostyle select { height: 25px; padding: 0 2px; min-width: 5px; width: auto; }
@@ -132,8 +133,8 @@
   .buttons button:first-child, .buttons .button:first-child { border-radius: 2px 0 0 2px; }
   .buttons button:last-child, .buttons .button:last-child { border-radius: 0 2px 2px 0; }
   /* Validação */
-  input.error, textarea.error, select.error { background-color: #ffcfcf; border-color: #d7162b; }
-  input.error:focus, textarea.error:focus, select.error:focus { background-color: #fdeaed; border-color: #d7162b; }
+  input.error, textarea.error, select.error, .select.error { background-color: #ffcfcf; border-color: #d7162b; }
+  input.error:focus, textarea.error:focus, select.error:focus, .select.error:focus { background-color: #fdeaed; border-color: #d7162b; }
   /* Tabelas */
   table { width: 100%; margin-bottom: 20px; }
   table td, table th { border: none; padding: 5px 15px; }
