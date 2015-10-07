@@ -30,9 +30,10 @@
 	// IE conditional
 	if( ua[1] == 'ie' ){
 
-		for(var ver = 3; ver < 10; ver++) {
-			if(parseInt(ua[2]) < ver)
+		for( var ver = 3; ver < 10; ver++ ){
+			if( parseInt(ua[2]) < ver ){
 				addClass('lt-ie-' + ver);
+			}
 		}
 
 	}
