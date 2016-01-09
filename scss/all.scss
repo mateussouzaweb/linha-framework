@@ -334,8 +334,8 @@
 		cursor: pointer;
 		display: block;
 		overflow: hidden;
-		max-width: 300px;
 		position: relative;
+		width: 300px;
 
 		&:before{
 			background: #fcfcfc;
@@ -345,7 +345,7 @@
 			height: 30px;
 			position: absolute;
 			right: 0;
-			z-index: 10;
+			z-index: 5;
 			width: 28px;
 		}
 
@@ -408,7 +408,7 @@
 			text-overflow: "";
 			vertical-align: middle;
 			width: 100%;
-			z-index: 3;
+			z-index: 5;
 			appearance: none;
 			-webkit-appearance: none;
 			-moz-appearance: none;
