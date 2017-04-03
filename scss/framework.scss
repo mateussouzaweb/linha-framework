@@ -453,12 +453,16 @@
 		}
 
 		.container{
-			background-color: #ffffff;
-			border-radius: 3px;
-			box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
 			margin: 20px auto;
 			max-width: 560px;
 			outline: none;
+		}
+
+		.container-inside{
+			background-color: #ffffff;
+			border-radius: 3px;
+			box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+			margin: 0 5px;
 			position: relative;
 		}
 
@@ -504,59 +508,6 @@
 			}
 			&:after{
 				clear: both;
-			}
-		}
-
-	}
-
-	/* Upload */
-	.upload{
-		cursor: pointer;
-		display: inline-block;
-		position: relative;
-
-		input {
-			bottom: 0;
-			cursor: pointer;
-			display: block;
-			height: 100%;
-			left: 0;
-			opacity: 0;
-			position: absolute;
-			right: 0;
-			top: 0;
-			visibility: visible;
-			width: 100%;
-		}
-	}
-
-	.upload-area {
-		border: 1px dotted #CCC;
-		border-radius: 5px;
-		background: #FAFAFA;
-		display: block;
-		// min-height: 100px;
-		text-align: center;
-		width: 100%;
-
-		&.upload-drag-hover {
-			background-color: #fdf5db;
-		}
-
-		.upload-text {
-			color: #555;
-			display: inline-block;
-			font-size: 13px;
-			padding: 6px;
-			margin: 0 auto;
-			text-align: center;
-			vertical-align: middle;
-
-			p{
-				margin-top: 0;
-			}
-			strong {
-				text-decoration: underline;
 			}
 		}
 

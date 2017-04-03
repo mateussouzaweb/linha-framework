@@ -182,7 +182,7 @@
 		margin-left: auto;
 	}
 
-	/* Tipografia */
+	/* Typography */
 	body{
 		line-height: 1.6em;
 		font-size: 14px;
@@ -220,7 +220,7 @@
 		}
 	}
 
-	/* Formulários */
+	/* Forms */
 	label{
 		display: inline-block;
 		padding-bottom: 5px;
@@ -426,7 +426,7 @@
 		}
 	}
 
-	/* Botões */
+	/* Buttons */
 	.button, a.button{
 		display: inline-block;
 		line-height: 33px;
@@ -540,7 +540,7 @@
 		}
 	}
 
-	/* Validação */
+	/* Validation */
 	input, textarea, select, .select{
 
 		&.error{
@@ -555,7 +555,7 @@
 
 	}
 
-	/* Tabelas */
+	/* Tables */
 	table{
 		width: 100%;
 		margin-bottom: 20px;

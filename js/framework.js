@@ -6,7 +6,7 @@
 	var userAgent = navigator.userAgent.toLowerCase(),
 		html = document.getElementsByTagName('html')[0],
 		os = /(mac|win|linux|freebsd|mobile|iphone|ipod|ipad|android|blackberry|j2me|webtv)/.exec(userAgent),
-		ua = /(ie|firefox|chrome|safari|opera)(?:.*version)?(?:[ \/])?([\w.]+)/.exec(userAgent);
+		ua = /(ie|edge|firefox|chrome|safari|opera)(?:.*version)?(?:[ \/])?([\w.]+)/.exec(userAgent);
 
 	var addClass = function(name){
 		html.className += ' ' + name;
@@ -83,7 +83,7 @@
 	};
 
 	/**
-	 * Valida um item do formulário
+	 * Validate an item in the form
 	 * @param {Object} item
 	 * @param {Object} options
 	 * @return {boolean}
@@ -99,12 +99,12 @@
 			return true;
 		}
 
-		// Callback Valida
+		// Callback
 		if( $.isFunction( options.onItemValidate ) ){
 			options.onItemValidate.apply( item, new Array(item, options) );
 		}
 
-		// Select
+		// Selects
 		if( item.is('select') ){
 			result = ( item.val() && item.val() != options.selectDefaultValue ) ? true : false;
 
@@ -126,7 +126,7 @@
 			item.addClass( options.classError );
 			item.parent('.select').addClass( options.classError );
 
-			// Callback Erro
+			// Callback
 			if( $.isFunction( options.onItemError ) ){
 				options.onItemError.apply(item, new Array(item, options));
 			}
@@ -137,7 +137,7 @@
 	};
 
 	/**
-	 * Valida um formulário e retorna o resultado da validação
+	 * Validate a form and return the validation result
 	 * @param {Object} options
 	 */
 	$.fn.validate = function(options){
@@ -148,7 +148,7 @@
 
 		var options = $.extend( {}, $.validate.defaults, options );
 
-		// Força novalidate e acrescenta as opções ao formulário
+		// Force novalidate and append options to form
 		$(this).attr('novalidate', 'novalidate');
 		$(this).data('validate', options);
 

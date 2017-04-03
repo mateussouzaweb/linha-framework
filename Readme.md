@@ -1,4 +1,4 @@
-LINHA FRAMEWORK - 1.4
+LINHA FRAMEWORK - 1.4.1
 =====================
 <http://linhaframework.org> || by Mateus Souza | <http://mateussouzaweb.com>
 
@@ -35,6 +35,11 @@ Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo a
 
 CHANGELOG
 =====================
+
+#### 1.4.1 - 03 de Abril de 2017
+
+* jQuery atualizado para V. 3.2.0
+* Melhorias gerais
 
 #### 1.4 - 05 de Janeiro de 2015
 
