@@ -356,12 +356,6 @@ jQuery(function($){
 		e.preventDefault();
 	});
 
-	// Toolbar
-	$('.toolbar .close').on('click', function(e){
-		$(this).parent('.toolbar').remove();
-		e.preventDefault();
-	});
-
 	// Navigation
 	$('.navigation').on('click', '.navigation-icon', function(e){
 		$(this).parents('.navigation').navigation('toggle');

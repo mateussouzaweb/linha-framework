@@ -151,12 +151,6 @@
 /* Framework */
 @media screen { /* Grid */
   .centered { max-width: 1400px; margin: 0 auto; display: block; padding: 0 20px; }
-  /* Toolbar */
-  .toolbar { background: #FFF; border-bottom: 2px solid transparent; display: block; left: 0; min-height: 33px; padding: 5px 20px; position: fixed; right: 0; text-align: center; top: 0; width: 100%; z-index: 100; }
-  .toolbar.toolbar-close { padding-right: 45px; }
-  .toolbar .toolbar-text { display: inline-block; font-size: 125%; line-height: 33px; margin-right: 20px; }
-  .toolbar .button-close { background: #000; border-radius: 3px; color: #FFF; cursor: pointer; display: block; font-size: 14px; font-weight: bold; line-height: 20px; height: 20px; position: absolute; right: 12px; text-align: center; top: 12px; width: 20px; }
-  .toolbar p { margin: 0; padding: 0; }
   /* Logo */
   .logo { float: left; line-height: 55px; margin: 0 20px 0 0; padding: 0; }
   /* Navigation */

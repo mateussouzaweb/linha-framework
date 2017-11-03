@@ -14,56 +14,6 @@
 		padding: 0 20px;
 	}
 
-	/* Toolbar */
-	.toolbar{
-		background: #FFF;
-		border-bottom: 2px solid transparent;
-		display: block;
-		left: 0;
-		min-height: 33px;
-		padding: 5px 20px;
-		position: fixed;
-		right: 0;
-		text-align: center;
-		top: 0;
-		width: 100%;
-		z-index: 100;
-
-		&.toolbar-close{
-			padding-right: 45px;
-		}
-
-		.toolbar-text{
-			display: inline-block;
-			font-size: 125%;
-			line-height: 33px;
-			margin-right: 20px;
-		}
-
-		.button-close{
-			background: #000;
-			border-radius: 3px;
-			color: #FFF;
-			cursor: pointer;
-			display: block;
-			font-size: 14px;
-			font-weight: bold;
-			line-height: 20px;
-			height: 20px;
-			position: absolute;
-			right: 12px;
-			text-align: center;
-			top: 12px;
-			width: 20px;
-		}
-
-		p{
-			margin: 0;
-			padding: 0;
-		}
-
-	}
-
 	/* Logo */
 	.logo{
 		float: left;
