@@ -1,40 +1,52 @@
-LINHA FRAMEWORK - 1.4.1
+LINHA FRAMEWORK - 1.5
 =====================
-<http://linhaframework.org> || by Mateus Souza | <http://mateussouzaweb.com>
+by Mateus Souza | <https://mateussouzaweb.com>
 
 ### Licença
 
 MIT and GPL License - <http://www.opensource.org/licenses/mit-license.php> || <http://www.gnu.org/licenses/gpl.html>
 
-### Documentação
-
-Para ver a documentação completa, visite <http://linhaframework.org/docs/>
-
-CORE OF THE SYSTEM
+SOBRE
 ==================
 
-Tudo isto não foi trabalho apenas do LF, devo dar os créditos a:
+Linha framework é um projeto com anos de desenvolvimento que visa proporcionar um ponto inicial para programação de forma facilitada. Pense nele como um Twitter Bootstrap muito mais simples, que lhe dá liberdade para desenvolver - na verdade, este é o objetivo do Linha Framework, simplificar cada vez mais o seu stack. As linguagens básicas do framework incluem:
 
- * jQuery - <http://jquery.com/>
- * Sass - <http://sass-lang.com/>
- * HTML5 Boilerplate (Fonte de inspiração para algumas partes do LF) - <https://github.com/paulirish/html5-boilerplate>
- * GitHub.com (vários projetos :P) - <https://github.com/mateus007/following>
+ * HTML5
+ * CSS3
+ * JavaScript
+
+Tudo isto não foi trabalho apenas do Linha Framework, devo dar os créditos a:
+
+ * jQuery - <https://jquery.com>
+ * Sass - <http://sass-lang.com>
+ * HTML5 Boilerplate (Fonte de inspiração para algumas partes do LF) - <https://html5boilerplate.com>
+ * GitHub (vários projetos, não teria como citar todos aqui...) - <https://github.com/mateus007/following>
  * Google Search - Thanks!!! :)
 
 RECOMENDAÇÕES & DICAS
 =====================
 
-Não temos exatamente tudo feito, alguns pontos ficam por sua decisão. Abaixo algumas dicas e recomendações:
+Não temos exatamente tudo feito e este não é o nosso objetivo. Alguns pontos ficam por sua decisão, mas deixamos abaixo algumas dicas e recomendações para lhe auxiliar neste processo:
 
- * Compre um OSX ou use Linux - dê adeus ao Windows!
+ * Compre um Mac OS ou use Linux - dê adeus ao Windows!
  * Aprenda a usar o Sass - ESSÊNCIAL
- * Delete o que você não usa...
+ * Decida qual framework JS irá utilizar - Destacamos o React e o jQuery
+ * Delete o que você não usa... mantenha seu stack limpo
  * Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
  * Alterar o código fonte não é proibido :P
  * Contribua!
 
 CHANGELOG
 =====================
+
+#### 1.5 - 03 de Novembro de 2017
+
+* jQuery atualizado para V. 3.2.1.
+* Extra Selectors removido: A compatibilidade Cross Browser atual dispensa este tipo de seletor
+* Flexbox agora é o sistema principal para colunas CSS
+* Favicon.ico substituído por Favicon.png com 144px
+* CSS para toolbar removido
+* Melhorias e reescritas gerais
 
 #### 1.4.1 - 03 de Abril de 2017
 
