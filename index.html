@@ -27,76 +27,87 @@
 	<header id="top" class="clearfix">
 	<div class="centered">
 
-		<h2 class="brand">Linha Framework</h2>
-		<ul class="navigation">
-			<li><a href="http://github.com/mateus007/linha-framework" title="Repositório Git">GitHub</a></li>
-		</ul>
-
+		<h2 class="brand">
+			Linha Framework
+			<small>(<a href="https://github.com/mateus007/linha-framework" title=" Git Repository">GitHub</a>)</small>
+		</h2>
+		
 	</div>
 	</header><!-- #top -->
 
-	<div id="content" class="clearfix">
+	<section id="content" class="clearfix">
 	<div class="centered">
 
-		<h1>Título H1</h1>
-		<h2>Título H2</h2>
-		<h3>Título H3</h3>
-		<h4>Título H4</h4>
-		<h5>Título H5</h5>
-		<h6>Título H6</h6>
+		<h1>Title H1</h1>
+		<h2>Title H2</h2>
+		<h3>Title H3</h3>
+		<h4>Title H4</h4>
+		<h5>Title H5</h5>
+		<h6>Title H6</h6>
 
 		<p>Cum, non cursus et scelerisque nisi? Ridiculus turpis egestas? Est vut montes nisi mid quis! Nunc, mattis sociis nunc vut integer magnis hac ac sed vel aliquam, sed ac placerat. Ridiculus in? Mauris rhoncus! Porttitor mid et massa tristique elit augue eu, turpis in amet cras etiam magna sagittis, urna diam platea nunc etiam in? Mid. </p>
 
 		<p>
-			<a href="#" title="Um link simples">Um link simples</a>
+			<a href="#" title="Um link simples">A simple link</a> inside a text.
 		</p>
 
 		<p>
-		This is <abbr title="title">abbreviation</abbr> |
-		This is <strong>strong</strong> |
-		This is <em>emphasis</em> |
-		This is <b>bold text</b> |
-		This is <i>italic text</i> |
-		This is <cite>cite</cite> |
-		This is <code>code sample</code> |
-		This is <small>small text</small> |
-		This is <big>big text</big> |
-		This is <del>deleted text</del> |
-		This is <ins>inserted text</ins> |
-		This is <dfn>defining instance</dfn> |
-		This is <kbd>user input</kbd> |
-		This is <samp>sample output</samp> |
-		This is <q>inline quote</q>  |
-		These are <sup>superscript</sup> and <sub>subscript</sub> |
-		This is <var>variable or program argument</var>
+			This is <abbr title="title">abbreviation</abbr> |
+			This is <strong>strong</strong> |
+			This is <em>emphasis</em> |
+			This is <b>bold text</b> |
+			This is <i>italic text</i> |
+			This is <cite>cite</cite> |
+			This is <code>code sample</code> |
+			This is <small>small text</small> |
+			This is <big>big text</big> |
+			This is <del>deleted text</del> |
+			This is <ins>inserted text</ins> |
+			This is <dfn>defining instance</dfn> |
+			This is <kbd>user input</kbd> |
+			This is <samp>sample output</samp> |
+			This is <q>inline quote</q>  |
+			These are <sup>superscript</sup> and <sub>subscript</sub> |
+			This is <var>variable or program argument</var>
+		</p>
+
+		<p>
+			<span class="label">Label</span>
+			<span class="label green">Label</span>
+			<span class="label blue">Label</span>
+			<span class="label red">Label</span>
+			<span class="label yellow">Label</span>
+			<span class="label orange">Label</span>
+			<span class="label black">Label</span>
+			<span class="label bordered">Label</span>
 		</p>
 
 		<ul>
-			<li>Item lista 1</li>
-			<li>Item lista 2</li>
-			<li>Item lista 3</li>
-			<li>Outra lista
+			<li>List item 1</li>
+			<li>List item 2</li>
+			<li>List item 3</li>
+			<li>Sublist
 				<ul>
-					<li>Item lista 1</li>
-					<li>Item lista 2</li>
-					<li>Item lista 3</li>
+					<li>List item 1</li>
+					<li>List item 2</li>
+					<li>List item 3</li>
 				</ul>
 			</li>
 		</ul>
 
 		<ol>
-			<li>Item lista 1</li>
-			<li>Item lista 2</li>
-			<li>Item lista 3</li>
+			<li>List item 1</li>
+			<li>List item 2</li>
+			<li>List item 3</li>
 		</ol>
 
 		<form method="POST" action="#">
 			<p>
-				<label>Uma label</label><br/>
+				<label>Label</label><br/>
 				<input type="text" name="input" placeholder="Este é um input" required />
 			</p>
 			<p>
-				<label>Input e-mail</label><br/>
+				<label>Input email</label><br/>
 				<input type="email" name="input" placeholder="Insira seu e-mail" required />
 			</p>
 			<p>
@@ -104,11 +115,11 @@
 				<input type="password" name="input" value="Este é um input"/>
 			</p>
 			<p>
-				<label>Mais uma label</label><br/>
+				<label>Textarea</label><br/>
 				<textarea required>Texto em uma textarea</textarea>
 			</p>
 			<p>
-				<label>Selecione uma opção</label><br/>
+				<label>Select</label><br/>
 				<span class="select">
 					<select name="select" required>
 						<option value="0">Selecione</option>
@@ -141,11 +152,22 @@
 			<a href="#" class="button green">Button Green</a>
 			<a href="#" class="button blue">Button Blue</a>
 			<a href="#" class="button yellow">Button Yellow</a>
+			<a href="#" class="button orange">Button Orange</a>
 			<a href="#" class="button red">Button Red</a>
+			<a href="#" class="button black">Button Black</a>
+			<a href="#" class="button white">Button White</a>
 		</p>
 
+		<p>
+			<a href="#" class="button white ssmall">Button Super Small</a>
+			<a href="#" class="button white small">Button Smal</a>
+			<a href="#" class="button white">Button Normal</a>
+			<a href="#" class="button white big">Button Big</a>
+			<a href="#" class="button white sbig">Button Super Big</a>
+		</p>
+		
 		<div class="alert green">
-			<h3>Título para o alerta</h3>
+			<h3>Title para o alerta</h3>
 			Este é um alert simples na cor verde
 			<div class="close">×</div>
 		</div>
@@ -175,22 +197,8 @@
 			</tr>
 		</table>
 
-		<p>
-			<span class="label">Label</span>
-			<span class="label green">Label</span>
-			<span class="label blue">Label</span>
-			<span class="label red">Label</span>
-			<span class="label yellow">Label</span>
-			<span class="label orange">Label</span>
-			<span class="label black">Label</span>
-			<span class="label bordered">Label</span>
-		</p>
-
-		<br>
-		<br>
-
 	</div>
-	</div><!-- #content -->
+	</section><!-- #content -->
 
 </div><!-- #all -->
 
