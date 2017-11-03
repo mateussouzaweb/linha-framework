@@ -231,6 +231,11 @@
 			border-color: #85CAF3;
 			color: #0055B5;
 		}
+		&.white, &.simple{
+			background-color: #FCFCFC;
+			border-color: #CCC;
+			color: #666;
+		}
 
 		h3, h4{
 			font-weight: bold;

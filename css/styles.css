@@ -191,6 +191,7 @@
   .alert.red, .alert.error { background-color: #F9E5E6; border-color: #DF8F8F; color: #C32727; }
   .alert.yellow, .alert.info { background-color: #FFF6BF; border-color: #EFC20E; }
   .alert.blue, .alert.notice { background-color: #DDEEFF; border-color: #85CAF3; color: #0055B5; }
+  .alert.white, .alert.simple { background-color: #FCFCFC; border-color: #CCC; color: #666; }
   .alert h3, .alert h4 { font-weight: bold; margin: 0; padding: 0; }
   /* Alerts Fixed */
   .alerts.fixed { bottom: 0; display: block; max-width: 500px; position: fixed; right: 5px; z-index: 9999; }
