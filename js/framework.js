@@ -149,65 +149,6 @@
 })(jQuery);
 
 /*!
- * Navigation
- */
-(function($){
-
-	/**
-	 * Navigation Constructor
-	 * @param {Object} element
-	 * @param {String} action
-	 * @return {void}
-	 */
-	var Navigation = function(element, action){
-
-		this.NAV = $(element);
-		this.CLASS = 'navigation-responsive-active';
-
-		return this[action]();
-	}
-
-	/**
-	 * Show navigation
-	 * @return {void}
-	 */
-	Navigation.prototype.show = function(){
-		this.NAV.addClass(this.CLASS);
-	}
-
-	/**
-	 * Hide navigation
-	 * @return {void}
-	 */
-	Navigation.prototype.hide = function(){
-
-		if( this.NAV.hasClass(this.CLASS) ){
-			this.NAV.removeClass(this.CLASS);
-		}
-
-	}
-
-	/**
-	 * Toggle navigation
-	 * @return {void}
-	 */
-	Navigation.prototype.toggle = function(){
-
-		if( this.NAV.hasClass(this.CLASS) ){
-			this.hide();
-		}else{
-			this.show();
-		}
-
-	}
-
-	$.fn.navigation = function(action){
-		return new Navigation(this, action);
-	};
-
-})(jQuery);
-
-/*!
  * Modal
  */
 (function($){
@@ -312,16 +253,6 @@ jQuery(function($){
 	$('.alert .close').on('click', function(e){
 		$(this).parent('.alert').remove();
 		e.preventDefault();
-	});
-
-	// Navigation
-	$('.navigation').on('click', '.navigation-icon', function(e){
-		$(this).parents('.navigation').navigation('toggle');
-		e.preventDefault();
-	});
-
-	$('.navigation').on('click', 'a', function(){
-		$(this).parents('.navigation').navigation('hide');
 	});
 
 	// Modal
