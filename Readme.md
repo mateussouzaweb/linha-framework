@@ -1,4 +1,4 @@
-LINHA FRAMEWORK - 1.5
+LINHA FRAMEWORK - 1.6
 =====================
 by Mateus Souza | <https://mateussouzaweb.com>
 
@@ -38,6 +38,13 @@ Não temos exatamente tudo feito e este não é o nosso objetivo. Alguns pontos 
 
 CHANGELOG
 =====================
+
+#### 1.6 - 04 de Maio de 2018
+
+* jQuery atualizado para V. 3.3.1.
+* CSS para navegação removido
+* JS para navegação removido
+* Melhorias e reescritas gerais para CSS
 
 #### 1.5 - 03 de Novembro de 2017
 
