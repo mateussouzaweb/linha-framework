@@ -23,7 +23,7 @@
         display: inline-block;
         vertical-align: baseline;
     }
-    
+
     html {
         font-family: sans-serif;
         line-height: 1.15;
@@ -42,10 +42,10 @@
         background-color: transparent;
         -webkit-text-decoration-skip: objects;
     }
-    a:focus { 
+    a:focus {
         outline: thin dotted;
     }
-    a:active, a:hover { 
+    a:active, a:hover {
         outline: 0;
     }
     b, strong {

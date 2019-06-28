@@ -149,70 +149,6 @@
 })(jQuery);
 
 /*!
- * Modal
- */
-(function($){
-
-    /**
-     * Modal Constructor
-     * @param {Object} element
-     * @param {String} action
-     * @return {void}
-     */
-    var Modal = function(element, action){
-
-        this.BODY = $(document.body);
-        this.BACKDROP = $('.modal-backdrop');
-        this.MODAL = $(element);
-
-        return this[action]();
-    }
-
-    /**
-     * Show modal
-     * @return {void}
-     */
-    Modal.prototype.show = function(){
-
-        var self = this;
-
-        self.BODY.addClass('modal-open');
-        self.BACKDROP.removeClass('hide').show();
-        self.MODAL.removeClass('hide').show();
-
-        window.setTimeout(function(){
-            self.BACKDROP.addClass('in');
-            self.MODAL.addClass('in');
-        }, 150);
-
-    }
-
-    /**
-     * Hide modal
-     * @return {void}
-     */
-    Modal.prototype.hide = function(){
-
-        var self = this;
-
-        self.BODY.removeClass('modal-open');
-        self.MODAL.removeClass('in');
-        self.BACKDROP.removeClass('in');
-
-        window.setTimeout(function(){
-            self.MODAL.hide();
-            self.BACKDROP.hide();
-        }, 150);
-
-    }
-
-    $.fn.modal = function(action){
-        return new Modal(this, action);
-    };
-
-})(jQuery);
-
-/*!
  * Events
  */
 jQuery(function($){
@@ -252,17 +188,6 @@ jQuery(function($){
     // Alerts
     $('.alert .close').on('click', function(e){
         $(this).parent('.alert').remove();
-        e.preventDefault();
-    });
-
-    // Modal
-    $('[data-modal]').on('click', function(e){
-        $( $(this).data('modal') ).modal('show');
-        e.preventDefault();
-    });
-
-    $('.modal .close').on('click', function(e){
-        $(this).parents('.modal').modal('hide');
         e.preventDefault();
     });
 
