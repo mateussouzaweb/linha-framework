@@ -3,6 +3,12 @@
     var Carousel = {
 
         /**
+         * User event watcher
+         * @var {boolean}
+         */
+        userEvent: true,
+
+        /**
          * Init carousel
          * @return {void}
          */
@@ -10,6 +16,8 @@
 
             var self = this;
             var body = document.body;
+            var timer = null;
+            var parent = null;
 
             jQuery(body).on('click', '.carousel .next', function(event){
 
@@ -37,6 +45,24 @@
 
             });
 
+            jQuery('.carousel .scroll').on('scroll', function(){
+
+                if( !self.userEvent ){
+                    return;
+                }
+
+                parent = this.parentElement;
+
+                if( timer ){
+                    window.clearInterval(timer);
+                }
+
+                timer = window.setTimeout(function(){
+                    self.move(parent, 'current');
+                }, 100);
+
+            });
+
         },
 
         /**
@@ -49,6 +75,11 @@
 
             var scroll = element.querySelector('.scroll');
             var items = element.querySelectorAll('.item');
+
+            if( !items.length ){
+                return;
+            }
+
             var itemWidth = items[0].offsetWidth;
 
             var perPage = scroll.clientWidth / itemWidth;
@@ -102,7 +133,9 @@
                 next = current;
             }
 
+            this.userEvent = false;
             scroll.scrollLeft = (next - 1) * itemWidth;
+            this.userEvent = true;
 
         }
 
