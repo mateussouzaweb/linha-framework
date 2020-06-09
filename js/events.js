@@ -1,9 +1,6 @@
 /*!
  * Events
  */
-jQuery(function($){
+(function(){
 
-    Carousel.init();
-    Modal.init();
-
-});
+})();

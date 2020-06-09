@@ -64,66 +64,58 @@
             z-index: 220;
         }
         &.small .container{
-            max-width: 365px;
+            max-width: 360px;
         }
         &.big .container{
-            max-width: 600px;
+            max-width: 800px;
         }
 
         .inside{
-            background-color: #ffffff;
-            border-radius: 3px;
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
-            margin: 20px 5px;
+            background-color: var(--light);
+            border-radius: 0.125em;
+            box-shadow: 0 3px 7px var(--alpha-20);
+            margin: 1.25em 0.625em;
         }
         .close{
             cursor: pointer;
-            font-size: 24px;
-            height: 30px;
-            line-height: 30px;
-            position: absolute;
-            right: 10px;
-            text-align: center;
-            top: 30px;
-            width: 30px;
-            z-index: 230;
         }
 
         .header{
-            background-color: #f9f9f9;
-            border-bottom: 1px solid #ddd;
+            background-color: var(--alpha-05);
+            border-bottom: 1px solid var(--alpha-10);
+            border-radius: 0.125em 0.125em 0 0;
             height: auto;
-            padding: 15px;
-            padding-right: 40px;
+            display: flex;
+            justify-content: space-between;
+            padding: 1em;
             position: relative;
-            border-radius: 3px 3px 0 0;
         }
         .header h3{
             margin: 0;
         }
-
+        .header .close{
+            font-size: 1.5em;
+            height: 1em;
+            justify-self: flex-end;
+            line-height: 1em;
+            text-align: center;
+            width: 1em;
+        }
         .body{
-            padding: 15px;
+            padding: 1em;
             position: relative;
         }
-
         .footer{
-            background-color: #f9f9f9;
-            border-top: 1px solid #ddd;
-            border-radius: 0 0 3px 3px;
-            box-shadow: inset 0 1px 0 #FFF;
-            padding: 15px;
+            border-top: 1px solid var(--alpha-10);
+            border-radius: 0 0 0.125em 0.125em;
+            display: flex;
+            justify-content: flex-end;
+            padding: 1em;
             text-align: right;
-            *zoom: 1;
-        }
-        .footer:before,
-        .footer:after{
-            display: table;
-            content: "";
-            line-height: 0;
-        }
-        .footer:after{
-            clear: both;
+
+            .button{
+                margin-bottom: 0;
+            }
         }
 
     }

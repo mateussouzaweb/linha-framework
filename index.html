@@ -8,7 +8,6 @@
     <!-- SEO -->
     <meta name="robots" content="index,follow">
     <meta name="description" content="">
-    <meta name="keywords" content="">
     <link rel="canonical" href="/">
 
     <title>Linha Framework</title>
@@ -17,226 +16,426 @@
     <link rel="icon" type="image/png" href="favicon.png">
 
     <!-- CSS -->
+    <link rel="stylesheet" href="components/normalize/normalize.css">
+    <link rel="stylesheet" href="components/base/base.css">
+
+    <link rel="stylesheet" href="components/alerts/alerts.css">
+    <link rel="stylesheet" href="components/carousel/carousel.css">
+    <link rel="stylesheet" href="components/modal/modal.css">
+    <link rel="stylesheet" href="components/pagination/pagination.css">
+    <link rel="stylesheet" href="components/tabs/tabs.css">
+    <link rel="stylesheet" href="components/validate/validate.css">
+
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Lazy Loading Images -->
+    <script src="components/lazy/lazy.js"></script>
 
 </head>
 <body>
 
-<div id="all" class="clearfix">
+    <div id="all">
 
-    <header id="top" class="clearfix">
-    <div class="centered">
+        <header id="top">
+          <div class="centered">
 
-        <h2 class="brand">
-            Linha Framework
-            <small>(<a href="https://github.com/mateus007/linha-framework" title=" Git Repository">GitHub</a>)</small>
-        </h2>
+              <h2 class="brand">
+                  Linha Framework
+                  <small>(<a href="https://github.com/mateus007/linha-framework" title="Git Repository">GitHub</a>)</small>
+              </h2>
 
-    </div>
-    </header><!-- #top -->
+          </div>
+        </header><!-- #top -->
 
-    <section id="content" class="clearfix">
-    <div class="centered">
+        <section id="content">
+            <div class="centered">
 
-        <h1>Title H1</h1>
-        <h2>Title H2</h2>
-        <h3>Title H3</h3>
-        <h4>Title H4</h4>
-        <h5>Title H5</h5>
-        <h6>Title H6</h6>
+                <h1>Title H1 <span class="label primary">Label</span></h1>
+                <h2>Title H2 <span class="label primary">Label</span></h2>
+                <h3>Title H3 <span class="label primary">Label</span></h3>
+                <h4>Title H4 <span class="label primary">Label</span></h4>
+                <h5>Title H5 <span class="label primary">Label</span></h5>
+                <h6>Title H6 <span class="label primary">Label</span></h6>
 
-        <p>Cum, non cursus et scelerisque nisi? Ridiculus turpis egestas? Est vut montes nisi mid quis! Nunc, mattis sociis nunc vut integer magnis hac ac sed vel aliquam, sed ac placerat. Ridiculus in? Mauris rhoncus! Porttitor mid et massa tristique elit augue eu, turpis in amet cras etiam magna sagittis, urna diam platea nunc etiam in? Mid. </p>
+                <p>Cum, non cursus et scelerisque nisi? Ridiculus turpis egestas? Est vut montes nisi mid quis! Nunc, mattis sociis nunc vut integer magnis hac ac sed vel aliquam, sed ac placerat. Ridiculus in? Mauris rhoncus! Porttitor mid et massa tristique elit augue eu, turpis in amet cras etiam magna sagittis, urna diam platea nunc etiam in? Mid.</p>
 
-        <p>
-            <a href="#" title="Um link simples">A simple link</a> inside a text.
-        </p>
+                <p class="align left">Cum, non cursus et scelerisque nisi? Ridiculus turpis egestas?</p>
+                <p class="align right">Cum, non cursus et scelerisque nisi? Ridiculus turpis egestas?</p>
+                <p class="align center">Cum, non cursus et scelerisque nisi? Ridiculus turpis egestas?</p>
 
-        <p>
-            This is <abbr title="title">abbreviation</abbr> |
-            This is <strong>strong</strong> |
-            This is <em>emphasis</em> |
-            This is <b>bold text</b> |
-            This is <i>italic text</i> |
-            This is <cite>cite</cite> |
-            This is <code>code sample</code> |
-            This is <small>small text</small> |
-            This is <big>big text</big> |
-            This is <del>deleted text</del> |
-            This is <ins>inserted text</ins> |
-            This is <dfn>defining instance</dfn> |
-            This is <kbd>user input</kbd> |
-            This is <samp>sample output</samp> |
-            This is <q>inline quote</q>  |
-            These are <sup>superscript</sup> and <sub>subscript</sub> |
-            This is <var>variable or program argument</var>
-        </p>
+                <p>
+                    <a href="#" title="A simple link">A simple link</a> inside a text.
+                </p>
 
-        <p>
-            <span class="label">Label</span>
-            <span class="label green">Label</span>
-            <span class="label blue">Label</span>
-            <span class="label red">Label</span>
-            <span class="label yellow">Label</span>
-            <span class="label orange">Label</span>
-            <span class="label black">Label</span>
-            <span class="label bordered">Label</span>
-        </p>
+                <p>
+                    This is <abbr title="title">abbreviation</abbr> |
+                    This is <strong>strong</strong> |
+                    This is <em>emphasis</em> |
+                    This is <b>bold text</b> |
+                    This is <i>italic text</i> |
+                    This is <cite>cite</cite> |
+                    This is <code>code sample</code> |
+                    This is <small>small text</small> |
+                    This is <big>big text</big> |
+                    This is <del>deleted text</del> |
+                    This is <ins>inserted text</ins> |
+                    This is <dfn>defining instance</dfn> |
+                    This is <kbd>user input</kbd> |
+                    This is <samp>sample output</samp> |
+                    This is <q>inline quote</q>  |
+                    These are <sup>superscript</sup> and <sub>subscript</sub> |
+                    This is <var>variable or program argument</var>
+                </p>
 
-        <ul>
-            <li>List item 1</li>
-            <li>List item 2</li>
-            <li>List item 3</li>
-            <li>Sublist
+                <p>
+                    <img loading="lazy"
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3C/svg%3E"
+                        data-src="https://picsum.photos/200/300"
+                        alt="Image loaded with placeholder" width="200" height="300" />
+                </p>
+
+                <p class="text small">This is a small text sample.</p>
+                <p class="text big">This is a big text sample.</p>
+
+                <p>
+                    <span class="text primary">Text</span>
+                    <span class="text secondary">Text</span>
+                    <span class="text danger">Text</span>
+                    <span class="text warning">Text</span>
+                    <span class="text info">Info</span>
+                    <span class="text success">Text</span>
+                    <span class="text light">Text</span>
+                    <span class="text dark">Text</span>
+                    <span class="text gray">Text</span>
+                    <span class="text alpha-10">Text</span>
+                    <span class="text alpha-20">Text</span>
+                    <span class="text alpha-30">Text</span>
+                    <span class="text alpha-40">Text</span>
+                    <span class="text alpha-50">Text</span>
+                    <span class="text alpha-60">Text</span>
+                    <span class="text alpha-70">Text</span>
+                    <span class="text alpha-80">Text</span>
+                    <span class="text alpha-90">Text</span>
+                </p>
+
+                <p>
+                    <span class="label">Label</span>
+                    <span class="label primary">Label</span>
+                    <span class="label secondary">Label</span>
+                    <span class="label danger">Label</span>
+                    <span class="label warning">Label</span>
+                    <span class="label info">Label</span>
+                    <span class="label success">Label</span>
+                    <span class="label light">Label</span>
+                    <span class="label dark">Label</span>
+                    <span class="label gray">Label</span>
+                </p>
+
                 <ul>
                     <li>List item 1</li>
                     <li>List item 2</li>
                     <li>List item 3</li>
+                    <li>Sublist
+                        <ul>
+                            <li>List item 1</li>
+                            <li>List item 2</li>
+                            <li>List item 3</li>
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-        </ul>
 
-        <ol>
-            <li>List item 1</li>
-            <li>List item 2</li>
-            <li>List item 3</li>
-        </ol>
+                <ol>
+                    <li>List item 1</li>
+                    <li>List item 2</li>
+                    <li>List item 3</li>
+                </ol>
 
-        <form method="POST" action="#">
-            <p>
-                <label>Label</label><br/>
-                <input type="text" name="input" placeholder="This is an input" required />
-            </p>
-            <p>
-                <label>Input email</label><br/>
-                <input type="email" name="input" placeholder="Insert your email" required />
-            </p>
-            <p>
-                <label>Input password</label><br/>
-                <input type="password" name="input" value="This is an input"/>
-            </p>
-            <p>
-                <label>Textarea</label><br/>
-                <textarea required>Sample text in textarea field</textarea>
-            </p>
-            <p>
-                <label>Select</label><br/>
-                <span class="select">
-                    <select name="select" required>
-                        <option value="0">-- Please Select --</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                    </select>
-                </span>
-            </p>
-            <p>
-                <label class="checkbox">
-                    <input type="checkbox" value="yes"/>
-                    Buy one bike
-                </label>
-            </p>
-            <p>
-                <label class="radio">
-                    <input type="radio" name="sexo" value="man" /> Man
-                </label>
-                <label class="radio">
-                    <input type="radio" name="sexo" value="woman" /> Woman
-                </label>
-            </p>
-            <p>
-                <input type="submit" value="Input submit"/>
-                <button class="button" type="submit">Button</button>
-            </p>
+                <form method="POST" action="#" novalidate>
 
-            <p>
-                <label>One label</label><br/>
-                <input type="text" name="input" value="This is an input"/>
-                <button class="button green">Submit</button>
-            </p>
+                    <fieldset>
+                        <legend>Form Elements</legend>
 
-        </form>
+                        <p>
+                            <label>Label</label>
+                            <input type="text" name="input" placeholder="This is an input" required />
+                        </p>
+                        <p>
+                            <label>Input email</label>
+                            <input type="email" name="email" placeholder="Insert your email" required />
+                        </p>
+                        <p>
+                            <label>Input password</label>
+                            <input type="password" name="password" value="This is an input"/>
+                        </p>
+                        <p>
+                            <label>Textarea</label>
+                            <textarea name="textarea" required>Sample text in textarea field</textarea>
+                        </p>
+                        <p>
+                            <label>Select</label>
+                            <span class="select">
+                                <select name="select" required>
+                                    <option value="">-- Please Select --</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                </select>
+                            </span>
+                        </p>
+                        <p>
+                            <label class="checkbox">
+                                <input type="checkbox" name="checkbox" value="yes" required/>
+                                Buy one bike
+                            </label>
+                        </p>
+                        <p>
+                            <label class="radio">
+                                <input type="radio" name="sex" value="man" required />
+                                <span>Man</span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="sex" value="woman" required />
+                                <span>Woman</span>
+                            </label>
+                        </p>
+                        <p>
+                            <input type="submit" value="Input submit"/>
+                            <button class="button" type="submit">Button</button>
+                        </p>
 
-        <p>
-            <a href="#" class="button">Button gray</a>
-            <a href="#" class="button green">Button green</a>
-            <a href="#" class="button blue">Button blue</a>
-            <a href="#" class="button yellow">Button yellow</a>
-            <a href="#" class="button orange">Button orange</a>
-            <a href="#" class="button red">Button red</a>
-            <a href="#" class="button black">Button black</a>
-            <a href="#" class="button white">Button white</a>
-        </p>
+                        <p>
+                            <label>One label</label>
+                            <input type="text" name="input" value="This is an input"/>
+                            <button class="button success">Submit</button>
+                        </p>
+                    </fieldset>
 
-        <p>
-            <a href="#" class="button white ssmall">Button Super Small</a>
-            <a href="#" class="button white small">Button Smal</a>
-            <a href="#" class="button white">Button Normal</a>
-            <a href="#" class="button white big">Button Big</a>
-            <a href="#" class="button white sbig">Button Super Big</a>
-        </p>
+                </form>
 
-        <div class="alert">
-            <h3>Title for alert</h3>
-            This is an simple alert to show an specific message
-            <div class="close">×</div>
-        </div>
-        <div class="alert green">
-            <h3>Title for alert</h3>
-            This is an simple alert to show an specific message
-            <div class="close">×</div>
-        </div>
-        <div class="alert blue">
-            <h3>Title for alert</h3>
-            This is an simple alert to show an specific message
-            <div class="close">×</div>
-        </div>
-        <div class="alert yellow">
-            <h3>Title for alert</h3>
-            This is an simple alert to show an specific message
-            <div class="close">×</div>
-        </div>
-        <div class="alert red">
-            <h3>Title for alert</h3>
-            This is an simple alert to show an specific message
-            <div class="close">×</div>
-        </div>
-        <div class="alert white">
-            <h3>Title for alert</h3>
-            This is an simple alert to show an specific message
-            <div class="close">×</div>
-        </div>
+                <p>
+                    <a href="#" class="button">Button</a>
+                    <a href="#" class="button primary">Button Primary</a>
+                    <a href="#" class="button secondary">Button Secondary</a>
+                    <a href="#" class="button danger">Button Danger</a>
+                    <a href="#" class="button warning">Button Warning</a>
+                    <a href="#" class="button info">Button Info</a>
+                    <a href="#" class="button success">Button Success</a>
+                    <a href="#" class="button light">Button Light</a>
+                    <a href="#" class="button dark">Button Dark</a>
+                    <a href="#" class="button gray">Button Gray</a>
+                </p>
 
-        <br>
-        <table class="hover bordered stripped">
-            <tr>
-                <th>Title 1</th>
-                <th>Title 2</th>
-                <th>Title 3</th>
-            </tr>
-            <tr>
-                <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
-                <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
-                <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
-            </tr>
-            <tr>
-                <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
-                <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
-                <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
-            </tr>
-        </table>
+                <p>
+                    <a href="#" class="button light super-small">Button Super Small</a>
+                    <a href="#" class="button light small">Button Smal</a>
+                    <a href="#" class="button light">Button Normal</a>
+                    <a href="#" class="button light big">Button Big</a>
+                    <a href="#" class="button light super-big">Button Super Big</a>
+                </p>
 
-        <br><br>
+                <p>
+                    <button class="button primary" disabled>Button Disabled</button>
+                </p>
 
-    </div>
-    </section><!-- #content -->
+                <div class="buttons">
+                    <a href="#" class="button success">Button Group</a>
+                    <a href="#" class="button danger">Button Group</a>
+                    <a href="#" class="button dark">Button Group</a>
+                </div>
 
-</div><!-- #all -->
+                <br>
+                <table class="hover bordered striped">
+                    <tr>
+                        <th>Title 1</th>
+                        <th>Title 2</th>
+                        <th>Title 3</th>
+                    </tr>
+                    <tr>
+                        <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
+                        <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
+                        <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
+                    </tr>
+                    <tr>
+                        <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
+                        <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
+                        <td>Donec aliquam cursus tortor, faucibus lobortis convallis.</td>
+                    </tr>
+                </table>
 
-<!-- JS -->
-<script src="js/jquery.min.js"></script>
-<script src="js/framework.js"></script>
-<script src="js/carousel.js"></script>
-<script src="js/modal.js"></script>
-<script src="js/events.js"></script>
+                <br><br>
+
+            </div>
+        </section><!-- #content -->
+
+        <section id="extra">
+            <div class="centered">
+
+                <div class="alert">
+                    <h3>Title for alert</h3>
+                    This is an simple alert to show an specific message with <a href="#">one link</a>.
+                </div>
+                <div class="alert with-close danger">
+                    <h3>Title for alert</h3>
+                    This is an simple alert to show an specific message with <a href="#">one link</a>.
+                    <div class="close">×</div>
+                </div>
+                <div class="alert with-close warning">
+                    <h3>Title for alert</h3>
+                    This is an simple alert to show an specific message with <a href="#">one link</a>.
+                    <div class="close">×</div>
+                </div>
+                <div class="alert with-close info">
+                    <h3>Title for alert</h3>
+                    This is an simple alert to show an specific message with <a href="#">one link</a>.
+                    <div class="close">×</div>
+                </div>
+                <div class="alert with-close success">
+                    <h3>Title for alert</h3>
+                    This is an simple alert to show an specific message with <a href="#">one link</a>.
+                    <div class="close">×</div>
+                </div>
+                <div class="alert with-close light">
+                    <h3>Title for alert</h3>
+                    This is an simple alert to show an specific message with <a href="#">one link</a>.
+                    <div class="close">×</div>
+                </div>
+                <div class="alert with-close dark">
+                    <h3>Title for alert</h3>
+                    This is an simple alert to show an specific message with <a href="#">one link</a>.
+                    <div class="close">×</div>
+                </div>
+                <div class="alert with-close gray">
+                    <h3>Title for alert</h3>
+                    This is an simple alert to show an specific message with <a href="#">one link</a>.
+                    <div class="close">×</div>
+                </div>
+
+                <br><br>
+
+                <div class="carousel">
+
+                    <div class="area">
+                        <div class="scroll">
+
+                            <div class="item">Scroll Item 1</div>
+                            <div class="item">Scroll Item 2</div>
+                            <div class="item">Scroll Item 3</div>
+                            <div class="item">Scroll Item 4</div>
+                            <div class="item">Scroll Item 5</div>
+
+                        </div>
+                    </div>
+
+                    <div class="previous">Previous</div>
+                    <div class="next">Next</div>
+
+                </div>
+                <style>
+                .carousel .item{
+                    border: 1px solid #EEE;
+                    flex: 0 0 50%;
+                    padding: 15px;
+                }
+                .carousel .area{
+                    margin-bottom: 10px;
+                }
+                </style>
+
+                <br><br>
+
+                <div class="modal hidden" id="modal-id">
+                    <div class="backdrop"></div>
+                    <div class="container">
+                        <div class="inside">
+
+                            <div class="header">
+                                <h3>My Modal</h3>
+                                <div class="close">&times;</div>
+                            </div>
+
+                            <div class="body">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sapiente a perspiciatis tempore dolorem alias nisi numquam deleniti dolorum quae reprehenderit, debitis ab tempora eum reiciendis, dolor earum id! Laudantium.</p>
+                            </div>
+
+                            <div class="footer">
+                                <button class="button success close">
+                                    Close
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <button class="button primary" data-modal="#modal-id">
+                    Open Modal
+                </button>
+
+                <br><br>
+
+                <div class="pagination">
+                    <a href="#">1</a>
+                    <a class="disabled" href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a class="dots" href="#">...</a>
+                    <a href="#">100</a>
+                </div>
+
+                <br><br>
+
+                <ul class="tabs">
+                    <li class="active" data-tab-id="tab-1">Tab 1</li>
+                    <li data-tab-id="tab-2">Tab 2</li>
+                    <li data-tab-id="tab-3">Tab 3</li>
+                </ul>
+
+                <article class="active" data-tab="tab-1">
+                    <h3>Tab 1</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda esse in ea laboriosam harum quam nostrum, corporis inventore ratione eos quidem fugiat numquam dolor, cumque animi doloremque vitae incidunt.</p>
+                </article>
+
+                <article data-tab="tab-2">
+                    <h3>Tab 2</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda esse in ea laboriosam harum quam nostrum, corporis inventore ratione eos quidem fugiat numquam dolor, cumque animi doloremque vitae incidunt.</p>
+                </article>
+
+                <article data-tab="tab-3">
+                    <h3>Tab 3</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda esse in ea laboriosam harum quam nostrum, corporis inventore ratione eos quidem fugiat numquam dolor, cumque animi doloremque vitae incidunt.</p>
+                </article>
+
+                <br><br>
+
+            </div>
+        </section>
+
+    </div><!-- #all -->
+
+    <!-- JS -->
+    <script src="components/alerts/alerts.js"></script>
+    <script src="components/carousel/carousel.js"></script>
+    <script src="components/modal/modal.js"></script>
+    <script src="components/tabs/tabs.js"></script>
+    <script src="components/validate/validate.js"></script>
+
+    <script src="js/events.js"></script>
+
+    <script>
+    // Validate
+    Validate.attach('input[type="email"]', {
+        errorMessage: 'Invalid email.',
+        onInvalid: function(){
+            alert('e-mail is invalid');
+        }
+    });
+
+    document.addEventListener('submit', function(e){
+        if( e.target.checkValidity() ){
+            console.log('That thing is valid!');
+            e.preventDefault();
+        }
+    });
+    </script>
 
 </body>
 </html>

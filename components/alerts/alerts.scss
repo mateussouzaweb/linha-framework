@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+/* Alerts */
+@media screen{
+
+    .alert{
+        background: var(--light);
+        border: 1px solid var(--dark);
+        border-radius: 0.125em;
+        color: var(--dark);
+        display: block;
+        margin: 0.625em 0;
+        padding: 0.625em 1em;
+        position: relative;
+
+        a, a:link, a:hover, a:visited{
+            color: var(--link);
+            font-weight: bold;
+        }
+
+        &.danger, &.error{
+            background-color: #F9E5E6;
+            border-color: var(--alpha-15);
+            color: var(--danger);
+
+            a, a:link, a:hover, a:visited{
+                color: var(--danger);
+            }
+        }
+        &.warning{
+            background-color: #ffef7b;
+            border-color: var(--alpha-15);
+            color: var(--dark);
+
+            a, a:link, a:hover, a:visited{
+                color: var(--dark);
+            }
+        }
+        &.info, &.notice{
+            background-color: #DDEEFF;
+            border-color: var(--alpha-15);
+            color: var(--info);
+
+            a, a:link, a:hover, a:visited{
+                color: var(--info);
+            }
+        }
+        &.success{
+            background-color: #E9F9E5;
+            border-color: var(--alpha-15);
+            color: var(--success);
+
+            a, a:link, a:hover, a:visited{
+                color: var(--success);
+            }
+        }
+        &.light{
+            background-color: var(--light);
+            border-color: var(--alpha-20);
+            color: var(--dark);
+
+            a, a:link, a:hover, a:visited{
+                color: var(--link);
+            }
+        }
+        &.dark{
+            background-color: var(--dark);
+            border-color: var(--dark);
+            color: var(--light);
+
+            a, a:link, a:hover, a:visited{
+                color: var(--light);
+            }
+        }
+        &.gray{
+            background-color: var(--gray);
+            border-color: var(--alpha-15);
+            color: var(--light);
+
+            a, a:link, a:hover, a:visited{
+                color: var(--light);
+            }
+        }
+
+        &.with-close{
+            padding-right: 2em;
+        }
+        .close{
+            bottom: 0;
+            cursor: pointer;
+            display: block;
+            font-size: 1.25em;
+            font-weight: bold;
+            height: 1.25em;
+            line-height: 1.25em;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            top: 0;
+            width: 1.25em;
+        }
+
+        h3, h4{
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    /* Fixed */
+    .alerts.fixed{
+        bottom: 0;
+        display: block;
+        max-width: 500px;
+        position: fixed;
+        right: 0.625em;
+        z-index: 9999;
+    }
+
+}

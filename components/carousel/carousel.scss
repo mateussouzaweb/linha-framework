@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+/* Carousel */
+@media screen{
+
+    .carousel{
+        position: relative;
+
+        .area{
+            overflow: hidden;
+        }
+        .scroll{
+            display: flex;
+            flex-flow: row;
+            flex-wrap: nowrap;
+            overflow: scroll;
+            overflow-y: hidden;
+            width: 100%;
+
+            // Hide scroll bar
+            margin-bottom: -20px;
+            padding-bottom: 20px;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        .item{
+            flex: 0 0 100%;
+        }
+
+        .previous,
+        .next{
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            z-index: 10;
+        }
+
+    }
+
+}
