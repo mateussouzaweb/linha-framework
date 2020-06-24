@@ -1,31 +1,12 @@
 @charset "UTF-8";
 
-/**
- * Create responsive media query
- * @param mixed $media
- */
-@mixin responsive($media) {
-    @if $media == desktop {
-        @media screen and (min-width: 841px) { @content; }
-    }
-    @else if $media == tablet {
-        @media screen and (max-width: 840px) { @content; }
-    }
-    @else if $media == phone {
-        @media screen and (max-width: 540px) { @content; }
-    }
-    @else{
-        @media screen and (max-width: #{$media}px) { @content; }
-    }
-}
-
 /* Framework */
 @media all{
 
     /* Variables */
     :root {
         --font-size: 16px;
-        --line-height: 1.25em;
+        --line-height: 1.35;
 
         --link: #005ABB;
         --primary: #005ABB;
@@ -384,9 +365,9 @@
         cursor: pointer;
         display: inline-block;
         font-weight: normal;
-        line-height: 2.25em;
+        line-height: var(--line-height);
         margin: 0 0.125em 0.625em 0;
-        padding: 0 1em;
+        padding: 0.5em 1em;
         transition: all 0.15s ease-out;
         vertical-align: top;
 
@@ -399,25 +380,23 @@
         }
 
         &[disabled]{
+            cursor: not-allowed;
             opacity: 0.80;
         }
 
-        &.small{
-            padding: 0 0.5em;
-            line-height: 1.75em;
-        }
         &.super-small{
-            padding: 0 0.25em;
-            line-height: 1.5em;
+            padding: 0.1em 0.25em;
+        }
+        &.small{
+            padding: 0.25em 0.5em;
         }
         &.big{
-            line-height: 2.625em;
             font-size: 1.25em;
+            padding: 0.75em 1.5em;
         }
         &.super-big{
-            padding: 0 1.375em;
-            line-height: 2.875em;
             font-size: 1.625em;
+            padding: 1em 2em;
         }
         &.no-border{
             border: 0;
@@ -594,17 +573,17 @@
 }
 
 /* Media-queries */
-@include responsive(phone){
+@media screen and (max-width: 540px){
     .hide-phone{
         display: none;
     }
 }
-@include responsive(tablet){
+@media screen and (min-width: 541px) and (max-width: 840px){
     .hide-tablet{
         display: none;
     }
 }
-@include responsive(desktop){
+@media screen and (min-width: 841px){
     .hide-desktop{
         display: none;
     }
