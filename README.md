@@ -38,13 +38,13 @@ Não temos exatamente tudo feito e este não é o nosso objetivo. Alguns pontos 
 Compilar CSS com SASS:
 
 ```bash
-sass --watch components/ --style compressed
+sass --watch src/ --style compressed
 ```
 
 Compilar JS com TypeScript:
 
 ```bash
-find components/ -name "*.ts" | xargs tsc --target ES6 --removeComments -w
+find src/ -name "*.ts" | xargs tsc --target ES6 --removeComments -w
 ```
 
 Compilar versão JS com Minify:
@@ -52,7 +52,7 @@ Compilar versão JS com Minify:
 ```bash
 npm install uglify-js -g
 
-find components/ \
+find src/ \
     -type f \
     -name "*.js" ! -name "*.min.*" \
     -exec echo {} \; \
@@ -67,6 +67,7 @@ find components/ \
 * jQuery removido do projeto
 * Framework migrado para sistema de componentes
 * Melhorias gerais de CSS e JS
+* Estrutura de pastas atualizadas para melhor uso em projetos pequenos e de larga escala
 
 ### 1.6 - 04 de Maio de 2018
 
