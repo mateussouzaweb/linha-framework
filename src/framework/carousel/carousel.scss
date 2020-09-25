@@ -1,15 +1,14 @@
 @charset "UTF-8";
 
-/* Carousel */
-@media screen{
+@media screen {
 
-    .carousel{
+    .carousel {
         position: relative;
 
-        .area{
+        .area {
             overflow: hidden;
         }
-        .scroll{
+        .scroll {
             display: flex;
             flex-flow: row;
             flex-wrap: nowrap;
@@ -28,12 +27,12 @@
             }
         }
 
-        .item{
+        .item {
             flex: 0 0 100%;
         }
 
         .previous,
-        .next{
+        .next {
             cursor: pointer;
             display: inline-block;
             text-align: center;

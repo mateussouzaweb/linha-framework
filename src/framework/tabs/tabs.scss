@@ -1,9 +1,8 @@
 @charset "UTF-8";
 
-/* Tabs */
-@media screen{
+@media screen {
 
-    .tabs{
+    .tabs {
         border-bottom: 1px solid var(--alpha-10);
         list-style: none;
         display: flex;
@@ -11,31 +10,31 @@
         margin-top: -1px;
         padding: 0 1em;
 
-        li{
+        li {
             border: 1px solid transparent;
             border-bottom: 0;
             cursor: pointer;
             flex: 0 1 auto;
             padding: 0.5em 0.625em;
 
-            &.active{
+            &.active {
                 background: var(--light);
                 border-color: var(--alpha-10);
                 color: var(--link);
                 margin-top: 1px;
                 margin-bottom: -1px;
 
-                a{
+                a {
                     color: var(--link);
                 }
             }
         }
     }
 
-    [data-tab]{
+    [data-tab] {
         display: none;
     }
-    [data-tab].active{
+    [data-tab].active {
         display: block;
     }
 

@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
-/* Framework */
-@media all{
+@media all {
 
     /* Variables */
     :root {
@@ -107,7 +106,7 @@
         &.left { float: left; }
         &.right { float: right; }
     }
-    .align{
+    .align {
         &.left { text-align: left; }
         &.right { text-align: right; }
         &.center { text-align: center; }
@@ -130,7 +129,7 @@
     a:hover, a:visited {
         color: var(--link);
     }
-    a:hover{
+    a:hover {
         text-decoration: underline;
     }
     a img {
@@ -168,7 +167,7 @@
     }
 
     /* Labels */
-    .label{
+    .label {
         background: transparent;
         border: 1px solid var(--dark);
         border-radius: 0.125em;
@@ -176,53 +175,53 @@
         padding: 0 0.25em;
         vertical-align: middle;
 
-        &.primary{
+        &.primary {
             background-color: var(--primary);
             border-color: var(--alpha-05);
             color: var(--light);
         }
-        &.secondary{
+        &.secondary {
             background-color: var(--secondary);
             border-color: var(--alpha-05);
             color: var(--light);
         }
-        &.danger{
+        &.danger {
             background-color: var(--danger);
             border-color: var(--alpha-05);
             color: var(--light);
         }
-        &.warning{
+        &.warning {
             background-color: var(--warning);
             border-color: var(--alpha-05);
             color: var(--light);
         }
-        &.info{
+        &.info {
             background-color: var(--info);
             border-color: var(--alpha-05);
             color: var(--light);
         }
-        &.success{
+        &.success {
             background-color: var(--success);
             border-color: var(--alpha-05);
             color: var(--light);
         }
-        &.light{
+        &.light {
             background-color: var(--light);
             border-color: var(--alpha-30);
             color: var(--dark);
         }
-        &.dark{
+        &.dark {
             background-color: var(--dark);
             border-color: var(--alpha-05);
             color: var(--light);
         }
-        &.gray{
+        &.gray {
             background-color: var(--gray);
             border-color: var(--alpha-05);
             color: var(--light);
         }
     }
-    label .label{
+    label .label {
         cursor: pointer;
     }
 
@@ -250,13 +249,13 @@
         &:not([type="submit"]){
             box-shadow: inset 0 1px 3px var(--alpha-10);
 
-            &:focus{
+            &:focus {
                 border-color: var(--link);
                 outline: 0;
             }
         }
     }
-    input{
+    input {
         &[type="radio"],
         &[type="checkbox"]{
             background: none;
@@ -266,12 +265,12 @@
             width: auto;
         }
     }
-    textarea{
+    textarea {
         min-height: 6.25em;
     }
 
     [type="submit"],
-    button{
+    button {
         border: none;
         cursor: pointer;
         display: inline-block;
@@ -284,12 +283,12 @@
         -moz-appearance: none;
     }
 
-    fieldset{
+    fieldset {
         border: 0;
         margin: 2em 0 0;
         padding: 0;
 
-        legend{
+        legend {
             border-bottom: 1px solid var(--alpha-05);
             display: block;
             font-size: 1.375em;
@@ -300,7 +299,7 @@
     }
 
     /* Wrappers */
-    .select{
+    .select {
         background: var(--light);
         border: 1px solid var(--alpha-30);
         border-radius: 0.125em;
@@ -311,7 +310,7 @@
         overflow: hidden;
         position: relative;
 
-        &:after{
+        &:after {
             border: 0.25em solid transparent;
             border-top-color: var(--dark);
             content: '';
@@ -325,7 +324,7 @@
             z-index: 6;
         }
 
-        select{
+        select {
             background: transparent;
             border: 0 !important;
             border-radius: 0;
@@ -371,10 +370,10 @@
         transition: all 0.15s ease-out;
         vertical-align: top;
 
-        &:last-child{
+        &:last-child {
             margin-right: 0;
         }
-        &:hover, &:link, &:visited{
+        &:hover, &:link, &:visited {
             color: var(--dark);
             text-decoration: none;
         }
@@ -384,159 +383,159 @@
             opacity: 0.80;
         }
 
-        &.super-small{
+        &.super-small {
             padding: 0.1em 0.25em;
         }
-        &.small{
+        &.small {
             padding: 0.25em 0.5em;
         }
-        &.big{
+        &.big {
             font-size: 1.25em;
             padding: 0.75em 1.5em;
         }
-        &.super-big{
+        &.super-big {
             font-size: 1.625em;
             padding: 1em 2em;
         }
-        &.no-border{
+        &.no-border {
             border: 0;
         }
 
-        &.primary{
+        &.primary {
             background-color: var(--primary);
             border-color: var(--alpha-10);
             color: var(--light);
 
-            &:hover, &:visited, &:link{
+            &:hover, &:visited, &:link {
                 color: var(--light);
             }
         }
-        &.secondary{
+        &.secondary {
             background-color:  var(--secondary);
             border-color: var(--alpha-10);
             color: var(--light);
 
-            &:hover, &:visited, &:link{
+            &:hover, &:visited, &:link {
                 color: var(--light);
             }
         }
-        &.danger{
+        &.danger {
             background-color: var(--danger);
             border-color: var(--alpha-10);
             color: var(--light);
 
-            &:hover, &:visited, &:link{
+            &:hover, &:visited, &:link {
                 color: var(--light);
             };
         }
-        &.warning{
+        &.warning {
             background-color:  var(--warning);
             border-color: var(--alpha-10);
         }
-        &.info{
+        &.info {
             background-color: var(--info);
             border-color: var(--alpha-10);
             color: var(--light);
 
-            &:hover, &:visited, &:link{
+            &:hover, &:visited, &:link {
                 color: var(--light);
             }
         }
-        &.success{
+        &.success {
             background-color: var(--success);
             border-color: var(--alpha-10);
             color: var(--light);
 
-            &:hover, &:visited, &:link{
+            &:hover, &:visited, &:link {
                 color: var(--light);
             }
         }
-        &.light{
+        &.light {
             background-color: var(--light);
             border-color: var(--alpha-10);
         }
-        &.dark{
+        &.dark {
             background-color: var(--dark);
             border-color: var(--alpha-10);
             color: var(--light);
 
-            &:hover, &:visited, &:link{
+            &:hover, &:visited, &:link {
                 color: var(--light);
             }
         }
-        &.gray{
+        &.gray {
             background-color: var(--gray);
             border-color: var(--alpha-10);
             color: var(--light);
 
-            &:hover, &:visited, &:link{
+            &:hover, &:visited, &:link {
                 color: var(--light);
             }
         }
     }
 
-    .buttons{
+    .buttons {
         display: flex;
 
-        button, .button{
+        button, .button {
             border-radius: 0;
             flex: 1;
             margin: 0;
 
-            &:first-child{
+            &:first-child {
                 border-radius: 0.125em 0 0 0.125em;
             }
-            &:last-child{
+            &:last-child {
                 border-radius: 0 0.125em 0.125em 0;
             }
         }
     }
 
     /* Tables */
-    table{
+    table {
         width: 100%;
         margin-bottom: 1.25em;
 
-        td, th{
+        td, th {
             border: none;
             padding: 0.5em 1em;
         }
-        th{
+        th {
             text-align: left;
 
-            &:first-child{
+            &:first-child {
                 margin-left: -1px;
             }
-            &:last-child{
+            &:last-child {
                 margin-right: -1px;
             }
         }
 
-        &.bordered{
-            td, th{
+        &.bordered {
+            td, th {
                 border: 1px solid var(--alpha-05);
             }
         }
 
-        &.striped{
+        &.striped {
             border-left: 1px solid var(--alpha-05);
             border-right: 1px solid var(--alpha-05);
 
             tr:nth-child(odd){
                 background-color: var(--alpha-05);
             }
-            td, th{
+            td, th {
                 border-right: 0;
                 border-left: 0;
             }
         }
 
-        &.hover tr:hover{
+        &.hover tr:hover {
             background-color: var(--alpha-10);
         }
 
-        &.padded{
-            td, th{
+        &.padded {
+            td, th {
                 padding-top: 0.75em;
                 padding-bottom: 0.75em;
             }
@@ -546,11 +545,10 @@
 
 }
 
-/* Screen */
-@media screen{
+@media screen {
 
     /* Grid */
-    .centered{
+    .centered {
         max-width: 1400px;
         margin: 0 auto;
         display: block;
@@ -558,39 +556,37 @@
     }
 
     /* Heading */
-    .heading{
+    .heading {
         font-size: 1.25em;
         padding: 1.25em 0;
 
-        h1, h2, h3, p{
+        h1, h2, h3, p {
             margin-top: 0;
         }
-        .button{
+        .button {
             font-size: 1rem;
         }
     }
 
 }
 
-/* Media-queries */
 @media screen and (max-width: 540px){
-    .hide-phone{
+    .hide-phone {
         display: none;
     }
 }
 @media screen and (min-width: 541px) and (max-width: 840px){
-    .hide-tablet{
+    .hide-tablet {
         display: none;
     }
 }
 @media screen and (min-width: 841px){
-    .hide-desktop{
+    .hide-desktop {
         display: none;
     }
 }
 
-/* Print */
-@media print{
+@media print {
 
     @page {
         margin: 0.5cm;
@@ -618,7 +614,7 @@
         page-break-after: avoid;
     }
 
-    .hide-print{
+    .hide-print {
         display: none !important;
     }
 

@@ -1,31 +1,30 @@
 @charset "UTF-8";
 
-/* Validate */
-@media all{
+@media all {
 
     input.invalid,
     textarea.invalid,
     select.invalid,
-    div.invalid{
+    div.invalid {
         border-color: var(--danger);
 
-        &:focus{
+        &:focus {
             border-color: var(--danger);
         }
     }
 
-    .select.invalid{
+    .select.invalid {
         border-color: var(--danger);
 
-        &:after{
+        &:after {
             border-top-color: var(--danger);
         }
     }
 
-    label.invalid{
+    label.invalid {
         color: var(--danger);
     }
-    form.invalid{
+    form.invalid {
         border-color: var(--danger);
     }
 
