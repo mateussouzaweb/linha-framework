@@ -30,6 +30,18 @@
         --alpha-70: rgba(0, 0, 0, 0.7);
         --alpha-80: rgba(0, 0, 0, 0.8);
         --alpha-90: rgba(0, 0, 0, 0.9);
+
+        --light-alpha-05: rgba(255, 255, 255, 0.05);
+        --light-alpha-10: rgba(255, 255, 255, 0.1);
+        --light-alpha-15: rgba(255, 255, 255, 0.15);
+        --light-alpha-20: rgba(255, 255, 255, 0.2);
+        --light-alpha-30: rgba(255, 255, 255, 0.3);
+        --light-alpha-40: rgba(255, 255, 255, 0.4);
+        --light-alpha-50: rgba(255, 255, 255, 0.5);
+        --light-alpha-60: rgba(255, 255, 255, 0.6);
+        --light-alpha-70: rgba(255, 255, 255, 0.7);
+        --light-alpha-80: rgba(255, 255, 255, 0.8);
+        --light-alpha-90: rgba(255, 255, 255, 0.9);
     }
 
     /* Sizes */
@@ -149,15 +161,6 @@
         &.light, &.light a { color: var(--light) }
         &.dark, &.dark a {color: var(--dark) }
         &.gray, &.gray a { color: var(--gray) }
-        &.alpha-10, &.alpha-10 a { color: var(--alpha-10) }
-        &.alpha-20, &.alpha-20 a { color: var(--alpha-20) }
-        &.alpha-30, &.alpha-30 a { color: var(--alpha-30) }
-        &.alpha-40, &.alpha-40 a { color: var(--alpha-40) }
-        &.alpha-50, &.alpha-50 a { color: var(--alpha-50) }
-        &.alpha-60, &.alpha-60 a { color: var(--alpha-60) }
-        &.alpha-70, &.alpha-70 a { color: var(--alpha-70) }
-        &.alpha-80, &.alpha-80 a { color: var(--alpha-80) }
-        &.alpha-90, &.alpha-90 a { color: var(--alpha-90) }
 
         &.small {
             font-size: 0.8em;
