@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* Framework */
 @media all {
 
     /* Variables */
@@ -246,7 +247,7 @@
         padding: 0.5em 0.625em;
         transition: all 0.15s ease-out;
 
-        &:not([type="submit"]){
+        &:not([type="submit"]) {
             box-shadow: inset 0 1px 3px var(--alpha-10);
 
             &:focus {
@@ -257,7 +258,7 @@
     }
     input {
         &[type="radio"],
-        &[type="checkbox"]{
+        &[type="checkbox"] {
             background: none;
             border: none;
             height: auto;
@@ -356,7 +357,7 @@
     .button,
     a.button,
     button,
-    [type=submit]{
+    [type=submit] {
         background: transparent;
         border: 1px solid var(--dark);
         border-radius: 0.125em;
@@ -378,7 +379,7 @@
             text-decoration: none;
         }
 
-        &[disabled]{
+        &[disabled] {
             cursor: not-allowed;
             opacity: 0.80;
         }
@@ -521,7 +522,7 @@
             border-left: 1px solid var(--alpha-05);
             border-right: 1px solid var(--alpha-05);
 
-            tr:nth-child(odd){
+            tr:nth-child(odd) {
                 background-color: var(--alpha-05);
             }
             td, th {
@@ -545,6 +546,7 @@
 
 }
 
+/* Screen */
 @media screen {
 
     /* Grid */
@@ -570,22 +572,24 @@
 
 }
 
-@media screen and (max-width: 540px){
+/* Media-queries */
+@media screen and (max-width: 540px) {
     .hide-phone {
         display: none;
     }
 }
-@media screen and (min-width: 541px) and (max-width: 840px){
+@media screen and (min-width: 541px) and (max-width: 840px) {
     .hide-tablet {
         display: none;
     }
 }
-@media screen and (min-width: 841px){
+@media screen and (min-width: 841px) {
     .hide-desktop {
         display: none;
     }
 }
 
+/* Print */
 @media print {
 
     @page {
