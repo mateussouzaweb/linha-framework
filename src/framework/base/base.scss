@@ -351,6 +351,13 @@
                 display: none;
             }
         }
+
+        &.multiple:after {
+            display: none;
+        }
+        &.multiple select {
+            padding: 0.5em;
+        }
     }
 
     /* Buttons */
