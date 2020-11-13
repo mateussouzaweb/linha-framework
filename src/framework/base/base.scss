@@ -5,6 +5,7 @@
 
     /* Variables */
     :root {
+        --font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         --font-size: 16px;
         --line-height: 1.35;
 
@@ -128,6 +129,7 @@
 
     /* Typography */
     body {
+        font-family: var(--font-family);
         font-size: var(--font-size);
         line-height: var(--line-height);
     }
