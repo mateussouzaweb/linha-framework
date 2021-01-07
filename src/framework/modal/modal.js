@@ -17,7 +17,7 @@ var Modal = {
                 e.preventDefault();
                 self.hide(modal);
             }
-            else {
+            else if (link) {
                 e.preventDefault();
                 self.show(modal);
             }
