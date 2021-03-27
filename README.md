@@ -2,10 +2,6 @@
 
 by Mateus Souza | <https://mateussouzaweb.com>
 
-## Licença
-
-MIT and GPL License - <http://www.opensource.org/licenses/mit-license.php> || <http://www.gnu.org/licenses/gpl.html>
-
 ## SOBRE
 
 Linha framework é um projeto com anos de desenvolvimento que visa proporcionar um ponto inicial para programação de páginas web de forma facilitada. Pense nele como um Twitter Bootstrap muito mais simples, que lhe dá liberdade para desenvolver - na verdade, este é o objetivo do Linha Framework, simplificar cada vez mais o seu stack. As linguagens básicas do framework incluem:
