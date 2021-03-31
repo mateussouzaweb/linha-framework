@@ -236,6 +236,10 @@
                             </span>
                         </p>
                         <p>
+                            <label>Input Color</label>
+                            <input type="color" name="color" value="#999999"/>
+                        </p>
+                        <p>
                             <label class="checkbox">
                                 <input type="checkbox" name="checkbox" value="yes" required />
                                 Buy one bike
@@ -454,8 +458,9 @@
                     z-index: 1;
                 }
                 #modal-inline .container {
-                    z-index: 1;
+                    border: 1px solid var(--dark-30);
                     margin: 1em auto;
+                    z-index: 1;
                 }
                 </style>
 
@@ -488,8 +493,28 @@
                     </div>
                 </div>
 
-                <button class="button primary" data-modal="#modal-id">
-                    Open Modal
+                <div class="modal hidden" id="modal-image">
+                    <div class="backdrop"></div>
+                    <div class="container">
+                        <div class="inside">
+                            <div class="body">
+                                <img loading="lazy"
+                                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 300'%3E%3C/svg%3E"
+                                    data-src="https://picsum.photos/560/560"
+                                    alt="Image"
+                                    width="560"
+                                    height="560" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="button" data-modal="#modal-id">
+                    Open Text Modal
+                </button>
+
+                <button class="button" data-modal="#modal-image">
+                    Open Image Modal
                 </button>
 
             </section>
