@@ -10,7 +10,7 @@
         --tabs-margin: 0 0.25em 0 0;
         --tabs-padding: 0.5em 1em;
         --tabs-radius: 0.125em;
-        --tabs-spacing: 0 1em;
+        --tabs-spacing: 0;
 
         --tabs-hover-color: var(--text);
         --tabs-hover-background: var(--dark-05);
@@ -29,9 +29,23 @@
 
     .tabs {
         display: flex;
+        flex-wrap: nowrap;
         list-style: none;
         margin: 0;
+        overflow: auto;
         padding: var(--tabs-spacing);
+        position: relative;
+        z-index: 2;
+
+        // Hide scroll bar
+        margin-bottom: -20px;
+        padding-bottom: 20px;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
         li {
             background: var(--tabs-background);
@@ -44,12 +58,15 @@
             margin: var(--tabs-margin);
             padding: var(--tabs-padding);
             position: relative;
+            white-space: nowrap;
 
             &:after {
                 border-bottom: var(--tabs-border) transparent;
+                border-top: var(--tabs-border) transparent;
                 content: '';
-                display: block;
+                display: none;
                 left: 0;
+                height: 0;
                 position: absolute;
                 right: 0;
                 top: 100%;
@@ -78,6 +95,8 @@
                 }
                 &:after {
                     border-bottom-color: var(--tabs-active-background);
+                    border-top-color: var(--tabs-active-background);
+                    display: block;
                 }
             }
         }
