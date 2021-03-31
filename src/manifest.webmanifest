@@ -14,19 +14,19 @@
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "/img/icons/192px.png",
+            "src": "./img/icons/192px.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "/img/icons/512px.png",
+            "src": "./img/icons/512px.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "/img/icons/1024px.png",
+            "src": "./img/icons/1024px.png",
             "sizes": "1024x1024",
             "type": "image/png",
             "purpose": "any maskable"
