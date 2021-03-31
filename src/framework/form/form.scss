@@ -107,7 +107,8 @@
             cursor: pointer;
             margin: 0 auto;
             outline: none;
-            padding: 0.5em 2.5em 0.5em 0.625em;
+            padding: var(--field-padding);
+            padding-right: 2.5em;
             position: relative;
             text-indent: 0.01px;
             text-overflow: ellipsis;
