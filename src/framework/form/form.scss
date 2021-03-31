@@ -53,6 +53,19 @@
         width: auto;
     }
 
+    input[type="color"] {
+        box-shadow: none;
+        height: 2.30em;
+        padding: 0;
+
+        &::-webkit-color-swatch-wrapper {
+            padding: 0.25em;
+        }
+        &::-webkit-color-swatch {
+            border: none;
+        }
+    }
+
     textarea {
         min-height: 6.25em;
     }
