@@ -1,62 +1,48 @@
-# LINHA FRAMEWORK - 2.0
+# LINHA FRAMEWORK
 
 by Mateus Souza | <https://mateussouzaweb.com>
 
-## SOBRE
+Linha Framework é um projeto com anos de desenvolvimento que visa proporcionar uma base inicial para programação de websites e aplicativos com uma stack independente e simplificada.
 
-Linha framework é um projeto com anos de desenvolvimento que visa proporcionar um ponto inicial para programação de páginas web de forma facilitada. Pense nele como um Twitter Bootstrap muito mais simples, que lhe dá liberdade para desenvolver - na verdade, este é o objetivo do Linha Framework, simplificar cada vez mais o seu stack. As linguagens básicas do framework incluem:
+Este framework contém muitos componentes, mas não possui um tema de cores opinativo para nenhum deles - ou seja, você não é obrigado a manter o padrão de design do projeto, até porque ele não tem nenhum. Esta abordagem proporciona maior personalização em todos os aspectos do sistema com total liberdade através das variáveis do CSS, e você pode aplicar elas tanto globalmente quanto no escopo que desejar.
+
+As linguagens básicas do framework estão listadas abaixo. Recomendamos que tenha o conhecimento básico delas antes de utilizar este projeto:
 
 * HTML5
-* CSS3
-* JavaScript
+* SCSS / CSS
+* TypeScript / JavaScript
 
-Tudo isto não foi trabalho apenas do Linha Framework, devo dar os créditos a:
-
-* Sass - <http://sass-lang.com>
-* HTML5 Boilerplate (Fonte de inspiração para algumas partes do LF) - <https://html5boilerplate.com>
-* GitHub (vários projetos, não teria como citar todos aqui...) - <https://github.com/mateus007/following>
-* Google Search - Thanks!!! :)
-
-## RECOMENDAÇÕES & DICAS
-
-Não temos exatamente tudo feito e este não é o nosso objetivo. Alguns pontos ficam por sua decisão, mas deixamos abaixo algumas dicas e recomendações para lhe auxiliar neste processo:
-
-* Compre um Mac OS ou use Linux - dê adeus ao Windows!
-* Aprenda a usar o Sass - ESSÊNCIAL
-* Decida qual framework JS irá utilizar
-* Delete o que você não usa... mantenha seu stack limpo
-* Aprenda um pouco de SEO - <http://googlewebmastercentral.blogspot.com/2008/11/googles-seo-starter-guide.html>
-* Alterar o código fonte não é proibido :P
-* Contribua!
+---
 
 ## DESENVOLVIMENTO
 
-Compilar CSS com SASS:
+Para compilar seu projeto, primeiro instale o compilador e o servidor estático. Ambos possuem um processo de instalação bem simples que pode ser verificado diretamente nos links destes projetos:
+
+* ``compactor``: <https://github.com/mateussouzaweb/compactor>
+* ``statiq``: <https://github.com/mateussouzaweb/statiq>
+
+Visite os projetos ``compactor`` e ``statiq`` para entender como eles podem lhe auxiliar no desenvolvimento de projetos.
+
+Depois de instalado, execute o comando abaixo e passe a desenvolver e gerar a versão de distribuição do projeto:
 
 ```bash
-sass --watch src/ --style compressed
+make develop
 ```
 
-Compilar JS com TypeScript:
-
-```bash
-find src/ -name "*.ts" | xargs tsc --target ES6 --removeComments -w
-```
-
-Compilar versão JS com Minify:
-
-```bash
-npm install uglify-js -g
-
-find src/ \
-    -type f \
-    -name "*.js" ! -name "*.min.*" \
-    -exec echo {} \; \
-    -exec uglifyjs -o {}.min {} \; \
-    -exec bash -c 'mv $1 ${1/%js.min/min.js}' -- {}.min \;
-```
+---
 
 ## CHANGELOG
+
+### 3.0 - 31 de Março de 2021
+
+* Arquivos para desenvolvimento e distribuição separados
+* Makefile para automatizar comandos
+* Ajustes de formatação geral
+* Revisão geral para CSS e JS, com maior separação
+* Uso de variáveis CSS adotado para componentes
+* Arquivo manifest.webmanifest
+* Favicon SVG com dark and light mode
+* Defer para scripts JS
 
 ### 2.0 - 06 de Junho de 2020
 
