@@ -1,13 +1,10 @@
 <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="96" height="96" rx="5" fill="black"/>
 <style>
-path {
-    fill: #000;
-}
-@media( prefers-color-scheme: dark ){
-    path {
-        fill: #FFF;
+    @media( prefers-color-scheme: dark ){
+        rect {
+            fill: #FFF;
+        }
     }
-}
-</style>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M28.32 38.88L21.6 45.6L43.2 67.2L91.2 19.2L84.48 12.48L43.2 53.76L28.32 38.88ZM86.4 48C86.4 69.12 69.12 86.4 48 86.4C26.88 86.4 9.6 69.12 9.6 48C9.6 26.88 26.88 9.6 48 9.6C51.84 9.6 55.2 10.08 58.56 11.04L66.24 3.36C60.48 1.44 54.24 0 48 0C21.6 0 0 21.6 0 48C0 74.4 21.6 96 48 96C74.4 96 96 74.4 96 48H86.4Z"/>
+    </style>
 </svg>
