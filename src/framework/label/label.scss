@@ -7,14 +7,15 @@
         --label-border: 1px solid;
         --label-border-color: var(--dark-60);
         --label-color: var(--dark);
-        --label-radius: 0.125em;
         --label-padding: 0 0.25em;
+        --label-radius: 0.125em;
     }
 
     .label {
         background: var(--label-background);
         border: var(--label-border) var(--label-border-color);
         border-radius: var(--label-radius);
+        color: var(--label-color);
         display: inline-block;
         padding: var(--label-padding);
         vertical-align: middle;

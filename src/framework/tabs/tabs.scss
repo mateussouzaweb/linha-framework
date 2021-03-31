@@ -7,18 +7,18 @@
         --tabs-border: 1px solid;
         --tabs-border-color: transparent;
         --tabs-color: var(--link);
+        --tabs-margin: 0 0.25em 0 0;
+        --tabs-padding: 0.5em 1em;
         --tabs-radius: 0.125em;
         --tabs-spacing: 0 1em;
-        --tabs-padding: 0.5em 1em;
-        --tabs-margin: 0 0.25em 0 0;
 
         --tabs-hover-color: var(--text);
         --tabs-hover-background: var(--dark-05);
         --tabs-hover-border-color: var(--dark-30);
 
-        --tabs-active-color: var(--text);
         --tabs-active-background: var(--light);
         --tabs-active-border-color: var(--dark-30);
+        --tabs-active-color: var(--text);
 
         --tab-active-background: transparent;
         --tab-active-border: 1px solid;
@@ -28,8 +28,8 @@
     }
 
     .tabs {
-        list-style: none;
         display: flex;
+        list-style: none;
         margin: 0;
         padding: var(--tabs-spacing);
 
@@ -41,19 +41,19 @@
             color: var(--tabs-color);
             cursor: pointer;
             flex: 0 1 auto;
-            padding: var(--tabs-padding);
             margin: var(--tabs-margin);
+            padding: var(--tabs-padding);
             position: relative;
 
             &:after {
+                border-bottom: var(--tabs-border) transparent;
+                content: '';
                 display: block;
                 left: 0;
-                right: 0;
-                content: '';
                 position: absolute;
+                right: 0;
                 top: 100%;
                 width: 100%;
-                border-bottom: var(--tabs-border) transparent;
                 z-index: 2;
             }
 
@@ -84,13 +84,15 @@
     }
 
     [data-tab] {
-        padding: var(--tab-active-padding);
+        background: var(--tab-active-background);
         border: var(--tab-active-border) var(--tab-active-border-color);
         border-radius: var(--tab-active-radius);
         display: none;
-    }
-    [data-tab].active {
-        display: block;
+        padding: var(--tab-active-padding);
+
+        &.active {
+            display: block;
+        }
     }
 
 }

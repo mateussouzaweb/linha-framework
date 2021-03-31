@@ -9,22 +9,23 @@
         --modal-background: var(--light);
         --modal-border: 0 solid;
         --modal-border-color: transparent;
-        --modal-header-background: var(--dark-05);
-        --modal-header-border: 1px solid;
-        --modal-header-border-color: var(--dark-10);
-        --modal-footer-background: var(--light);
-        --modal-footer-border: 1px solid;
-        --modal-footer-border-color: var(--dark-10);
-
-        --modal-max-size: 560px;
-        --modal-big-size: 840px;
-        --modal-small-size: 320px;
-
+        --modal-index: 200;
         --modal-margin: 0.5em;
         --modal-padding: 1em;
         --modal-radius: 0.25em;
         --modal-shadow: 0 3px 7px var(--dark-20);
-        --modal-index: 200;
+
+        --modal-header-background: var(--dark-05);
+        --modal-header-border: 1px solid;
+        --modal-header-border-color: var(--dark-10);
+
+        --modal-footer-background: var(--light);
+        --modal-footer-border: 1px solid;
+        --modal-footer-border-color: var(--dark-10);
+
+        --modal-big-size: 840px;
+        --modal-medium-size: 560px;
+        --modal-small-size: 320px;
     }
 
     .modal {
@@ -42,6 +43,16 @@
         top: -100%;
         transition: opacity .15s linear, top .15s ease-out;
         z-index: var(--modal-index);
+
+        // Hide scroll bar
+        margin-right: calc(-20px + var(--modal-margin));
+        padding-right: 20px;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
         &.hidden {
             display: none;
@@ -79,8 +90,8 @@
             border-radius: var(--modal-radius);
             flex: 1;
             margin: 0 auto;
-            max-width: var(--modal-max-size);
             max-height: 100%;
+            max-width: var(--modal-medium-size);
             outline: none;
             position: relative;
             z-index: calc(var(--modal-index) + 2);
@@ -93,8 +104,8 @@
         }
 
         .inside {
-            border: var(--modal-border) var(--modal-border-color);
             background: var(--modal-background);
+            border: var(--modal-border) var(--modal-border-color);
             border-radius: var(--modal-radius);
             box-shadow: var(--modal-shadow);
         }
@@ -106,8 +117,8 @@
             background: var(--modal-header-background);
             border-bottom: var(--modal-header-border) var(--modal-header-border-color);
             border-radius: var(--modal-radius) var(--modal-radius) 0 0;
-            height: auto;
             display: flex;
+            height: auto;
             justify-content: space-between;
             padding: var(--modal-padding);
             position: relative;

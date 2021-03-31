@@ -7,31 +7,10 @@
         --font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         --font-size: 16px;
         --line-height: 1.35;
-
         --light: #FFFFFF;
         --dark: #333333;
-        --gray: #777777;
         --text: #000000;
         --link: #005ABB;
-        --primary: #005ABB;
-        --secondary: #3d4d61;
-        --alternative: #6b5e4c;
-        --danger: #b60105;
-        --warning: #ffc107;
-        --info: #3c8ce1;
-        --success: #00852A;
-
-        --light-dark: #cecece;
-        --light-gray: #ececec;
-        --light-text: #949494;
-        --light-link: #5fa9f8;
-        --light-primary: #5fa9f8;
-        --light-secondary: #b5c8e0;
-        --light-alternative: #dac9b3;
-        --light-danger: #ffe9ea;
-        --light-warning: #f7df99;
-        --light-info: #8dc2fc;
-        --light-success: #E9F9E5;
     }
 
     /* Shadows */
@@ -55,46 +34,6 @@
         --dark-85: rgba(0, 0, 0, 0.85);
         --dark-90: rgba(0, 0, 0, 0.90);
         --dark-95: rgba(0, 0, 0, 0.95);
-
-        --light-05: rgba(255, 255, 255, 0.05);
-        --light-10: rgba(255, 255, 255, 0.10);
-        --light-15: rgba(255, 255, 255, 0.15);
-        --light-20: rgba(255, 255, 255, 0.20);
-        --light-25: rgba(255, 255, 255, 0.25);
-        --light-30: rgba(255, 255, 255, 0.30);
-        --light-35: rgba(255, 255, 255, 0.35);
-        --light-40: rgba(255, 255, 255, 0.40);
-        --light-45: rgba(255, 255, 255, 0.45);
-        --light-50: rgba(255, 255, 255, 0.50);
-        --light-55: rgba(255, 255, 255, 0.55);
-        --light-60: rgba(255, 255, 255, 0.60);
-        --light-65: rgba(255, 255, 255, 0.65);
-        --light-70: rgba(255, 255, 255, 0.70);
-        --light-75: rgba(255, 255, 255, 0.75);
-        --light-80: rgba(255, 255, 255, 0.80);
-        --light-85: rgba(255, 255, 255, 0.85);
-        --light-90: rgba(255, 255, 255, 0.90);
-        --light-95: rgba(255, 255, 255, 0.95);
-    }
-
-    /* Sizes */
-    :root {
-        --size-025: 0.25em;
-        --size-050: 0.5em;
-        --size-075: 0.75em;
-        --size-100: 1em;
-        --size-125: 1.25em;
-        --size-150: 1.5em;
-        --size-175: 1.75em;
-        --size-200: 2em;
-        --size-225: 2.25em;
-        --size-250: 2.5em;
-        --size-275: 2.75em;
-        --size-300: 3em;
-        --size-325: 3.25em;
-        --size-350: 3.5em;
-        --size-375: 3.75em;
-        --size-400: 4em;
     }
 
     /* Base */
@@ -172,7 +111,7 @@
         max-width: 1400px;
         margin: 0 auto;
         display: block;
-        padding: 0 var(--size-125);
+        padding: 0 1em;
     }
 
 }

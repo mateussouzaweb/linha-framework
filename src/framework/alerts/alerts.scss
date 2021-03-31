@@ -8,10 +8,10 @@
         --alert-border-color: var(--dark-30);
         --alert-color: var(--dark);
         --alert-link-color: var(--link);
-        --alert-font-size: var(--font-size);
-        --alert-radius: 0.125em;
         --alert-margin: 0.625em 0;
         --alert-padding: 0.625em 1em;
+        --alert-radius: 0.125em;
+
         --alert-close-background: var(--dark-05);
         --alert-close-border-color: var(--dark-15);
     }
@@ -26,7 +26,7 @@
         padding: var(--alert-padding);
         position: relative;
 
-        h3, h4{
+        h3, h4 {
             margin: 0;
             padding: 0;
         }
@@ -43,22 +43,21 @@
             padding-right: 3em;
         }
         .close {
+            align-items: center;
             background: var(--alert-close-background);
             border-left: 1px solid var(--alert-close-border-color);
             bottom: 0;
             cursor: pointer;
             display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 1.25em;
             font-weight: bold;
             height: 100%;
+            justify-content: center;
             line-height: 1.25em;
             position: absolute;
             right: 0;
             text-align: center;
             top: 0;
-            bottom: 0;
             width: 2em;
 
             span {

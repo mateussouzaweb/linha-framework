@@ -8,13 +8,25 @@
         --button-border-color: var(--link);
         --button-color: var(--link);
         --button-font-size: var(--font-size);
-        --button-radius: 0.125em;
         --button-margin: 0 0 0.625em 0;
         --button-padding: 0.5em 1em;
+        --button-radius: 0.125em;
 
         --button-hover-background: var(--link);
         --button-hover-border-color: var(--link);
         --button-hover-color: var(--light);
+    }
+
+    [type="reset"]
+    [type="submit"],
+    button {
+        appearance: none;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: normal;
+        overflow: visible;
+        vertical-align: top;
+        width: auto;
     }
 
     a.button,
@@ -41,6 +53,10 @@
             color: var(--button-hover-color);
             text-decoration: none;
         }
+        &.focus,
+        &:focus {
+            outline: 0;
+        }
     }
 
     a.button:link,
@@ -53,25 +69,12 @@
         }
     }
 
-    [type="submit"],
-    button {
-        cursor: pointer;
-        display: inline-block;
-        font-weight: normal;
-        overflow: visible;
-        vertical-align: top;
-        width: auto;
-        appearance: none;
-    }
-
     .buttons {
         display: flex;
         flex-wrap: wrap;
 
         a.button,
-        .button,
-        button,
-        [type="submit"] {
+        .button {
             border-radius: 0;
             flex: 1;
             margin: 0;

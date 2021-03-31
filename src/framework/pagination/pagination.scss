@@ -19,32 +19,31 @@
         --pagination-hover-color: var(--light);
     }
 
-    .pagination {
-        a {
-            background: var(--pagination-background);
-            border: var(--pagination-border) var(--pagination-border-color);
-            border-radius: var(--pagination-radius);
-            display: inline-block;
-            margin-bottom: 0.625em;
-            padding: var(--pagination-padding);
-        }
-        a.hover,
-        a:hover {
+    .pagination a {
+        background: var(--pagination-background);
+        border: var(--pagination-border) var(--pagination-border-color);
+        border-radius: var(--pagination-radius);
+        color: var(--pagination-color);
+        display: inline-block;
+        margin-bottom: 0.625em;
+        padding: var(--pagination-padding);
+
+        &.hover,
+        &:hover {
             text-decoration: none;
         }
-        a.disabled {
+        &.disabled {
             background: var(--pagination-disabled-background);
             border-color: var(--pagination-disabled-border-color);
             color: var(--pagination-disabled-color);
         }
 
-        a:not(.disabled).hover,
-        a:not(.disabled):hover {
+        &:not(.disabled).hover,
+        &:not(.disabled):hover {
             background: var(--pagination-hover-background);
             border-color: var(--pagination-hover-border-color);
             color: var(--pagination-hover-color);
         }
-
     }
 
 }
