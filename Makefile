@@ -9,5 +9,5 @@ watch:
 server:
 	statiq --port 5500 --root $(PROOT)/dist/
 
-develop: build
+develop:
 	make -j 2 watch server
