@@ -33,7 +33,7 @@ make develop
 
 ## CHANGELOG
 
-### 3.0 - 31 de Março de 2021
+### 3.0.0 - 31 de Março de 2021
 
 * Arquivos para desenvolvimento e distribuição separados
 * Makefile para automatizar comandos
@@ -44,21 +44,21 @@ make develop
 * Favicon SVG com dark and light mode
 * Defer para scripts JS
 
-### 2.0 - 06 de Junho de 2020
+### 2.0.0 - 06 de Junho de 2020
 
 * jQuery removido do projeto
 * Framework migrado para sistema de componentes
 * Melhorias gerais de CSS e JS
 * Estrutura de pastas atualizadas para melhor uso em projetos pequenos e de larga escala
 
-### 1.6 - 04 de Maio de 2018
+### 1.6.0 - 04 de Maio de 2018
 
 * jQuery atualizado para V. 3.3.1.
 * CSS para navegação removido
 * JS para navegação removido
 * Melhorias e reescritas gerais para CSS
 
-### 1.5 - 03 de Novembro de 2017
+### 1.5.0 - 03 de Novembro de 2017
 
 * jQuery atualizado para V. 3.2.1.
 * Extra Selectors removido: A compatibilidade Cross Browser atual dispensa este tipo de seletor
@@ -72,7 +72,7 @@ make develop
 * jQuery atualizado para V. 3.2.0
 * Melhorias gerais
 
-### 1.4 - 05 de Janeiro de 2015
+### 1.4.0 - 05 de Janeiro de 2015
 
 * Framework agora é focado apenas em HTML, CSS e JS em um único branch - master
 * Arquivo .htaccess removido
@@ -80,7 +80,7 @@ make develop
 * Novos componentes: Paginação, Modal, Upload
 * Componente removido: Bounce
 
-### 1.3 - 18 de Setembro de 2014
+### 1.3.0 - 18 de Setembro de 2014
 
 * Código agora está no padrão internacional - INGLÊS (Código, não comentários e textos...)
 * HTML migrado para HTML5 (não vá confundir com as funcionalidades do HTML5)
@@ -97,7 +97,7 @@ make develop
 * Grid e arquivos para design removidos
 * Estilo flat básico
 
-### 1.2 - 23 de Setembro de 2010
+### 1.2.0 - 23 de Setembro de 2010
 
 * Atualização para os plugins: Linha Acord, Linha Focuss, Linha Modal, Linha Nav, Linha Slidetabs, Linha Tooltip e Linha Form (agora chamado Valida),
 * Linha Form renomeado pra Linha Valida (o nome tem mais relação com a função do plugin)
@@ -112,7 +112,7 @@ make develop
 * Adicionado estilos básicos para html5 (html5.css)
 * Reestruturação para desenvolvimento
 
-### 1.1 - 03 de Abril de 2010
+### 1.1.0 - 03 de Abril de 2010
 
 * Alguns fixes sem importância :)
 * Implementação de css para tabelas (&lt;table&gt;)
@@ -124,6 +124,6 @@ make develop
 * Adição de Classes fix: .first e .last
 * Atualização versões plugins js
 
-### 1.0 - 28 de Março de 2010
+### 1.0.0 - 28 de Março de 2010
 
 * Inicial
