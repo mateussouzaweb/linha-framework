@@ -10,17 +10,92 @@
  *    <img loading="lazy" data-src="" src="" ... />
  * </picture>
  */
-document.addEventListener('DOMContentLoaded', function(){
+var Lazy = {
 
-    var active = false;
-    var elements = Array.from( document.querySelectorAll('[loading]') );
+    /**
+     * Active flag
+     * @var {boolean}
+     */
+    active: false,
+
+    /**
+     * Init carousel
+     * @return {void}
+     */
+    init: function(): void {
+
+        var self = this;
+        var elements = Array.from( document.querySelectorAll('[loading]') );
+
+        /**
+         * Process and load elements
+         * @return {void}
+         */
+        function processElements(): void{
+
+            if( elements.length === 0 ){
+                return;
+            }
+
+            elements.forEach(function(element){
+                if( self.isInViewport(element) ){
+
+                    self.loadElement(element as HTMLImageElement);
+                    elements = elements.filter(function(theElement) {
+                        return element !== theElement;
+                    });
+
+                }
+            });
+
+        }
+
+        /**
+         * Lazy load elements
+         * @return {void}
+         */
+        function runLoad(): void{
+
+            if( self.active ){
+                return;
+            }
+
+            self.active = true;
+            window.setTimeout(function(){
+
+                processElements();
+
+                if( elements.length === 0 ){
+                    document.removeEventListener('scroll', runLoad);
+                    window.removeEventListener('resize', runLoad);
+                    window.removeEventListener('orientationchange', runLoad);
+                }
+
+                self.active = false;
+
+            }, 200);
+
+        }
+
+        if( 'loading' in HTMLImageElement.prototype ){
+            (elements as HTMLImageElement[]).forEach(function(element){
+                self.loadElement(element);
+            });
+        }else{
+            document.addEventListener('scroll', runLoad);
+            window.addEventListener('resize', runLoad);
+            window.addEventListener('orientationchange', runLoad);
+            runLoad();
+        }
+
+    },
 
     /**
      * Update element attributes
      * @param {Element} element
      * @return {void}
      */
-    function updateElement(element: HTMLImageElement | HTMLSourceElement): void{
+    updateElement: function(element: HTMLImageElement | HTMLSourceElement): void{
 
         if( element.dataset.src ){
             element.src = element.dataset.src;
@@ -34,16 +109,17 @@ document.addEventListener('DOMContentLoaded', function(){
 
         element.classList.remove('lazy');
 
-    }
+    },
 
     /**
      * Load element
      * @param {Element} element
      * @return {void}
      */
-    function loadElement(element: HTMLImageElement): void{
+    loadElement: function(element: HTMLImageElement): void{
 
-        updateElement(element);
+        var self = this;
+            self.updateElement(element);
 
         // Process sibling <source/> element
         var child = element.parentElement.querySelectorAll('source');
@@ -54,79 +130,24 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         child.forEach(function(childElement){
-            updateElement(childElement);
+            self.updateElement(childElement);
         });
 
-    }
+    },
 
     /**
      * Return if element is in viewport
      * @param {Element} element
      * @return {Boolean}
      */
-    function isInViewport(element: Element): boolean{
+    isInViewport: function(element: Element): boolean{
         return ( element.getBoundingClientRect().top <= window.innerHeight
                 && element.getBoundingClientRect().bottom >= 0 )
                 && getComputedStyle(element).display !== 'none';
     }
 
-    /**
-     * Process and load elements
-     * @return {void}
-     */
-    function processElements(): void{
+};
 
-        if( elements.length === 0 ){
-            return;
-        }
-
-        elements.forEach(function(element: HTMLImageElement){
-            if( isInViewport(element) ){
-
-                loadElement(element);
-                elements = elements.filter(function(theElement: HTMLImageElement) {
-                    return element !== theElement;
-                });
-
-            }
-        });
-
-    }
-
-    /**
-     * Lazy load elements
-     * @return {void}
-     */
-    function lazyLoad(): void{
-
-        if( active ){
-            return;
-        }
-
-        active = true;
-        window.setTimeout(function(){
-
-            processElements();
-
-            if( elements.length === 0 ){
-                document.removeEventListener('scroll', lazyLoad);
-                window.removeEventListener('resize', lazyLoad);
-                window.removeEventListener('orientationchange', lazyLoad);
-            }
-
-            active = false;
-
-        }, 200);
-
-    }
-
-    if( 'loading' in HTMLImageElement.prototype ){
-        elements.forEach(loadElement);
-    }else{
-        document.addEventListener('scroll', lazyLoad);
-        window.addEventListener('resize', lazyLoad);
-        window.addEventListener('orientationchange', lazyLoad);
-        lazyLoad();
-    }
-
+document.addEventListener('DOMContentLoaded', function(){
+    Lazy.init();
 });

@@ -1,5 +1,9 @@
 var Modal = {
 
+    /**
+     * In/out animation time
+     * @var {Number}
+     */
     animationTime: 150,
 
     /**
@@ -47,9 +51,6 @@ var Modal = {
     show: function(element: Element): void{
 
         var self = this;
-        var body = document.body;
-
-        body.classList.add('modal-open');
 
         element.classList.remove('hidden');
         element.classList.add('visible')
@@ -68,9 +69,7 @@ var Modal = {
     hide: function(element: Element): void{
 
         var self = this;
-        var body = document.body;
 
-        body.classList.remove('modal-open');
         element.classList.remove('in');
 
         window.setTimeout(function(){

@@ -1,37 +1,92 @@
 @charset "UTF-8";
 
-@media screen {
+@media all {
+
+    :root {
+        --tabs-background: transparent;
+        --tabs-border: 1px solid;
+        --tabs-border-color: transparent;
+        --tabs-color: var(--link);
+        --tabs-radius: 0.125em;
+        --tabs-spacing: 0 1em;
+        --tabs-padding: 0.5em 1em;
+        --tabs-margin: 0 0.25em 0 0;
+
+        --tabs-hover-color: var(--text);
+        --tabs-hover-background: var(--dark-05);
+        --tabs-hover-border-color: var(--dark-30);
+
+        --tabs-active-color: var(--text);
+        --tabs-active-background: var(--light);
+        --tabs-active-border-color: var(--dark-30);
+
+        --tab-active-background: transparent;
+        --tab-active-border: 1px solid;
+        --tab-active-border-color: var(--dark-30);
+        --tab-active-padding: 0.5em 1em;
+        --tab-active-radius: 0.125em;
+    }
 
     .tabs {
-        border-bottom: 1px solid var(--alpha-10);
         list-style: none;
         display: flex;
         margin: 0;
-        margin-top: -1px;
-        padding: 0 1em;
+        padding: var(--tabs-spacing);
 
         li {
-            border: 1px solid transparent;
+            background: var(--tabs-background);
+            border: var(--tabs-border) var(--tabs-border-color);
             border-bottom: 0;
+            border-radius: var(--tabs-radius) var(--tabs-radius) 0 0;
+            color: var(--tabs-color);
             cursor: pointer;
             flex: 0 1 auto;
-            padding: 0.5em 0.625em;
+            padding: var(--tabs-padding);
+            margin: var(--tabs-margin);
+            position: relative;
 
-            &.active {
-                background: var(--light);
-                border-color: var(--alpha-10);
-                color: var(--link);
-                margin-top: 1px;
-                margin-bottom: -1px;
+            &:after {
+                display: block;
+                left: 0;
+                right: 0;
+                content: '';
+                position: absolute;
+                top: 100%;
+                width: 100%;
+                border-bottom: var(--tabs-border) transparent;
+                z-index: 2;
+            }
+
+            &.hover,
+            &:hover {
+                background: var(--tabs-hover-background);
+                border-color: var(--tabs-hover-border-color);
+                color: var(--tabs-hover-color);
 
                 a {
-                    color: var(--link);
+                    color: var(--tabs--hover-color);
+                }
+            }
+
+            &.active {
+                background: var(--tabs-active-background);
+                border-color: var(--tabs-active-border-color);
+                color: var(--tabs-active-color);
+
+                a {
+                    color: var(--tabs-active-color);
+                }
+                &:after {
+                    border-bottom-color: var(--tabs-active-background);
                 }
             }
         }
     }
 
     [data-tab] {
+        padding: var(--tab-active-padding);
+        border: var(--tab-active-border) var(--tab-active-border-color);
+        border-radius: var(--tab-active-radius);
         display: none;
     }
     [data-tab].active {

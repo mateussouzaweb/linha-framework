@@ -1,9 +1,30 @@
 @charset "UTF-8";
 
-@media screen {
+@media all {
 
-    body.modal-open {
-        overflow: hidden;
+    :root {
+        --modal-backdrop-background: #000000;
+        --modal-backdrop-opacity: 0.3;
+
+        --modal-background: var(--light);
+        --modal-border: 0 solid;
+        --modal-border-color: transparent;
+        --modal-header-background: var(--dark-05);
+        --modal-header-border: 1px solid;
+        --modal-header-border-color: var(--dark-10);
+        --modal-footer-background: var(--light);
+        --modal-footer-border: 1px solid;
+        --modal-footer-border-color: var(--dark-10);
+
+        --modal-max-size: 560px;
+        --modal-big-size: 840px;
+        --modal-small-size: 320px;
+
+        --modal-margin: 0.5em;
+        --modal-padding: 1em;
+        --modal-radius: 0.25em;
+        --modal-shadow: 0 3px 7px var(--dark-20);
+        --modal-index: 200;
     }
 
     .modal {
@@ -11,6 +32,7 @@
         bottom: 0;
         justify-content: center;
         left: 0;
+        margin: var(--modal-margin);
         outline: none;
         overflow-y: scroll;
         overflow-x: hidden;
@@ -19,7 +41,7 @@
         right: 0;
         top: -100%;
         transition: opacity .15s linear, top .15s ease-out;
-        z-index: 200;
+        z-index: var(--modal-index);
 
         &.hidden {
             display: none;
@@ -33,7 +55,7 @@
         }
 
         .backdrop {
-            background-color: #000000;
+            background-color: var(--modal-backdrop-background);
             bottom: 0;
             left: 0;
             opacity: 0;
@@ -41,7 +63,7 @@
             right: 0;
             top: 0;
             transition: opacity 0.15s linear;
-            z-index: 210;
+            z-index: calc(var(--modal-index) + 1);
         }
         &.hidden .backdrop {
             display: none;
@@ -50,43 +72,44 @@
             display: block;
         }
         &.in .backdrop {
-            opacity: 0.3;
+            opacity: var(--modal-backdrop-opacity);
         }
 
         .container {
+            border-radius: var(--modal-radius);
             flex: 1;
             margin: 0 auto;
-            max-width: 560px;
+            max-width: var(--modal-max-size);
             max-height: 100%;
             outline: none;
             position: relative;
-            z-index: 220;
+            z-index: calc(var(--modal-index) + 2);
         }
         &.small .container {
-            max-width: 360px;
+            max-width: var(--modal-small-size);
         }
         &.big .container {
-            max-width: 800px;
+            max-width: var(--modal-big-size);
         }
 
         .inside {
-            background-color: var(--light);
-            border-radius: 0.125em;
-            box-shadow: 0 3px 7px var(--alpha-20);
-            margin: 1.25em 0.625em;
+            border: var(--modal-border) var(--modal-border-color);
+            background: var(--modal-background);
+            border-radius: var(--modal-radius);
+            box-shadow: var(--modal-shadow);
         }
         .close {
             cursor: pointer;
         }
 
         .header {
-            background-color: var(--alpha-05);
-            border-bottom: 1px solid var(--alpha-10);
-            border-radius: 0.125em 0.125em 0 0;
+            background: var(--modal-header-background);
+            border-bottom: var(--modal-header-border) var(--modal-header-border-color);
+            border-radius: var(--modal-radius) var(--modal-radius) 0 0;
             height: auto;
             display: flex;
             justify-content: space-between;
-            padding: 1em;
+            padding: var(--modal-padding);
             position: relative;
         }
         .header h3 {
@@ -94,22 +117,23 @@
         }
         .header .close {
             font-size: 1.5em;
-            height: 1em;
+            height: var(--modal-padding);
             justify-self: flex-end;
-            line-height: 1em;
+            line-height: var(--modal-padding);
             text-align: center;
-            width: 1em;
+            width: var(--modal-padding);
         }
         .body {
-            padding: 1em;
+            padding: var(--modal-padding);
             position: relative;
         }
         .footer {
-            border-top: 1px solid var(--alpha-10);
-            border-radius: 0 0 0.125em 0.125em;
+            background: var(--modal-footer-background);
+            border-top: var(--modal-footer-border) var(--modal-footer-border-color);
+            border-radius: 0 0 var(--modal-radius) var(--modal-radius);
             display: flex;
             justify-content: flex-end;
-            padding: 1em;
+            padding: var(--modal-padding);
             text-align: right;
 
             .button {

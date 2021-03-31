@@ -7,7 +7,7 @@ var Validate = {
      * @var {Object}
      */
     defaults: {
-        invalidMessage: 'Invalid.',
+        invalidMessage: 'Invalid field value.',
         afterValidate: null,
         beforeValidate: null,
         onValid: null,
@@ -91,7 +91,7 @@ var Validate = {
             var items = Array.from(element.querySelectorAll('[required]'));
             var self = this;
 
-            return items.filter(function(field: FormElement){
+            return items.filter(function(field){
                 return !self.validate(field);
             }).length === 0;
         }
@@ -157,10 +157,10 @@ var Validate = {
 
         elements = elements.filter(Boolean);
         elements = Array.from( new Set(elements) );
-        elements.map(function(item: FormElement){
+        elements.map(function(item){
 
-            if( item.setCustomValidity ){
-                item.setCustomValidity(
+            if( (item as FormElement).setCustomValidity ){
+                (item as FormElement).setCustomValidity(
                     ( valid ) ? '' : options.invalidMessage
                 );
             }

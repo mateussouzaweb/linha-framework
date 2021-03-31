@@ -14,8 +14,10 @@ var Tabs = {
             var li = (<HTMLElement>e.target).closest('li');
 
             if( tabs && li ){
-                self.activate(tabs, li.dataset.tabId);
                 e.preventDefault();
+                if( !li.classList.contains('disabled') ){
+                    self.activate(tabs, li.dataset.tabId);
+                }
             }
 
         });

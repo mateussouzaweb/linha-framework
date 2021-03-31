@@ -2,30 +2,39 @@
 
 @media all {
 
+    :root {
+        --invalid-background: var(--light-danger);
+        --invalid-border-color: var(--danger);
+        --invalid-color: var(--danger);
+    }
+
     input.invalid,
     textarea.invalid,
     select.invalid,
     div.invalid {
-        border-color: var(--danger);
+        background: var(--invalid-background);
+        border-color: var(--invalid-border-color);
 
         &:focus {
-            border-color: var(--danger);
+            background: var(--invalid-background);
+            border-color: var(--invalid-border-color);
         }
     }
 
     .select.invalid {
-        border-color: var(--danger);
+        background: var(--invalid-background);
+        border-color: var(--invalid-border-color);
 
         &:after {
-            border-top-color: var(--danger);
+            border-top-color: var(--invalid-border-color);
         }
     }
 
     label.invalid {
-        color: var(--danger);
+        color: var(--invalid-color);
     }
     form.invalid {
-        border-color: var(--danger);
+        border-color: var(--invalid-border-color);
     }
 
 }

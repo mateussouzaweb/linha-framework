@@ -1,38 +1,48 @@
 @charset "UTF-8";
 
-@media screen {
+@media all {
+
+    :root {
+        --pagination-background: transparent;
+        --pagination-border: 1px solid;
+        --pagination-border-color: var(--link);
+        --pagination-color: var(--link);
+        --pagination-radius: 0.125em;
+        --pagination-padding: 0.375em 1.25em;
+
+        --pagination-disabled-background: transparent;
+        --pagination-disabled-border-color: var(--dark-30);
+        --pagination-disabled-color: var(--dark-60);
+
+        --pagination-hover-background: var(--link);
+        --pagination-hover-border-color: var(--link);
+        --pagination-hover-color: var(--light);
+    }
 
     .pagination {
-        margin-top: 2.5em;
-        margin-bottom: 2.5em;
-        text-align: center;
-
         a {
-            background: var(--alpha-05);
-            border: 1px solid var(--alpha-05);
+            background: var(--pagination-background);
+            border: var(--pagination-border) var(--pagination-border-color);
+            border-radius: var(--pagination-radius);
             display: inline-block;
             margin-bottom: 0.625em;
-            margin-right: -1px;
-            padding: 0.375em 1.25em;
+            padding: var(--pagination-padding);
         }
-        a.disabled {
-            background: var(--light);
-            color: var(--alpha-30);
-            cursor: default;
-        }
-        a.dots {
-            padding: 0.375em 0.625em;
-        }
-        a:first-child {
-            border-top-left-radius: 0.125em;
-            border-bottom-left-radius: 0.125em;
-        }
-        a:last-child {
-            border-top-right-radius: 0.125em;
-            border-bottom-right-radius: 0.125em;
-        }
+        a.hover,
         a:hover {
             text-decoration: none;
+        }
+        a.disabled {
+            background: var(--pagination-disabled-background);
+            border-color: var(--pagination-disabled-border-color);
+            color: var(--pagination-disabled-color);
+        }
+
+        a:not(.disabled).hover,
+        a:not(.disabled):hover {
+            background: var(--pagination-hover-background);
+            border-color: var(--pagination-hover-border-color);
+            color: var(--pagination-hover-color);
         }
 
     }

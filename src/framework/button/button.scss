@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+@media all {
+
+    :root {
+        --button-background: transparent;
+        --button-border: 1px solid;
+        --button-border-color: var(--link);
+        --button-color: var(--link);
+        --button-font-size: var(--font-size);
+        --button-radius: 0.125em;
+        --button-margin: 0 0 0.625em 0;
+        --button-padding: 0.5em 1em;
+
+        --button-hover-background: var(--link);
+        --button-hover-border-color: var(--link);
+        --button-hover-color: var(--light);
+    }
+
+    a.button,
+    .button {
+        background: var(--button-background);
+        border: var(--button-border) var(--button-border-color);
+        border-radius: var(--button-radius);
+        color: var(--button-color);
+        cursor: pointer;
+        display: inline-block;
+        font-size: var(--button-font-size);
+        font-weight: normal;
+        line-height: var(--line-height);
+        margin: var(--button-margin);
+        padding: var(--button-padding);
+        text-decoration: none;
+        transition: all 0.15s ease-out;
+        vertical-align: top;
+
+        &.hover,
+        &:hover {
+            background: var(--button-hover-background);
+            border-color: var(--button-hover-border-color);
+            color: var(--button-hover-color);
+            text-decoration: none;
+        }
+    }
+
+    a.button:link,
+    a.button:visited {
+        color: var(--button-color);
+
+        &.hover,
+        &:hover {
+            color: var(--button-hover-color);
+        }
+    }
+
+    [type="submit"],
+    button {
+        cursor: pointer;
+        display: inline-block;
+        font-weight: normal;
+        overflow: visible;
+        vertical-align: top;
+        width: auto;
+        appearance: none;
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+
+        a.button,
+        .button,
+        button,
+        [type="submit"] {
+            border-radius: 0;
+            flex: 1;
+            margin: 0;
+
+            &:first-child {
+                border-radius: var(--button-radius) 0 0 var(--button-radius);
+            }
+            &:last-child {
+                border-radius: 0 var(--button-radius) var(--button-radius) 0;
+            }
+            &:not(:last-child) {
+                margin-right: -1px;
+            }
+        }
+
+    }
+
+}
