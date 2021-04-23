@@ -15,7 +15,6 @@
 
     label {
         display: block;
-        padding-bottom: 0.375em;
 
         &.radio, &.checkbox {
             cursor: pointer;
@@ -112,6 +111,8 @@
         }
 
         select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
             appearance: none;
             background: transparent;
             border: 0 !important;
@@ -135,6 +136,10 @@
             &::-ms-expand {
                 display: none;
             }
+            option {
+                padding: 0.1em 0.2em;
+            }
+
         }
 
         &.multiple:after {

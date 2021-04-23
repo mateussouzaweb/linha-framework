@@ -20,6 +20,8 @@
     [type="reset"]
     [type="submit"],
     button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
         appearance: none;
         cursor: pointer;
         display: inline-block;
