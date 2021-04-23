@@ -199,25 +199,25 @@
                         <legend>Legend of Form</legend>
 
                         <p>
-                            <label>Label</label>
-                            <input type="text" name="input" placeholder="This is an input" required />
+                            <label for="input">Label</label>
+                            <input type="text" id="input" name="input" placeholder="This is an input" required />
                         </p>
                         <p>
-                            <label>Input email</label>
-                            <input type="email" name="email" placeholder="Insert your email" required />
+                            <label for="email">Input email</label>
+                            <input type="email" id="email" name="email" autocomplete="email" placeholder="Insert your email" required />
                         </p>
                         <p>
-                            <label>Input password</label>
-                            <input type="password" name="password" value="This is an input"/>
+                            <label for="password">Input password</label>
+                            <input type="password" id="password" name="password" autocomplete="current-password" value="This is an input"/>
                         </p>
                         <p>
-                            <label>Textarea</label>
-                            <textarea name="textarea" required>Sample text in textarea field</textarea>
+                            <label for="textarea">Textarea</label>
+                            <textarea id="textarea" name="textarea" required>Sample text in textarea field</textarea>
                         </p>
                         <p>
-                            <label>Select</label>
+                            <label for="select">Select</label>
                             <span class="select">
-                                <select name="select" required>
+                                <select id="select" name="select" required>
                                     <option value="">-- Please Select --</option>
                                     <option value="1">Option 1</option>
                                     <option value="2">Option 2</option>
@@ -225,9 +225,9 @@
                             </span>
                         </p>
                         <p>
-                            <label>Select Multiple</label>
+                            <label for="multiple">Select Multiple</label>
                             <span class="select multiple">
-                                <select name="multiple" multiple required>
+                                <select id="multiple" name="multiple" multiple required>
                                     <option value="1">Option 1</option>
                                     <option value="2">Option 2</option>
                                     <option value="3">Option 3</option>
@@ -236,8 +236,8 @@
                             </span>
                         </p>
                         <p>
-                            <label>Input Color</label>
-                            <input type="color" name="color" value="#999999"/>
+                            <label for="color">Input Color</label>
+                            <input type="color" id="color" name="color" value="#999999"/>
                         </p>
                         <p>
                             <label class="checkbox">
@@ -256,12 +256,12 @@
                             </label>
                         </p>
                         <p>
-                            <label>Readonly</label>
-                            <input type="text" name="readonly" placeholder="Readonly field" readonly />
+                            <label for="readonly">Readonly</label>
+                            <input type="text" id="readonly" name="readonly" placeholder="Readonly field" readonly />
                         </p>
                         <p>
-                            <label>Disabled</label>
-                            <input type="text" name="disabled" placeholder="Disabled field" disabled />
+                            <label for="disabled">Disabled</label>
+                            <input type="text" id="disabled" name="disabled" placeholder="Disabled field" disabled />
                         </p>
 
                         <p>
