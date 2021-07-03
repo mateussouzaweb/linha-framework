@@ -1,0 +1,6 @@
+import "./alerts/alerts"
+import "./carousel/carousel"
+import "./lazy/lazy"
+import "./modal/modal"
+import "./tabs/tabs"
+import "./validate/validate"
