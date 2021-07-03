@@ -1,2 +1,0 @@
-var Alerts={init:function(){document.addEventListener("click",function(e){var close=e.target.closest(".close"),alert=e.target.closest(".alert");close&&alert&&(alert.remove(),e.preventDefault())})}};Alerts.init();
-//# sourceMappingURL=alerts.js.map
