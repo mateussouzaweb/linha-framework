@@ -47,12 +47,18 @@ var Carousel = {
 
             parent = scroll.closest('.carousel');
 
+            if( !parent ){
+                return;
+            }
+
             if( timer ){
                 window.clearInterval(timer);
             }
 
             timer = window.setTimeout(function(){
-                self.move(parent, 'current');
+                if( parent ){
+                    self.move(parent, 'current');
+                }
             }, 100);
 
         }, true);
