@@ -1,230 +1,222 @@
-type FormElement = HTMLFormElement | HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+declare type ValidableElement = HTMLFormElement | HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
 
-var Validate = {
+declare type ValidateOptions = {
+    invalidMessage: string,
+    afterValidate: ValidateCallback | undefined,
+    beforeValidate: ValidateCallback | undefined,
+    onValid: ValidateCallback | undefined,
+    onInvalid: ValidateCallback | undefined,
+}
 
-    /**
-     * Validate defaults
-     * @var {Object}
-     */
-    defaults: {
-        invalidMessage: 'Invalid field value.',
-        afterValidate: null,
-        beforeValidate: null,
-        onValid: null,
-        onInvalid: null,
-    },
+declare type ValidateHandle = {
+    selector: string,
+    options: ValidateOptions
+}
 
-    /**
-     * Custom handler options
-     * @var {Array}
-     */
-    handlers: [],
 
-    /**
-     * Init validate
-     * @return {void}
-     */
-    init: function(): void{
+declare type ValidateCallback = (element: ValidableElement, options: ValidateOptions) =>  void
 
-        var self = this;
+/**
+ * Validate defaults
+ */
+const defaults: ValidateOptions = {
+    invalidMessage: 'Invalid field value.',
+    afterValidate: null,
+    beforeValidate: null,
+    onValid: null,
+    onInvalid: null
+}
 
-        document.addEventListener('submit', function(e){
-            var form = (<FormElement>e.target).closest('form');
-            if( !self.validate(form) ){
-                e.preventDefault();
-                e.stopPropagation();
-            };
-        });
+/**
+ * Custom handler options
+ */
+const handlers: Array<ValidateHandle> = []
 
-        document.addEventListener('change', function(e){
-            self.validate(e.target);
-        });
+/**
+ * Attach validation to form or field element by its selector
+ */
+const attach = (selector: string, options: ValidateOptions) => {
+    handlers.push({
+        selector: selector,
+        options: options
+    })
+}
 
-    },
+/**
+ * Retrieve validate options for given element
+ */
+const getOptions = (element: ValidableElement, append?: ValidateOptions) => {
 
-    /**
-     * Attach validation to form or field element by its selector
-     * @param {String} selector
-     * @param {Object} options
-     * @return {void}
-     */
-    attach: function(selector: string, options: object): void{
-        this.handlers.push({
-            selector: selector,
-            options: options
-        });
-    },
+    const options = Object.assign(
+        {},
+        defaults,
+        (append || {})
+    )
 
-    /**
-     * Retrieve validate options for given element
-     * @param {FormElement} element
-     * @param {Object} append
-     * @return {Object}
-     */
-    options: function(element: FormElement, append: object): object{
-
-        var options = Object.assign(
-            {},
-            this.defaults,
-            (append || {})
-        );
-
-        this.handlers.map(function(handler: { selector: string; options: object; }){
-            if( element.matches(handler.selector) ){
-                Object.assign(options, handler.options);
-            }
-        });
-
-        return options;
-    },
-
-    /**
-     * Check the validity of an element
-     * @param {FormElement} element
-     * @return {Boolean}
-     */
-    check: function(element: FormElement): boolean{
-
-        // Form
-        if( element.nodeName === 'FORM' ){
-
-            var items = Array.from(element.querySelectorAll('[required]'));
-            var self = this;
-
-            return items.filter(function(field){
-                return !self.validate(field);
-            }).length === 0;
+    handlers.map((handler) => {
+        if( element.matches(handler.selector) ){
+            Object.assign(options, handler.options)
         }
+    })
 
-        // Fields
-        if( element.disabled ){
-            return true;
-        }
+    return options
+}
 
-        if( !element.required ){
-            return true;
-        }
+/**
+ * Check the validity of an element
+ */
+const check = (element: ValidableElement, options?: ValidateOptions) => {
 
-        var value = element.value;
-        var type = element.getAttribute('type');
-
-        // Selects
-        if( element.nodeName === 'SELECT' ){
-            return ( value !== '' ) ? true : false;
-        }
-
-        // CheckBox / Radio
-        if( type == 'checkbox' || type == 'radio' ){
-
-            var name = element.getAttribute('name');
-            var selector = 'input[name="' + name + '"]:checked';
-            var checked = document.querySelectorAll(selector).length;
-
-            return (checked == 0) ? false : true;
-        }
-
-        // Reset current validation
-        element.setCustomValidity('');
-
-        // Others
-        return value !== '' && element.checkValidity();
-    },
-
-    /**
-     * Decorate element based on validity
-     * @param {FormElement} element
-     * @param {Boolean} valid
-     * @param {Object} options
-     * @return {void}
-     */
-    decorate: function(element: FormElement, valid: boolean, options: { invalidMessage: string }): void{
-
-        var type = element.getAttribute('type');
-        var parent = element.closest('.select, label');
-        var elements = [element, parent];
-
-        if( type && (type == 'checkbox' || type == 'radio' ) ){
-
-            var name = element.getAttribute('name');
-            var selector = 'input[name="' + name + '"]';
-            var items = document.querySelectorAll(selector);
-
-            items.forEach(function(item){
-                elements.push(item, item.closest('.select, label'));
-            });
-
-        }
-
-        elements = elements.filter(Boolean);
-        elements = Array.from( new Set(elements) );
-        elements.map(function(item){
-
-            if( (item as FormElement).setCustomValidity ){
-                (item as FormElement).setCustomValidity(
-                    ( valid ) ? '' : options.invalidMessage
-                );
-            }
-
-            item.classList.add( ( valid ) ? 'valid' : 'invalid');
-            item.classList.remove( ( valid ) ? 'invalid' : 'valid');
-
-        });
-
-    },
-
-    /**
-     * Validate element with the options
-     * @param {FormElement} element
-     * @param {Object} options
-     * @return {Boolean}
-     */
-    validate: function(element: FormElement, options: object): boolean{
-
-        var _options = this.options(element, options);
-
-        var runCallback = function(callback: Function){
-            if( typeof callback == 'function' ){
-                callback.apply(element, new Array(element, _options));
-            }
-        }
-
-        runCallback(_options.beforeValidate);
-
-        var valid = this.check(element);
-
-        this.decorate(element, valid, _options);
-
-        if( valid ){
-            runCallback(_options.onValid);
-        }else{
-            runCallback(_options.onInvalid);
-        }
-
-        runCallback(_options.afterValidate);
-
-        return valid;
-    },
-
-    /**
-     * Validate the form
-     * @param {FormElement} form
-     * @param {Object} options
-     * @return {Boolean}
-     */
-    form: function(form: FormElement, options: object): boolean{
-        return this.validate(form, options);
-    },
-
-    /**
-     * Validate an field
-     * @param {FormElement} field
-     * @param {Object} options
-     * @return {Boolean}
-     */
-    field: function(field: FormElement, options: object): boolean{
-        return this.validate(field, options);
+    // Form
+    if( element.nodeName === 'FORM' ){
+        const items = Array.from(element.querySelectorAll('[required]')) as ValidableElement[]
+        return items.filter((field) => {
+            return !validate(field, options)
+        }).length === 0
     }
 
-};
+    // Fields
+    if( element.disabled ){
+        return true
+    }
 
-Validate.init();
+    if( !element.required ){
+        return true
+    }
+
+    const value = element.value
+    const type = element.getAttribute('type')
+
+    // Selects
+    if( element.nodeName === 'SELECT' ){
+        return ( value !== '' ) ? true : false
+    }
+
+    // CheckBox / Radio
+    if( type == 'checkbox' || type == 'radio' ){
+
+        const name = element.getAttribute('name')
+        const selector = 'input[name="' + name + '"]:checked'
+        const checked = document.querySelectorAll(selector).length
+
+        return (checked == 0) ? false : true
+    }
+
+    // Reset current validation
+    element.setCustomValidity('')
+
+    // Others
+    return value !== '' && element.checkValidity()
+}
+
+/**
+ * Decorate element based on validity
+ */
+const decorate = (element: ValidableElement, valid: boolean, options: ValidateOptions) => {
+
+    const type = element.getAttribute('type')
+    const parent = element.closest('.select, label')
+    let elements = [element, parent]
+
+    if( type && (type == 'checkbox' || type == 'radio' ) ){
+
+        const name = element.getAttribute('name')
+        const selector = 'input[name="' + name + '"]'
+        const items = document.querySelectorAll(selector)
+
+        items.forEach((item) => {
+            elements.push(item, item.closest('.select, label'))
+        })
+
+    }
+
+    elements = elements.filter(Boolean)
+    elements = Array.from( new Set(elements) )
+    elements.map((item) => {
+
+        if( (item as ValidableElement).setCustomValidity ){
+            (item as ValidableElement).setCustomValidity(
+                ( valid ) ? '' : options.invalidMessage
+            )
+        }
+
+        item.classList.add( ( valid ) ? 'valid' : 'invalid')
+        item.classList.remove( ( valid ) ? 'invalid' : 'valid')
+
+    })
+
+}
+
+/**
+ * Validate element with the options
+ */
+const validate = (element: ValidableElement, options?: ValidateOptions) => {
+
+    const _options = getOptions(element, options)
+    const runCallback = (callback: ValidateCallback) => {
+        if( typeof callback == 'function' ){
+            callback.apply(element, [element, _options])
+        }
+    }
+
+    runCallback(_options.beforeValidate)
+
+    const valid = check(element)
+
+    decorate(element, valid, _options)
+
+    if( valid ){
+        runCallback(_options.onValid)
+    }else{
+        runCallback(_options.onInvalid)
+    }
+
+    runCallback(_options.afterValidate)
+
+    return valid
+}
+
+/**
+ * Validate the form
+ */
+const form = (form: ValidableElement, options?: ValidateOptions) => {
+    return validate(form, options)
+}
+
+/**
+ * Validate an field
+ */
+const field = (field: ValidableElement, options?: ValidateOptions) => {
+    return validate(field, options)
+}
+
+/**
+ * Init validate
+ */
+const init = () => {
+
+    document.addEventListener('submit', (event: Event) => {
+        const form = (<ValidableElement>event.target).closest('form')
+        if( !validate(form) ){
+            event.preventDefault()
+            event.stopPropagation()
+        }
+    })
+
+    document.addEventListener('change', (event: Event) => {
+        validate(event.target as ValidableElement)
+    })
+
+}
+
+export const Validate = {
+    defaults,
+    attach,
+    getOptions,
+    check,
+    decorate,
+    validate,
+    field,
+    form,
+    init
+}

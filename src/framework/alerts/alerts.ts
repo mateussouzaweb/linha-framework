@@ -1,25 +1,22 @@
-var Alerts = {
+/**
+ * Init alerts
+ */
+const init = () => {
 
-    /**
-     * Init carousel
-     * @return {void}
-     */
-    init: function(): void{
+    document.addEventListener('click', (event: Event) => {
 
-        document.addEventListener('click', function(e: Event){
+        const close = (<HTMLElement>event.target).closest('.close')
+        const alert = (<HTMLElement>event.target).closest('.alert')
 
-            var close = (<HTMLElement>e.target).closest('.close');
-            var alert = (<HTMLElement>e.target).closest('.alert');
+        if( close && alert ){
+            alert.remove()
+            event.preventDefault()
+        }
 
-            if( close && alert ){
-                alert.remove();
-                e.preventDefault();
-            }
+    })
 
-        });
+}
 
-    }
-
-};
-
-Alerts.init();
+export const Alerts = {
+    init
+}

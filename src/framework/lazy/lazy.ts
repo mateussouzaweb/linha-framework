@@ -9,145 +9,139 @@
  *    <source data-srcset="" .../>
  *    <img loading="lazy" data-src="" src="" ... />
  * </picture>
+ * 
+ * With iframe:
+ * <iframe data-src="" src="" ... />
  */
-var Lazy = {
 
-    /**
-     * Active flag
-     * @var {boolean}
-     */
-    active: false,
+declare type LazyLoadableElement = HTMLImageElement|HTMLSourceElement|HTMLIFrameElement
 
-    /**
-     * Init carousel
-     * @return {void}
-     */
-    init: function(): void {
+/**
+ * Active flag
+ */
+let active = false
 
-        var self = this;
-        var elements = Array.from( document.querySelectorAll('[loading]') );
+/**
+ * Return if element is in viewport
+ */
+const isInViewport = (element: Element) => {
+    return ( element.getBoundingClientRect().top <= window.innerHeight
+            && element.getBoundingClientRect().bottom >= 0 )
+            && getComputedStyle(element).display !== 'none'
+}
 
-        /**
-         * Process and load elements
-         * @return {void}
-         */
-        function processElements(): void{
+/**
+ * Update element attributes
+ */
+const updateElement = (element: LazyLoadableElement) => {
 
-            if( elements.length === 0 ){
-                return;
-            }
-
-            elements.forEach(function(element){
-                if( self.isInViewport(element) ){
-
-                    self.loadElement(element as HTMLImageElement);
-                    elements = elements.filter(function(theElement) {
-                        return element !== theElement;
-                    });
-
-                }
-            });
-
-        }
-
-        /**
-         * Lazy load elements
-         * @return {void}
-         */
-        function runLoad(): void{
-
-            if( self.active ){
-                return;
-            }
-
-            self.active = true;
-            window.setTimeout(function(){
-
-                processElements();
-
-                if( elements.length === 0 ){
-                    document.removeEventListener('scroll', runLoad);
-                    window.removeEventListener('resize', runLoad);
-                    window.removeEventListener('orientationchange', runLoad);
-                }
-
-                self.active = false;
-
-            }, 200);
-
-        }
-
-        if( 'loading' in HTMLImageElement.prototype ){
-            (elements as HTMLImageElement[]).forEach(function(element){
-                self.loadElement(element);
-            });
-        }else{
-            document.addEventListener('scroll', runLoad);
-            window.addEventListener('resize', runLoad);
-            window.addEventListener('orientationchange', runLoad);
-            runLoad();
-        }
-
-    },
-
-    /**
-     * Update element attributes
-     * @param {Element} element
-     * @return {void}
-     */
-    updateElement: function(element: HTMLImageElement | HTMLSourceElement): void{
-
-        if( element.dataset.src ){
-            element.src = element.dataset.src;
-        }
-        if( element.dataset.srcset ){
-            element.srcset = element.dataset.srcset;
-        }
-        if( element.dataset.sizes ){
-            element.sizes = element.dataset.sizes;
-        }
-
-        element.classList.remove('lazy');
-
-    },
-
-    /**
-     * Load element
-     * @param {Element} element
-     * @return {void}
-     */
-    loadElement: function(element: HTMLImageElement): void{
-
-        var self = this;
-            self.updateElement(element);
-
-        // Process sibling <source/> element
-        var child = element.parentElement.querySelectorAll('source');
-            child = [].slice.call(child);
-
-        if( !child.length ){
-            return;
-        }
-
-        child.forEach(function(childElement){
-            self.updateElement(childElement);
-        });
-
-    },
-
-    /**
-     * Return if element is in viewport
-     * @param {Element} element
-     * @return {Boolean}
-     */
-    isInViewport: function(element: Element): boolean{
-        return ( element.getBoundingClientRect().top <= window.innerHeight
-                && element.getBoundingClientRect().bottom >= 0 )
-                && getComputedStyle(element).display !== 'none';
+    if( element.dataset.src ){
+        element.src = element.dataset.src
+    }
+    if( 'srcset' in element && element.dataset.srcset ){
+        element.srcset = element.dataset.srcset
+    }
+    if( 'sizes' in element && element.dataset.sizes ){
+        element.sizes = element.dataset.sizes
     }
 
-};
+    element.classList.remove('lazy')
 
-document.addEventListener('DOMContentLoaded', function(){
-    Lazy.init();
-});
+}
+
+/**
+ * Load element
+ */
+const loadElement = (element: LazyLoadableElement) => {
+
+    updateElement(element)
+
+    // Process sibling <source/> element
+    let child = element.parentElement.querySelectorAll('source')
+        child = [].slice.call(child)
+
+    if( !child.length ){
+        return
+    }
+
+    child.forEach((childElement) => {
+        updateElement(childElement)
+    })
+
+}
+
+/**
+ * Process and load elements in viewport
+ * Also returns the filtered remaining list of elements not processed
+ */
+const processElementsInViewport = (elements: LazyLoadableElement[]) => {
+
+    if( elements.length === 0 ){
+        return
+    }
+
+    elements.forEach((element) => {
+        if( isInViewport(element) ){
+
+            loadElement(element)
+            elements = elements.filter((theElement) => {
+                return element !== theElement
+            })
+
+        }
+    })
+
+    return elements
+}
+
+
+/**
+ * Init lazy
+ */
+const init = () => {
+
+    let elements = Array.from( document.querySelectorAll('[loading]') ) as LazyLoadableElement[]
+    
+    const runLoad = () => {
+
+        if( active ){
+            return
+        }
+
+        active = true
+        window.setTimeout(() => {
+
+            elements = processElementsInViewport(elements)
+
+            if( elements.length === 0 ){
+                document.removeEventListener('scroll', runLoad)
+                window.removeEventListener('resize', runLoad)
+                window.removeEventListener('orientationchange', runLoad)
+            }
+
+            active = false
+
+        }, 200)
+
+    }
+
+    if( 'loading' in HTMLImageElement.prototype ){
+        elements.forEach((element) => {
+            loadElement(element)
+        })
+    }else{
+        document.addEventListener('scroll', runLoad)
+        window.addEventListener('resize', runLoad)
+        window.addEventListener('orientationchange', runLoad)
+        runLoad()
+    }
+
+}
+
+export const Lazy = {
+    isInViewport,
+    updateElement,
+    loadElement,
+    processElementsInViewport,
+    init
+}

@@ -1,84 +1,74 @@
-var Modal = {
+/**
+ * In/out animation time
+ */
+let animationTime = 150
 
-    /**
-     * In/out animation time
-     * @var {Number}
-     */
-    animationTime: 150,
+/**
+ * Show modal
+ */
+const show = (element: Element) => {
 
-    /**
-     * Init modal
-     * @return {void}
-     */
-    init: function(): void{
+    element.classList.remove('hidden')
+    element.classList.add('visible')
 
-        var self = this;
+    window.setTimeout(() => {
+        element.classList.add('in')
+    }, animationTime)
 
-        document.addEventListener('click', function(e){
+}
 
-            var link = (<HTMLElement>e.target).closest('[data-modal]') as HTMLElement;
-            var close = (<HTMLElement>e.target).closest('.close') as HTMLElement;
-            var backdrop = (<HTMLElement>e.target).closest('.backdrop') as HTMLElement;
-            var modal = (<HTMLElement>e.target).closest('.modal') as HTMLElement;
+/**
+ * Hide modal
+ */
+const hide = (element: Element) => {
 
-            if( link ){
-                modal = document.querySelector(
-                    link.dataset.modal
-                );
-            }
+    element.classList.remove('in')
 
-            if( !modal ){
-                return;
-            }
+    window.setTimeout(() => {
+        element.classList.remove('visible')
+        element.classList.add('hidden')
+    }, animationTime)
 
-            if( close || backdrop ){
-                e.preventDefault();
-                self.hide(modal);
-            }else if( link ){
-                e.preventDefault();
-                self.show(modal);
-            }
+}
 
-        });
+/**
+ * Init modal
+ */
+const init = () => {
 
-    },
+    document.addEventListener('click', (event: Event) => {
 
-    /**
-     * Show modal
-     * @param {Element} element
-     * @return {void}
-     */
-    show: function(element: Element): void{
+        const target = <HTMLElement>event.target
+        const link = target.closest('[data-modal]') as HTMLElement
+        const close = target.closest('.close') as HTMLElement
+        const backdrop = target.closest('.backdrop') as HTMLElement
+        let modal = target.closest('.modal') as HTMLElement
 
-        var self = this;
+        if( link ){
+            modal = document.querySelector(
+                link.dataset.modal
+            )
+        }
 
-        element.classList.remove('hidden');
-        element.classList.add('visible')
+        if( !modal ){
+            return
+        }
 
-        window.setTimeout(function(){
-            element.classList.add('in');
-        }, self.animationTime);
+        if( close || backdrop ){
+            event.preventDefault()
+            hide(modal)
+        }else if( link ){
+            event.preventDefault()
+            show(modal)
+        }
 
-    },
+    })
 
-    /**
-     * Hide modal
-     * @param {Element} element
-     * @return {void}
-     */
-    hide: function(element: Element): void{
+}
 
-        var self = this;
-
-        element.classList.remove('in');
-
-        window.setTimeout(function(){
-            element.classList.remove('visible');
-            element.classList.add('hidden')
-        }, self.animationTime);
-
-    }
-
-};
-
-Modal.init();
+export const Modal = {
+    animationTime,
+    show,
+    hide,
+    init
+}
