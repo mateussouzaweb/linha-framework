@@ -34,6 +34,8 @@ const handlers: Array<ValidateHandle> = []
 
 /**
  * Attach validation to form or field element by its selector
+ * @param selector
+ * @param options
  */
 const attach = (selector: string, options: ValidateOptions) => {
     handlers.push({
@@ -44,6 +46,9 @@ const attach = (selector: string, options: ValidateOptions) => {
 
 /**
  * Retrieve validate options for given element
+ * @param element
+ * @param append
+ * @returns
  */
 const getOptions = (element: ValidableElement, append?: ValidateOptions) => {
 
@@ -64,6 +69,9 @@ const getOptions = (element: ValidableElement, append?: ValidateOptions) => {
 
 /**
  * Check the validity of an element
+ * @param element
+ * @param options
+ * @returns
  */
 const check = (element: ValidableElement, options?: ValidateOptions) => {
 
@@ -111,6 +119,9 @@ const check = (element: ValidableElement, options?: ValidateOptions) => {
 
 /**
  * Decorate element based on validity
+ * @param element
+ * @param valid
+ * @param options
  */
 const decorate = (element: ValidableElement, valid: boolean, options: ValidateOptions) => {
 
@@ -149,6 +160,9 @@ const decorate = (element: ValidableElement, valid: boolean, options: ValidateOp
 
 /**
  * Validate element with the options
+ * @param element
+ * @param options
+ * @returns
  */
 const validate = (element: ValidableElement, options?: ValidateOptions) => {
 
@@ -178,6 +192,9 @@ const validate = (element: ValidableElement, options?: ValidateOptions) => {
 
 /**
  * Validate the form
+ * @param form
+ * @param options
+ * @returns
  */
 const form = (form: ValidableElement, options?: ValidateOptions) => {
     return validate(form, options)
@@ -185,6 +202,9 @@ const form = (form: ValidableElement, options?: ValidateOptions) => {
 
 /**
  * Validate an field
+ * @param field
+ * @param options
+ * @returns
  */
 const field = (field: ValidableElement, options?: ValidateOptions) => {
     return validate(field, options)
@@ -196,7 +216,8 @@ const field = (field: ValidableElement, options?: ValidateOptions) => {
 const init = () => {
 
     document.addEventListener('submit', (event: Event) => {
-        const form = (<ValidableElement>event.target).closest('form')
+        const target = event.target as ValidableElement
+        const form = target.closest('form')
         if( !validate(form) ){
             event.preventDefault()
             event.stopPropagation()

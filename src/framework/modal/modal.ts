@@ -5,6 +5,7 @@ let animationTime = 150
 
 /**
  * Show modal
+ * @param element
  */
 const show = (element: Element) => {
 
@@ -19,6 +20,7 @@ const show = (element: Element) => {
 
 /**
  * Hide modal
+ * @param element
  */
 const hide = (element: Element) => {
 
@@ -38,11 +40,11 @@ const init = () => {
 
     document.addEventListener('click', (event: Event) => {
 
-        const target = <HTMLElement>event.target
+        const target = event.target as HTMLElement
         const link = target.closest('[data-modal]') as HTMLElement
-        const close = target.closest('.close') as HTMLElement
-        const backdrop = target.closest('.backdrop') as HTMLElement
-        let modal = target.closest('.modal') as HTMLElement
+        const close = target.closest('.close')
+        const backdrop = target.closest('.backdrop')
+        let modal = target.closest('.modal')
 
         if( link ){
             modal = document.querySelector(

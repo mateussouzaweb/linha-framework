@@ -5,6 +5,8 @@ let userEvent = true
 
 /**
  * Scroll carousel element to given position
+ * @param element
+ * @param direction
  */
 const move = (element: Element, direction: string) => {
 
@@ -15,7 +17,7 @@ const move = (element: Element, direction: string) => {
         return
     }
 
-    const itemWidth = (<HTMLElement>items[0]).offsetWidth
+    const itemWidth = (items[0] as HTMLElement).offsetWidth
 
     let perPage = scroll.clientWidth / itemWidth
         perPage = Math.round(perPage)
@@ -84,9 +86,10 @@ const init = () => {
 
     document.addEventListener('click', (event: Event) => {
 
-        const next = (<HTMLElement>event.target).closest('.next')
-        const previous = (<HTMLElement>event.target).closest('.previous')
-        const element = (<HTMLElement>event.target).closest('.carousel')
+        const target = event.target as HTMLElement
+        const next = target.closest('.next')
+        const previous = target.closest('.previous')
+        const element = target.closest('.carousel')
 
         if( next && element ){
             event.preventDefault()
@@ -105,7 +108,8 @@ const init = () => {
             return
         }
 
-        const scroll = (<HTMLElement>event.target).closest('.scroll')
+        const target = event.target as HTMLElement
+        const scroll = target.closest('.scroll')
 
         if( !scroll ){
             return

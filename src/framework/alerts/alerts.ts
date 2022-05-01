@@ -5,8 +5,9 @@ const init = () => {
 
     document.addEventListener('click', (event: Event) => {
 
-        const close = (<HTMLElement>event.target).closest('.close')
-        const alert = (<HTMLElement>event.target).closest('.alert')
+        const target = event.target as HTMLElement
+        const close = target.closest('.close')
+        const alert = target.closest('.alert')
 
         if( close && alert ){
             alert.remove()

@@ -1,14 +1,16 @@
 /**
  * Activate the next active tab
+ * @param element
+ * @param tabId
  */
 const activate = (element: HTMLElement, tabId: string) => {
 
     const current = element.querySelector('li.active') as HTMLElement
-    let currentId
-    let currentTab
+    let currentId: string
+    let currentTab: HTMLElement
 
-    const next = element.querySelector('li[data-tab-id="' + tabId + '"]') as HTMLElement
-    const nextTab = document.querySelector('[data-tab="' + tabId + '"]') as HTMLElement
+    const next = element.querySelector('li[data-tab-id="' + tabId + '"]')
+    const nextTab = document.querySelector('[data-tab="' + tabId + '"]')
 
     if( current ){
         current.classList.remove('active')
@@ -37,8 +39,9 @@ const init = () => {
 
     document.addEventListener('click', (event: Event) => {
 
-        var tabs = (<HTMLElement>event.target).closest('ul.tabs') as HTMLElement
-        var li = (<HTMLElement>event.target).closest('li') as HTMLElement
+        const target = event.target as HTMLElement
+        const tabs = target.closest('ul.tabs') as HTMLElement
+        const li = target.closest('li') as HTMLElement
 
         if( tabs && li ){
             event.preventDefault()

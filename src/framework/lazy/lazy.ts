@@ -9,7 +9,7 @@
  *    <source data-srcset="" .../>
  *    <img loading="lazy" data-src="" src="" ... />
  * </picture>
- * 
+ *
  * With iframe:
  * <iframe data-src="" src="" ... />
  */
@@ -23,6 +23,7 @@ let active = false
 
 /**
  * Return if element is in viewport
+ * @param element
  */
 const isInViewport = (element: Element) => {
     return ( element.getBoundingClientRect().top <= window.innerHeight
@@ -32,6 +33,7 @@ const isInViewport = (element: Element) => {
 
 /**
  * Update element attributes
+ * @param element
  */
 const updateElement = (element: LazyLoadableElement) => {
 
@@ -51,6 +53,7 @@ const updateElement = (element: LazyLoadableElement) => {
 
 /**
  * Load element
+ * @param element
  */
 const loadElement = (element: LazyLoadableElement) => {
 
@@ -73,6 +76,8 @@ const loadElement = (element: LazyLoadableElement) => {
 /**
  * Process and load elements in viewport
  * Also returns the filtered remaining list of elements not processed
+ * @param elements
+ * @returns
  */
 const processElementsInViewport = (elements: LazyLoadableElement[]) => {
 
@@ -94,14 +99,13 @@ const processElementsInViewport = (elements: LazyLoadableElement[]) => {
     return elements
 }
 
-
 /**
  * Init lazy
  */
 const init = () => {
 
     let elements = Array.from( document.querySelectorAll('[loading]') ) as LazyLoadableElement[]
-    
+
     const runLoad = () => {
 
         if( active ){

@@ -1,9 +1,9 @@
-import { Alerts } from "./alerts/alerts.js"
-import { Carousel } from "./carousel/carousel.js"
-import { Lazy } from "./lazy/lazy.js"
-import { Modal } from "./modal/modal.js"
-import { Tabs } from "./tabs/tabs.js"
-import { Validate } from "./validate/validate.js"
+import { Alerts } from "./alerts/alerts"
+import { Carousel } from "./carousel/carousel"
+import { Lazy } from "./lazy/lazy"
+import { Modal } from "./modal/modal"
+import { Tabs } from "./tabs/tabs"
+import { Validate } from "./validate/validate"
 
 document.addEventListener('DOMContentLoaded', () => {
     Lazy.init()
