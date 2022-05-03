@@ -27,6 +27,7 @@
         display: inline-block;
         margin-bottom: 0.625em;
         padding: var(--pagination-padding);
+        transition: all 0.15s ease-out;
 
         &.hover,
         &:hover {
