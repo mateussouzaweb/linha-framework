@@ -16,17 +16,15 @@ As linguagens básicas do framework estão listadas abaixo. Recomendamos que ten
 
 ## DESENVOLVIMENTO
 
-Para compilar seu projeto, primeiro instale o compilador e o servidor estático. Ambos possuem um processo de instalação bem simples que pode ser verificado diretamente nos links destes projetos:
+Para compilar seu projeto, primeiro instale o compilador. O processo de instalação é bem simples e pode ser verificado diretamente na página do projeto (aproveite para entender como o compilador pode lhe ajudar no desenvolvimento de projetos):
 
 * ``compactor``: <https://github.com/mateussouzaweb/compactor>
-* ``statiq``: <https://github.com/mateussouzaweb/statiq>
 
-Visite os projetos ``compactor`` e ``statiq`` para entender como eles podem lhe auxiliar no desenvolvimento de projetos.
-
-Depois de instalado, execute o comando abaixo e passe a desenvolver e gerar a versão de distribuição do projeto:
+Depois de instalado, execute o comando abaixo e passe a desenvolver ou gerar a versão de distribuição do projeto:
 
 ```bash
 make develop
+make build
 ```
 
 ---
@@ -62,7 +60,7 @@ make develop
 
 * jQuery atualizado para V. 3.2.1.
 * Extra Selectors removido: A compatibilidade Cross Browser atual dispensa este tipo de seletor
-* Flexbox agora é o sistema principal para colunas CSS
+* FlexBox agora é o sistema principal para colunas CSS
 * Favicon.ico substituído por Favicon.png com 144px
 * CSS para toolbar removido
 * Melhorias e reescritas gerais
@@ -84,11 +82,11 @@ make develop
 
 * Código agora está no padrão internacional - INGLÊS (Código, não comentários e textos...)
 * HTML migrado para HTML5 (não vá confundir com as funcionalidades do HTML5)
-* Adicionado os arquivos .htaccess.txt (quando concluir renomei para .htaccess) e robots.txt
+* Adicionado os arquivos .htaccess.txt (quando concluir renomeie para .htaccess) e robots.txt
 * Reestruturação dos arquivos
 * Versão do framework mais clean, apenas com o necessário
 * Otimização CSS e JS - Agora o framework tem arquivos separados para Scripts e CSS
-* Remoção de tudos os plugins jQuery Linha em favor do framework.js e interações via CSS
+* Remoção de todos os plugins jQuery Linha em favor do framework.js e interações via CSS
 * Atualização jQuery para V. 2.1.1
 * Removido jQuery via CDN - por vezes fica muito lento o carregamento do site, além de impedir o desenvolvimento offline
 * Arquivos CSS simplificados em 1 arquivo (anteriormente eram 7)

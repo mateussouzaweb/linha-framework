@@ -5,15 +5,9 @@ build:
 		--source $(PROOT)/src/ \
 		--destination $(PROOT)/dist/
 
-watch:
+develop:
 	compactor \
-		--watch \
-		--hashed false \
+		--develop true \
+		--server :5500 \
 		--source $(PROOT)/src/ \
 		--destination $(PROOT)/dist/
-
-server:
-	statiq --port 5500 --root $(PROOT)/dist/
-
-develop:
-	make -j 2 watch server
