@@ -11,7 +11,7 @@
  * </picture>
  *
  * With iframe:
- * <iframe data-src="" src="" ... />
+ * <iframe loading="lazy" data-src="" src="" ... />
  */
 
 declare type LazyLoadableElement = HTMLImageElement | HTMLSourceElement | HTMLIFrameElement
