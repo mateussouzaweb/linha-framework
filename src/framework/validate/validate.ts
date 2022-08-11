@@ -14,7 +14,7 @@ declare type ValidateHandle = {
 }
 
 
-declare type ValidateCallback = (element: ValidableElement, options: ValidateOptions) =>  void
+declare type ValidateCallback = (element: ValidableElement, options: ValidateOptions) => void
 
 /**
  * Validate defaults
@@ -59,7 +59,7 @@ const getOptions = (element: ValidableElement, append?: ValidateOptions) => {
     )
 
     handlers.map((handler) => {
-        if( element.matches(handler.selector) ){
+        if (element.matches(handler.selector)) {
             Object.assign(options, handler.options)
         }
     })
@@ -76,7 +76,7 @@ const getOptions = (element: ValidableElement, append?: ValidateOptions) => {
 const check = (element: ValidableElement, options?: ValidateOptions) => {
 
     // Form
-    if( element.nodeName === 'FORM' ){
+    if (element.nodeName === 'FORM') {
         const items = Array.from(element.querySelectorAll('[required]')) as ValidableElement[]
         return items.filter((field) => {
             return !validate(field, options)
@@ -84,11 +84,11 @@ const check = (element: ValidableElement, options?: ValidateOptions) => {
     }
 
     // Fields
-    if( element.disabled ){
+    if (element.disabled) {
         return true
     }
 
-    if( !element.required ){
+    if (!element.required) {
         return true
     }
 
@@ -96,12 +96,12 @@ const check = (element: ValidableElement, options?: ValidateOptions) => {
     const type = element.getAttribute('type')
 
     // Selects
-    if( element.nodeName === 'SELECT' ){
-        return ( value !== '' ) ? true : false
+    if (element.nodeName === 'SELECT') {
+        return (value !== '') ? true : false
     }
 
     // CheckBox / Radio
-    if( type == 'checkbox' || type == 'radio' ){
+    if (type == 'checkbox' || type == 'radio') {
 
         const name = element.getAttribute('name')
         const selector = 'input[name="' + name + '"]:checked'
@@ -129,7 +129,7 @@ const decorate = (element: ValidableElement, valid: boolean, options: ValidateOp
     const parent = element.closest('.select, label')
     let elements = [element, parent]
 
-    if( type && (type == 'checkbox' || type == 'radio' ) ){
+    if (type && (type == 'checkbox' || type == 'radio')) {
 
         const name = element.getAttribute('name')
         const selector = 'input[name="' + name + '"]'
@@ -142,17 +142,17 @@ const decorate = (element: ValidableElement, valid: boolean, options: ValidateOp
     }
 
     elements = elements.filter(Boolean)
-    elements = Array.from( new Set(elements) )
+    elements = Array.from(new Set(elements))
     elements.map((item) => {
 
-        if( (item as ValidableElement).setCustomValidity ){
+        if ((item as ValidableElement).setCustomValidity) {
             (item as ValidableElement).setCustomValidity(
-                ( valid ) ? '' : options.invalidMessage
+                (valid) ? '' : options.invalidMessage
             )
         }
 
-        item.classList.add( ( valid ) ? 'valid' : 'invalid')
-        item.classList.remove( ( valid ) ? 'invalid' : 'valid')
+        item.classList.add((valid) ? 'valid' : 'invalid')
+        item.classList.remove((valid) ? 'invalid' : 'valid')
 
     })
 
@@ -168,7 +168,7 @@ const validate = (element: ValidableElement, options?: ValidateOptions) => {
 
     const _options = getOptions(element, options)
     const runCallback = (callback: ValidateCallback) => {
-        if( typeof callback == 'function' ){
+        if (typeof callback == 'function') {
             callback.apply(element, [element, _options])
         }
     }
@@ -179,9 +179,9 @@ const validate = (element: ValidableElement, options?: ValidateOptions) => {
 
     decorate(element, valid, _options)
 
-    if( valid ){
+    if (valid) {
         runCallback(_options.onValid)
-    }else{
+    } else {
         runCallback(_options.onInvalid)
     }
 
@@ -218,7 +218,7 @@ const init = () => {
     document.addEventListener('submit', (event: Event) => {
         const target = event.target as ValidableElement
         const form = target.closest('form')
-        if( !validate(form) ){
+        if (!validate(form)) {
             event.preventDefault()
             event.stopPropagation()
         }

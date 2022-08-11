@@ -14,7 +14,7 @@
  * <iframe data-src="" src="" ... />
  */
 
-declare type LazyLoadableElement = HTMLImageElement|HTMLSourceElement|HTMLIFrameElement
+declare type LazyLoadableElement = HTMLImageElement | HTMLSourceElement | HTMLIFrameElement
 
 /**
  * Active flag
@@ -26,8 +26,8 @@ let active = false
  * @param element
  */
 const isInViewport = (element: Element) => {
-    return ( element.getBoundingClientRect().top <= window.innerHeight
-            && element.getBoundingClientRect().bottom >= 0 )
+    return (element.getBoundingClientRect().top <= window.innerHeight
+        && element.getBoundingClientRect().bottom >= 0)
             && getComputedStyle(element).display !== 'none'
 }
 
@@ -37,13 +37,13 @@ const isInViewport = (element: Element) => {
  */
 const updateElement = (element: LazyLoadableElement) => {
 
-    if( element.dataset.src ){
+    if (element.dataset.src) {
         element.src = element.dataset.src
     }
-    if( 'srcset' in element && element.dataset.srcset ){
+    if ('srcset' in element && element.dataset.srcset) {
         element.srcset = element.dataset.srcset
     }
-    if( 'sizes' in element && element.dataset.sizes ){
+    if ('sizes' in element && element.dataset.sizes) {
         element.sizes = element.dataset.sizes
     }
 
@@ -63,7 +63,7 @@ const loadElement = (element: LazyLoadableElement) => {
     let child = element.parentElement.querySelectorAll('source')
         child = [].slice.call(child)
 
-    if( !child.length ){
+    if (!child.length) {
         return
     }
 
@@ -81,12 +81,12 @@ const loadElement = (element: LazyLoadableElement) => {
  */
 const processElementsInViewport = (elements: LazyLoadableElement[]) => {
 
-    if( elements.length === 0 ){
+    if (elements.length === 0) {
         return
     }
 
     elements.forEach((element) => {
-        if( isInViewport(element) ){
+        if (isInViewport(element)) {
 
             loadElement(element)
             elements = elements.filter((theElement) => {
@@ -104,11 +104,11 @@ const processElementsInViewport = (elements: LazyLoadableElement[]) => {
  */
 const init = () => {
 
-    let elements = Array.from( document.querySelectorAll('[loading]') ) as LazyLoadableElement[]
+    let elements = Array.from(document.querySelectorAll('[loading]')) as LazyLoadableElement[]
 
     const runLoad = () => {
 
-        if( active ){
+        if (active) {
             return
         }
 
@@ -117,7 +117,7 @@ const init = () => {
 
             elements = processElementsInViewport(elements)
 
-            if( elements.length === 0 ){
+            if (elements.length === 0) {
                 document.removeEventListener('scroll', runLoad)
                 window.removeEventListener('resize', runLoad)
                 window.removeEventListener('orientationchange', runLoad)
@@ -129,11 +129,11 @@ const init = () => {
 
     }
 
-    if( 'loading' in HTMLImageElement.prototype ){
+    if ('loading' in HTMLImageElement.prototype) {
         elements.forEach((element) => {
             loadElement(element)
         })
-    }else{
+    } else {
         document.addEventListener('scroll', runLoad)
         window.addEventListener('resize', runLoad)
         window.addEventListener('orientationchange', runLoad)

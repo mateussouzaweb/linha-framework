@@ -9,7 +9,7 @@ const init = () => {
         const close = target.closest('.close')
         const alert = target.closest('.alert')
 
-        if( close && alert ){
+        if (close && alert) {
             alert.remove()
             event.preventDefault()
         }

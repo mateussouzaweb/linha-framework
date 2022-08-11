@@ -14,4 +14,4 @@ document.addEventListener('DOMContentLoaded', () => {
     Validate.init()
 })
 
-export {}
+export { }

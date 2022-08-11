@@ -46,20 +46,20 @@ const init = () => {
         const backdrop = target.closest('.backdrop')
         let modal = target.closest('.modal')
 
-        if( link ){
+        if (link) {
             modal = document.querySelector(
                 link.dataset.modal
             )
         }
 
-        if( !modal ){
+        if (!modal) {
             return
         }
 
-        if( close || backdrop ){
+        if (close || backdrop) {
             event.preventDefault()
             hide(modal)
-        }else if( link ){
+        } else if (link) {
             event.preventDefault()
             show(modal)
         }

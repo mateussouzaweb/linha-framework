@@ -12,21 +12,21 @@ const activate = (element: HTMLElement, tabId: string) => {
     const next = element.querySelector('li[data-tab-id="' + tabId + '"]')
     const nextTab = document.querySelector('[data-tab="' + tabId + '"]')
 
-    if( current ){
+    if (current) {
         current.classList.remove('active')
         currentId = current.dataset.tabId
         currentTab = document.querySelector('[data-tab="' + currentId + '"]')
     }
 
-    if( currentTab ){
+    if (currentTab) {
         currentTab.classList.remove('active')
     }
 
-    if( next ){
+    if (next) {
         next.classList.add('active')
     }
 
-    if( nextTab ){
+    if (nextTab) {
         nextTab.classList.add('active')
     }
 
@@ -43,9 +43,9 @@ const init = () => {
         const tabs = target.closest('ul.tabs') as HTMLElement
         const li = target.closest('li') as HTMLElement
 
-        if( tabs && li ){
+        if (tabs && li) {
             event.preventDefault()
-            if( !li.classList.contains('disabled') ){
+            if (!li.classList.contains('disabled')) {
                 activate(tabs, li.dataset.tabId)
             }
         }
