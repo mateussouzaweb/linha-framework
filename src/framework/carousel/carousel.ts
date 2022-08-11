@@ -143,6 +143,16 @@ const init = () => {
 
     }, { passive: true })
 
+    window.addEventListener('orientationchange', () => {
+
+        const items = document.querySelectorAll('.carousel')
+
+        items.forEach((item) => {
+            move(item, 'current')
+        })
+
+    }, { passive: true })
+
 }
 
 export const Carousel = {
