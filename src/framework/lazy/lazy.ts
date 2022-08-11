@@ -28,7 +28,7 @@ let active = false
 const isInViewport = (element: Element) => {
     return (element.getBoundingClientRect().top <= window.innerHeight
         && element.getBoundingClientRect().bottom >= 0)
-            && getComputedStyle(element).display !== 'none'
+        && getComputedStyle(element).display !== 'none'
 }
 
 /**
@@ -61,7 +61,7 @@ const loadElement = (element: LazyLoadableElement) => {
 
     // Process sibling <source/> element
     let child = element.parentElement.querySelectorAll('source')
-        child = [].slice.call(child)
+    child = [].slice.call(child)
 
     if (!child.length) {
         return
@@ -134,9 +134,9 @@ const init = () => {
             loadElement(element)
         })
     } else {
-        document.addEventListener('scroll', runLoad)
-        window.addEventListener('resize', runLoad)
-        window.addEventListener('orientationchange', runLoad)
+        document.addEventListener('scroll', runLoad, { passive: true })
+        window.addEventListener('resize', runLoad, { passive: true })
+        window.addEventListener('orientationchange', runLoad, { passive: true })
         runLoad()
     }
 

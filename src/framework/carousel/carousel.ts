@@ -131,7 +131,7 @@ const init = () => {
             }
         }, 100)
 
-    }, true)
+    }, { passive: true })
 
     window.addEventListener('resize', () => {
 
@@ -141,7 +141,7 @@ const init = () => {
             move(item, 'current')
         })
 
-    })
+    }, { passive: true })
 
 }
 
