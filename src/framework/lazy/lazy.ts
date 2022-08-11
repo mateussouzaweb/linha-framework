@@ -59,15 +59,14 @@ const loadElement = (element: LazyLoadableElement) => {
 
     updateElement(element)
 
-    // Process sibling <source/> element
-    let child = element.parentElement.querySelectorAll('source')
-    child = [].slice.call(child)
-
-    if (!child.length) {
+    const parent = element.parentElement
+    if (!parent) {
         return
     }
 
-    child.forEach((childElement) => {
+    // Process sibling <source/> element
+    Array.from(parent.querySelectorAll('source'))
+    .forEach((childElement) => {
         updateElement(childElement)
     })
 
@@ -82,7 +81,7 @@ const loadElement = (element: LazyLoadableElement) => {
 const processElementsInViewport = (elements: LazyLoadableElement[]) => {
 
     if (elements.length === 0) {
-        return
+        return []
     }
 
     elements.forEach((element) => {
