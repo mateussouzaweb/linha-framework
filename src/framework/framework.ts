@@ -13,5 +13,3 @@ document.addEventListener('DOMContentLoaded', () => {
     Tabs.init()
     Validate.init()
 })
-
-export { }
